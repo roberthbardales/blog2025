@@ -1,0 +1,139 @@
+{% extends "entrada/base_entrada.html" %}
+{% load static %}
+
+{% block title %}{{ entry.title }}{% endblock title %}
+{% block description %}
+<meta name="description" content="{{ entry.resume }}">
+{% endblock description %}
+{% block tags %}
+<meta name="keywords" content="
+    {% for t in entry.tag.all %}
+        {{ t.name }},
+    {% endfor %}
+">
+{% endblock tags %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-10 col-md-10">
+            <div class="col-12 mb-4 border-primary">
+                <h2 class="text-center text-primary">{{ entry.title }}</h2>
+            </div>
+            <div class="card-1 bienvenido text-white">
+                <div class="card-body bg-primary">
+                    <p>{{ entry.resume }}</p>
+                </div>
+            </div>
+            <div class="col-12 mt-4 mb-4 border border-primary" style="min-height: 550px">
+                <p><small class="text-secondary">Creado: {{ entry.created }}</small></p>
+                <p class="text-justify">{{ entry.content | safe }}</p>
+                <small class="text-secondary">Modificado: {{ entry.modified }}</small><br>
+            </div>
+
+                    <!-- BOTÓN DE LIKE + CONTADOR -->
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'entrada_app:toggle-like' entry.id %}" method="post">
+                            {% csrf_token %}
+                            {% if has_liked %}
+                                <button type="submit" class="btn btn-danger btn-sm">Quitar Like</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary btn-sm">Dar Like</button>
+                            {% endif %}
+                        </form>
+                        <p><strong>{{ likes_count }}</strong> likes</p>
+                    {% else %}
+                        <p>Debes <a href="{% url 'users_app:user-login' %}">iniciar sesión</a> para dar like.</p>
+                        <p><strong>{{ likes_count }}</strong> likes</p>
+                    {% endif %}
+                        <!-- COMENTARIOS -->
+                <div class="col-12 mt-4">
+                    <h4>Comentarios</h4>
+                    {% for comment in main_comments %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p><strong>{{ comment.user.full_name }}:</strong> {{ comment.content }}</p>
+                            <small class="text-secondary">{{ comment.created }}</small>
+
+                            {% if user.is_authenticated %}
+                                <a href="#" onclick="document.getElementById('reply-{{ comment.id }}').style.display='block'">Responder</a>
+                                <div id="reply-{{ comment.id }}" style="display:none; margin-top:10px;">
+                                    <form method="post" action="{% url 'entrada_app:add_comment' entry.slug %}">
+                                        {% csrf_token %}
+                                        {{ comment_form.as_p }}
+                                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                        <button type="submit" class="btn btn-primary btn-sm mt-1">Responder</button>
+                                    </form>
+                                </div>
+                                {% if comment.user == user %}
+                                <form method="post" action="{% url 'entrada_app:delete_comment' comment.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm mt-2">Eliminar</button>
+                                </form>
+                            {% endif %}
+                            {% endif %}
+
+                            {% for reply in comment.replies.all %}
+                                <div class="card mt-2 mb-2" style="margin-left:20px;">
+                                    <div class="card-body">
+                                        <p><strong>{{ reply.user.full_name }}:</strong> {{ reply.content }}</p>
+                                        <small class="text-secondary">{{ reply.created }}</small>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No hay comentarios aún.</p>
+                {% endfor %}
+                </div>
+
+                <!-- FORMULARIO DE COMENTARIOS -->
+                {% if user.is_authenticated %}
+                <div class="col-12 mt-3 mb-5">
+                    <h5>Agregar un comentario</h5>
+                    <form method="post" action="{% url 'entrada_app:add_comment' entry.slug %}">
+                        {% csrf_token %}
+                        {{ comment_form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Enviar</button>
+                    </form>
+                </div>
+                {% else %}
+                <p>Debes <a href="{% url 'users_app:user-login' %}">iniciar sesión</a> para comentar.</p>
+                {% endif %}
+
+            </div>
+
+        <div class="col-sm-2 col-md-2">
+            <div class="col-12">
+                <p class="h5">{{ entry.category }}</p>
+                <img class="card-img-top" src="{{ entry.image.url }}" style="min-height: 5rem">
+            </div>
+            <div class="col-sm-12">
+                {% if not user.is_anonymous %}
+                <div class="card-body mb-2 mt-2 px-1 py-1">
+                    <form class="blog-action" action="{% url 'favoritos_app:add-favoritos' entry.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-block btn-primary text-white">Añadir</button>
+                    </form>
+                </div>
+                {% else %}
+                <div class="card-body mt-3 mb-3 mt-1 px-1 py-1">
+                    <a class="btn btn-primary btn-block btn-lg text-white" href="{% url 'users_app:user-register'%}">Registrate</a>
+                </div>
+                {% endif %}
+            </div>
+            {% if not user.is_anonymous %}
+            <div class="col-12">
+                <div class="card-body mb-2 mt-2 px-1 py-1">
+                    <a href="{% url 'entrada_app:update-entrada' entry.id %}" class="btn btn-block btn-success text-white">Modificar</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

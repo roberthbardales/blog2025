@@ -1,0 +1,41 @@
+<!-- head para PC -->
+{% extends "users/base_users.html" %}
+{% load  static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container" style="min-height: 637px;">
+    <div class="row  w-100">
+        <div class="col-12 mb-4">
+        </div>
+        <div class="col-12 mb-4">
+        </div>
+        <div class="col-lg-4 bg-primary offset-lg-4 mt-4">
+            <form class="mb-1 mt-1 px-4 py-4 " method="post" enctype="multipart/form-data">{% csrf_token %}
+                <h5 class="display-5  h2 text-center text-white">Administrador de Blog</h5>
+                    {{form.as_p}}
+                    <div class="text-center px-2 py-3">
+                        <input type="submit" class="btn btn-success btn-block" value="Ingresar" />
+                    </div>
+                    <div class="text-center px-2 py-1">
+                        <a class="btn btn-warning btn-block" href="{% url 'users_app:user-register'%}">Registrar</a>
+                    </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+        
+{% endblock content %}
+
+                <!-- <div class="col-12">
+                    <label class="text-white" for="id_email">Email:</label>
+                    <input type="text" name="email" placeholder="Correo Electronico" class="form-control mr-sm-2" required="" id="id_email">
+                </div>
+                <div class="col-12">
+                    <label class="text-white" for="id_password">Password:</label>
+                    <input type="password" name="password" placeholder="contraseña" class="form-control mr-sm-2" required="" id="id_password">                
+                </div> -->

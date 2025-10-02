@@ -1,0 +1,107 @@
+
+{% extends "entrada/base_entrada.html" %}
+{% load  static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<!-- col-sm-4 col-lg-5 -->
+
+<div class="container" style="min-height: 600px">
+    <div class="row mb-4">
+        <div class="col-12">
+            <br>
+            <p class="h4">
+                Buscar Post
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4  col-sm-12 col-md-10">
+            <div>
+                    <form class="col-12" method="GET">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="kword2" name="kword2" placeholder="Buscar..." value="{{request.GET.kword2}}">
+                            <div class="input-group-append">
+                                <input type="submit" class="btn btn-success" type="button" value="Buscar">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                    <div class="row  row-cols-1 row-cols-lg-3 mt-0" >
+                        {% for entrada in entradas %}
+                        <div class="col mb-4 " style="font-size: 14px;">
+                            <div class="card h-100 ">
+                                <a href="{% url 'entrada_app:entry-detail' entrada.slug %}">
+                                    <img class="img-fluid" src="{{entrada.image.url}}"">
+                                </a>
+                                <div class="card-body ">
+                                    <h5 class="card-title">
+                                        <a href="{% url 'entrada_app:entry-detail' entrada.slug %}">{{entrada.title | truncatechars:100}}</a>
+                                </h5>
+                                <p>
+                                    {{ entrada.resume | truncatechars:70 }}
+                                </p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ entrada.created }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        {%empty%}
+                        <h3 style="color:red;">No hay resultados</h3>
+                        {% endfor %}
+                    </div>
+
+                <div class="col-12 mb-4">
+                        <div class="row justify-content-center mb-4">
+                            {% if is_paginated %}
+                            <nav aria-label="..." >
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <!-- <a href="?page={{page_obj.previous_page_number}}">Atras</a> -->
+                                        <a class="page-link" href="?{{ request.GET.urlencode }}&page={{page_obj.previous_page_number}}" tabindex="-1">Atras</a>
+                                    </li>
+                                    {% endif %}
+                                    {% for pagina in paginator.page_range %}
+                                    {% ifequal pagina page_obj.number %}
+                                    <!-- <li class="current"><span class="show-for-sr">You're on page</span> {{ pagina }}</li> -->
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#!"> {{ pagina }}<span class="sr-only">(current)</span></a>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{pagina}}">{{ pagina }}</a></li>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <!-- <a href="?page={{page_obj.next_page_number}}">Siguiente</a> -->
+                                        <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        </div>
+                </div>
+
+        </div>
+        <div class="col-xs-8  col-sm-12 c col-md-2">
+                    <div class="list-group">
+                        <a href="#!" class="list-group-item active">Categorias</a>
+                        <a href="{% url 'entrada_app:entry-lista' %}" class="list-group-item list-group-item-action">Todo</a>
+                        {% for categoria in categorias %}
+                        <a href="?categoria={{categoria.short_name}}" class="list-group-item list-group-item-action">{{categoria.short_name}}</a>
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% include "includes/footer.html" %}
+{% endblock content %}
+

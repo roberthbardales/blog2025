@@ -1,0 +1,71 @@
+{% extends "favoritos/base_favoritos.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container" style="min-height: 650px">
+    <div class="row justify-content-center">
+
+        <!-- Columna izquierda: info del usuario y lista de grupos -->
+        <div class="col-sm-3 mt-4 px-4 py-4 bg-info">
+            <div class="card1 text-white">
+                <div class="card-body">
+                    <div class="col">
+                        <h5>{{ user.full_name }}</h5>
+                    </div>
+                    <div class="col">
+                        <p>{{ user.email }}</p>
+                    </div>
+                    <div class="col">
+                        <p>{{ user.get_ocupation_display }}</p>
+                    </div>
+                    <div class="col">
+                        <p>{{ user.date_birth }}</p>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    {% if user.is_superuser %}
+                        <p>
+                            <a class="btn btn-dark btn-block h5 text-light" href="{% url 'users_app:user-lista' %}">Listar Usuarios</a>
+                        </p>
+                    {% endif %}
+                </div>
+
+                <div class="col-12">
+                    <p>
+                        <a class="btn btn-warning btn-block h5 text-dark" href="{% url 'users_app:user-update' %}">Cambiar Contraseña</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Lista rápida de grupos -->
+            <div class="mt-4">
+                <h5 class="text-white">Volver a favoritos</h5>
+                <a href="{% url 'favoritos_app:perfil' %}" class="btn btn-success text-dark d-block mx-auto">
+                    Volver a favoritos
+                  </a>
+            </div>
+        </div>
+
+        <div class="col-sm-1">
+            <!-- Espacio entre columnas -->
+        </div>
+
+        <!-- Columna derecha: CRUD de grupos -->
+        <div class="col-sm-8 mt-4 px-4 py-4 bg-info">
+            <h2>Editar Grupo</h2>
+
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}  <!-- Django genera el form automáticamente -->
+              <button type="submit">Guardar cambios</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

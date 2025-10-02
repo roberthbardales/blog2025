@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% load  static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/myblog.css' %}">
+{% endblock css %}
+
+{% block content %}
+{% include "includes/header.html" %}
+
+
+<div class="container text-light " >
+    <!-- <div class="row bg-primary mt-2 mb-2 justify-content-center " > -->
+        <div class="row mb-4 mt-4">
+            <div class="col-2 d-none d-sm-block d-md-none d-lg-block">
+
+            </div>
+        <div class="col-lg-8 bg-primary">
+    <form class=" mt-2 mb-2 "  method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <div class="col-12 mt-4 mb-4 ">
+            <p class="h3 text-center">Modificar Post</p>
+        </div>   
+            <div class="form-row  mb-4 justify-content-center text-light">
+                <div class="col-2">
+                    <p>In Home:</p>
+                    {{form.in_home}}
+                </div>
+                <div class="col-2">
+                    <p>Publico:</p>
+                    {{form.public}}
+                </div>
+                <div class="col-2">
+                    <p>Portada:</p>
+                    {{form.portada}}
+                </div>
+                <div class="col-5">
+                    {{form.tag}}
+                </div>
+            </div>
+            
+            <div class="form-row justify-content-center">
+                <div class="col-6">
+                    <p>usuario</p>
+                    {{form.user}}
+                </div>
+                <div class="col-6">
+                    <p>categoria</p>
+                    {{form.category}}
+                </div>
+                    <div class="col-6">
+                        <p>titulo</p>
+                        {{form.title}}
+                    </div>
+                    <div class="col-6">
+                        <p>resumen</p>
+                        {{form.resume}}
+                    </div>
+                <div class="col-12">
+                    <h5>Contenido</h5>
+                    {{form.media}}
+                    {{form.content}}
+                </div>
+                <div class="col 12">
+                    <p>Imagen</p>
+                    {{form.image}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12  mt-4 mb-4 text-center">
+                    <button type="submit" class=" text-white btn btn-success btn-block">Guardar</button>
+                </div>
+            </div>
+    </form>
+    </div>
+    <div class="col-2 d-none d-sm-block d-md-none d-lg-block">
+            
+    </div>
+    </div>
+</div>
+
+
+{% endblock content %}

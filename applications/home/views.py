@@ -45,6 +45,10 @@ class HomePageView(TemplateView):
 #     success_url= '.'
 
 
+class AboutMe(TemplateView):
+    template_name = "home/about_me.html"
+
+
 class SuscriberCreateView(CreateView):
     form_class = SuscribersForm
     success_url = "."  # puedes cambiarlo a otra URL
@@ -94,3 +98,5 @@ class ContactCreateView2(CreateView):
         )
 
         return super().form_valid(form)  # en lugar de redirect()
+
+

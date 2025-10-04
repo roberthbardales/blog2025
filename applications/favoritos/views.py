@@ -31,32 +31,63 @@ class UserPageView(ListView):
     context_object_name = 'entradas_user'
     login_url=reverse_lazy('users_app:user-login')
 
+
     def get_queryset(self):
-        return Favorites.objects.entradas_user(self.request.user)
-    # para q muestre los grupos creados
+        usuario = self.request.user
+        # por defecto trae todos los favoritos del usuario
+        if usuario:
+            queryset = Favorites.objects.entradas_user(usuario)
+
+            # si en la URL viene ?grupo=Python, filtramos
+            grupo = self.request.GET.get("grupo", "").strip()
+            if grupo:
+                queryset = queryset.filter(group__name=grupo)
+
+            return queryset.order_by('-created')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Agregamos los grupos de favoritos del usuario
+        # agregamos los grupos del usuario
         context["contexto_grupos"] = FavoriteGroup.objects.filter(user=self.request.user)
         return context
 
-class AddFavoritosView(UsuarioPermisoMixin,View):
+class CambiarGrupoView(UsuarioPermisoMixin, View):
+    """Cambia el grupo de un favorito usando botones y recargando la página"""
 
-    def post(self,request,*args,**kwargs):
-        #recuperar el usuario
-        usuario=self.request.user
-        entrada= Entry.objects.get(id=self.kwargs['pk'])
-        #registramos favoritos
+    def get(self, request, pk, *args, **kwargs):
+        favorito = get_object_or_404(Favorites, pk=pk, user=request.user)
+        group_id = request.GET.get("group_id", "")
 
-        Favorites.objects.get_or_create(
+        if group_id:
+            grupo = get_object_or_404(FavoriteGroup, id=group_id, user=request.user)
+            favorito.group = grupo
+        else:
+            favorito.group = None  # Sin grupo
+
+        favorito.save()
+        return redirect("favoritos_app:perfil")  # vuelve al perfil
+
+class AddFavoritosView(UsuarioPermisoMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        usuario = self.request.user
+        entrada = Entry.objects.get(id=self.kwargs['pk'])
+
+        # Obtener o crear el grupo General
+        grupo_general, _ = FavoriteGroup.objects.get_or_create(
+            user=usuario,
+            name="General"
+        )
+
+        # Registrar favorito evitando duplicados
+        favorito, creado = Favorites.objects.get_or_create(
             user=usuario,
             entry=entrada,
+            defaults={'group': grupo_general}
         )
-        return HttpResponseRedirect(
-            reverse(
-                'favoritos_app:perfil',
-            )
-        )
+
+
+        return redirect(reverse('favoritos_app:perfil'))
 
 class FavoritesDeleteView(UsuarioPermisoMixin,DeleteView):
 
@@ -177,6 +208,8 @@ class PruebaListView(ListView):
         return FavoriteGroup.objects.filter(
             user=self.request.user,
         )
+
+
 
 
 """

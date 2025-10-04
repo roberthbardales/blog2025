@@ -35,6 +35,11 @@ urlpatterns = [
         views.FavoritosByGrupoListView.as_view(),
         name="favoritos_por_grupo",
     ),
+    path(
+         "cambiar-grupo/<int:pk>/",
+         views.CambiarGrupoView.as_view(),
+         name='cambiar-grupo',
+    ),
 
     #prueba
     path(

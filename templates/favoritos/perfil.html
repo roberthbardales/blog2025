@@ -43,25 +43,28 @@
             <div class="mt-4">
                 <hr class=" border-dark">
 
-                <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-success text-dark d-block mx-auto">
+                <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-primary text-dark d-block mx-auto">
                     Ir a Mis Grupos
                   </a>
-                <ul class="list-group mt-3">
+                  <ul class="list-group mt-3">
+                    <li class="list-group-item p-0">
+                    <a href="?grupo={{ grupo.name }}"
+                    class="btn btn-success btn-sm w-100">
+                        Todos
+                    </a>
+                    </li>
+             </li>
                     {% for grupo in contexto_grupos %}
-                        <li class="list-group-item">
-                            {{ grupo.name }}
+                        <li class="list-group-item p-0">
+                            <a href="?grupo={{ grupo.name }}"
+                               class="btn btn-success btn-sm w-100 {% if grupo_activo == grupo.name %}active{% endif %}">
+                                {{ grupo.name }}
+                            </a>
                         </li>
-                    {% empty %}
-                        <li class="list-group-item">No tienes grupos creados.</li>
                     {% endfor %}
                 </ul>
-                <div class="list-group">
-                    <a href="#!" class="list-group-item active">Grupos</a>
-                    <a href="{% url 'entrada_app:entry-lista' %}" class="list-group-item list-group-item-action">Todo</a>
-                    {% for categoria in categorias %}
-                    <a href="?categoria={{categoria.short_name}}" class="list-group-item list-group-item-action">{{categoria.short_name}}</a>
-                    {% endfor %}
-                </div>
+
+
             </div>
 
 
@@ -82,8 +85,20 @@
                                 <div class="card-fluid mb-2 mt-2">
                                     <h5 class="card-title">{{ entrada.entry.title|truncatechars:100 }}</h5>
                                     <!-- <p class="card-text">{{ entrada.entry.resume|truncatechars:100 }}</p> -->
-                                    <p><strong>ID post:</strong> {{ entrada.id }}</p> <!-- ID de favorito -->
+                                    <p><strong>ID: {{ entrada.id }} - {{ entrada.group.name }} </strong> </p> <!-- ID de favorito -->
+                                    <!-- Select para cambiar grupo -->
+                                    <p><strong></strong></p>
+                                    <select class="form-select form-select-sm" onchange="window.location.href=this.value;">
 
+                                        </option>
+                                        <!-- Opciones de los grupos del usuario -->
+                                        {% for g in contexto_grupos %}
+                                            <option value="{% url 'favoritos_app:cambiar-grupo' entrada.id %}?group_id={{ g.id }}"
+                                                {% if entrada.group and entrada.group.id == g.id %}selected{% endif %}>
+                                                {{ g.name }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
                                     <div class="row mt-4 mr-0 ml-0">
                                         <div class="col-6">
                                             <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}" class="btn btn-block btn-primary">Ver</a>

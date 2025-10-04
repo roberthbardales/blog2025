@@ -1,0 +1,79 @@
+<!-- head para PC -->
+{% extends "home/base_home.html" %}
+
+{% load  static %}
+
+{% block title %}
+{{ home.title }}
+{% endblock title %}
+
+{% block description %}
+<meta name="description" content="{{ home.description }}">
+{% endblock description %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container mt-5 mb-5">
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center">
+            <img src="/static/img/profile.png" class="rounded shadow-lg img-fluid rounded-1" alt="Foto de perfil">
+            <h2 class="mt-3 text-success">Russell Bardales</h2>
+            <p class="text-muted">Desarrollador Backend | Django | Python</p>
+
+            <div class="mt-3">
+                <a href="mailto:roberth@example.com" class="btn btn-outline-success btn-sm">
+                    <i class="bi bi-envelope"></i> Contacto
+                </a>
+                <a href="https://github.com/roberthbardales" target="_blank" class="btn btn-success btn-sm">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h4 class="text-primary border-bottom pb-2 mb-3">Sobre mí</h4>
+            <p>
+                Soy un desarrollador apasionado por crear aplicaciones web con <strong>Django</strong>
+                y <strong>Python</strong>. Me gusta estructurar proyectos limpios, escalables y bien documentados.
+                Busco seguir creciendo en el desarrollo backend y aprender sobre buenas prácticas de arquitectura.
+            </p>
+
+            <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Habilidades Técnicas</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">🐍 Python</li>
+                        <li class="list-group-item">🧱 Django / Django REST Framework</li>
+                        <li class="list-group-item">💾 PostgreSQL / MySQL / SQLite</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">🌐 HTML / CSS / Bootstrap</li>
+                        <li class="list-group-item">⚙️ Git / GitHub</li>
+                        <li class="list-group-item">☁️ Deploy: Render, Railway, Heroku</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Experiencia</h4>
+            <div class="mb-3">
+                <h5 class="mb-1">Proyecto Blog Django</h5>
+                <p class="mb-1 text-muted"><small>2025 – Actualidad</small></p>
+                <p>
+                    Desarrollo de un sistema de blog profesional con autenticación, gestión de favoritos,
+                    categorías, búsqueda avanzada y panel administrativo personalizado.
+                </p>
+            </div>
+
+            <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Educación</h4>
+            <p><strong>Ingeniería de Sistemas</strong> – Universidad de Ejemplo</p>
+            <p class="text-muted"><small>2017 - 2022</small></p>
+        </div>
+    </div>
+</div>
+{% include "includes/footer.html" %}
+
+{% endblock content %}

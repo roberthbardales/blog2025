@@ -9,11 +9,12 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-none d-md-block" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                    <li class="nav-item  mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:index' %}">Inicio<span class="sr-only"></span></a>
-                    </li>
+
                     <li class="nav-item mx-1">
                         <a class="nav-link btn btn-outline-success text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
+                    </li>
+                    <li class="nav-item  mx-1">
+                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:sobre_mi' %}">Sobre Mi<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item  mx-1">
                         {% if not user.is_anonymous %}
@@ -38,14 +39,14 @@
 
                         {% if not user.is_anonymous %}
                         <li class="nav-item mx-1">
-                            <a class="nav-link text-white" href="{% url 'favoritos_app:perfil' %}">{{user.full_name}}</a>
+                            <a class="nav-link text-white" href="{% url 'favoritos_app:perfil' %}">{{user.name}}</a>
                         </li>
                             {% else %}
                             <li class="nav-item mx-1">
                             <a class="nav-link btn text-white" href="{% url 'users_app:user-login' %}">Usuario: Anonimo</a>
                         </li>
                             {% endif %}
- 
+
                     </ul>
 
                     <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="form-inline my-2 my-lg-0">{% csrf_token %}

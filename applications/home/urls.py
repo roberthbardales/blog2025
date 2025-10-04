@@ -27,4 +27,9 @@ urlpatterns = [
         views.ContactCreateView2.as_view(),
         name='add-contact2',
     ),
+    path(
+        'sobre_mi',
+        views.AboutMe.as_view(),
+        name='sobre_mi',
+    ),
 ]

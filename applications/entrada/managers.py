@@ -31,7 +31,7 @@ class EntryManager(models.Manager):
 
     #procedimiento para buscar entradas por categoria o palabra clave
     def buscar_entrada_categoria(self,kword,categoria):
-        if len(categoria)> 0:
+        if categoria:
             return self.filter(
                 category__short_name=categoria,
                 title__icontains=kword,
@@ -50,13 +50,10 @@ class EntryManager(models.Manager):
 
             ).order_by('-created')
 
-    def buscar2(self,categoria,kword2):
-        kword2 = kword2.strip()
+    def buscar_general(self,kword_general):
         resultado=self.filter(
-            category__short_name=categoria,
-            title__icontains=kword2,
+            Q(title__icontains=kword_general,) |
+            Q(title__trigram_similar=kword_general,)
         ).order_by('-created')
 
-        print("************")
-        print(resultado)
         return resultado

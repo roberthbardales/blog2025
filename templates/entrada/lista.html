@@ -11,23 +11,36 @@
 <div class="container" style="min-height: 600px">
     <div class="row mb-4">
         <div class="col-12">
-            <br>
             <p class="h4">
-                Buscar Post
+
             </p>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-4  col-sm-12 col-md-10">
             <div>
-                    <form class="col-12" method="GET">
+                <form class="col-12" method="GET">
+                    {% if request.GET.categoria %}
+                    <div class="col-12  bg-success text-white p-1 rounded mb-4">
+                        <p class="h4">
+                            {{ request.GET.categoria }}
+                        </p>
+                    </div>
+                        <input type="hidden" name="categoria" value="{{ request.GET.categoria }}">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="kword2" name="kword2" placeholder="Buscar..." value="{{request.GET.kword2}}">
+                            <input type="text"
+                                   class="form-control"
+                                   id="kword_prueba"
+                                   name="kword_prueba"
+                                   placeholder="Buscar..."
+                                   value="{{ request.GET.kword_prueba }}">
                             <div class="input-group-append">
-                                <input type="submit" class="btn btn-success" type="button" value="Buscar">
+                                <input type="submit" class="btn btn-success" value="Buscar">
                             </div>
                         </div>
-                    </form>
+
+                    {% endif %}
+                </form>
                 </div>
                     <div class="row  row-cols-1 row-cols-lg-3 mt-0" >
                         {% for entrada in entradas %}
@@ -89,13 +102,27 @@
 
         </div>
         <div class="col-xs-8  col-sm-12 c col-md-2">
-                    <div class="list-group">
-                        <a href="#!" class="list-group-item active">Categorias</a>
-                        <a href="{% url 'entrada_app:entry-lista' %}" class="list-group-item list-group-item-action">Todo</a>
-                        {% for categoria in categorias %}
-                        <a href="?categoria={{categoria.short_name}}" class="list-group-item list-group-item-action">{{categoria.short_name}}</a>
-                        {% endfor %}
-                    </div>
+            <div class="list-group list-group-flush border rounded-3 shadow-sm p-0">
+
+                <!-- Todo -->
+                <a href="{% url 'entrada_app:entry-lista' %}"
+                   class="list-group-item list-group-item-action py-2
+                          {% if not request.GET.categoria %}active{% endif %}">
+                    Todo
+                </a>
+
+                <!-- Categorías dinámicas -->
+                {% for categoria in categorias %}
+                    <a href="?categoria={{ categoria.short_name }}{% if request.GET.kword_prueba %}&kword_prueba={{ request.GET.kword_prueba }}{% endif %}"
+                       class="list-group-item list-group-item-action py-2
+                              {% if request.GET.categoria == categoria.short_name %}active fw-semibold text-white{% endif %}">
+                        {{ categoria.short_name }}
+                    </a>
+                {% empty %}
+                    <span class="list-group-item text-muted text-center py-2">Sin categorías</span>
+                {% endfor %}
+            </div>
+
             </div>
         </div>
     </div>

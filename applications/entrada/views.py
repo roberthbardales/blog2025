@@ -65,9 +65,9 @@ class EntryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(EntryListView, self).get_context_data(**kwargs)
         context['categorias']=Category.objects.all().order_by('name')
-        #pruebas
+
         # context['categorias2']=Category.objects.all().order_by('-created')
-        # print("*********************")
+        # print("//////////////////////////////////////////")
         # lista=context['categorias2']
         # for item in lista:
         #     print(f"{item.id} - {item.name}")
@@ -75,26 +75,19 @@ class EntryListView(ListView):
         return context
 
     #buscador input
+
     def get_queryset(self):
-        # kword= self.request.GET.get('kword','')
-        categoria= self.request.GET.get('categoria','').strip()
-        kword2= self.request.GET.get('kword2','')
-
-        queryset = Entry.objects.filter(
-            category__short_name__iexact=categoria,
-            title__icontains=kword2,
-        ).order_by('-created')
-        print('**********************')
-        print(categoria)
-        print(queryset)
-
-        return queryset
+        kword= self.request.GET.get('kword_prueba','')
+        categoria= self.request.GET.get('categoria','')
+        kword_general = self.request.GET.get('kword_general', '').strip()
         #consulta de busqueda
-        # resultado= Entry.objects.buscar_entrada_categoria(kword2,categoria)
-        #pruebas
-        # resultado= Entry.objects.filter(category__name__icontains=kword2)
-        # resultado= Entry.objects.buscar2(categoria,kword2)
-        # return queryset
+        resultado= Entry.objects.buscar_entrada_categoria(kword,categoria)
+
+        if kword_general:
+
+            resultado = Entry.objects.buscar_general(kword_general)
+            # resultado = resultado.filter(title__icontains=kword_general)
+        return resultado
 
 class EntryDetailView(UsuarioPermisoMixin, DetailView):
     template_name = 'entrada/detail.html'

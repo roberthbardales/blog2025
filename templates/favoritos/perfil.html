@@ -72,18 +72,32 @@
 
         <div class="col-sm-9 mt-3">
             <h5 class="text-center h3 bg-warning mt-2 py-2" >Ultimos Posts Guardados</h5>
-
+                            <!-- 🔽 NUEVO BLOQUE: BOTONES DE ORDEN 🔽 -->
+            <div class="d-flex justify-content-center mb-3 mt-4">
+                <div class="btn-group" role="group">
+                    <a href="?orden=fecha" class="btn btn-outline-primary {% if orden_seleccionado == 'fecha' %}active{% endif %}">
+                        Ordenar por Fecha
+                    </a>
+                    <a href="?orden=grupo" class="btn btn-outline-primary {% if orden_seleccionado == 'grupo' %}active{% endif %}">
+                        Ordenar por Grupo
+                    </a>
+                    <a href="?orden=categoria" class="btn btn-outline-primary {% if orden_seleccionado == 'categoria' %}active{% endif %}">
+                        Ordenar por Categoria
+                    </a>
+                </div>
+            </div>
+            <!-- 🔼 FIN BLOQUE DE ORDEN 🔼 -->
             <div class="row px-3 py-3">
                 {% for entrada in entradas_user %}
 
-                    <div class="card1 mb-2 border">
+                <div class="card1 mb-2 border border-5 rounded border-primary">
                         <div class="row justify-content-center align-items-center">
                             <div class="col-md-4">
                                 <img class="img-fluid mt-4 d-block" src="{{ entrada.entry.image.url }}">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-fluid mb-2 mt-2">
-                                    <h5 class="card-title">{{ entrada.entry.title|truncatechars:100 }}</h5>
+                                    <h5 class="card-title">{{ entrada.entry.title|truncatechars:100 }} -[{{ entrada.entry.category}}]</h5>
                                     <!-- <p class="card-text">{{ entrada.entry.resume|truncatechars:100 }}</p> -->
                                     <p><strong>ID: {{ entrada.id }} - {{ entrada.group.name }} </strong> </p> <!-- ID de favorito -->
                                     <!-- Select para cambiar grupo -->
@@ -112,8 +126,39 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 {% endfor %}
+            </div>
+            <div class="row justify-content-center mb-4">
+                {% if is_paginated %}
+                <nav aria-label="..." >
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <!-- <a href="?page={{page_obj.previous_page_number}}">Atras</a> -->
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{page_obj.previous_page_number}}" tabindex="-1">Atras</a>
+                        </li>
+                        {% endif %}
+                        {% for pagina in paginator.page_range %}
+                        {% ifequal pagina page_obj.number %}
+                        <!-- <li class="current"><span class="show-for-sr">You're on page</span> {{ pagina }}</li> -->
+                        <li class="page-item active">
+                            <a class="page-link" href="#!"> {{ pagina }}<span class="sr-only">(current)</span></a>
+                        </li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{pagina}}">{{ pagina }}</a></li>
+                        {% endifequal %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <!-- <a href="?page={{page_obj.next_page_number}}">Siguiente</a> -->
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
             </div>
         </div>
     </div>

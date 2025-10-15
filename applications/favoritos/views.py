@@ -26,29 +26,42 @@ from applications.users.mixins import (
 )
 
 class UserPageView(ListView):
-
     template_name = "favoritos/perfil.html"
     context_object_name = 'entradas_user'
-    login_url=reverse_lazy('users_app:user-login')
-
+    login_url = reverse_lazy('users_app:user-login')
+    paginate_by = 6
 
     def get_queryset(self):
         usuario = self.request.user
-        # por defecto trae todos los favoritos del usuario
-        if usuario:
+        queryset = Favorites.objects.none()
+
+        if usuario.is_authenticated:
             queryset = Favorites.objects.entradas_user(usuario)
 
-            # si en la URL viene ?grupo=Python, filtramos
+            # --- Filtro por grupo ---
             grupo = self.request.GET.get("grupo", "").strip()
             if grupo:
                 queryset = queryset.filter(group__name=grupo)
 
-            return queryset.order_by('-created')
+            # --- Nuevo: orden dinámico por fecha, grupo o categoría ---
+            orden = self.request.GET.get("orden", "fecha")
+
+            if orden == "fecha":
+                queryset = queryset.order_by('-created')
+            elif orden == "grupo":
+                queryset = queryset.order_by('group__name')
+            elif orden == "categoria":
+                queryset = queryset.order_by('entry__category__name')
+            else:
+                queryset = queryset.order_by('-created')  # por defecto
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # agregamos los grupos del usuario
         context["contexto_grupos"] = FavoriteGroup.objects.filter(user=self.request.user)
+        # --- Nuevo: mantener qué orden está seleccionado en el template ---
+        context["orden_seleccionado"] = self.request.GET.get("orden", "fecha")
         return context
 
 class CambiarGrupoView(UsuarioPermisoMixin, View):
@@ -209,6 +222,29 @@ class PruebaListView(ListView):
             user=self.request.user,
         )
 
+
+class FavoritoListView(ListView):
+    model = Favorites
+    template_name = 'favoritos/lista.html'
+    context_object_name = 'favoritos'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        orden = self.request.GET.get('orden', 'fecha')
+
+        if orden == 'fecha':
+            queryset = queryset.order_by('-fecha')
+        elif orden == 'grupo':
+            queryset = queryset.order_by('grupo__nombre')
+        elif orden == 'categoria':
+            queryset = queryset.order_by('categoria__nombre')
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['orden_seleccionado'] = self.request.GET.get('orden', 'fecha')
+        return context
 
 
 

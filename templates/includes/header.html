@@ -13,15 +13,16 @@
                     <li class="nav-item mx-1">
                         <a class="nav-link btn btn-outline-success text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
                     </li>
-                    <li class="nav-item  mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:sobre_mi' %}">Sobre Mi<span class="sr-only"></span></a>
-                    </li>
+
                     <li class="nav-item  mx-1">
                         {% if not user.is_anonymous %}
                         <a class="nav-link btn btn-outline-success text-white" href="{% url 'entrada_app:add-entrada' %}">Agregar<span class=""></span></a>
                         {% else %}
                         <span hidden="hidden">Error oculto</span>
                         {% endif %}
+                    </li>
+                    <li class="nav-item  mx-1">
+                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:sobre_mi' %}">Sobre Mi<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item  mx-1">
                         {% if not user.is_anonymous %}
@@ -50,7 +51,7 @@
                     </ul>
 
                     <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="form-inline my-2 my-lg-0">{% csrf_token %}
-                        <input class="form-control mr-sm-2" id="kword" name="kword" type="search" placeholder="Buscar" aria-label="Search" value="{{request.GET.kword}}">
+                        <input class="form-control mr-sm-2" id="kword_general" name="kword_general" type="search" placeholder="Busqueda General" aria-label="Search" value="{{request.GET.kword_general}}">
                         <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
 

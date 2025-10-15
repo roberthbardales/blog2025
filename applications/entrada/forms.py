@@ -65,6 +65,11 @@ class EntradaForm(forms.ModelForm):
 
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Quitar el "---------" del select
+        self.fields['category'].empty_label = None
+
 
 class CommentForm(forms.ModelForm):
     # Campo oculto para saber si es respuesta a otro comentario

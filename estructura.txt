@@ -1,0 +1,2395 @@
+Listado de rutas de carpetas para el volumen SOLIDO
+El n£mero de serie del volumen es 8CCA-8500
+D:.
+|   activar blog.bat
+|   estructura.txt
+|   firebase_config.py
+|   manage.py
+|   prueba_git.txt
+|   README.md
+|   serviceAccountKey.json
+|   
++---applications
+|   |   procesors.py
+|   |   __init__.py
+|   |   
+|   +---entrada
+|   |   |   admin.py
+|   |   |   apps.py
+|   |   |   forms.py
+|   |   |   managers.py
+|   |   |   models.py
+|   |   |   tests.py
+|   |   |   urls.py
+|   |   |   views.py
+|   |   |   __init__.py
+|   |   |   
+|   |   +---migrations
+|   |   |   |   0001_initial.py
+|   |   |   |   0002_entry_user.py
+|   |   |   |   0003_auto_20230105_1929.py
+|   |   |   |   0004_auto_20230105_1939.py
+|   |   |   |   0005_auto_20230111_1902.py
+|   |   |   |   0006_alter_entry_resume.py
+|   |   |   |   0007_alter_entry_resume.py
+|   |   |   |   0008_auto_20250830_1815.py
+|   |   |   |   0009_comment.py
+|   |   |   |   0010_auto_20250830_2045.py
+|   |   |   |   0011_like.py
+|   |   |   |   0012_auto_20250902_2333.py
+|   |   |   |   __init__.py
+|   |   |   |   
+|   |   |   \---__pycache__
+|   |   |           0001_initial.cpython-37.pyc
+|   |   |           0002_auto_20220911_2349.cpython-37.pyc
+|   |   |           0002_auto_20220919_2207.cpython-37.pyc
+|   |   |           0002_entry_user.cpython-37.pyc
+|   |   |           0003_auto_20220912_0003.cpython-37.pyc
+|   |   |           0003_auto_20221205_2045.cpython-37.pyc
+|   |   |           0003_auto_20230105_1929.cpython-37.pyc
+|   |   |           0004_auto_20221205_2045.cpython-37.pyc
+|   |   |           0004_auto_20230105_1939.cpython-37.pyc
+|   |   |           0005_auto_20230111_1902.cpython-37.pyc
+|   |   |           0006_alter_entry_resume.cpython-37.pyc
+|   |   |           0007_alter_entry_resume.cpython-37.pyc
+|   |   |           0008_auto_20250830_1815.cpython-37.pyc
+|   |   |           0009_comment.cpython-37.pyc
+|   |   |           0010_auto_20250830_2045.cpython-37.pyc
+|   |   |           0011_like.cpython-37.pyc
+|   |   |           0012_auto_20250902_2333.cpython-37.pyc
+|   |   |           __init__.cpython-37.pyc
+|   |   |           
+|   |   \---__pycache__
+|   |           admin.cpython-36.pyc
+|   |           admin.cpython-37.pyc
+|   |           apps.cpython-37.pyc
+|   |           forms.cpython-37.pyc
+|   |           managers.cpython-36.pyc
+|   |           managers.cpython-37.pyc
+|   |           models.cpython-36.pyc
+|   |           models.cpython-37.pyc
+|   |           urls.cpython-37.pyc
+|   |           views.cpython-37.pyc
+|   |           __init__.cpython-36.pyc
+|   |           __init__.cpython-37.pyc
+|   |           
+|   +---favoritos
+|   |   |   admin.py
+|   |   |   apps.py
+|   |   |   managers.py
+|   |   |   models.py
+|   |   |   tests.py
+|   |   |   urls.py
+|   |   |   views.py
+|   |   |   __init__.py
+|   |   |   
+|   |   +---migrations
+|   |   |   |   0001_initial.py
+|   |   |   |   0002_auto_20221209_1639.py
+|   |   |   |   0003_alter_favorites_id.py
+|   |   |   |   0004_auto_20250830_1815.py
+|   |   |   |   0005_like.py
+|   |   |   |   0006_delete_like.py
+|   |   |   |   0007_auto_20250916_1808.py
+|   |   |   |   __init__.py
+|   |   |   |   
+|   |   |   \---__pycache__
+|   |   |           0001_initial.cpython-37.pyc
+|   |   |           0002_auto_20221115_0102.cpython-37.pyc
+|   |   |           0002_auto_20221117_2023.cpython-37.pyc
+|   |   |           0002_auto_20221117_2109.cpython-37.pyc
+|   |   |           0002_auto_20221118_0003.cpython-37.pyc
+|   |   |           0002_auto_20221118_0035.cpython-37.pyc
+|   |   |           0002_auto_20221121_1414.cpython-37.pyc
+|   |   |           0002_auto_20221209_1639.cpython-37.pyc
+|   |   |           0003_alter_favorites_id.cpython-37.pyc
+|   |   |           0004_auto_20250830_1815.cpython-37.pyc
+|   |   |           0005_like.cpython-37.pyc
+|   |   |           0006_delete_like.cpython-37.pyc
+|   |   |           0007_auto_20250916_1808.cpython-37.pyc
+|   |   |           __init__.cpython-37.pyc
+|   |   |           
+|   |   \---__pycache__
+|   |           admin.cpython-36.pyc
+|   |           admin.cpython-37.pyc
+|   |           apps.cpython-37.pyc
+|   |           managers.cpython-36.pyc
+|   |           managers.cpython-37.pyc
+|   |           models.cpython-36.pyc
+|   |           models.cpython-37.pyc
+|   |           urls.cpython-37.pyc
+|   |           views.cpython-37.pyc
+|   |           __init__.cpython-36.pyc
+|   |           __init__.cpython-37.pyc
+|   |           
+|   +---home
+|   |   |   admin.py
+|   |   |   apps.py
+|   |   |   forms.py
+|   |   |   models.py
+|   |   |   tests.py
+|   |   |   urls.py
+|   |   |   views.py
+|   |   |   __init__.py
+|   |   |   
+|   |   +---migrations
+|   |   |   |   0001_initial.py
+|   |   |   |   0002_auto_20230111_1902.py
+|   |   |   |   0003_auto_20250830_1815.py
+|   |   |   |   __init__.py
+|   |   |   |   
+|   |   |   \---__pycache__
+|   |   |           0001_initial.cpython-37.pyc
+|   |   |           0002_auto_20230111_1902.cpython-37.pyc
+|   |   |           0003_auto_20250830_1815.cpython-37.pyc
+|   |   |           __init__.cpython-36.pyc
+|   |   |           __init__.cpython-37.pyc
+|   |   |           
+|   |   \---__pycache__
+|   |           admin.cpython-36.pyc
+|   |           admin.cpython-37.pyc
+|   |           apps.cpython-37.pyc
+|   |           forms.cpython-37.pyc
+|   |           models.cpython-36.pyc
+|   |           models.cpython-37.pyc
+|   |           urls.cpython-37.pyc
+|   |           views.cpython-37.pyc
+|   |           __init__.cpython-36.pyc
+|   |           __init__.cpython-37.pyc
+|   |           
+|   +---users
+|   |   |   admin.py
+|   |   |   apps.py
+|   |   |   forms.py
+|   |   |   managers.py
+|   |   |   mixins.py
+|   |   |   models.py
+|   |   |   tests.py
+|   |   |   urls.py
+|   |   |   views.py
+|   |   |   __init__.py
+|   |   |   
+|   |   +---migrations
+|   |   |   |   0001_initial.py
+|   |   |   |   0002_auto_20230108_1846.py
+|   |   |   |   0003_auto_20230108_1900.py
+|   |   |   |   0004_alter_user_id.py
+|   |   |   |   0005_auto_20250830_1815.py
+|   |   |   |   __init__.py
+|   |   |   |   
+|   |   |   \---__pycache__
+|   |   |           0001_initial.cpython-37.pyc
+|   |   |           0002_auto_20230108_1846.cpython-37.pyc
+|   |   |           0003_auto_20230108_1900.cpython-37.pyc
+|   |   |           0004_alter_user_id.cpython-37.pyc
+|   |   |           0005_auto_20250830_1815.cpython-37.pyc
+|   |   |           __init__.cpython-37.pyc
+|   |   |           
+|   |   \---__pycache__
+|   |           admin.cpython-36.pyc
+|   |           admin.cpython-37.pyc
+|   |           apps.cpython-37.pyc
+|   |           forms.cpython-37.pyc
+|   |           managers.cpython-36.pyc
+|   |           managers.cpython-37.pyc
+|   |           mixins.cpython-37.pyc
+|   |           models.cpython-36.pyc
+|   |           models.cpython-37.pyc
+|   |           urls.cpython-37.pyc
+|   |           views.cpython-37.pyc
+|   |           __init__.cpython-36.pyc
+|   |           __init__.cpython-37.pyc
+|   |           
+|   \---__pycache__
+|           procesors.cpython-37.pyc
+|           __init__.cpython-36.pyc
+|           __init__.cpython-37.pyc
+|           
++---blog
+|   |   asgi.py
+|   |   settings.py
+|   |   urls.py
+|   |   wsgi.py
+|   |   __init__.py
+|   |   
+|   +---settings
+|   |   |   base.py
+|   |   |   local.py
+|   |   |   prod.py
+|   |   |   __init__.py
+|   |   |   
+|   |   \---__pycache__
+|   |           base.cpython-36.pyc
+|   |           base.cpython-37.pyc
+|   |           local.cpython-37.pyc
+|   |           prod.cpython-36.pyc
+|   |           __init__.cpython-36.pyc
+|   |           __init__.cpython-37.pyc
+|   |           
+|   \---__pycache__
+|           urls.cpython-37.pyc
+|           wsgi.cpython-37.pyc
+|           __init__.cpython-36.pyc
+|           __init__.cpython-37.pyc
+|           
++---media
+|   +---Entry
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_fVY6UYa.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_KNRW62u.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_MlHDEBT.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_NYlaixj.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_NYlaixj_M6jxtby.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_RHUEPqF.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_U6bZAtJ.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_uxh7y65.webp
+|   |       1_CWFkh5z8oa6dZfn5_gkKKQ_wJ8d3sn.webp
+|   |       banner-2021.2-release.jpg
+|   |       banner-2021.2-release_0cfFycD.jpg
+|   |       banner-2021.2-release_jILZQPu.jpg
+|   |       banner-2021.2-release_lKaGo6M.jpg
+|   |       banner-2021.2-release_RC7yz7K.jpg
+|   |       banner-2021.2-release_vb3e8io.jpg
+|   |       banner-2021.2-release_Wt4EQsU.jpg
+|   |       banner-2021.2-release_ygtaoQ2.jpg
+|   |       blog02.png
+|   |       Captura01.PNG
+|   |       Captura01_DP5ZL5i.PNG
+|   |       CommandLineIcon.png
+|   |       Como-listar-bases-de-datos-y-tablas-en-PostgreSQL-usando-psql.jpg
+|   |       Como-listar-bases-de-datos-y-tablas-en-PostgreSQL-usando-psql_6V8AKHb.jpg
+|   |       Como-listar-bases-de-datos-y-tablas-en-PostgreSQL-usando-psql_6V8AKHb_m7t1efU.jpg
+|   |       Como-listar-bases-de-datos-y-tablas-en-PostgreSQL-usando-psql_9m4J305.jpg
+|   |       Como-listar-bases-de-datos-y-tablas-en-PostgreSQL-usando-psql_XAs9k9C.jpg
+|   |       Como-listar-bases-psql_6V8AKHb.jpg
+|   |       desarrolladores-780x470.jpg
+|   |       desarrolladores-780x470_lZ8aWzX.jpg
+|   |       digital.jpg
+|   |       digital_7KcIo98.jpg
+|   |       digital_fHCGYKB.jpg
+|   |       digital_QT0qiyv.jpg
+|   |       Django-1024x576.2e16d0ba.fill-2000x1000.jpg
+|   |       Django-1024x576.2e16d0ba.fill-2000x1000_JlODAtP.jpg
+|   |       django.JPG
+|   |       django_0lK3Dhw.JPG
+|   |       django_1JD1Cgy.JPG
+|   |       django_2cMJ41T.JPG
+|   |       django_2fXiwzz.JPG
+|   |       django_36dtVG6.JPG
+|   |       django_38HM3G3.JPG
+|   |       django_7bbUM5E.JPG
+|   |       django_AVrmNtJ.JPG
+|   |       django_CUgCaBc.JPG
+|   |       django_Dtp63Nb.JPG
+|   |       django_EdP6pTm.JPG
+|   |       django_F77qTdo.JPG
+|   |       django_FKJlEKf.JPG
+|   |       django_FnuQsnn.JPG
+|   |       django_GenLdK8.JPG
+|   |       django_Gvdpxj2.JPG
+|   |       django_GVlkm4A.JPG
+|   |       django_gxb3qBz.JPG
+|   |       django_gzlYgEk.JPG
+|   |       django_Iu5akg1.JPG
+|   |       django_jT0IFHp.JPG
+|   |       django_KBJMQUG.JPG
+|   |       django_LCIxS7Z.JPG
+|   |       django_MAVQkqa.JPG
+|   |       django_MDshzNb.JPG
+|   |       django_MGlMTrr.JPG
+|   |       django_mzolW0x.JPG
+|   |       django_nC9dKAJ.JPG
+|   |       django_nGkgBEI.JPG
+|   |       django_OJskXb9.JPG
+|   |       django_oriaYAE.JPG
+|   |       django_Oui45xV.JPG
+|   |       django_pbB3SBe.JPG
+|   |       django_PfMkgWP.JPG
+|   |       django_PsaTuVJ.JPG
+|   |       django_PScRrNO.JPG
+|   |       django_pvgAyC0.JPG
+|   |       django_QCFa4pn.JPG
+|   |       django_QKhsmAe.JPG
+|   |       django_Ql6G9k6.JPG
+|   |       django_Ql6G9k6_3rIEQu2.jpg
+|   |       django_Ql6G9k6_UbkE25Z.jpg
+|   |       django_QPcToVJ.JPG
+|   |       django_rGhcKTW.JPG
+|   |       django_rJmW0KM.JPG
+|   |       django_RVhSsUq.JPG
+|   |       django_teXnrnz.JPG
+|   |       django_theLlaa.JPG
+|   |       django_u4ZopK9.JPG
+|   |       django_u515Riw.JPG
+|   |       django_VEqcaBh.JPG
+|   |       django_wAvyHIA.JPG
+|   |       django_Wq4ZCo4.JPG
+|   |       django_XQYPEr4.JPG
+|   |       django_yQzEXc1.JPG
+|   |       django_ZQ2MJ50.JPG
+|   |       download.jpg
+|   |       drf-logo2.png
+|   |       drf-logo2_2PWWout.png
+|   |       drf-logo2_4Dy8sei.png
+|   |       drf-logo2_BCXUzPm.png
+|   |       drf-logo2_bzVMDoT.png
+|   |       drf-logo2_EKgY79r.png
+|   |       drf-logo2_EraCL9T.png
+|   |       drf-logo2_gdn5EIF.png
+|   |       drf-logo2_gGlLB1W.png
+|   |       drf-logo2_hcT9b6c.png
+|   |       drf-logo2_I92jEEi.png
+|   |       drf-logo2_IHXG7hR.png
+|   |       drf-logo2_Jr7ulGU.png
+|   |       drf-logo2_Mx3OE41.png
+|   |       drf-logo2_RLLWGxj.png
+|   |       drf-logo2_wQp3gA0.png
+|   |       drf-logo2_yH5EqeM.png
+|   |       githu.webp
+|   |       Integracion-continua.jpg
+|   |       Integracion-continua_pIa93xn.jpg
+|   |       login01.png
+|   |       login01_EbFV8SU.png
+|   |       python-lenguaje-de-programacion.jpg
+|   |       Python-P.webp
+|   |       Python-P_21vt5Rt.webp
+|   |       Python-P_21vt5Rt_9H0dcF7.webp
+|   |       Python-P_21vt5Rt_9H0dcF7_bo9sYk1.webp
+|   |       Python-P_21vt5Rt_9H0dcF7_MVjJZNu.webp
+|   |       PythonWebScraper.png
+|   |       registrar01.png
+|   |       registrar01_4qVBq9t.png
+|   |       registrar01_AFNpK8f.png
+|   |       registrar01_anMO1kF.png
+|   |       registrar01_Appanw5.png
+|   |       registrar01_cG2R9XN.png
+|   |       registrar01_cY2YiN7.png
+|   |       registrar01_djb5qfw.png
+|   |       registrar01_JUiXMIy.png
+|   |       registrar01_O7pEPwy.png
+|   |       registrar01_pG8Y6vd.png
+|   |       registrar01_PYk0w8I.png
+|   |       registrar01_QRt73AL.png
+|   |       registrar01_UOrSzFG.png
+|   |       registrar01_WI8mz4a.png
+|   |       registrar01_YBzqYWw.png
+|   |       registro-y-autenticacion-con-dja.2e16d0ba.fill-2000x1000.jpg
+|   |       registro-y-autenticacion-con-dja.2e16d0ba.fill-2000x1000_jyWMENr.jpg
+|   |       registro-y-autenticacion-con-dja.2e16d0ba.fill-2000x1000_rJ2NJV9.jpg
+|   |       registro-y-autenticacion-con-dja.2e16d0ba.fill-2000x1000_X4pY3J7.jpg
+|   |       windows-10-21h2.2e16d0ba.fill-2000x1000.jpg
+|   |       
+|   \---uploads
+|       +---2022
+|       |   \---12
+|       |       +---07
+|       |       |       image.png
+|       |       |       image_thumb.png
+|       |       |       
+|       |       +---08
+|       |       |       image.png
+|       |       |       image_nOERbqn.png
+|       |       |       image_nOERbqn_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_WOuXa9m.png
+|       |       |       image_WOuXa9m_thumb.png
+|       |       |       image_XrsSMRO.png
+|       |       |       image_XrsSMRO_thumb.png
+|       |       |       
+|       |       +---09
+|       |       |       image.png
+|       |       |       image_q6GjSiU.png
+|       |       |       image_q6GjSiU_thumb.png
+|       |       |       image_Qvluz8t.png
+|       |       |       image_Qvluz8t_thumb.png
+|       |       |       image_thumb.png
+|       |       |       
+|       |       +---19
+|       |       |       image.png
+|       |       |       image_2cXnIn1.png
+|       |       |       image_2cXnIn1_thumb.png
+|       |       |       image_kaXflAK.png
+|       |       |       image_kaXflAK_thumb.png
+|       |       |       image_MbEYSe7.png
+|       |       |       image_MbEYSe7_thumb.png
+|       |       |       image_SWdcJA4.png
+|       |       |       image_SWdcJA4_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_u89tMdU.png
+|       |       |       image_u89tMdU_thumb.png
+|       |       |       
+|       |       +---20
+|       |       |       image.png
+|       |       |       image_jQbHdBg.png
+|       |       |       image_jQbHdBg_thumb.png
+|       |       |       image_ONcq4V3.png
+|       |       |       image_ONcq4V3_thumb.png
+|       |       |       image_qIJTXz5.png
+|       |       |       image_qIJTXz5_thumb.png
+|       |       |       image_QYuWkRS.png
+|       |       |       image_QYuWkRS_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_TqWENAu.png
+|       |       |       image_TqWENAu_thumb.png
+|       |       |       
+|       |       +---21
+|       |       |       image.png
+|       |       |       image_5oTRyr9.png
+|       |       |       image_5oTRyr9_thumb.png
+|       |       |       image_aEoQC2P.png
+|       |       |       image_aEoQC2P_thumb.png
+|       |       |       image_AmMRv6U.png
+|       |       |       image_AmMRv6U_thumb.png
+|       |       |       image_NsACvcw.png
+|       |       |       image_NsACvcw_thumb.png
+|       |       |       image_P2waEXb.png
+|       |       |       image_P2waEXb_thumb.png
+|       |       |       image_QSqq0OM.png
+|       |       |       image_QSqq0OM_thumb.png
+|       |       |       image_SQporZ2.png
+|       |       |       image_SQporZ2_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_VqqoNdx.png
+|       |       |       image_VqqoNdx_thumb.png
+|       |       |       image_zGNmWdS.png
+|       |       |       image_zGNmWdS_thumb.png
+|       |       |       image_zyVyQDH.png
+|       |       |       image_zyVyQDH_thumb.png
+|       |       |       
+|       |       +---22
+|       |       |       image.png
+|       |       |       image_6YZxTHl.png
+|       |       |       image_6YZxTHl_thumb.png
+|       |       |       image_eUGwBGS.png
+|       |       |       image_eUGwBGS_thumb.png
+|       |       |       image_hMnOtYE.png
+|       |       |       image_hMnOtYE_thumb.png
+|       |       |       image_QLIIQOp.png
+|       |       |       image_QLIIQOp_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_xiraUFc.png
+|       |       |       image_xiraUFc_thumb.png
+|       |       |       image_YazscQv.png
+|       |       |       image_YazscQv_thumb.png
+|       |       |       image_ZMYcxp3.png
+|       |       |       image_ZMYcxp3_thumb.png
+|       |       |       
+|       |       +---25
+|       |       |       image.png
+|       |       |       image_0QcKcuw.png
+|       |       |       image_0QcKcuw_thumb.png
+|       |       |       image_eSvu4kf.png
+|       |       |       image_eSvu4kf_thumb.png
+|       |       |       image_I9vqgHP.png
+|       |       |       image_I9vqgHP_thumb.png
+|       |       |       image_thumb.png
+|       |       |       
+|       |       +---26
+|       |       |       image.png
+|       |       |       image_DzwcHJo.png
+|       |       |       image_DzwcHJo_thumb.png
+|       |       |       image_h0RVRVL.png
+|       |       |       image_h0RVRVL_thumb.png
+|       |       |       image_KxMPEfL.png
+|       |       |       image_KxMPEfL_thumb.png
+|       |       |       image_t3219OK.png
+|       |       |       image_t3219OK_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_xstm2Su.png
+|       |       |       image_xstm2Su_thumb.png
+|       |       |       
+|       |       +---27
+|       |       |       image.png
+|       |       |       image_0U5VUSs.png
+|       |       |       image_0U5VUSs_thumb.png
+|       |       |       image_23BeptG.png
+|       |       |       image_23BeptG_thumb.png
+|       |       |       image_2VCZuAp.png
+|       |       |       image_2VCZuAp_thumb.png
+|       |       |       image_DOn1TdQ.png
+|       |       |       image_DOn1TdQ_thumb.png
+|       |       |       image_JX4PiuO.png
+|       |       |       image_JX4PiuO_thumb.png
+|       |       |       image_lU7y6bM.png
+|       |       |       image_lU7y6bM_thumb.png
+|       |       |       image_q3rPdyd.png
+|       |       |       image_q3rPdyd_thumb.png
+|       |       |       image_r8Hq1V0.png
+|       |       |       image_r8Hq1V0_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_ydssbwD.png
+|       |       |       image_ydssbwD_thumb.png
+|       |       |       image_ykZXfVt.png
+|       |       |       image_ykZXfVt_thumb.png
+|       |       |       
+|       |       +---28
+|       |       |       image.png
+|       |       |       image_CrXCD3I.png
+|       |       |       image_CrXCD3I_thumb.png
+|       |       |       image_F5Msub3.png
+|       |       |       image_F5Msub3_thumb.png
+|       |       |       image_fnyWqKn.png
+|       |       |       image_fnyWqKn_thumb.png
+|       |       |       image_NgIer0w.png
+|       |       |       image_NgIer0w_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_wLC7Ui3.png
+|       |       |       image_wLC7Ui3_thumb.png
+|       |       |       image_X9GODZi.png
+|       |       |       image_X9GODZi_thumb.png
+|       |       |       image_yMyU4cA.png
+|       |       |       image_yMyU4cA_thumb.png
+|       |       |       
+|       |       +---29
+|       |       |       image.png
+|       |       |       image_3QSVuTZ.png
+|       |       |       image_3QSVuTZ_thumb.png
+|       |       |       image_7I4iuhe.png
+|       |       |       image_7I4iuhe_thumb.png
+|       |       |       image_Dd06iOZ.png
+|       |       |       image_Dd06iOZ_thumb.png
+|       |       |       image_Gdmaa4E.png
+|       |       |       image_Gdmaa4E_thumb.png
+|       |       |       image_iqQbhHA.png
+|       |       |       image_iqQbhHA_thumb.png
+|       |       |       image_oLhn1G8.png
+|       |       |       image_oLhn1G8_thumb.png
+|       |       |       image_thumb.png
+|       |       |       image_ubX8Gao.png
+|       |       |       image_ubX8Gao_thumb.png
+|       |       |       image_vPhFGsT.png
+|       |       |       image_vPhFGsT_thumb.png
+|       |       |       
+|       |       \---31
+|       |               image.png
+|       |               image_NuJGzVq.png
+|       |               image_NuJGzVq_thumb.png
+|       |               image_thumb.png
+|       |               
+|       +---2023
+|       |   +---01
+|       |   |   +---02
+|       |   |   |       image.png
+|       |   |   |       image_2knAvcm.png
+|       |   |   |       image_2knAvcm_thumb.png
+|       |   |   |       image_6INQ9UB.png
+|       |   |   |       image_6INQ9UB_thumb.png
+|       |   |   |       image_AV984aA.png
+|       |   |   |       image_AV984aA_thumb.png
+|       |   |   |       image_HtqIR4w.png
+|       |   |   |       image_HtqIR4w_thumb.png
+|       |   |   |       image_i3ikh9Y.png
+|       |   |   |       image_i3ikh9Y_thumb.png
+|       |   |   |       image_iEERWlk.png
+|       |   |   |       image_iEERWlk_thumb.png
+|       |   |   |       image_oXeAnMm.png
+|       |   |   |       image_oXeAnMm_thumb.png
+|       |   |   |       image_p3uTvU5.png
+|       |   |   |       image_p3uTvU5_thumb.png
+|       |   |   |       image_thumb.png
+|       |   |   |       image_voDN5rg.png
+|       |   |   |       image_voDN5rg_thumb.png
+|       |   |   |       
+|       |   |   +---03
+|       |   |   |       image.png
+|       |   |   |       image_lfy82iT.png
+|       |   |   |       image_lfy82iT_thumb.png
+|       |   |   |       image_pwNmk6O.png
+|       |   |   |       image_pwNmk6O_thumb.png
+|       |   |   |       image_thumb.png
+|       |   |   |       image_zkVukYj.png
+|       |   |   |       image_zkVukYj_thumb.png
+|       |   |   |       
+|       |   |   +---04
+|       |   |   |       image.png
+|       |   |   |       image_7hSL6O3.png
+|       |   |   |       image_7hSL6O3_thumb.png
+|       |   |   |       image_aeSIT0V.png
+|       |   |   |       image_aeSIT0V_thumb.png
+|       |   |   |       image_r2Qmwrm.png
+|       |   |   |       image_r2Qmwrm_thumb.png
+|       |   |   |       image_rfVNIW7.png
+|       |   |   |       image_rfVNIW7_thumb.png
+|       |   |   |       image_thumb.png
+|       |   |   |       
+|       |   |   +---05
+|       |   |   |       image.png
+|       |   |   |       image_thumb.png
+|       |   |   |       image_ux6KX5y.png
+|       |   |   |       image_ux6KX5y_thumb.png
+|       |   |   |       
+|       |   |   +---11
+|       |   |   |       image.png
+|       |   |   |       image_thumb.png
+|       |   |   |       
+|       |   |   +---16
+|       |   |   |       image.png
+|       |   |   |       image_thumb.png
+|       |   |   |       image_YbwL0tT.png
+|       |   |   |       image_YbwL0tT_thumb.png
+|       |   |   |       image_yGR0kTP.png
+|       |   |   |       image_yGR0kTP_thumb.png
+|       |   |   |       
+|       |   |   \---17
+|       |   |           image.png
+|       |   |           image_hEVbQgy.png
+|       |   |           image_hEVbQgy_thumb.png
+|       |   |           image_thumb.png
+|       |   |           
+|       |   \---03
+|       |       \---23
+|       |               image.png
+|       |               image_7i4iuhe.png
+|       |               image_7i4iuhe_NfrMN7F.png
+|       |               image_7i4iuhe_NfrMN7F_thumb.png
+|       |               image_7i4iuhe_thumb.png
+|       |               image_thumb.png
+|       |               
+|       \---2024
+|           +---02
+|           |   \---17
+|           |           image.png
+|           |           image_thumb.png
+|           |           
+|           +---03
+|           |   \---05
+|           |           image.png
+|           |           image_thumb.png
+|           |           
+|           +---05
+|           |   \---11
+|           |           image.png
+|           |           image_JEUXqTl.png
+|           |           image_JEUXqTl_thumb.png
+|           |           image_thumb.png
+|           |           
+|           \---07
+|               \---17
+|                       image.png
+|                       image_thumb.png
+|                       
++---requirements
+|       local_linux.txt
+|       local_windows.txt
+|       prod.txt
+|       
++---static
+|   +---css
+|   |       bootstrap.min.css
+|   |       estilos.css
+|   |       
+|   +---img
+|   |       001.jpg
+|   |       002.jpg
+|   |       01.jpg
+|   |       02.jpg
+|   |       03.jpg
+|   |       logo.jpg
+|   |       logo.png
+|   |       logo2.jpg
+|   |       profile.png
+|   |       
+|   \---js
+|           atom-one-dark-reasonable.min.css
+|           atom-one-dark.min.css
+|           bootstrap.min.js
+|           efectos.js
+|           jquery-3.4.1.slim.min.js
+|           popper-base.min.js.map
+|           popper.min.js
+|           
++---staticfiles
+|   +---admin
+|   |   +---css
+|   |   |   |   autocomplete.css
+|   |   |   |   base.css
+|   |   |   |   changelists.css
+|   |   |   |   dashboard.css
+|   |   |   |   fonts.css
+|   |   |   |   forms.css
+|   |   |   |   login.css
+|   |   |   |   responsive.css
+|   |   |   |   responsive_rtl.css
+|   |   |   |   rtl.css
+|   |   |   |   widgets.css
+|   |   |   |   
+|   |   |   \---vendor
+|   |   |       \---select2
+|   |   |               LICENSE-SELECT2.md
+|   |   |               select2.css
+|   |   |               select2.min.css
+|   |   |               
+|   |   +---fonts
+|   |   |       LICENSE.txt
+|   |   |       README.txt
+|   |   |       Roboto-Bold-webfont.woff
+|   |   |       Roboto-Light-webfont.woff
+|   |   |       Roboto-Regular-webfont.woff
+|   |   |       
+|   |   +---img
+|   |   |   |   calendar-icons.svg
+|   |   |   |   icon-addlink.svg
+|   |   |   |   icon-alert.svg
+|   |   |   |   icon-calendar.svg
+|   |   |   |   icon-changelink.svg
+|   |   |   |   icon-clock.svg
+|   |   |   |   icon-deletelink.svg
+|   |   |   |   icon-no.svg
+|   |   |   |   icon-unknown-alt.svg
+|   |   |   |   icon-unknown.svg
+|   |   |   |   icon-viewlink.svg
+|   |   |   |   icon-yes.svg
+|   |   |   |   inline-delete.svg
+|   |   |   |   LICENSE
+|   |   |   |   README.txt
+|   |   |   |   search.svg
+|   |   |   |   selector-icons.svg
+|   |   |   |   sorting-icons.svg
+|   |   |   |   tooltag-add.svg
+|   |   |   |   tooltag-arrowright.svg
+|   |   |   |   
+|   |   |   \---gis
+|   |   |           move_vertex_off.svg
+|   |   |           move_vertex_on.svg
+|   |   |           
+|   |   \---js
+|   |       |   actions.js
+|   |       |   actions.min.js
+|   |       |   autocomplete.js
+|   |       |   calendar.js
+|   |       |   cancel.js
+|   |       |   change_form.js
+|   |       |   collapse.js
+|   |       |   collapse.min.js
+|   |       |   core.js
+|   |       |   inlines.js
+|   |       |   inlines.min.js
+|   |       |   jquery.init.js
+|   |       |   popup_response.js
+|   |       |   prepopulate.js
+|   |       |   prepopulate.min.js
+|   |       |   prepopulate_init.js
+|   |       |   SelectBox.js
+|   |       |   SelectFilter2.js
+|   |       |   urlify.js
+|   |       |   
+|   |       +---admin
+|   |       |       DateTimeShortcuts.js
+|   |       |       RelatedObjectLookups.js
+|   |       |       
+|   |       \---vendor
+|   |           +---jquery
+|   |           |       jquery.js
+|   |           |       jquery.min.js
+|   |           |       LICENSE.txt
+|   |           |       
+|   |           +---select2
+|   |           |   |   LICENSE.md
+|   |           |   |   select2.full.js
+|   |           |   |   select2.full.min.js
+|   |           |   |   
+|   |           |   \---i18n
+|   |           |           af.js
+|   |           |           ar.js
+|   |           |           az.js
+|   |           |           bg.js
+|   |           |           bn.js
+|   |           |           bs.js
+|   |           |           ca.js
+|   |           |           cs.js
+|   |           |           da.js
+|   |           |           de.js
+|   |           |           dsb.js
+|   |           |           el.js
+|   |           |           en.js
+|   |           |           es.js
+|   |           |           et.js
+|   |           |           eu.js
+|   |           |           fa.js
+|   |           |           fi.js
+|   |           |           fr.js
+|   |           |           gl.js
+|   |           |           he.js
+|   |           |           hi.js
+|   |           |           hr.js
+|   |           |           hsb.js
+|   |           |           hu.js
+|   |           |           hy.js
+|   |           |           id.js
+|   |           |           is.js
+|   |           |           it.js
+|   |           |           ja.js
+|   |           |           ka.js
+|   |           |           km.js
+|   |           |           ko.js
+|   |           |           lt.js
+|   |           |           lv.js
+|   |           |           mk.js
+|   |           |           ms.js
+|   |           |           nb.js
+|   |           |           ne.js
+|   |           |           nl.js
+|   |           |           pl.js
+|   |           |           ps.js
+|   |           |           pt-BR.js
+|   |           |           pt.js
+|   |           |           ro.js
+|   |           |           ru.js
+|   |           |           sk.js
+|   |           |           sl.js
+|   |           |           sq.js
+|   |           |           sr-Cyrl.js
+|   |           |           sr.js
+|   |           |           sv.js
+|   |           |           th.js
+|   |           |           tk.js
+|   |           |           tr.js
+|   |           |           uk.js
+|   |           |           vi.js
+|   |           |           zh-CN.js
+|   |           |           zh-TW.js
+|   |           |           
+|   |           \---xregexp
+|   |                   LICENSE.txt
+|   |                   xregexp.js
+|   |                   xregexp.min.js
+|   |                   
+|   +---ckeditor
+|   |   |   ckeditor-init.js
+|   |   |   
+|   |   +---ckeditor
+|   |   |   |   build-config.js
+|   |   |   |   CHANGES.md
+|   |   |   |   ckeditor.js
+|   |   |   |   config.js
+|   |   |   |   contents.css
+|   |   |   |   LICENSE.md
+|   |   |   |   README.md
+|   |   |   |   styles.js
+|   |   |   |   
+|   |   |   +---adapters
+|   |   |   |       jquery.js
+|   |   |   |       
+|   |   |   +---lang
+|   |   |   |       af.js
+|   |   |   |       ar.js
+|   |   |   |       az.js
+|   |   |   |       bg.js
+|   |   |   |       bn.js
+|   |   |   |       bs.js
+|   |   |   |       ca.js
+|   |   |   |       cs.js
+|   |   |   |       cy.js
+|   |   |   |       da.js
+|   |   |   |       de-ch.js
+|   |   |   |       de.js
+|   |   |   |       el.js
+|   |   |   |       en-au.js
+|   |   |   |       en-ca.js
+|   |   |   |       en-gb.js
+|   |   |   |       en.js
+|   |   |   |       eo.js
+|   |   |   |       es-mx.js
+|   |   |   |       es.js
+|   |   |   |       et.js
+|   |   |   |       eu.js
+|   |   |   |       fa.js
+|   |   |   |       fi.js
+|   |   |   |       fo.js
+|   |   |   |       fr-ca.js
+|   |   |   |       fr.js
+|   |   |   |       gl.js
+|   |   |   |       gu.js
+|   |   |   |       he.js
+|   |   |   |       hi.js
+|   |   |   |       hr.js
+|   |   |   |       hu.js
+|   |   |   |       id.js
+|   |   |   |       is.js
+|   |   |   |       it.js
+|   |   |   |       ja.js
+|   |   |   |       ka.js
+|   |   |   |       km.js
+|   |   |   |       ko.js
+|   |   |   |       ku.js
+|   |   |   |       lt.js
+|   |   |   |       lv.js
+|   |   |   |       mk.js
+|   |   |   |       mn.js
+|   |   |   |       ms.js
+|   |   |   |       nb.js
+|   |   |   |       nl.js
+|   |   |   |       no.js
+|   |   |   |       oc.js
+|   |   |   |       pl.js
+|   |   |   |       pt-br.js
+|   |   |   |       pt.js
+|   |   |   |       ro.js
+|   |   |   |       ru.js
+|   |   |   |       si.js
+|   |   |   |       sk.js
+|   |   |   |       sl.js
+|   |   |   |       sq.js
+|   |   |   |       sr-latn.js
+|   |   |   |       sr.js
+|   |   |   |       sv.js
+|   |   |   |       th.js
+|   |   |   |       tr.js
+|   |   |   |       tt.js
+|   |   |   |       ug.js
+|   |   |   |       uk.js
+|   |   |   |       vi.js
+|   |   |   |       zh-cn.js
+|   |   |   |       zh.js
+|   |   |   |       
+|   |   |   +---plugins
+|   |   |   |   |   icons.png
+|   |   |   |   |   icons_hidpi.png
+|   |   |   |   |   
+|   |   |   |   +---a11yhelp
+|   |   |   |   |   \---dialogs
+|   |   |   |   |       |   a11yhelp.js
+|   |   |   |   |       |   
+|   |   |   |   |       \---lang
+|   |   |   |   |               af.js
+|   |   |   |   |               ar.js
+|   |   |   |   |               az.js
+|   |   |   |   |               bg.js
+|   |   |   |   |               ca.js
+|   |   |   |   |               cs.js
+|   |   |   |   |               cy.js
+|   |   |   |   |               da.js
+|   |   |   |   |               de-ch.js
+|   |   |   |   |               de.js
+|   |   |   |   |               el.js
+|   |   |   |   |               en-au.js
+|   |   |   |   |               en-gb.js
+|   |   |   |   |               en.js
+|   |   |   |   |               eo.js
+|   |   |   |   |               es-mx.js
+|   |   |   |   |               es.js
+|   |   |   |   |               et.js
+|   |   |   |   |               eu.js
+|   |   |   |   |               fa.js
+|   |   |   |   |               fi.js
+|   |   |   |   |               fo.js
+|   |   |   |   |               fr-ca.js
+|   |   |   |   |               fr.js
+|   |   |   |   |               gl.js
+|   |   |   |   |               gu.js
+|   |   |   |   |               he.js
+|   |   |   |   |               hi.js
+|   |   |   |   |               hr.js
+|   |   |   |   |               hu.js
+|   |   |   |   |               id.js
+|   |   |   |   |               it.js
+|   |   |   |   |               ja.js
+|   |   |   |   |               km.js
+|   |   |   |   |               ko.js
+|   |   |   |   |               ku.js
+|   |   |   |   |               lt.js
+|   |   |   |   |               lv.js
+|   |   |   |   |               mk.js
+|   |   |   |   |               mn.js
+|   |   |   |   |               nb.js
+|   |   |   |   |               nl.js
+|   |   |   |   |               no.js
+|   |   |   |   |               oc.js
+|   |   |   |   |               pl.js
+|   |   |   |   |               pt-br.js
+|   |   |   |   |               pt.js
+|   |   |   |   |               ro.js
+|   |   |   |   |               ru.js
+|   |   |   |   |               si.js
+|   |   |   |   |               sk.js
+|   |   |   |   |               sl.js
+|   |   |   |   |               sq.js
+|   |   |   |   |               sr-latn.js
+|   |   |   |   |               sr.js
+|   |   |   |   |               sv.js
+|   |   |   |   |               th.js
+|   |   |   |   |               tr.js
+|   |   |   |   |               tt.js
+|   |   |   |   |               ug.js
+|   |   |   |   |               uk.js
+|   |   |   |   |               vi.js
+|   |   |   |   |               zh-cn.js
+|   |   |   |   |               zh.js
+|   |   |   |   |               _translationstatus.txt
+|   |   |   |   |               
+|   |   |   |   +---about
+|   |   |   |   |   \---dialogs
+|   |   |   |   |       |   about.js
+|   |   |   |   |       |   logo_ckeditor.png
+|   |   |   |   |       |   
+|   |   |   |   |       \---hidpi
+|   |   |   |   |               logo_ckeditor.png
+|   |   |   |   |               
+|   |   |   |   +---adobeair
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---ajax
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---autoembed
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---lang
+|   |   |   |   |           cs.js
+|   |   |   |   |           de.js
+|   |   |   |   |           en.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---autogrow
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---autolink
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---bbcode
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---clipboard
+|   |   |   |   |   \---dialogs
+|   |   |   |   |           paste.js
+|   |   |   |   |           
+|   |   |   |   +---codesnippet
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       codesnippet.js
+|   |   |   |   |   |       
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   codesnippet.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           codesnippet.png
+|   |   |   |   |   |           
+|   |   |   |   |   +---lang
+|   |   |   |   |   |       ar.js
+|   |   |   |   |   |       bg.js
+|   |   |   |   |   |       ca.js
+|   |   |   |   |   |       cs.js
+|   |   |   |   |   |       da.js
+|   |   |   |   |   |       de.js
+|   |   |   |   |   |       el.js
+|   |   |   |   |   |       en-gb.js
+|   |   |   |   |   |       en.js
+|   |   |   |   |   |       eo.js
+|   |   |   |   |   |       es.js
+|   |   |   |   |   |       et.js
+|   |   |   |   |   |       fa.js
+|   |   |   |   |   |       fi.js
+|   |   |   |   |   |       fr-ca.js
+|   |   |   |   |   |       fr.js
+|   |   |   |   |   |       gl.js
+|   |   |   |   |   |       he.js
+|   |   |   |   |   |       hr.js
+|   |   |   |   |   |       hu.js
+|   |   |   |   |   |       it.js
+|   |   |   |   |   |       ja.js
+|   |   |   |   |   |       km.js
+|   |   |   |   |   |       ko.js
+|   |   |   |   |   |       ku.js
+|   |   |   |   |   |       lt.js
+|   |   |   |   |   |       lv.js
+|   |   |   |   |   |       nb.js
+|   |   |   |   |   |       nl.js
+|   |   |   |   |   |       no.js
+|   |   |   |   |   |       pl.js
+|   |   |   |   |   |       pt-br.js
+|   |   |   |   |   |       pt.js
+|   |   |   |   |   |       ro.js
+|   |   |   |   |   |       ru.js
+|   |   |   |   |   |       sk.js
+|   |   |   |   |   |       sl.js
+|   |   |   |   |   |       sq.js
+|   |   |   |   |   |       sv.js
+|   |   |   |   |   |       th.js
+|   |   |   |   |   |       tr.js
+|   |   |   |   |   |       tt.js
+|   |   |   |   |   |       ug.js
+|   |   |   |   |   |       uk.js
+|   |   |   |   |   |       vi.js
+|   |   |   |   |   |       zh-cn.js
+|   |   |   |   |   |       zh.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---lib
+|   |   |   |   |       \---highlight
+|   |   |   |   |           |   CHANGES.md
+|   |   |   |   |           |   highlight.pack.js
+|   |   |   |   |           |   LICENSE
+|   |   |   |   |           |   README.ru.md
+|   |   |   |   |           |   
+|   |   |   |   |           \---styles
+|   |   |   |   |                   arta.css
+|   |   |   |   |                   ascetic.css
+|   |   |   |   |                   atelier-dune.dark.css
+|   |   |   |   |                   atelier-dune.light.css
+|   |   |   |   |                   atelier-forest.dark.css
+|   |   |   |   |                   atelier-forest.light.css
+|   |   |   |   |                   atelier-heath.dark.css
+|   |   |   |   |                   atelier-heath.light.css
+|   |   |   |   |                   atelier-lakeside.dark.css
+|   |   |   |   |                   atelier-lakeside.light.css
+|   |   |   |   |                   atelier-seaside.dark.css
+|   |   |   |   |                   atelier-seaside.light.css
+|   |   |   |   |                   brown_paper.css
+|   |   |   |   |                   brown_papersq.png
+|   |   |   |   |                   dark.css
+|   |   |   |   |                   default.css
+|   |   |   |   |                   docco.css
+|   |   |   |   |                   far.css
+|   |   |   |   |                   foundation.css
+|   |   |   |   |                   github.css
+|   |   |   |   |                   googlecode.css
+|   |   |   |   |                   idea.css
+|   |   |   |   |                   ir_black.css
+|   |   |   |   |                   magula.css
+|   |   |   |   |                   mono-blue.css
+|   |   |   |   |                   monokai.css
+|   |   |   |   |                   monokai_sublime.css
+|   |   |   |   |                   obsidian.css
+|   |   |   |   |                   paraiso.dark.css
+|   |   |   |   |                   paraiso.light.css
+|   |   |   |   |                   pojoaque.css
+|   |   |   |   |                   pojoaque.jpg
+|   |   |   |   |                   railscasts.css
+|   |   |   |   |                   rainbow.css
+|   |   |   |   |                   school_book.css
+|   |   |   |   |                   school_book.png
+|   |   |   |   |                   solarized_dark.css
+|   |   |   |   |                   solarized_light.css
+|   |   |   |   |                   sunburst.css
+|   |   |   |   |                   tomorrow-night-blue.css
+|   |   |   |   |                   tomorrow-night-bright.css
+|   |   |   |   |                   tomorrow-night-eighties.css
+|   |   |   |   |                   tomorrow-night.css
+|   |   |   |   |                   tomorrow.css
+|   |   |   |   |                   vs.css
+|   |   |   |   |                   xcode.css
+|   |   |   |   |                   zenburn.css
+|   |   |   |   |                   
+|   |   |   |   +---codesnippetgeshi
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---colordialog
+|   |   |   |   |   \---dialogs
+|   |   |   |   |           colordialog.css
+|   |   |   |   |           colordialog.js
+|   |   |   |   |           
+|   |   |   |   +---copyformatting
+|   |   |   |   |   +---cursors
+|   |   |   |   |   |       cursor-disabled.svg
+|   |   |   |   |   |       cursor.svg
+|   |   |   |   |   |       
+|   |   |   |   |   \---styles
+|   |   |   |   |           copyformatting.css
+|   |   |   |   |           
+|   |   |   |   +---devtools
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---lang
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           et.js
+|   |   |   |   |           eu.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fr-ca.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           gu.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           id.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           lt.js
+|   |   |   |   |           lv.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ro.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           si.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           ug.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           _translationstatus.txt
+|   |   |   |   |           
+|   |   |   |   +---dialog
+|   |   |   |   |   |   dialogDefinition.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---styles
+|   |   |   |   |           dialog.css
+|   |   |   |   |           
+|   |   |   |   +---div
+|   |   |   |   |   \---dialogs
+|   |   |   |   |           div.js
+|   |   |   |   |           
+|   |   |   |   +---divarea
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---docprops
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       docprops.js
+|   |   |   |   |   |       
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   docprops-rtl.png
+|   |   |   |   |   |   |   docprops.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           docprops-rtl.png
+|   |   |   |   |   |           docprops.png
+|   |   |   |   |   |           
+|   |   |   |   |   \---lang
+|   |   |   |   |           af.js
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           bn.js
+|   |   |   |   |           bs.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-au.js
+|   |   |   |   |           en-ca.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           et.js
+|   |   |   |   |           eu.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fo.js
+|   |   |   |   |           fr-ca.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           gu.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hi.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           id.js
+|   |   |   |   |           is.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           ka.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           lt.js
+|   |   |   |   |           lv.js
+|   |   |   |   |           mk.js
+|   |   |   |   |           mn.js
+|   |   |   |   |           ms.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ro.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           si.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sr-latn.js
+|   |   |   |   |           sr.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           th.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           ug.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---embed
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---icons
+|   |   |   |   |       |   embed.png
+|   |   |   |   |       |   
+|   |   |   |   |       \---hidpi
+|   |   |   |   |               embed.png
+|   |   |   |   |               
+|   |   |   |   +---embedbase
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       embedbase.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---lang
+|   |   |   |   |           cs.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---embedsemantic
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---icons
+|   |   |   |   |       |   embedsemantic.png
+|   |   |   |   |       |   
+|   |   |   |   |       \---hidpi
+|   |   |   |   |               embedsemantic.png
+|   |   |   |   |               
+|   |   |   |   +---filetools
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---lang
+|   |   |   |   |           cs.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---find
+|   |   |   |   |   \---dialogs
+|   |   |   |   |           find.js
+|   |   |   |   |           
+|   |   |   |   +---flash
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       flash.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---images
+|   |   |   |   |           placeholder.png
+|   |   |   |   |           
+|   |   |   |   +---forms
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       button.js
+|   |   |   |   |   |       checkbox.js
+|   |   |   |   |   |       form.js
+|   |   |   |   |   |       hiddenfield.js
+|   |   |   |   |   |       radio.js
+|   |   |   |   |   |       select.js
+|   |   |   |   |   |       textarea.js
+|   |   |   |   |   |       textfield.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---images
+|   |   |   |   |           hiddenfield.gif
+|   |   |   |   |           
+|   |   |   |   +---iframe
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       iframe.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---images
+|   |   |   |   |           placeholder.png
+|   |   |   |   |           
+|   |   |   |   +---iframedialog
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---image
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       image.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---images
+|   |   |   |   |           noimage.png
+|   |   |   |   |           
+|   |   |   |   +---image2
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       image2.js
+|   |   |   |   |   |       
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   image.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           image.png
+|   |   |   |   |   |           
+|   |   |   |   |   \---lang
+|   |   |   |   |           af.js
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           bn.js
+|   |   |   |   |           bs.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-au.js
+|   |   |   |   |           en-ca.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           et.js
+|   |   |   |   |           eu.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fo.js
+|   |   |   |   |           fr-ca.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           gu.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hi.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           id.js
+|   |   |   |   |           is.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           ka.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           lt.js
+|   |   |   |   |           lv.js
+|   |   |   |   |           mk.js
+|   |   |   |   |           mn.js
+|   |   |   |   |           ms.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ro.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           si.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sr-latn.js
+|   |   |   |   |           sr.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           th.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           ug.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---language
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   language.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           language.png
+|   |   |   |   |   |           
+|   |   |   |   |   \---lang
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fo.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---lineutils
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---link
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       anchor.js
+|   |   |   |   |   |       link.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---images
+|   |   |   |   |       |   anchor.png
+|   |   |   |   |       |   
+|   |   |   |   |       \---hidpi
+|   |   |   |   |               anchor.png
+|   |   |   |   |               
+|   |   |   |   +---liststyle
+|   |   |   |   |   \---dialogs
+|   |   |   |   |           liststyle.js
+|   |   |   |   |           
+|   |   |   |   +---magicline
+|   |   |   |   |   \---images
+|   |   |   |   |       |   icon-rtl.png
+|   |   |   |   |       |   icon.png
+|   |   |   |   |       |   
+|   |   |   |   |       \---hidpi
+|   |   |   |   |               icon-rtl.png
+|   |   |   |   |               icon.png
+|   |   |   |   |               
+|   |   |   |   +---mathjax
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       mathjax.js
+|   |   |   |   |   |       
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   mathjax.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           mathjax.png
+|   |   |   |   |   |           
+|   |   |   |   |   +---images
+|   |   |   |   |   |       loader.gif
+|   |   |   |   |   |       
+|   |   |   |   |   \---lang
+|   |   |   |   |           af.js
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           lt.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ro.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---menubutton
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---notification
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---lang
+|   |   |   |   |           cs.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---notificationaggregator
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---pagebreak
+|   |   |   |   |   \---images
+|   |   |   |   |           pagebreak.gif
+|   |   |   |   |           
+|   |   |   |   +---pastefromgdocs
+|   |   |   |   |   \---filter
+|   |   |   |   |           default.js
+|   |   |   |   |           
+|   |   |   |   +---pastefromword
+|   |   |   |   |   \---filter
+|   |   |   |   |           default.js
+|   |   |   |   |           
+|   |   |   |   +---pastetools
+|   |   |   |   |   \---filter
+|   |   |   |   |           common.js
+|   |   |   |   |           
+|   |   |   |   +---placeholder
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       placeholder.js
+|   |   |   |   |   |       
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   placeholder.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           placeholder.png
+|   |   |   |   |   |           
+|   |   |   |   |   \---lang
+|   |   |   |   |           af.js
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           et.js
+|   |   |   |   |           eu.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fr-ca.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           id.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           lv.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           si.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           th.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           ug.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---preview
+|   |   |   |   |       preview.html
+|   |   |   |   |       
+|   |   |   |   +---scayt
+|   |   |   |   |   |   CHANGELOG.md
+|   |   |   |   |   |   LICENSE.md
+|   |   |   |   |   |   README.md
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       dialog.css
+|   |   |   |   |   |       options.js
+|   |   |   |   |   |       toolbar.css
+|   |   |   |   |   |       
+|   |   |   |   |   \---skins
+|   |   |   |   |       \---moono-lisa
+|   |   |   |   |               scayt.css
+|   |   |   |   |               
+|   |   |   |   +---sharedspace
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---showblocks
+|   |   |   |   |   \---images
+|   |   |   |   |           block_address.png
+|   |   |   |   |           block_blockquote.png
+|   |   |   |   |           block_div.png
+|   |   |   |   |           block_h1.png
+|   |   |   |   |           block_h2.png
+|   |   |   |   |           block_h3.png
+|   |   |   |   |           block_h4.png
+|   |   |   |   |           block_h5.png
+|   |   |   |   |           block_h6.png
+|   |   |   |   |           block_p.png
+|   |   |   |   |           block_pre.png
+|   |   |   |   |           
+|   |   |   |   +---smiley
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       smiley.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---images
+|   |   |   |   |           angel_smile.gif
+|   |   |   |   |           angel_smile.png
+|   |   |   |   |           angry_smile.gif
+|   |   |   |   |           angry_smile.png
+|   |   |   |   |           broken_heart.gif
+|   |   |   |   |           broken_heart.png
+|   |   |   |   |           confused_smile.gif
+|   |   |   |   |           confused_smile.png
+|   |   |   |   |           cry_smile.gif
+|   |   |   |   |           cry_smile.png
+|   |   |   |   |           devil_smile.gif
+|   |   |   |   |           devil_smile.png
+|   |   |   |   |           embaressed_smile.gif
+|   |   |   |   |           embarrassed_smile.gif
+|   |   |   |   |           embarrassed_smile.png
+|   |   |   |   |           envelope.gif
+|   |   |   |   |           envelope.png
+|   |   |   |   |           heart.gif
+|   |   |   |   |           heart.png
+|   |   |   |   |           kiss.gif
+|   |   |   |   |           kiss.png
+|   |   |   |   |           lightbulb.gif
+|   |   |   |   |           lightbulb.png
+|   |   |   |   |           omg_smile.gif
+|   |   |   |   |           omg_smile.png
+|   |   |   |   |           regular_smile.gif
+|   |   |   |   |           regular_smile.png
+|   |   |   |   |           sad_smile.gif
+|   |   |   |   |           sad_smile.png
+|   |   |   |   |           shades_smile.gif
+|   |   |   |   |           shades_smile.png
+|   |   |   |   |           teeth_smile.gif
+|   |   |   |   |           teeth_smile.png
+|   |   |   |   |           thumbs_down.gif
+|   |   |   |   |           thumbs_down.png
+|   |   |   |   |           thumbs_up.gif
+|   |   |   |   |           thumbs_up.png
+|   |   |   |   |           tongue_smile.gif
+|   |   |   |   |           tongue_smile.png
+|   |   |   |   |           tounge_smile.gif
+|   |   |   |   |           whatchutalkingabout_smile.gif
+|   |   |   |   |           whatchutalkingabout_smile.png
+|   |   |   |   |           wink_smile.gif
+|   |   |   |   |           wink_smile.png
+|   |   |   |   |           
+|   |   |   |   +---sourcedialog
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       sourcedialog.js
+|   |   |   |   |   |       
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   sourcedialog-rtl.png
+|   |   |   |   |   |   |   sourcedialog.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           sourcedialog-rtl.png
+|   |   |   |   |   |           sourcedialog.png
+|   |   |   |   |   |           
+|   |   |   |   |   \---lang
+|   |   |   |   |           af.js
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           bn.js
+|   |   |   |   |           bs.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-au.js
+|   |   |   |   |           en-ca.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           et.js
+|   |   |   |   |           eu.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fo.js
+|   |   |   |   |           fr-ca.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           gu.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hi.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           id.js
+|   |   |   |   |           is.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           ka.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           lt.js
+|   |   |   |   |           lv.js
+|   |   |   |   |           mn.js
+|   |   |   |   |           ms.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ro.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           si.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sr-latn.js
+|   |   |   |   |           sr.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           th.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           ug.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---specialchar
+|   |   |   |   |   \---dialogs
+|   |   |   |   |       |   specialchar.js
+|   |   |   |   |       |   
+|   |   |   |   |       \---lang
+|   |   |   |   |               af.js
+|   |   |   |   |               ar.js
+|   |   |   |   |               az.js
+|   |   |   |   |               bg.js
+|   |   |   |   |               ca.js
+|   |   |   |   |               cs.js
+|   |   |   |   |               cy.js
+|   |   |   |   |               da.js
+|   |   |   |   |               de-ch.js
+|   |   |   |   |               de.js
+|   |   |   |   |               el.js
+|   |   |   |   |               en-au.js
+|   |   |   |   |               en-ca.js
+|   |   |   |   |               en-gb.js
+|   |   |   |   |               en.js
+|   |   |   |   |               eo.js
+|   |   |   |   |               es-mx.js
+|   |   |   |   |               es.js
+|   |   |   |   |               et.js
+|   |   |   |   |               eu.js
+|   |   |   |   |               fa.js
+|   |   |   |   |               fi.js
+|   |   |   |   |               fr-ca.js
+|   |   |   |   |               fr.js
+|   |   |   |   |               gl.js
+|   |   |   |   |               he.js
+|   |   |   |   |               hr.js
+|   |   |   |   |               hu.js
+|   |   |   |   |               id.js
+|   |   |   |   |               it.js
+|   |   |   |   |               ja.js
+|   |   |   |   |               km.js
+|   |   |   |   |               ko.js
+|   |   |   |   |               ku.js
+|   |   |   |   |               lt.js
+|   |   |   |   |               lv.js
+|   |   |   |   |               nb.js
+|   |   |   |   |               nl.js
+|   |   |   |   |               no.js
+|   |   |   |   |               oc.js
+|   |   |   |   |               pl.js
+|   |   |   |   |               pt-br.js
+|   |   |   |   |               pt.js
+|   |   |   |   |               ro.js
+|   |   |   |   |               ru.js
+|   |   |   |   |               si.js
+|   |   |   |   |               sk.js
+|   |   |   |   |               sl.js
+|   |   |   |   |               sq.js
+|   |   |   |   |               sr-latn.js
+|   |   |   |   |               sr.js
+|   |   |   |   |               sv.js
+|   |   |   |   |               th.js
+|   |   |   |   |               tr.js
+|   |   |   |   |               tt.js
+|   |   |   |   |               ug.js
+|   |   |   |   |               uk.js
+|   |   |   |   |               vi.js
+|   |   |   |   |               zh-cn.js
+|   |   |   |   |               zh.js
+|   |   |   |   |               _translationstatus.txt
+|   |   |   |   |               
+|   |   |   |   +---stylesheetparser
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---table
+|   |   |   |   |   \---dialogs
+|   |   |   |   |           table.js
+|   |   |   |   |           
+|   |   |   |   +---tableresize
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---tableselection
+|   |   |   |   |   \---styles
+|   |   |   |   |           tableselection.css
+|   |   |   |   |           
+|   |   |   |   +---tabletools
+|   |   |   |   |   \---dialogs
+|   |   |   |   |           tableCell.js
+|   |   |   |   |           
+|   |   |   |   +---templates
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       templates.css
+|   |   |   |   |   |       templates.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---templates
+|   |   |   |   |       |   default.js
+|   |   |   |   |       |   
+|   |   |   |   |       \---images
+|   |   |   |   |               template1.gif
+|   |   |   |   |               template2.gif
+|   |   |   |   |               template3.gif
+|   |   |   |   |               
+|   |   |   |   +---uicolor
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       uicolor.js
+|   |   |   |   |   |       
+|   |   |   |   |   +---icons
+|   |   |   |   |   |   |   uicolor.png
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   \---hidpi
+|   |   |   |   |   |           uicolor.png
+|   |   |   |   |   |           
+|   |   |   |   |   +---lang
+|   |   |   |   |   |       af.js
+|   |   |   |   |   |       ar.js
+|   |   |   |   |   |       bg.js
+|   |   |   |   |   |       ca.js
+|   |   |   |   |   |       cs.js
+|   |   |   |   |   |       cy.js
+|   |   |   |   |   |       da.js
+|   |   |   |   |   |       de.js
+|   |   |   |   |   |       el.js
+|   |   |   |   |   |       en-gb.js
+|   |   |   |   |   |       en.js
+|   |   |   |   |   |       eo.js
+|   |   |   |   |   |       es.js
+|   |   |   |   |   |       et.js
+|   |   |   |   |   |       eu.js
+|   |   |   |   |   |       fa.js
+|   |   |   |   |   |       fi.js
+|   |   |   |   |   |       fr-ca.js
+|   |   |   |   |   |       fr.js
+|   |   |   |   |   |       gl.js
+|   |   |   |   |   |       he.js
+|   |   |   |   |   |       hr.js
+|   |   |   |   |   |       hu.js
+|   |   |   |   |   |       id.js
+|   |   |   |   |   |       it.js
+|   |   |   |   |   |       ja.js
+|   |   |   |   |   |       km.js
+|   |   |   |   |   |       ko.js
+|   |   |   |   |   |       ku.js
+|   |   |   |   |   |       lv.js
+|   |   |   |   |   |       mk.js
+|   |   |   |   |   |       nb.js
+|   |   |   |   |   |       nl.js
+|   |   |   |   |   |       no.js
+|   |   |   |   |   |       pl.js
+|   |   |   |   |   |       pt-br.js
+|   |   |   |   |   |       pt.js
+|   |   |   |   |   |       ru.js
+|   |   |   |   |   |       si.js
+|   |   |   |   |   |       sk.js
+|   |   |   |   |   |       sl.js
+|   |   |   |   |   |       sq.js
+|   |   |   |   |   |       sv.js
+|   |   |   |   |   |       tr.js
+|   |   |   |   |   |       tt.js
+|   |   |   |   |   |       ug.js
+|   |   |   |   |   |       uk.js
+|   |   |   |   |   |       vi.js
+|   |   |   |   |   |       zh-cn.js
+|   |   |   |   |   |       zh.js
+|   |   |   |   |   |       _translationstatus.txt
+|   |   |   |   |   |       
+|   |   |   |   |   \---yui
+|   |   |   |   |       |   yui.js
+|   |   |   |   |       |   
+|   |   |   |   |       \---assets
+|   |   |   |   |               hue_bg.png
+|   |   |   |   |               hue_thumb.png
+|   |   |   |   |               picker_mask.png
+|   |   |   |   |               picker_thumb.png
+|   |   |   |   |               yui.css
+|   |   |   |   |               
+|   |   |   |   +---uploadimage
+|   |   |   |   |       plugin.js
+|   |   |   |   |       
+|   |   |   |   +---uploadwidget
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   \---lang
+|   |   |   |   |           cs.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---widget
+|   |   |   |   |   |   plugin.js
+|   |   |   |   |   |   
+|   |   |   |   |   +---images
+|   |   |   |   |   |       handle.png
+|   |   |   |   |   |       
+|   |   |   |   |   \---lang
+|   |   |   |   |           af.js
+|   |   |   |   |           ar.js
+|   |   |   |   |           bg.js
+|   |   |   |   |           ca.js
+|   |   |   |   |           cs.js
+|   |   |   |   |           cy.js
+|   |   |   |   |           da.js
+|   |   |   |   |           de.js
+|   |   |   |   |           el.js
+|   |   |   |   |           en-gb.js
+|   |   |   |   |           en.js
+|   |   |   |   |           eo.js
+|   |   |   |   |           es.js
+|   |   |   |   |           fa.js
+|   |   |   |   |           fi.js
+|   |   |   |   |           fr.js
+|   |   |   |   |           gl.js
+|   |   |   |   |           he.js
+|   |   |   |   |           hr.js
+|   |   |   |   |           hu.js
+|   |   |   |   |           it.js
+|   |   |   |   |           ja.js
+|   |   |   |   |           km.js
+|   |   |   |   |           ko.js
+|   |   |   |   |           ku.js
+|   |   |   |   |           lv.js
+|   |   |   |   |           nb.js
+|   |   |   |   |           nl.js
+|   |   |   |   |           no.js
+|   |   |   |   |           pl.js
+|   |   |   |   |           pt-br.js
+|   |   |   |   |           pt.js
+|   |   |   |   |           ru.js
+|   |   |   |   |           sk.js
+|   |   |   |   |           sl.js
+|   |   |   |   |           sq.js
+|   |   |   |   |           sv.js
+|   |   |   |   |           tr.js
+|   |   |   |   |           tt.js
+|   |   |   |   |           uk.js
+|   |   |   |   |           vi.js
+|   |   |   |   |           zh-cn.js
+|   |   |   |   |           zh.js
+|   |   |   |   |           
+|   |   |   |   +---wsc
+|   |   |   |   |   |   LICENSE.md
+|   |   |   |   |   |   README.md
+|   |   |   |   |   |   
+|   |   |   |   |   +---dialogs
+|   |   |   |   |   |       ciframe.html
+|   |   |   |   |   |       tmpFrameset.html
+|   |   |   |   |   |       wsc.css
+|   |   |   |   |   |       wsc.js
+|   |   |   |   |   |       wsc_ie.js
+|   |   |   |   |   |       
+|   |   |   |   |   \---skins
+|   |   |   |   |       \---moono-lisa
+|   |   |   |   |               wsc.css
+|   |   |   |   |               
+|   |   |   |   \---xml
+|   |   |   |           plugin.js
+|   |   |   |           
+|   |   |   +---skins
+|   |   |   |   +---moono
+|   |   |   |   |   |   dialog.css
+|   |   |   |   |   |   dialog_ie.css
+|   |   |   |   |   |   dialog_ie7.css
+|   |   |   |   |   |   dialog_ie8.css
+|   |   |   |   |   |   dialog_iequirks.css
+|   |   |   |   |   |   editor.css
+|   |   |   |   |   |   editor_gecko.css
+|   |   |   |   |   |   editor_ie.css
+|   |   |   |   |   |   editor_ie7.css
+|   |   |   |   |   |   editor_ie8.css
+|   |   |   |   |   |   editor_iequirks.css
+|   |   |   |   |   |   icons.png
+|   |   |   |   |   |   icons_hidpi.png
+|   |   |   |   |   |   readme.md
+|   |   |   |   |   |   
+|   |   |   |   |   \---images
+|   |   |   |   |       |   arrow.png
+|   |   |   |   |       |   close.png
+|   |   |   |   |       |   lock-open.png
+|   |   |   |   |       |   lock.png
+|   |   |   |   |       |   refresh.png
+|   |   |   |   |       |   spinner.gif
+|   |   |   |   |       |   
+|   |   |   |   |       \---hidpi
+|   |   |   |   |               close.png
+|   |   |   |   |               lock-open.png
+|   |   |   |   |               lock.png
+|   |   |   |   |               refresh.png
+|   |   |   |   |               
+|   |   |   |   \---moono-lisa
+|   |   |   |       |   dialog.css
+|   |   |   |       |   dialog_ie.css
+|   |   |   |       |   dialog_ie8.css
+|   |   |   |       |   dialog_iequirks.css
+|   |   |   |       |   editor.css
+|   |   |   |       |   editor_gecko.css
+|   |   |   |       |   editor_ie.css
+|   |   |   |       |   editor_ie8.css
+|   |   |   |       |   editor_iequirks.css
+|   |   |   |       |   icons.png
+|   |   |   |       |   icons_hidpi.png
+|   |   |   |       |   readme.md
+|   |   |   |       |   
+|   |   |   |       \---images
+|   |   |   |           |   arrow.png
+|   |   |   |           |   close.png
+|   |   |   |           |   lock-open.png
+|   |   |   |           |   lock.png
+|   |   |   |           |   refresh.png
+|   |   |   |           |   spinner.gif
+|   |   |   |           |   
+|   |   |   |           \---hidpi
+|   |   |   |                   close.png
+|   |   |   |                   lock-open.png
+|   |   |   |                   lock.png
+|   |   |   |                   refresh.png
+|   |   |   |                   
+|   |   |   \---vendor
+|   |   |           promise.js
+|   |   |           
+|   |   +---ckeditor_uploader
+|   |   |       admin_base.css
+|   |   |       
+|   |   +---file-icons
+|   |   |       doc.png
+|   |   |       file.png
+|   |   |       pdf.png
+|   |   |       ppt.png
+|   |   |       swf.png
+|   |   |       txt.png
+|   |   |       xls.png
+|   |   |       
+|   |   \---galleriffic
+|   |       +---css
+|   |       |       basic.css
+|   |       |       black.css
+|   |       |       caption.png
+|   |       |       galleriffic-1.css
+|   |       |       galleriffic-2.css
+|   |       |       galleriffic-3.css
+|   |       |       galleriffic-4.css
+|   |       |       galleriffic-5.css
+|   |       |       jush.css
+|   |       |       loader.gif
+|   |       |       loaderWhite.gif
+|   |       |       nextPageArrow.gif
+|   |       |       nextPageArrowWhite.gif
+|   |       |       prevPageArrow.gif
+|   |       |       prevPageArrowWhite.gif
+|   |       |       white.css
+|   |       |       
+|   |       \---js
+|   |               jquery-1.3.2.js
+|   |               jquery.galleriffic.js
+|   |               jquery.history.js
+|   |               jquery.opacityrollover.js
+|   |               jush.js
+|   |               
+|   +---css
+|   |       bootstrap.min.css
+|   |       estilos.css
+|   |       
+|   +---img
+|   |       001.jpg
+|   |       002.jpg
+|   |       01.jpg
+|   |       02.jpg
+|   |       03.jpg
+|   |       logo.jpg
+|   |       logo.png
+|   |       logo2.jpg
+|   |       
+|   \---js
+|           atom-one-dark-reasonable.min.css
+|           atom-one-dark.min.css
+|           bootstrap.min.js
+|           efectos.js
+|           jquery-3.4.1.slim.min.js
+|           popper-base.min.js.map
+|           popper.min.js
+|           
++---templates
+|   |   base.html
+|   |   
+|   +---entrada
+|   |       actualizar.html
+|   |       agregar.html
+|   |       base_entrada.html
+|   |       detail.html
+|   |       error raro.html
+|   |       lista.html
+|   |       
+|   +---favoritos
+|   |       base_favoritos.html
+|   |       editar_grupo.html
+|   |       listar_grupo.html
+|   |       perfil.html
+|   |       prueba.html
+|   |       
+|   +---home
+|   |       about_me.html
+|   |       base_home.html
+|   |       index.html
+|   |       
+|   +---includes
+|   |       footer.html
+|   |       header.html
+|   |       
+|   +---plantillas
+|   |       base_plantilla.html
+|   |       blog.html
+|   |       detail.html
+|   |       home.html
+|   |       login.html
+|   |       perfil.html
+|   |       register.html
+|   |       
+|   \---users
+|           base_users.html
+|           cambiar_contrase¤a.html
+|           lista_usuarios.html
+|           login.html
+|           register.html
+|           
+\---zbackup bd
+        activar procesor.txt
+        copia_blogdb.sql
+        probando.txt
+        secret.json
+        

@@ -16,13 +16,13 @@ from django.views.generic.edit import (
 )
 
 from .forms import (
-    UserRegisterForm, 
+    UserRegisterForm,
     LoginForm,
     UpdatePasswordForm,
 )
 #
 from .models import User
-# 
+#
 
 
 class UserRegisterView(FormView):
@@ -74,7 +74,7 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
     form_class = UpdatePasswordForm
     success_url = reverse_lazy('users_app:user-login')
     login_url = reverse_lazy('users_app:user-login')
-    
+
     def form_valid(self, form):
         usuario = self.request.user
         user = authenticate(
@@ -90,7 +90,7 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
 
         logout(self.request)
         return super(UpdatePasswordView, self).form_valid(form)
-    
+
 class UserListView(LoginRequiredMixin,ListView):
     template_name = "users/lista_usuarios.html"
     context_object_name = 'usuarios'
@@ -99,4 +99,24 @@ class UserListView(LoginRequiredMixin,ListView):
 
     def get_queryset(self):
         return User.objects.usuarios_sistema()
-    
+
+# ============================
+# 🔥 FIREBASE
+# ============================
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .authentication import FirebaseAuthentication
+
+
+class PerfilUsuario(APIView):
+    authentication_classes = [FirebaseAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            "mensaje": f"Bienvenido {user.full_name or user.email}",
+            "email": user.email,
+        })

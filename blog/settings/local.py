@@ -113,3 +113,37 @@ CKEDITOR_CONFIGS = {
 # EMAIL_HOST_USER = get_secret('EMAIL')
 # EMAIL_HOST_PASSWORD = get_secret('PASS_EMAIL')
 # EMAIL_PORT = 587
+
+
+# ============================
+# 🔥 CONFIGURACIÓN FIREBASE
+# ============================
+import os
+from pathlib import Path
+import firebase_admin
+from firebase_admin import credentials
+
+# BASE_DIR ya viene de base.py, pero redefinimos por seguridad
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Ruta de tu clave de servicio
+FIREBASE_SERVICE_ACCOUNT = os.path.join(BASE_DIR, 'serviceAccountKey.json')
+
+# Inicializar Firebase solo una vez
+try:
+    if not firebase_admin._apps:
+        cred = credentials.Certificate(FIREBASE_SERVICE_ACCOUNT)
+        firebase_admin.initialize_app(cred)
+        print("✅ Firebase inicializado correctamente")
+except Exception as e:
+    print("⚠️ Error al inicializar Firebase:", e)
+
+# Configuración del REST Framework para autenticación
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'applications.users.authentication.FirebaseAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}

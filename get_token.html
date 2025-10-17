@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Obtener Token Firebase</title>
+</head>
+<body>
+  <h2>🔐 Generar Token de Firebase</h2>
+  <p>Inicia sesión con un usuario válido de tu proyecto Firebase:</p>
+
+  <input id="email" placeholder="Correo electrónico" value="roberthbardales@gmail.com"><br><br>
+  <input id="password" placeholder="Contraseña" type="password" value="123456"><br><br>
+  <button onclick="login()">Iniciar sesión y generar token</button>
+
+  <h3>🪪 Token generado:</h3>
+  <pre id="token"></pre>
+  <button id="copyBtn" onclick="copyToken()" disabled>📋 Copiar token</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCTDohD_NTVvK394Eo07v9x6IdIYbW8eo",
+      authDomain: "blog2025-9cdf7.firebaseapp.com",
+      projectId: "blog2025-9cdf7",
+      storageBucket: "blog2025-9cdf7.appspot.com",
+      messagingSenderId: "772020230767",
+      appId: "1:772020230767:web:5a852fd674ed5ec24bcb9a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.login = function() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential => userCredential.user.getIdToken())
+        .then(token => {
+          document.getElementById("token").textContent = token;
+          document.getElementById("copyBtn").disabled = false; // habilitar el botón
+        })
+        .catch(error => {
+          document.getElementById("token").textContent = "❌ Error: " + error.message;
+          document.getElementById("copyBtn").disabled = true; // deshabilitar si hay error
+        });
+    };
+
+    window.copyToken = function() {
+      const token = document.getElementById("token").textContent;
+      if (token) {
+        navigator.clipboard.writeText(token)
+          .then(() => alert("✅ Token copiado al portapapeles"))
+          .catch(err => alert("❌ Error al copiar: " + err));
+      }
+    };
+  </script>
+
+</body>
+</html>

@@ -47,6 +47,7 @@ LOCAL_APPS = (
 THIRD_PARTY_APPS = (
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework',
     # 'import_export',
     #'django_quill',
 )

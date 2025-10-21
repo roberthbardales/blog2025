@@ -113,7 +113,7 @@
 
                 <!-- Categorías dinámicas -->
                 {% for categoria in categorias %}
-                    <a href="?categoria={{ categoria.short_name }}{% if request.GET.kword_prueba %}&kword_prueba={{ request.GET.kword_prueba }}{% endif %}"
+                    <a href="?categoria={{ categoria.short_name }}"
                        class="list-group-item list-group-item-action py-2
                               {% if request.GET.categoria == categoria.short_name %}active fw-semibold text-white{% endif %}">
                         {{ categoria.short_name }}

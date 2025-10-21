@@ -20,6 +20,13 @@ urlpatterns = [
         views.FavoritesDeleteView.as_view(),
         name='delete-favoritos',
     ),
+
+    #añadir quitar
+    path(
+        'toggle-favorito/<int:pk>/',
+         views.ToggleFavoritoView.as_view(),
+         name='toggle-favorito'
+    ),
     # CRUD de grupos
     path(
         "grupos_crud/",
@@ -42,9 +49,9 @@ urlpatterns = [
     ),
 
     #prueba
-    path(
-        "prueba/",
-        views.PruebaListView.as_view(),
-        name="prueba",
-    ),
+    # path(
+    #     "prueba/",
+    #     views.PruebaListView.as_view(),
+    #     name="prueba",
+    # ),
 ]

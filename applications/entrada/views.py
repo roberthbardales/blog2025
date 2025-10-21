@@ -20,6 +20,7 @@ from .forms import CommentForm
 
 #models
 from .models import Entry,Category,Tag,Comment,Like
+from applications.favoritos.models import Favorites
 
 #mixin
 from applications.users.mixins import (
@@ -89,7 +90,7 @@ class EntryListView(ListView):
             # resultado = resultado.filter(title__icontains=kword_general)
         return resultado
 
-class EntryDetailView(UsuarioPermisoMixin, DetailView):
+class EntryDetailView(DetailView):
     template_name = 'entrada/detail.html'
     model = Entry
     context_object_name = 'entry'
@@ -109,8 +110,22 @@ class EntryDetailView(UsuarioPermisoMixin, DetailView):
         if user.is_authenticated:
             context['has_liked'] = entry.likes.filter(user=user).exists()
 
+        # Verificar si el usuario ya tiene este post como favorito
+        context['is_favorite'] = (
+            user.is_authenticated and
+            Favorites.objects.filter(user=user, entry=entry).exists()
+        )
         # Contar todos los likes
         context['likes_count'] = entry.likes.count()
+
+        #Verifica si ya está en favoritos
+        if user.is_authenticated:
+            context['is_favorito'] = Favorites.objects.filter(user=user, entry=entry).exists()
+        else:
+            context['is_favorito'] = False
+
+        return context
+
         return context
 
 class AgregarEntradaCreateView(AdministradorPermisoMixin,CreateView):

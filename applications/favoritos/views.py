@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
 from django.shortcuts import render
+from django.db.models import Q
+from django.contrib.postgres.search import TrigramSimilarity
 
 # from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -25,6 +27,49 @@ from applications.users.mixins import (
     UsuarioPermisoMixin,
 )
 
+# --------------------------------
+class EntryListView(ListView):
+    model=Entry
+    template_name = "entrada/lista.html"
+    context_object_name ='entradas'
+    paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        context = super(EntryListView, self).get_context_data(**kwargs)
+        # context['categorias']=Category.objects.all().order_by('name')
+
+        return context
+
+    #buscador input
+
+    def get_queryset(self):
+        kword= self.request.GET.get('kword_prueba','')
+        categoria= self.request.GET.get('categoria','')
+        kword_general = self.request.GET.get('kword_general', '').strip()
+        #consulta de busqueda
+        resultado= Entry.objects.buscar_entrada_categoria(kword,categoria)
+
+        if kword_general:
+
+            resultado = Entry.objects.buscar_general(kword_general)
+            # resultado = resultado.filter(title__icontains=kword_general)
+        return resultado
+# --------------------------------
+
+class ToggleFavoritoView(View):
+    def post(self, request, pk, *args, **kwargs):
+        entry = get_object_or_404(Entry, pk=pk)
+        favorito = Favorites.objects.filter(user=request.user, entry=entry).first()
+
+        if favorito:
+            favorito.delete()  # si ya existe, lo quita
+        else:
+            Favorites.objects.create(user=request.user, entry=entry)  # si no, lo agrega
+
+        return redirect(reverse("entrada_app:entry-detail", kwargs={"slug": entry.slug}))
+
+
+
 class UserPageView(ListView):
     template_name = "favoritos/perfil.html"
     context_object_name = 'entradas_user'
@@ -34,6 +79,15 @@ class UserPageView(ListView):
     def get_queryset(self):
         usuario = self.request.user
         queryset = Favorites.objects.none()
+        kword_favorito = self.request.GET.get("kword_favorito", "")
+
+        if kword_favorito:
+            queryset = Favorites.objects.filter(
+            Q(entry__title__icontains=kword_favorito,) |
+            Q(entry__title__trigram_similar=kword_favorito,)
+        ).order_by('-created')
+            # print(queryset)
+            return(queryset)
 
         if usuario.is_authenticated:
             queryset = Favorites.objects.entradas_user(usuario)
@@ -212,15 +266,15 @@ class FavoritosByGrupoListView(UsuarioPermisoMixin, ListView):
         return resultado
 
 
-class PruebaListView(ListView):
-    model = FavoriteGroup
-    template_name = "favoritos/prueba.html"
-    context_object_name = "contexto_prueba"
+# class PruebaListView(ListView):
+#     model = FavoriteGroup
+#     template_name = "favoritos/prueba.html"
+#     context_object_name = "contexto_prueba"
 
-    def get_queryset(self):
-        return FavoriteGroup.objects.filter(
-            user=self.request.user,
-        )
+#     def get_queryset(self):
+#         return FavoriteGroup.objects.filter(
+#             user=self.request.user,
+#         )
 
 
 class FavoritoListView(ListView):

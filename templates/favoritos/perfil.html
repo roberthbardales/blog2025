@@ -72,6 +72,7 @@
 
         <div class="col-sm-9 mt-3">
             <h5 class="text-center h3 bg-warning mt-2 py-2" >Ultimos Posts Guardados</h5>
+
                             <!-- 🔽 NUEVO BLOQUE: BOTONES DE ORDEN 🔽 -->
             <div class="d-flex justify-content-center mb-3 mt-4">
                 <div class="btn-group" role="group">
@@ -81,11 +82,18 @@
                     <a href="?orden=grupo" class="btn btn-outline-primary {% if orden_seleccionado == 'grupo' %}active{% endif %}">
                         Ordenar por Grupo
                     </a>
-                    <a href="?orden=categoria" class="btn btn-outline-primary {% if orden_seleccionado == 'categoria' %}active{% endif %}">
+                    <!-- <a href="?orden=categoria" class="btn btn-outline-primary {% if orden_seleccionado == 'categoria' %}active{% endif %}">
                         Ordenar por Categoria
-                    </a>
+                    </a> -->
                 </div>
             </div>
+            <div class="container mt-4">
+                <form method="get" action="" class="input-group mb-3">{% csrf_token %}
+                  <input type="text" class="form-control" placeholder="Buscar..." id="kword_favorito" name="kword_favorito"  aria-label="Texto a buscar" id="miInput">
+                  <button class="btn btn-primary" type="submit" id="miBoton">Buscar</button>
+                </form>
+              </div>
+
             <!-- 🔼 FIN BLOQUE DE ORDEN 🔼 -->
             <div class="row px-3 py-3">
                 {% for entrada in entradas_user %}

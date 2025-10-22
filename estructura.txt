@@ -1,9 +1,10 @@
 Listado de rutas de carpetas para el volumen SOLIDO
 El n£mero de serie del volumen es 8CCA-8500
 D:.
+|   .gitignore
 |   activar blog.bat
 |   estructura.txt
-|   firebase_config.py
+|   get_token.html
 |   manage.py
 |   prueba_git.txt
 |   README.md
@@ -189,12 +190,14 @@ D:.
 |   |           admin.cpython-36.pyc
 |   |           admin.cpython-37.pyc
 |   |           apps.cpython-37.pyc
+|   |           authentication.cpython-37.pyc
 |   |           forms.cpython-37.pyc
 |   |           managers.cpython-36.pyc
 |   |           managers.cpython-37.pyc
 |   |           mixins.cpython-37.pyc
 |   |           models.cpython-36.pyc
 |   |           models.cpython-37.pyc
+|   |           serializers.cpython-37.pyc
 |   |           urls.cpython-37.pyc
 |   |           views.cpython-37.pyc
 |   |           __init__.cpython-36.pyc
@@ -212,21 +215,8 @@ D:.
 |   |   wsgi.py
 |   |   __init__.py
 |   |   
-|   +---settings
-|   |   |   base.py
-|   |   |   local.py
-|   |   |   prod.py
-|   |   |   __init__.py
-|   |   |   
-|   |   \---__pycache__
-|   |           base.cpython-36.pyc
-|   |           base.cpython-37.pyc
-|   |           local.cpython-37.pyc
-|   |           prod.cpython-36.pyc
-|   |           __init__.cpython-36.pyc
-|   |           __init__.cpython-37.pyc
-|   |           
 |   \---__pycache__
+|           settings.cpython-37.pyc
 |           urls.cpython-37.pyc
 |           wsgi.cpython-37.pyc
 |           __init__.cpython-36.pyc
@@ -312,6 +302,7 @@ D:.
 |   |       django_QKhsmAe.JPG
 |   |       django_Ql6G9k6.JPG
 |   |       django_Ql6G9k6_3rIEQu2.jpg
+|   |       django_Ql6G9k6_d48tiBN.jpg
 |   |       django_Ql6G9k6_UbkE25Z.jpg
 |   |       django_QPcToVJ.JPG
 |   |       django_rGhcKTW.JPG

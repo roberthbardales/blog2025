@@ -33,10 +33,19 @@ urlpatterns = [
     ),
 
     #Firebase URLs
-        path(
-        'perfilapi/',
-        views.PerfilUsuario.as_view(),
-        name='perfilapi',
+    path(
+        'login/google/',
+        views.FirebaseGoogleLoginAPIView.as_view(),
+        name='firebase-google-login'
     ),
+
+    # path(
+    #     'api/logout/',
+    #     views.LogoutView.as_view(), name='logout'
+    # ),
+    # path('perfil2/',
+    #      views.PerfilView.as_view(),
+    #      name='perfil2'
+    #      ),
 
 ]

@@ -24,6 +24,59 @@ from .forms import (
 from .models import User
 #
 
+from django.contrib.auth import get_user_model, login
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from firebase_admin import auth as firebase_auth
+from rest_framework import exceptions
+
+User = get_user_model()
+
+class FirebaseGoogleLoginAPIView(APIView):
+    def post(self, request):
+        id_token = request.data.get('id_token')
+        if not id_token:
+            return Response({'error': 'Falta el token.'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            decoded = firebase_auth.verify_id_token(id_token)
+            email = decoded.get('email')
+            name = decoded.get('name', '')
+
+            # Buscar o crear usuario
+            user, created = User.objects.get_or_create(email=email, defaults={
+                'full_name': name,
+                'is_active': True
+            })
+
+            # Autenticar en Django
+            login(request, user)
+
+            return Response({
+                'message': '✅ Usuario autenticado con Google correctamente.',
+                'email': email,
+                'nombre': name,
+            })
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class FirebaseAuthentication(BaseAuthentication):
+    def authenticate(self, request):
+        id_token = request.headers.get('Authorization')
+        if not id_token:
+            return None
+        try:
+            decoded = firebase_auth.verify_id_token(id_token)
+            email = decoded.get('email')
+            if not email:
+                raise exceptions.AuthenticationFailed('Email no encontrado en token')
+            user, _ = User.objects.get_or_create(email=email)
+            return (user, None)
+        except Exception:
+            raise exceptions.AuthenticationFailed('Token inválido')
+
 
 class UserRegisterView(FormView):
     template_name = 'users/register.html'
@@ -101,22 +154,23 @@ class UserListView(LoginRequiredMixin,ListView):
         return User.objects.usuarios_sistema()
 
 # ============================
-# 🔥 FIREBASE
+# 🔥 probar FIREBASE
 # ============================
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from .authentication import FirebaseAuthentication
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework.permissions import IsAuthenticated
+# from .authentication import FirebaseAuthentication
 
+# #probar endpoint con postman, primero ejecuta get_token
+# class PerfilUsuario(APIView):
+#     authentication_classes = [FirebaseAuthentication]
+#     permission_classes = [IsAuthenticated]
 
-class PerfilUsuario(APIView):
-    authentication_classes = [FirebaseAuthentication]
-    permission_classes = [IsAuthenticated]
+#     def get(self, request):
+#         user = request.user
+#         return Response({
+#             "mensaje": f"Bienvenido {user.full_name or user.email}",
+#             "email": user.email,
+#         })
 
-    def get(self, request):
-        user = request.user
-        return Response({
-            "mensaje": f"Bienvenido {user.full_name or user.email}",
-            "email": user.email,
-        })

@@ -50,6 +50,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True
     )
     #
+    firebase_uid = models.CharField(max_length=255, blank=True, null=True, unique=True)
+
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 

@@ -195,7 +195,6 @@ FIREBASE_CREDENTIALS = os.path.join(BASE_DIR, 'serviceAccountKey.json')
 
 # Backends: agrega el backend de Firebase antes del backend por defecto (opcional)
 AUTHENTICATION_BACKENDS = [
-    'applications.users.backends.FirebaseAuthenticationBackend',
+    'applications.users.backends.FirebaseBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
-

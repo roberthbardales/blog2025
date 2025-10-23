@@ -33,6 +33,5 @@ urlpatterns = [
     ),
 
     # Firebase login
-    path('login/firebase/', views.FirebaseLoginAPIView.as_view(), name='firebase-login'),
-    path('api/firebase-login/', views.FirebaseLoginAPI.as_view(), name='api_firebase_login'),
+
 ]

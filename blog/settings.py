@@ -1,10 +1,15 @@
 # from django.core.exceptions import ImproperlyConfigured
 # import json
 import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
 from pathlib import Path
 import firebase_admin
 from firebase_admin import credentials
 from unipath import Path as UniPath
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = UniPath(__file__).ancestor(2)
@@ -58,6 +63,7 @@ THIRD_PARTY_APPS = (
     # 'django_quill',
 )
 
+# 🔧 IMPORTANTE: suma tuplas, no listas
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
@@ -182,3 +188,14 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "roberthbardales@gmail.com"
 EMAIL_HOST_PASSWORD = "uoqynxrrhwfcdtli"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# Ruta al JSON de la cuenta de servicio Firebase (no lo subas al repo)
+FIREBASE_CREDENTIALS = os.path.join(BASE_DIR, 'serviceAccountKey.json')
+
+# Backends: agrega el backend de Firebase antes del backend por defecto (opcional)
+AUTHENTICATION_BACKENDS = [
+    'applications.users.backends.FirebaseAuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+

@@ -8,9 +8,9 @@ from .models import User
 
 def check_ocupation_user(ocupation, user_ocupation):
     #
-    
+
     if (ocupation == User.ADMINISTRADOR or ocupation == user_ocupation):
-        
+
         return True
     else:
         return False

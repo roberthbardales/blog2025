@@ -52,14 +52,14 @@ class UserRegisterForm(forms.ModelForm):
             ),
             'ocupation': forms.Select(
                 attrs={
-                    'class':'form-control',       
+                    'class':'form-control',
 
                 }
             ),
             'genero': forms.Select(
                 attrs={
                     'placeholder': 'Genero ...',
-                    'class':'form-control',          
+                    'class':'form-control',
                 }
             ),
             'date_birth': forms.DateInput(
@@ -69,7 +69,7 @@ class UserRegisterForm(forms.ModelForm):
                 },
             ),
         }
-    
+
     def clean_password2(self):
         if self.cleaned_data['password1'] != self.cleaned_data['password2']:
             self.add_error('password2', 'Las contraseñas no son iguales')
@@ -102,8 +102,8 @@ class LoginForm(forms.Form):
 
         if not authenticate(email=email, password=password):
             raise forms.ValidationError('Los datos de usuario no son correctos')
-            
-        
+
+
         return self.cleaned_data
 
 
@@ -137,6 +137,6 @@ class UpdatePasswordForm(forms.Form):
 
     #     if not authenticate(email=password1, password=password2):
     #         raise forms.ValidationError('La Contraseña Ingresada no es Correecta')
-            
-        
+
+
     #     return self.cleaned_data

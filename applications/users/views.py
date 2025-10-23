@@ -5,6 +5,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
+# DRF imports
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import FirebaseAuthSerializer, UserSerializer
+from django.contrib.auth import authenticate, login
+
+
 from django.views.generic import (
     View,
     CreateView,
@@ -25,57 +33,6 @@ from .models import User
 #
 
 from django.contrib.auth import get_user_model, login
-from rest_framework.authentication import BaseAuthentication
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from firebase_admin import auth as firebase_auth
-from rest_framework import exceptions
-
-User = get_user_model()
-
-class FirebaseGoogleLoginAPIView(APIView):
-    def post(self, request):
-        id_token = request.data.get('id_token')
-        if not id_token:
-            return Response({'error': 'Falta el token.'}, status=status.HTTP_400_BAD_REQUEST)
-        try:
-            decoded = firebase_auth.verify_id_token(id_token)
-            email = decoded.get('email')
-            name = decoded.get('name', '')
-
-            # Buscar o crear usuario
-            user, created = User.objects.get_or_create(email=email, defaults={
-                'full_name': name,
-                'is_active': True
-            })
-
-            # Autenticar en Django
-            login(request, user)
-
-            return Response({
-                'message': '✅ Usuario autenticado con Google correctamente.',
-                'email': email,
-                'nombre': name,
-            })
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-
-class FirebaseAuthentication(BaseAuthentication):
-    def authenticate(self, request):
-        id_token = request.headers.get('Authorization')
-        if not id_token:
-            return None
-        try:
-            decoded = firebase_auth.verify_id_token(id_token)
-            email = decoded.get('email')
-            if not email:
-                raise exceptions.AuthenticationFailed('Email no encontrado en token')
-            user, _ = User.objects.get_or_create(email=email)
-            return (user, None)
-        except Exception:
-            raise exceptions.AuthenticationFailed('Token inválido')
 
 
 class UserRegisterView(FormView):
@@ -153,24 +110,38 @@ class UserListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return User.objects.usuarios_sistema()
 
-# ============================
-# 🔥 probar FIREBASE
-# ============================
+# --- Endpoint API: login con Firebase (usa serializer) ---
+class FirebaseLoginAPI(APIView):
+    """
+    POST JSON { "idToken": "..." }
+    Valida token con Firebase, crea o vincula usuario y devuelve datos del usuario.
+    Además inicia sesión en Django (cookie) si es llamado desde web.
+    """
+    permission_classes = []  # permitido a todos
+    authentication_classes = []  # no usar auth previa
+
+    def post(self, request, *args, **kwargs):
+        serializer = FirebaseAuthSerializer(data=request.data, context={'request': request})
+        if not serializer.is_valid():
+            return Response({'ok': False, 'errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = serializer.create_or_get_user()
+
+        # Opcional: iniciar sesión con cookie de Django (útil para web)
+        # Si prefieres usar JWT para APIs, aquí emitirías token JWT en su lugar.
+        login(request, user)
+
+        user_data = UserSerializer(user).data
+        return Response({'ok': True, 'user': user_data}, status=status.HTTP_200_OK)
+
+#probar firebase
+
+# def firebase_login(request):
+#     return render(request, "users/firebase_login.html")
+
 
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
-# from rest_framework.permissions import IsAuthenticated
+# from rest_framework.permissions import AllowAny
 # from .authentication import FirebaseAuthentication
-
-# #probar endpoint con postman, primero ejecuta get_token
-# class PerfilUsuario(APIView):
-#     authentication_classes = [FirebaseAuthentication]
-#     permission_classes = [IsAuthenticated]
-
-#     def get(self, request):
-#         user = request.user
-#         return Response({
-#             "mensaje": f"Bienvenido {user.full_name or user.email}",
-#             "email": user.email,
-#         })
 

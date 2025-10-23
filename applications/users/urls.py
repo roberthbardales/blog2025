@@ -32,20 +32,12 @@ urlpatterns = [
         name='user-lista',
     ),
 
-    #Firebase URLs
+    # 🔹 Autenticación con Firebase
+
+    # API REST que recibe el token Firebase y devuelve los datos del usuario
     path(
-        'login/google/',
-        views.FirebaseGoogleLoginAPIView.as_view(),
-        name='firebase-google-login'
+        'api/firebase-login/',
+        views.FirebaseLoginAPI.as_view(),
+        name='api-firebase-login',
     ),
-
-    # path(
-    #     'api/logout/',
-    #     views.LogoutView.as_view(), name='logout'
-    # ),
-    # path('perfil2/',
-    #      views.PerfilView.as_view(),
-    #      name='perfil2'
-    #      ),
-
 ]

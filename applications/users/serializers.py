@@ -1,4 +1,3 @@
-# applications/users/serializers.py
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .firebase_utils import verify_firebase_token
@@ -17,50 +16,42 @@ class FirebaseAuthSerializer(serializers.Serializer):
     def validate_idToken(self, value):
         try:
             decoded = verify_firebase_token(value)
-        except Exception as e:
-            raise serializers.ValidationError("Token inválido o expirado.") from e
+        except Exception:
+            raise serializers.ValidationError("Token inválido o expirado.")
 
-        # decoded contiene 'uid', 'email', 'name', 'email_verified', ...
         email = decoded.get('email')
         uid = decoded.get('uid')
         if not email or not uid:
-            raise serializers.ValidationError("Token no contiene email/uid válido.")
-        # guardamos decoded para usar en create/get user
+            raise serializers.ValidationError("Token no contiene email o uid válido.")
         self.context['firebase_decoded'] = decoded
         return value
 
     def create_or_get_user(self):
-        """
-        Busca o crea el usuario local y lo retorna.
-        También vincula firebase_uid si encuentra el email local.
-        """
         decoded = self.context.get('firebase_decoded')
         if not decoded:
-            raise RuntimeError("Falta token verificado en contexto.")
+            raise RuntimeError("Token verificado no encontrado en contexto.")
 
         email = decoded.get('email')
         uid = decoded.get('uid')
-        name = decoded.get('name') or ''
-        first_name = ''
-        last_name = ''
+        name = decoded.get('name', '')
+        first_name, last_name = '', ''
         if name:
             parts = name.split(' ', 1)
             first_name = parts[0]
             if len(parts) > 1:
                 last_name = parts[1]
 
-        # 1) Si existe por firebase_uid
+        # 1) Buscar por firebase_uid
         try:
             user = User.objects.get(firebase_uid=uid)
             return user
         except ObjectDoesNotExist:
             pass
 
-        # 2) Si existe por email -> asociar
+        # 2) Buscar por email
         try:
             user = User.objects.get(email__iexact=email)
             user.firebase_uid = uid
-            # actualizar nombre si está vacío
             if not getattr(user, 'nombres', None) and first_name:
                 user.nombres = first_name
             if not getattr(user, 'apellidos', None) and last_name:
@@ -76,10 +67,10 @@ class FirebaseAuthSerializer(serializers.Serializer):
         user = User.objects.create(
             username=username,
             email=email,
-            nombres=first_name or '',
-            apellidos=last_name or '',
+            nombres=first_name,
+            apellidos=last_name,
             firebase_uid=uid,
-            is_active=True,
+            is_active=True
         )
         user.set_unusable_password()
         user.save()

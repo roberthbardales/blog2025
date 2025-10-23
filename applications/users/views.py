@@ -110,15 +110,19 @@ class UserListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return User.objects.usuarios_sistema()
 
-# --- Endpoint API: login con Firebase (usa serializer) ---
+# =====================================================
+# Vistas Firebase
+# =====================================================
+
+class FirebaseLoginAPIView(View):
+    """Versión web (si quieres renderizar HTML o probar desde navegador)"""
+    def get(self, request):
+        return JsonResponse({"msg": "POST idToken to /api/firebase-login/"})
+
 class FirebaseLoginAPI(APIView):
-    """
-    POST JSON { "idToken": "..." }
-    Valida token con Firebase, crea o vincula usuario y devuelve datos del usuario.
-    Además inicia sesión en Django (cookie) si es llamado desde web.
-    """
-    permission_classes = []  # permitido a todos
-    authentication_classes = []  # no usar auth previa
+    """API que recibe el token de Firebase, crea/vincula usuario y lo autentica en Django"""
+    permission_classes = []
+    authentication_classes = []
 
     def post(self, request, *args, **kwargs):
         serializer = FirebaseAuthSerializer(data=request.data, context={'request': request})
@@ -126,22 +130,6 @@ class FirebaseLoginAPI(APIView):
             return Response({'ok': False, 'errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
         user = serializer.create_or_get_user()
-
-        # Opcional: iniciar sesión con cookie de Django (útil para web)
-        # Si prefieres usar JWT para APIs, aquí emitirías token JWT en su lugar.
         login(request, user)
-
         user_data = UserSerializer(user).data
         return Response({'ok': True, 'user': user_data}, status=status.HTTP_200_OK)
-
-#probar firebase
-
-# def firebase_login(request):
-#     return render(request, "users/firebase_login.html")
-
-
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework.permissions import AllowAny
-# from .authentication import FirebaseAuthentication
-

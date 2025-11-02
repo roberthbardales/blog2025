@@ -1,6 +1,6 @@
 #
 from django.urls import path
-
+from .views import FirebaseLoginView
 from . import views
 
 app_name = "users_app"
@@ -33,5 +33,14 @@ urlpatterns = [
     ),
 
     # Firebase login
+    path('login/firebase/', views.FirebaseLoginView.as_view(), name='firebase-login'),
+
+    path("login/google/", views.login_google_view, name="google-login-template"),
+
+    path("login/firebase-datos/", views.firebase_datos_view, name="firebase-datos"),
+
+
+    #pruebas API
+    path('api/sobre_mi/', views.SobreMiAPIView.as_view(), name='api-sobre-mi'),
 
 ]

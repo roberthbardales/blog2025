@@ -6,6 +6,11 @@ from django.views.generic import View
 #
 from .models import User
 
+#DRF API imports
+
+from rest_framework.permissions import BasePermission, IsAuthenticated
+from django.contrib.auth import get_user_model
+
 def check_ocupation_user(ocupation, user_ocupation):
     #
 
@@ -48,6 +53,45 @@ class UsuarioPermisoMixin(LoginRequiredMixin):
             )
 
         return super().dispatch(request, *args, **kwargs)
+
+#Permisos API permissions
+
+User = get_user_model()
+
+# 🔐 Permiso base
+class RolPermission(BasePermission):
+    """Valida que el usuario tenga un rol específico (ocupation)."""
+    rol = None
+
+    def has_permission(self, request, view):
+        return (
+            request.user
+            and request.user.is_authenticated
+            and str(request.user.ocupation) == str(self.rol)
+        )
+
+# 🧱 Mixins para vistas API
+class AdministradorAPIMixin:
+    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        from .mixins import RolPermission
+        permiso = RolPermission()
+        permiso.rol = User.ADMINISTRADOR
+        return [permiso()]
+
+class UsuarioAPIMixin:
+    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        from .mixins import RolPermission
+        permiso = RolPermission()
+        permiso.rol = User.USUARIO
+        return [permiso()]
+
+
+
+
 
 # class UsuarioPermisoMixin(LoginRequiredMixin):
 #     login_url = reverse_lazy('users_app:user-login')

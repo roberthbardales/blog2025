@@ -111,3 +111,108 @@ class UserListView(LoginRequiredMixin,ListView):
         return User.objects.usuarios_sistema()
 
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from firebase_admin import auth as firebase_auth
+from django.contrib.auth import get_user_model, login
+from .permissions import EsUsuario
+
+User = get_user_model()
+
+
+class FirebaseLoginView(APIView):
+    """
+    🔐 Autenticación con Firebase (Google)
+    - Verifica el token de Firebase.
+    - Crea el usuario si no existe.
+    - Marca is_active, is_staff y ocupation en true/'Usuario'.
+    - Inicia sesión en Django.
+    """
+    # No agregamos permission_classes aquí porque el usuario aún no está logueado
+
+    def post(self, request):
+        id_token = request.data.get("idToken")
+        if not id_token:
+            return Response({"error": "No se envió token"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            decoded = firebase_auth.verify_id_token(id_token)
+        except Exception as e:
+            return Response({"error": f"Token inválido: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
+
+        email = decoded.get("email")
+        name = decoded.get("name", "")
+        if not email:
+            return Response({"error": "El token no contiene email válido"}, status=status.HTTP_400_BAD_REQUEST)
+
+        user, created = User.objects.get_or_create(
+            email=email,
+            defaults={
+                "full_name": name or "",
+                "ocupation": User.USUARIO,
+                "is_active": True,
+                "is_staff": True,
+            }
+        )
+
+        if not user.is_superuser:
+            user.is_active = True
+            user.is_staff = True
+            user.ocupation = User.USUARIO
+            user.set_unusable_password()
+            user.save()
+
+        login(request, user, backend='applications.users.backends.FirebaseBackend')
+        # login(request, user, backend='applications.users.backends.FirebaseAuthentication')
+
+
+        return Response({
+            "message": "✅ Autenticado correctamente",
+            "email": user.email,
+            "nuevo_usuario": created,
+            "superusuario": user.is_superuser
+        }, status=status.HTTP_200_OK)
+
+
+
+
+def login_google_view(request):
+    return render(request, "users/login_google.html")
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .permissions import EsUsuario
+
+class MiVistaProtegida(APIView):
+    permission_classes = [EsUsuario]
+
+    def get(self, request):
+        return Response({"message": f"Hola {request.user.full_name}, acceso permitido"})
+
+
+
+def firebase_datos_view(request):
+    return render(request, "users/firebase_datos.html")
+
+
+
+#pruebas API
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .permissions import EsUsuario
+
+class SobreMiAPIView(APIView):
+    permission_classes = [EsUsuario]
+
+    def get(self, request):
+        user = request.user
+        data = {
+            "nombre": user.full_name,
+            "email": user.email,
+            "rol": user.get_ocupation_display(),
+        }
+        return Response(data, status=status.HTTP_200_OK)

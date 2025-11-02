@@ -1,2 +1,3 @@
 # Ignorar la clave de servicio de Firebase/Google
 serviceAccountKey.json
+firebase-key.json

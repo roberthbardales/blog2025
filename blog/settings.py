@@ -6,6 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 from pathlib import Path
 import firebase_admin
+
 from firebase_admin import credentials
 from unipath import Path as UniPath
 
@@ -190,11 +191,16 @@ EMAIL_HOST_PASSWORD = "uoqynxrrhwfcdtli"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
+cred = credentials.Certificate(BASE_DIR.child("firebase-key.json"))
+firebase_admin.initialize_app(cred)
+
+
+
 # Ruta al JSON de la cuenta de servicio Firebase (no lo subas al repo)
-FIREBASE_CREDENTIALS = os.path.join(BASE_DIR, 'serviceAccountKey.json')
+FIREBASE_CREDENTIALS = BASE_DIR.child('firebase-key.json')
 
 # Backends: agrega el backend de Firebase antes del backend por defecto (opcional)
 AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',         # Backend por defecto de Django tiene q estar primero
     'applications.users.backends.FirebaseBackend',
-    'django.contrib.auth.backends.ModelBackend',
 ]

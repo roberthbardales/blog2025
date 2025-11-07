@@ -23,14 +23,70 @@
                         <a class="btn btn-warning btn-block" href="{% url 'users_app:user-register'%}">Registrar</a>
                     </div>
             </form>
-            <div>
-                <!-- <button type="button" onclick="loginWithGoogle()">Iniciar sesión con Google</button> -->
+            <div class="col-12 text-center mb-4">
+                <button
+                    type="button"
+                    class="btn btn-danger btn-block d-flex align-items-center justify-content-center"
+                    style="gap: 8px;"
+                    onclick="loginWithGoogle()"
+                >
+                    <!-- <img src="{% static 'img/google_icon.svg' %}" alt="Google" width="20" height="20"> -->
+                    Acceder con Google
+                </button>
             </div>
         </div>
 
     </div>
 
 </div>
+
+<script type="module">
+    // Importar Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBZvcvGrPIBwhvOzp6EZzTq7IHzGuRErHs",
+      authDomain: "blog2025-8088a.firebaseapp.com",
+      projectId: "blog2025-8088a",
+      storageBucket: "blog2025-8088a.firebasestorage.app",
+      messagingSenderId: "749428454575",
+      appId: "1:749428454575:web:048dbc52892c7a09a6905a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // 🔥 Login con Google
+    window.loginWithGoogle = async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const token = await result.user.getIdToken();
+        // console.log("🔑 Token de Firebase:", token); //ver token
+
+        const response = await fetch("/login/firebase/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idToken: token })
+        });
+
+        const data = await response.json();
+        console.log("✅ Login backend:", data);
+
+        if (response.ok) {
+          // alert(`Bienvenido ${data.email}`); //para comprobar
+          window.location.href = "/"; // redirige donde quieras
+        } else {
+          alert("❌ Error: " + data.error);
+        }
+
+      } catch (error) {
+        console.error("🔥 Error en login:", error);
+        alert("Ocurrió un error al autenticar con Google");
+      }
+    };
+  </script>
 
 {% endblock content %}
 

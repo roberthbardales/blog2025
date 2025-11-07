@@ -21,12 +21,23 @@ urlpatterns = [
         name='delete-favoritos',
     ),
 
+    #pruebas añadir favorito
+    path(
+        'add-entrada2/<pk>',
+        views.AddFavoritosView2.as_view(),
+        name='add-favoritos2',
+    ),
+
+    #fin prueba
+
+
     #añadir quitar
     path(
         'toggle-favorito/<int:pk>/',
          views.ToggleFavoritoView.as_view(),
          name='toggle-favorito'
     ),
+
     # CRUD de grupos
     path(
         "grupos_crud/",

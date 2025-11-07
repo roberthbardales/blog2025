@@ -48,5 +48,10 @@ urlpatterns = [
         views.CommentDeleteView.as_view(),
         name='delete_comment'),
 
-
+    #ver usuarios
+    path(
+        'users/<int:pk>/',
+         views.UserProfileView.as_view(),
+         name='view_profile'
+    ),
 ]

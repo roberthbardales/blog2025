@@ -26,7 +26,7 @@
       try {
         const result = await signInWithPopup(auth, provider);
         const token = await result.user.getIdToken();
-        console.log("🔑 Token de Firebase:", token);
+        // console.log("🔑 Token de Firebase:", token); //ver token
 
         const response = await fetch("/login/firebase/", {
           method: "POST",
@@ -38,7 +38,7 @@
         console.log("✅ Login backend:", data);
 
         if (response.ok) {
-          alert(`Bienvenido ${data.email}`);
+          // alert(`Bienvenido ${data.email}`); //para comprobar
           window.location.href = "/"; // redirige donde quieras
         } else {
           alert("❌ Error: " + data.error);

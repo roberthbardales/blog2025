@@ -20,7 +20,9 @@ from .forms import CommentForm
 
 #models
 from .models import Entry,Category,Tag,Comment,Like
-from applications.favoritos.models import Favorites
+from applications.favoritos.models import Favorites,FavoriteGroup
+from applications.users.models import User
+
 
 #mixin
 from applications.users.mixins import (
@@ -124,9 +126,14 @@ class EntryDetailView(DetailView):
         else:
             context['is_favorito'] = False
 
-        return context
+        # ✅ Grupos de favoritos del usuario
+        if user.is_authenticated:
+            context['contexto_grupos'] = FavoriteGroup.objects.filter(user=user)
+        else:
+            context['contexto_grupos'] = []
 
         return context
+
 
 class AgregarEntradaCreateView(AdministradorPermisoMixin,CreateView):
     template_name = "entrada/agregar.html"
@@ -136,7 +143,8 @@ class AgregarEntradaCreateView(AdministradorPermisoMixin,CreateView):
     def form_valid(self, form):
 
         #logica del proceso
-        entrada = form.save()
+        entrada = form.save(commit=False)
+        entrada.user = self.request.user
         #empleado.full_name = empleado.first_name + ' ' + empleado.last_name
         entrada.save()
         return super(AgregarEntradaCreateView, self).form_valid(form)
@@ -225,4 +233,28 @@ class CommentDeleteView(UsuarioPermisoMixin, DeleteView):
         # Redirige al post después de eliminar
         post = self.object.post
         return reverse_lazy('entrada_app:entry-detail', kwargs={'slug': post.slug})
+
+
+
+class UserProfileView(UsuarioPermisoMixin,DetailView):
+    model = User
+    template_name = 'entrada/profile_view.html'
+    context_object_name = 'profile_user'
+    # Con pk no hace falta slug_field ni slug_url_kwarg
+
+
+    def get_queryset(self):
+        """
+        Controla la visibilidad de los perfiles según el usuario que accede:
+        - Administradores y superusuarios pueden ver todos.
+        - Usuarios normales no pueden ver admins ni superusuarios.
+        """
+        user = self.request.user
+
+        if user.is_authenticated and (user.is_superuser or user.ocupation == User.ADMINISTRADOR):
+            # Admins y superusuarios ven todos
+            return User.objects.all()
+        else:
+            # Usuarios normales solo ven usuarios que NO sean admin ni superuser
+            return User.objects.exclude(is_superuser=True).exclude(ocupation=User.ADMINISTRADOR)
 

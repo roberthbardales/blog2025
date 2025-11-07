@@ -60,7 +60,14 @@
                 {% for comment in main_comments %}
                 <div class="card mb-2">
                     <div class="card-body">
-                        <p><strong>{{ comment.user.full_name }}:</strong> {{ comment.content }}</p>
+                        <p>
+                            <strong>
+                                <a href="{% url 'entrada_app:view_profile' comment.user.pk %}">
+                                    {{ comment.user.full_name }}
+                                </a>:
+                            </strong>
+                            {{ comment.content }}
+                        </p>
                         <small class="text-secondary">{{ comment.created }}</small>
 
                         {% if user.is_authenticated %}
@@ -84,7 +91,11 @@
                         {% for reply in comment.replies.all %}
                             <div class="card mt-2 mb-2" style="margin-left:20px;">
                                 <div class="card-body">
-                                    <p><strong>{{ reply.user.full_name }}:</strong> {{ reply.content }}</p>
+                                    <p>                            <strong>
+                                        <a href="{% url 'entrada_app:view_profile' comment.user.pk %}">
+                                            {{ comment.user.full_name }}
+                                        </a>:
+                                    </strong> {{ reply.content }}</p>
                                     <small class="text-secondary">{{ reply.created }}</small>
                                 </div>
                             </div>
@@ -116,39 +127,102 @@
             <div class="col-12">
                 <p class="h5">{{ entry.category }}</p>
                 <img class="card-img-top" src="{{ entry.image.url }}" style="min-height: 5rem">
+
             </div>
-            <div class="col-sm-12">
-                {% if not user.is_anonymous %}
-                <div class="card-body mb-2 mt-2 px-1 py-1">
-                    <form action="{% url 'favoritos_app:toggle-favorito' entry.id %}" method="POST">
-                        {% csrf_token %}
-                        {% if is_favorito %}
-                            <button type="submit" class="btn btn-block btn-danger text-white">
-                                Quitar de favoritos
-                            </button>
-                        {% else %}
-                            <button type="submit" class="btn btn-block btn-primary text-white">
-                                Añadir a favoritos
-                            </button>
-                        {% endif %}
-                    </form>
+
+
+            <!-- modal -->
+
+            {% if user.is_authenticated %}
+            {% if not is_favorito %}
+                <!-- Botón que abre el modal solo si NO está en favoritos -->
+                <button type="button" class="btn btn-primary btn-block py-2 mt-3" data-toggle="modal" data-target="#guardarModal">
+                    Añadir a favoritos
+                </button>
+
+                <!-- Modal Guardar en -->
+                <div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content text-center">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="guardarModalLabel">Guardar en:</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <!-- Formulario para guardar favorito -->
+                            <form method="POST" action="{% url 'favoritos_app:add-favoritos2' entry.id %}">
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="group_id" class="font-weight-bold">Selecciona un grupo:</label>
+                                        <select name="kword_grupo" id="kword_grupo" class="form-control" required>
+                                            {% if contexto_grupos %}
+                                                {% for grupo in contexto_grupos %}
+                                                    <option value="{{ grupo.id }}" {% if grupo_activo == grupo.name %}selected{% endif %}>
+                                                        {{ grupo.name }}
+                                                    </option>
+                                                {% endfor %}
+                                            {% else %}
+                                                <option value="0" selected>General</option>
+                                            {% endif %}
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer d-flex justify-content-between">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
 
-                {% else %}
-                <div class="card-body mt-3 mb-3 mt-1 px-1 py-1">
-                    <a class="btn btn-primary btn-block btn-lg text-white" href="{% url 'users_app:user-register'%}">Registrate</a>
-                </div>
-                {% endif %}
-            </div>
-            {% if not user.is_anonymous and user.is_admin %}
-            <div class="col-12">
-                <div class="card-body mb-2 mt-2 px-1 py-1">
-                    <a href="{% url 'entrada_app:update-entrada' entry.id %}" class="btn btn-block btn-success text-white">
-                        Modificar
-                    </a>
-                </div>
-            </div>
+            {% else %}
+                <!-- Botón directo para quitar favorito si ya está agregado -->
+                <form method="POST" action="{% url 'favoritos_app:add-favoritos2' entry.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-block text-white py-2 mt-3">
+                        Quitar de favoritos
+                    </button>
+                </form>
             {% endif %}
+        {% else %}
+            <!-- Usuario anónimo -->
+            <div class="alert alert-info mt-3 text-center">
+                <p>¿Quieres guardar este post?</p>
+                <a href="{% url 'users_app:user-register' %}" class="btn btn-outline-primary">
+                    Regístrate
+                </a>
+            </div>
+        {% endif %}
+
+            <!-- fin modal -->
+
+                {% if user.is_authenticated and user.ocupation == User.ADMINISTRADOR or user.is_superuser %}
+                    <!-- Botón solo visible para admins -->
+                    <div class="col-12">
+                        <div class="card-body mb-2 mt-2 px-1 py-1">
+                            <a href="{% url 'entrada_app:update-entrada' entry.id %}" class="btn btn-block btn-success text-white">
+                                Modificar
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+
+        <!-- pruebas -->
+        <!-- <p>{{ user }}</p>
+        <p>is_staff: {{ user.is_staff }}</p>
+        <p>is_superuser: {{ user.is_superuser }}</p>
+        <p>is_admin: {{ user.is_admin }}</p> -->
+
+        <!-- pruebas -->
+
         </div>
     </div>
 </div>

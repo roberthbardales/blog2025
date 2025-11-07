@@ -1,0 +1,127 @@
+{% extends "entrada/base_entrada.html" %}
+{% load static %}
+
+{% block title %}Perfil de {{ profile_user.full_name }}{% endblock title %}
+{% block description %}
+<meta name="description" content="Perfil de usuario de {{ profile_user.full_name }}">
+{% endblock description %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-8 offset-md-2">
+            <!-- Encabezado del perfil -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Perfil de Usuario</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Información del usuario -->
+                            <h4 class="text-primary mb-3">{{ profile_user.full_name }}</h4>
+
+                            <div class="info-group mb-3">
+                                <p class="mb-2">
+                                    <strong>Email:</strong>
+                                    <span class="text-secondary">{{ profile_user.email }}</span>
+                                </p>
+
+                                {% if profile_user.genero %}
+                                <p class="mb-2">
+                                    <strong>Género:</strong>
+                                    <span class="text-secondary">{{ profile_user.get_genero_display }}</span>
+                                </p>
+                                {% endif %}
+
+                                {% if profile_user.date_birth %}
+                                <p class="mb-2">
+                                    <strong>Fecha de Nacimiento:</strong>
+                                    <span class="text-secondary">{{ profile_user.date_birth|date:"d/m/Y" }}</span>
+                                </p>
+                                {% endif %}
+
+                                {% if profile_user.ocupation %}
+                                <p class="mb-2">
+                                    <strong>Tipo de Usuario:</strong>
+                                    <span class="badge badge-info">{{ profile_user.get_ocupation_display }}</span>
+                                </p>
+                                {% endif %}
+
+                                <p class="mb-2">
+                                    <strong>Miembro desde:</strong>
+                                    <span class="text-secondary">{{ profile_user.created_at|date:"F Y" }}</span>
+                                </p>
+                            </div>
+
+                            <!-- Estados del usuario -->
+                            <div class="status-badges mt-3">
+                                {% if profile_user.is_active %}
+                                    <span class="badge badge-success">Activo</span>
+                                {% else %}
+                                    <span class="badge badge-secondary">Inactivo</span>
+                                {% endif %}
+
+                                {% if profile_user.is_staff %}
+                                    <span class="badge badge-warning">Staff</span>
+                                {% endif %}
+
+                                {% if profile_user.is_superuser %}
+                                    <span class="badge badge-danger">Superusuario</span>
+                                {% endif %}
+                            </div>
+
+                            <!-- Botón Editar Perfil -->
+                            {% if user.is_authenticated and user == profile_user %}
+                            <div class="mt-4">
+                                <a href="{% url 'users_app:user-update' %}" class="btn btn-primary">
+                                    Cambiar Contraseña
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de cerrar sesión (solo para el usuario autenticado viendo su propio perfil) -->
+            <!-- {% if user.is_authenticated and user == profile_user %}
+            <div class="text-center mb-5">
+                <form method="POST" action="{% url 'users_app:user-logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                </form>
+            </div>
+            {% endif %} -->
+
+        </div>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+<style>
+.info-group p {
+    line-height: 1.8;
+}
+
+.status-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.badge {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+</style>
+
+{% endblock content %}

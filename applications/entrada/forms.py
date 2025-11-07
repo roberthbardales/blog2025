@@ -11,7 +11,7 @@ class EntradaForm(forms.ModelForm):
         model = Entry
         #fields =(__all_)
         fields =(
-        'user',
+        # 'user',
         'category',
         'tag',
         'title',

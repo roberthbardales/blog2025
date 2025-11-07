@@ -70,6 +70,8 @@ class ToggleFavoritoView(View):
 
 
 
+
+
 class UserPageView(ListView):
     template_name = "favoritos/perfil.html"
     context_object_name = 'entradas_user'
@@ -83,6 +85,7 @@ class UserPageView(ListView):
 
         if kword_favorito:
             queryset = Favorites.objects.filter(
+            Q(user=usuario),
             Q(entry__title__icontains=kword_favorito,) |
             Q(entry__title__trigram_similar=kword_favorito,)
         ).order_by('-created')
@@ -155,6 +158,50 @@ class AddFavoritosView(UsuarioPermisoMixin, View):
 
 
         return redirect(reverse('favoritos_app:perfil'))
+
+"""
+pruebas
+"""
+class AddFavoritosView2(UsuarioPermisoMixin, View):
+    """
+    Vista para agregar o quitar un favorito.
+    Permite seleccionar un grupo desde un <select>.
+    Si no hay grupos, crea uno llamado "General".
+    Muestra mensajes de feedback al usuario.
+    """
+
+    def post(self, request, pk, *args, **kwargs):
+        usuario = request.user
+        entrada = get_object_or_404(Entry, pk=pk)
+
+        # Obtener el group_id enviado desde el formulario
+        kword_grupo = request.POST.get("kword_grupo")
+
+        # Si no se seleccionó grupo o se envió "0", usar/crear "General"
+        if not kword_grupo or kword_grupo == "0":
+            grupo, _ = FavoriteGroup.objects.get_or_create(user=usuario, name="General")
+        else:
+            # Intentar obtener el grupo seleccionado por el usuario
+            grupo = FavoriteGroup.objects.filter(id=kword_grupo, user=usuario).first()
+            # Si por alguna razón no existe, usar "General"
+            if not grupo:
+                grupo, _ = FavoriteGroup.objects.get_or_create(user=usuario, name="General")
+
+        # Revisar si el entry ya es favorito del usuario
+        favorito = Favorites.objects.filter(user=usuario, entry=entrada).first()
+
+        if favorito:
+            favorito.delete()
+            messages.warning(request, f'"{entrada.title}" fue eliminado de tus favoritos.')
+        else:
+            Favorites.objects.create(user=usuario, entry=entrada, group=grupo)
+            messages.success(request, f'"{entrada.title}" fue agregado a tus favoritos en el grupo "{grupo.name}".')
+
+        # Redirigir al detalle de la entrada
+        return redirect(reverse("entrada_app:entry-detail", kwargs={"slug": entrada.slug}))
+"""
+fin pruebas
+"""
 
 class FavoritesDeleteView(UsuarioPermisoMixin,DeleteView):
 

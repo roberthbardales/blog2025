@@ -26,19 +26,22 @@ urlpatterns = [
         views.UpdatePasswordView.as_view(),
         name='user-update',
     ),
-        path(
+    path(
         'users/lista/',
         views.UserListView.as_view(),
         name='user-lista',
     ),
 
+
     # Firebase login
     path('login/firebase/', views.FirebaseLoginView.as_view(), name='firebase-login'),
 
-    path("login/google/", views.login_google_view, name="google-login-template"),
+    # path("login/google/", views.login_google_view, name="google-login-template"),
 
     path("login/firebase-datos/", views.firebase_datos_view, name="firebase-datos"),
 
+    #cerrar sesion firebase
+    path('logout/firebase/', views.FirebaseLogoutView.as_view(), name='firebase-logout'),
 
     #pruebas API
     path('api/sobre_mi/', views.SobreMiAPIView.as_view(), name='api-sobre-mi'),

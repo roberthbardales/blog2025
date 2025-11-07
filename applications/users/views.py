@@ -5,11 +5,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
+
 # DRF imports
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,get_user_model
+from firebase_admin import auth as firebase_auth
+from .mixins import UsuarioAPIMixin,AdministradorAPIMixin
+# from .permissions import EsUsuario
+
+
 
 
 from django.views.generic import (
@@ -69,6 +75,7 @@ class LoginUser(FormView):
         return super(LoginUser, self).form_valid(form)
 
 
+
 class LogoutView(View):
 
     def get(self, request, *args, **kargs):
@@ -111,12 +118,9 @@ class UserListView(LoginRequiredMixin,ListView):
         return User.objects.usuarios_sistema()
 
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from firebase_admin import auth as firebase_auth
-from django.contrib.auth import get_user_model, login
-from .permissions import EsUsuario
+    """
+    API firebase etc
+    """
 
 User = get_user_model()
 
@@ -169,27 +173,23 @@ class FirebaseLoginView(APIView):
 
         return Response({
             "message": "✅ Autenticado correctamente",
-            "email": user.email,
-            "nuevo_usuario": created,
-            "superusuario": user.is_superuser
+            # "email": user.email,
+            # "nuevo_usuario": created,
+            # "superusuario": user.is_superuser
         }, status=status.HTTP_200_OK)
 
-
+class FirebaseLogoutView(APIView):
+    """
+    Cierra la sesión del usuario en Django.
+    """
+    def post(self, request):
+        logout(request)  # Esto limpia la sesión en Django
+        return Response({"message": "✅ Sesión cerrada correctamente"}, status=status.HTTP_200_OK)
 
 
 def login_google_view(request):
     return render(request, "users/login_google.html")
 
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from .permissions import EsUsuario
-
-class MiVistaProtegida(APIView):
-    permission_classes = [EsUsuario]
-
-    def get(self, request):
-        return Response({"message": f"Hola {request.user.full_name}, acceso permitido"})
 
 
 
@@ -200,13 +200,10 @@ def firebase_datos_view(request):
 
 #pruebas API
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .permissions import EsUsuario
 
-class SobreMiAPIView(APIView):
-    permission_classes = [EsUsuario]
+#mixinAPI para roles y permisos
+class SobreMiAPIView(UsuarioAPIMixin,APIView):
+    # permission_classes = [EsUsuario]
 
     def get(self, request):
         user = request.user

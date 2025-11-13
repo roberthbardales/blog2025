@@ -40,6 +40,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 DJANGO_APPS = (
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,12 +55,14 @@ LOCAL_APPS = (
     'applications.home',
     'applications.entrada',
     'applications.favoritos',
+    'applications.chat',
 )
 
 THIRD_PARTY_APPS = (
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
+    'channels',
     # 'import_export',
     # 'django_quill',
 )
@@ -96,7 +99,20 @@ TEMPLATES = [
     },
 ]
 
+# WSGI & ASGI
 WSGI_APPLICATION = 'blog.wsgi.application'
+ASGI_APPLICATION = 'blog.asgi.application'
+
+# Channels
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Desarrollo
+        # Para producción usar Redis:
+        # "BACKEND": "channels_redis.core.RedisChannelLayer",
+        # "CONFIG": {"hosts": [("127.0.0.1", 6379)]},
+    },
+}
+
 
 # Database
 DATABASES = {
@@ -126,7 +142,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 AUTH_USER_MODEL = 'users.User'
+
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/chat/'
+
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

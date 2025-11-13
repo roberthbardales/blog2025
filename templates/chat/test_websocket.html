@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test WebSocket</title>
+</head>
+<body>
+    <h1>Prueba de WebSocket</h1>
+    <div id="log"></div>
+
+    <script>
+        const log = document.getElementById('log');
+
+        function addLog(message, color = 'black') {
+            const p = document.createElement('p');
+            p.style.color = color;
+            p.textContent = new Date().toLocaleTimeString() + ' - ' + message;
+            log.appendChild(p);
+        }
+
+        addLog('🔵 Intentando conectar...', 'blue');
+
+        const ws = new WebSocket('ws://127.0.0.1:8000/ws/chat/11/');
+
+        ws.onopen = function(e) {
+            addLog('✅ CONECTADO!', 'green');
+        };
+
+        ws.onmessage = function(event) {
+            addLog('📨 Mensaje: ' + event.data, 'green');
+        };
+
+        ws.onerror = function(error) {
+            addLog('❌ ERROR: ' + JSON.stringify(error), 'red');
+            console.error('Error completo:', error);
+        };
+
+        ws.onclose = function(event) {
+            if (event.wasClean) {
+                addLog(`🔴 Conexión cerrada limpiamente, código=${event.code} razón=${event.reason}`, 'orange');
+            } else {
+                addLog('🔴 Conexión interrumpida', 'red');
+            }
+        };
+    </script>
+</body>
+</html>

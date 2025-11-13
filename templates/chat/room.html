@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat con {{ other_user.get_full_name }}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        #chat-log {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 70%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sent {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        .received {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 4px;
+        }
+        .message strong {
+            font-size: 12px;
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+        .message .timestamp {
+            font-size: 10px;
+            opacity: 0.6;
+            margin-top: 4px;
+            text-align: right;
+        }
+        .input-container {
+            display: flex;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        #chat-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s;
+        }
+        #chat-input:focus { border-color: #667eea; }
+        #send-button {
+            margin-left: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        #send-button:hover { transform: scale(1.05); }
+        #send-button:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>💬 Chat con {{ other_user.get_full_name }}</h2>
+        <a href="{% url 'chat_home' %}" class="back-btn">← Volver</a>
+    </div>
+
+    <div class="chat-container">
+        <div id="chat-log">
+            {% for message in messages %}
+                <div class="message {% if message.sender.id == user.id %}sent{% else %}received{% endif %}">
+                    <strong>{{ message.sender.get_full_name }}</strong>
+                    <p>{{ message.content }}</p>
+                    <span class="timestamp">{{ message.formatted_time }}</span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="input-container">
+            <input id="chat-input" type="text" placeholder="Escribe un mensaje..." autocomplete="off">
+            <button id="send-button">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // ⚠️ CORREGIDO: Usar el ID correcto
+        const otherUserId = {{ other_user.id }};
+        const currentUserId = {{ user.id }};
+        const currentUserName = "{{ user.get_full_name }}";
+
+        // ⚠️ CORREGIDO: WebSocket URL correcta
+        const chatSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/chat/' + otherUserId + '/'
+        );
+
+        const chatLog = document.querySelector('#chat-log');
+        const input = document.querySelector('#chat-input');
+        const sendBtn = document.querySelector('#send-button');
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const msgDiv = document.createElement('div');
+
+            // ⚠️ CORREGIDO: Comparar por ID en lugar de nombre
+            const messageClass = data.sender_id === currentUserId ? 'sent' : 'received';
+            msgDiv.className = 'message ' + messageClass;
+
+            const now = new Date();
+            const timestamp = now.getHours().toString().padStart(2,'0') + ':' +
+                            now.getMinutes().toString().padStart(2,'0');
+
+            msgDiv.innerHTML = `
+                <strong>${data.sender_name}</strong>
+                <p>${data.message}</p>
+                <span class="timestamp">${timestamp}</span>
+            `;
+            chatLog.appendChild(msgDiv);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket cerrado');
+        };
+
+        chatSocket.onerror = function(e) {
+            console.error('Error en WebSocket:', e);
+        };
+
+        sendBtn.onclick = function() {
+            const message = input.value.trim();
+            if (!message) return;
+
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            input.value = '';
+        };
+
+        input.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') sendBtn.click();
+        });
+
+        // Auto-scroll al cargar
+        chatLog.scrollTop = chatLog.scrollHeight;
+        input.focus();
+    </script>
+</body>
+</html>

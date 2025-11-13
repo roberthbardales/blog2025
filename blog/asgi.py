@@ -1,16 +1,30 @@
 """
 ASGI config for blog project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/
+Compatible con Daphne y Channels 4.0
 """
-
 import os
+import django
 
-from django.core.asgi import get_asgi_application
-
+# Configurar Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings')
+django.setup()
 
-application = get_asgi_application()
+# Imports después de setup
+from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+from applications.chat.routing import websocket_urlpatterns
+
+# Aplicación ASGI
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter(websocket_urlpatterns)
+    ),
+})
+
+# Debug en consola
+print("="*50)
+print("✅ ASGI Application Loaded")
+print(f"✅ WebSocket routes: {len(websocket_urlpatterns)} pattern(s)")
+print("="*50)

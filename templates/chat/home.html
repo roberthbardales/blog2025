@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Inicio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 20px;
+            border: 1px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .user-list {
+            list-style: none;
+        }
+        .user-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .user-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .user-item a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .user-item a:before {
+            content: "💬";
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h2>👋 Bienvenido, {{ user.full_name }}!</h2>
+            <a href="{% url 'users_app:user-logout' %}" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>Usuarios disponibles para chatear:</h3>
+        <ul class="user-list">
+            {% for u in users %}
+            {% if u.id != user.id %}
+            <li class="user-item">
+                <!-- 🔹 Aquí usamos el ID en lugar del username -->
+                <a href="{% url 'chat_room' u.id %}">{{ u.full_name }}</a>
+                <span id="status-{{ u.id }}" style="margin-left:10px; color:white; padding:3px 8px; border-radius:5px; font-size:12px; background: {% if u.is_online %}green{% else %}red{% endif %}">
+                    {% if u.is_online %}● En línea{% else %}● Offline{% endif %}
+                </span>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        // 🔄 Actualizar estados de usuarios cada 5 segundos
+        function actualizarEstados() {
+            fetch("{% url 'chat_home' %}?json=1")
+                .then(response => response.json())
+                .then(data => {
+                    for (const userId in data) {
+                        const span = document.getElementById("status-" + userId);
+                        if (span) {
+                            if (data[userId]) {
+                                span.textContent = "● En línea";
+                                span.style.background = "green";
+                            } else {
+                                span.textContent = "● Offline";
+                                span.style.background = "red";
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error actualizando estados:', error));
+        }
+
+        setInterval(actualizarEstados, 5000);
+    </script>
+</body>
+</html>

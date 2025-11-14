@@ -26,7 +26,7 @@ class EntryManager(models.Manager):
     def entradas_recientes(self):
         return self.filter(
             public=True,
-        ).order_by('-created')[:6]
+        ).order_by('-created')[:8]
 
 
     #procedimiento para buscar entradas por categoria o palabra clave

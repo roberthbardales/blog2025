@@ -125,26 +125,45 @@
 			{% endfor %}
 	</div>
 
-	<div class="row justify-content-center  mt-4">
-		<!-- <article class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0"> -->
-			<div class="col-12">
+	<div class="row justify-content-center align-items-center  py-4">
 
-			</div>
-		<div class="col-lg-8 col-sm-6 text-center mt-4 py-4">
-				<blockquote class="blockquote">
-				<p class=" h7 text-primary">
-					“No lo sé, procuro no cargar mi memoria con datos que puedo encontrar en cualquier manual"
-				</p>
-				<footer class="blockquote-footer  h6">
-					Albert Einstein
-				</footer>
-				<p class="h8">[Cuando Thomas Alva Edison le preguntó la velocidad del sonido]</p>
-				</blockquote>
-		</div>
-		<div class="col-lg-4 col-sm-6 mt-4  albert">
-			<img class="img-thumbnail mx-auto d-block" style="height: 200px;" src="static/img/002.jpg" alt="">
-		</div>
+   <div class="col-lg-10">
+	   <div class="d-flex flex-column flex-lg-row align-items-center bg-white shadow p-4 rounded"
+			style="border-left: 5px solid #007bff;">
+
+		   <!-- Texto -->
+		   <div class="text-center text-lg-left flex-grow-1 pr-lg-4">
+			   <blockquote class="blockquote mb-0">
+				   <p class="text-primary font-italic mb-3" style="font-size: 2.0rem; line-height: 1.5;">
+					   “No lo sé, procuro no cargar mi memoria con datos que puedo encontrar en cualquier manual”
+				   </p>
+				   <br>
+				   <footer class="blockquote-footer mt-2" style="font-size: 1.1rem;">
+					   Albert Einstein
+				   </footer>
+				   <small class="text-muted d-block mt-2">
+					   [Cuando Thomas Alva Edison le preguntó la velocidad del sonido]
+				   </small>
+			   </blockquote>
+		   </div>
+
+		   <!-- Imagen -->
+		   <div class="mt-4 mt-lg-0 text-center">
+			   <img src="static/img/002.jpg"
+					alt="Albert Einstein"
+					class="img rounded shadow-lg"
+					style="
+						width: 600px;
+						height: 400px;
+						object-fit: cover;
+					">
+		   </div>
+
+	   </div>
+   </div>
+
 </div>
+
 </div>
 
 {% include "includes/footer.html" %}

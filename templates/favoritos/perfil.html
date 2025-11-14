@@ -5,169 +5,294 @@
 
 {% include "includes/header.html" %}
 
-<div class="container" style="min-height: 650px">
-    <div class="row justify-content-center">
-        <div class="col-sm-3 mt-4 px-4 py-4 bg-info">
-            <div class="card1 text-white">
-                <div class="card-body">
-                    <div class="col">
-                        <h5>{{ user.full_name }}</h5>
+<style>
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border: none;
+    }
+
+    .card-header {
+        background-color: #007bff !important;
+        color: white !important;
+        border-bottom: none;
+    }
+
+    .profile-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .profile-info {
+        padding: 20px;
+    }
+
+    .profile-info h5 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .profile-info p {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    .profile-info i {
+        margin-right: 8px;
+        width: 20px;
+    }
+
+    .favorito-card {
+        border: none;
+        border-left: 4px solid #007bff;
+        margin-bottom: 20px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .favorito-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .favorito-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .badge-grupo {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    .btn-grupo {
+        transition: all 0.3s;
+        border-radius: 5px;
+    }
+
+    .btn-grupo:hover {
+        transform: translateX(5px);
+    }
+
+    .search-box {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+
+    .form-select {
+        border: 2px solid #e9ecef;
+        border-radius: 5px;
+        transition: border-color 0.3s;
+    }
+
+    .form-select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+</style>
+
+<div class="container" style="min-height: 650px; padding: 30px 0;">
+    <div class="row">
+        <!-- Sidebar Perfil -->
+        <div class="col-lg-3 mb-4">
+            <!-- Card de Perfil -->
+            <div class="card profile-card mb-3">
+                <div class="profile-info">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-user-circle" style="font-size: 60px;"></i>
                     </div>
-                    <div class="col">
-                        <p>{{ user.email }}</p>
-                    </div>
-                    <div class="col">
-                        <p>{{ user.get_ocupation_display }}</p>
-                    </div>
-                    <div class="col">
-                        <p>{{ user.date_birth }}</p>
-                    </div>
+                    <h5 class="text-center">{{ user.full_name }}</h5>
+                    <hr class="bg-white">
+                    <p><i class="fas fa-envelope"></i>{{ user.email }}</p>
+                    <p><i class="fas fa-briefcase"></i>{{ user.get_ocupation_display }}</p>
+                    <p><i class="fas fa-calendar"></i>{{ user.date_birth }}</p>
                 </div>
 
-                <div class="col-12">
+                <div class="px-3 pb-3">
                     {% if user.is_superuser %}
-                        <p>
-                            <a class="btn btn-dark btn-block h5 text-light" href="{% url 'users_app:user-lista' %}">Listar Usuarios</a>
-                        </p>
-                    {% endif %}
-                </div>
-
-                <div class="col-12">
-                    <p>
-                        <a class="btn btn-warning btn-block h5 text-dark" href="{% url 'users_app:user-update' %}">Cambiar Contraseña</a>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Lista de grupos del usuario -->
-            <div class="mt-4">
-                <hr class=" border-dark">
-
-                <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-primary text-dark d-block mx-auto">
-                    Ir a Mis Grupos
-                  </a>
-                  <ul class="list-group mt-3">
-                    <li class="list-group-item p-0">
-                    <a href="?grupo={{ grupo.name }}"
-                    class="btn btn-success btn-sm w-100">
-                        Todos
+                    <a class="btn btn-dark btn-block mb-2" href="{% url 'users_app:user-lista' %}">
+                        <i class="fas fa-users mr-2"></i>Listar Usuarios
                     </a>
-                    </li>
-             </li>
-                    {% for grupo in contexto_grupos %}
-                        <li class="list-group-item p-0">
-                            <a href="?grupo={{ grupo.name }}"
-                               class="btn btn-success btn-sm w-100 {% if grupo_activo == grupo.name %}active{% endif %}">
-                                {{ grupo.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                    {% endif %}
 
-
+                    <a class="btn btn-warning btn-block text-dark" href="{% url 'users_app:user-update' %}">
+                        <i class="fas fa-key mr-2"></i>Cambiar Contraseña
+                    </a>
+                </div>
             </div>
 
+            <!-- Card de Grupos -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-folder mr-2"></i>Mis Grupos</h5>
+                </div>
+                <div class="card-body p-2">
+                    <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-primary btn-block mb-3">
+                        <i class="fas fa-plus mr-2"></i>Gestionar Grupos
+                    </a>
 
+                    <div class="list-group list-group-flush">
+                        <a href="?grupo="
+                           class="list-group-item list-group-item-action btn-grupo {% if not grupo_activo %}active{% endif %}">
+                            <i class="fas fa-th mr-2"></i>Todos
+                        </a>
+                        {% for grupo in contexto_grupos %}
+                        <a href="?grupo={{ grupo.name }}"
+                           class="list-group-item list-group-item-action btn-grupo {% if grupo_activo == grupo.name %}active{% endif %}">
+                            <i class="fas fa-folder mr-2"></i>{{ grupo.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="col-sm-9 mt-3">
-            <h5 class="text-center h3 bg-warning mt-2 py-2" >Ultimos Posts Guardados</h5>
-
-                            <!-- 🔽 NUEVO BLOQUE: BOTONES DE ORDEN 🔽 -->
-            <div class="d-flex justify-content-center mb-3 mt-4">
-                <div class="btn-group" role="group">
-                    <a href="?orden=fecha" class="btn btn-outline-primary {% if orden_seleccionado == 'fecha' %}active{% endif %}">
-                        Ordenar por Fecha
-                    </a>
-                    <a href="?orden=grupo" class="btn btn-outline-primary {% if orden_seleccionado == 'grupo' %}active{% endif %}">
-                        Ordenar por Grupo
-                    </a>
-                    <!-- <a href="?orden=categoria" class="btn btn-outline-primary {% if orden_seleccionado == 'categoria' %}active{% endif %}">
-                        Ordenar por Categoria
-                    </a> -->
+        <!-- Contenido Principal -->
+        <div class="col-lg-9">
+            <!-- Header -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="fas fa-star mr-2"></i>Mis Posts Guardados</h4>
                 </div>
             </div>
-            <div class="container mt-4">
-                <form method="get" action="" class="input-group mb-3">{% csrf_token %}
-                  <input type="text" class="form-control" placeholder="Buscar..." id="kword_favorito" name="kword_favorito"  aria-label="Texto a buscar" id="miInput">
-                  <button class="btn btn-primary" type="submit" id="miBoton">Buscar</button>
-                </form>
-              </div>
 
-            <!-- 🔼 FIN BLOQUE DE ORDEN 🔼 -->
-            <div class="row px-3 py-3">
-                {% for entrada in entradas_user %}
+            <!-- Filtros y Búsqueda -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <!-- Botones de Orden -->
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="btn-group" role="group">
+                            <a href="?orden=fecha"
+                               class="btn btn-outline-primary {% if orden_seleccionado == 'fecha' %}active{% endif %}">
+                                <i class="fas fa-calendar-alt mr-1"></i>Por Fecha
+                            </a>
+                            <a href="?orden=grupo"
+                               class="btn btn-outline-primary {% if orden_seleccionado == 'grupo' %}active{% endif %}">
+                                <i class="fas fa-folder mr-1"></i>Por Grupo
+                            </a>
+                        </div>
+                    </div>
 
-                <div class="card1 mb-2 border border-5 rounded border-primary">
-                        <div class="row justify-content-center align-items-center">
-                            <div class="col-md-4">
-                                <img class="img-fluid mt-4 d-block" src="{{ entrada.entry.image.url }}">
+                    <!-- Búsqueda -->
+                    <form method="get" action="" class="search-box">
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Buscar en favoritos..."
+                                   id="kword_favorito"
+                                   name="kword_favorito"
+                                   value="{{ request.GET.kword_favorito }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search mr-1"></i>Buscar
+                                </button>
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-fluid mb-2 mt-2">
-                                    <h5 class="card-title">{{ entrada.entry.title|truncatechars:100 }} -[{{ entrada.entry.category}}]</h5>
-                                    <!-- <p class="card-text">{{ entrada.entry.resume|truncatechars:100 }}</p> -->
-                                    <p><strong>ID: {{ entrada.id }} - {{ entrada.group.name }} </strong> </p> <!-- ID de favorito -->
-                                    <!-- Select para cambiar grupo -->
-                                    <p><strong></strong></p>
-                                    <select class="form-select form-select-sm" onchange="window.location.href=this.value;">
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                                        </option>
-                                        <!-- Opciones de los grupos del usuario -->
-                                        {% for g in contexto_grupos %}
-                                            <option value="{% url 'favoritos_app:cambiar-grupo' entrada.id %}?group_id={{ g.id }}"
-                                                {% if entrada.group and entrada.group.id == g.id %}selected{% endif %}>
-                                                {{ g.name }}
-                                            </option>
-                                        {% endfor %}
-                                    </select>
-                                    <div class="row mt-4 mr-0 ml-0">
-                                        <div class="col-6">
-                                            <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}" class="btn btn-block btn-primary">Ver</a>
-                                        </div>
-                                        <div class="col-6">
-                                            <form method="post" action="{% url 'favoritos_app:delete-favoritos' entrada.id %}">{% csrf_token %}
-                                                <button type="submit" class="btn btn-block btn-danger">Eliminar</button>
-                                            </form>
-                                        </div>
-                                    </div>
+            <!-- Lista de Favoritos -->
+            {% for entrada in entradas_user %}
+            <div class="card favorito-card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <img class="favorito-img" src="{{ entrada.entry.image.url }}" alt="{{ entrada.entry.title }}">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title mb-0">{{ entrada.entry.title|truncatechars:80 }}</h5>
+                                <span class="badge badge-info badge-grupo">{{ entrada.entry.category }}</span>
+                            </div>
+
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-folder text-primary mr-1"></i>
+                                <strong>{{ entrada.group.name }}</strong>
+                            </p>
+
+                            <!-- Select de Grupo -->
+                            <div class="form-group mb-3">
+                                <label class="small text-muted">
+                                    <i class="fas fa-exchange-alt mr-1"></i>Cambiar grupo:
+                                </label>
+                                <select class="form-select form-select-sm"
+                                        onchange="window.location.href=this.value;">
+                                    {% for g in contexto_grupos %}
+                                    <option value="{% url 'favoritos_app:cambiar-grupo' entrada.id %}?group_id={{ g.id }}"
+                                            {% if entrada.group and entrada.group.id == g.id %}selected{% endif %}>
+                                        {{ g.name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Botones de Acción -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}"
+                                       class="btn btn-primary btn-block">
+                                        <i class="fas fa-eye mr-1"></i>Ver Post
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <form method="post" action="{% url 'favoritos_app:delete-favoritos' entrada.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-block">
+                                            <i class="fas fa-trash mr-1"></i>Eliminar
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                {% endfor %}
+                </div>
             </div>
-            <div class="row justify-content-center mb-4">
-                {% if is_paginated %}
-                <nav aria-label="..." >
+            {% empty %}
+            <div class="card">
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-inbox text-muted" style="font-size: 60px;"></i>
+                    <h5 class="mt-3 text-muted">No hay favoritos guardados</h5>
+                    <p class="text-muted">Comienza a guardar tus posts favoritos</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Paginación -->
+            {% if is_paginated %}
+            <div class="row justify-content-center mt-4">
+                <nav aria-label="Paginación">
                     <ul class="pagination">
                         {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <!-- <a href="?page={{page_obj.previous_page_number}}">Atras</a> -->
-                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{page_obj.previous_page_number}}" tabindex="-1">Atras</a>
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
+                                <i class="fas fa-chevron-left"></i> Atrás
+                            </a>
                         </li>
                         {% endif %}
+
                         {% for pagina in paginator.page_range %}
-                        {% ifequal pagina page_obj.number %}
-                        <!-- <li class="current"><span class="show-for-sr">You're on page</span> {{ pagina }}</li> -->
-                        <li class="page-item active">
-                            <a class="page-link" href="#!"> {{ pagina }}<span class="sr-only">(current)</span></a>
+                        <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">
+                                {{ pagina }}
+                            </a>
                         </li>
-                        {% else %}
-                        <li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{pagina}}">{{ pagina }}</a></li>
-                        {% endifequal %}
                         {% endfor %}
+
                         {% if page_obj.has_next %}
                         <li class="page-item">
-                            <!-- <a href="?page={{page_obj.next_page_number}}">Siguiente</a> -->
-                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+                                Siguiente <i class="fas fa-chevron-right"></i>
+                            </a>
                         </li>
                         {% endif %}
                     </ul>
                 </nav>
-                {% endif %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

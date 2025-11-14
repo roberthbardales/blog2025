@@ -21,26 +21,33 @@
             <div>
                 <form class="col-12" method="GET">
                     {% if request.GET.categoria %}
-                    <div class="col-12  bg-success text-white p-1 rounded mb-4">
-                        <p class="h4">
-                            {{ request.GET.categoria }}
-                        </p>
-                    </div>
-                        <input type="hidden" name="categoria" value="{{ request.GET.categoria }}">
-                        <div class="input-group mb-3">
-                            <input type="text"
-                                   class="form-control"
-                                   id="kword_prueba"
-                                   name="kword_prueba"
-                                   placeholder="Buscar..."
-                                   value="{{ request.GET.kword_prueba }}">
-                            <div class="input-group-append">
-                                <input type="submit" class="btn btn-success" value="Buscar">
-                            </div>
+                        <div class="col-12 bg-success text-white p-1 rounded mb-4">
+                            <p class="h4">
+                                {{ request.GET.categoria }}
+                            </p>
                         </div>
-
+                        <input type="hidden" name="categoria" value="{{ request.GET.categoria }}">
+                    {% else %}
+                        <div class="col-12 bg-success text-white p-1 rounded mb-4">
+                            <p class="h4">
+                                Todos
+                            </p>
+                        </div>
                     {% endif %}
+
+                    <div class="input-group mb-3">
+                        <input type="text"
+                               class="form-control"
+                               id="kword_prueba"
+                               name="kword_prueba"
+                               placeholder="Buscar..."
+                               value="{{ request.GET.kword_prueba }}">
+                        <div class="input-group-append">
+                            <input type="submit" class="btn btn-success" value="Buscar">
+                        </div>
+                    </div>
                 </form>
+
                 </div>
                     <div class="row  row-cols-1 row-cols-lg-3 mt-0" >
                         {% for entrada in entradas %}

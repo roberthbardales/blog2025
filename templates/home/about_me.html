@@ -1,79 +1,361 @@
-<!-- head para PC -->
-{% extends "home/base_home.html" %}
-
-{% load  static %}
-
-{% block title %}
-{{ home.title }}
-{% endblock title %}
-
-{% block description %}
-<meta name="description" content="{{ home.description }}">
-{% endblock description %}
+{% extends "entrada/base_entrada.html" %}
+{% load static %}
 
 {% block content %}
 
 {% include "includes/header.html" %}
 
-<div class="container mt-5 mb-5">
-    <div class="row align-items-center">
-        <div class="col-md-4 text-center">
-            <img src="/static/img/profile.png" class="rounded shadow-lg img-fluid rounded-1" alt="Foto de perfil">
-            <h2 class="mt-3 text-primary">Russell Bardales</h2>
-            <p class="text-muted">Desarrollador Backend | Django | Python</p>
+    <style>
+        /* body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        } */
 
-            <div class="mt-3 ">
-                <a href="https://www.linkedin.com/in/russell-b-b7053661/" class="btn btn-outline-primary btn-lg mx-1">
-                    <i class="bi bi-envelope"></i> Linkedin
-                </a>
-                <a href="https://github.com/roberthbardales" target="_blank" class="btn btn-primary btn-lg mx-1">
-                    <i class="bi bi-github"></i> GitHub
-                </a>
-            </div>
-        </div>
+        .card {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: none;
+        }
 
-        <div class="col-md-8">
-            <h4 class="text-primary border-bottom pb-2 mb-3">Sobre mí</h4>
-            <p>
-                Soy un desarrollador apasionado por crear aplicaciones web con <strong>Django</strong>
-                y <strong>Python</strong>. Me gusta estructurar proyectos limpios, escalables y bien documentados.
-                Busco seguir creciendo en el desarrollo backend y aprender sobre buenas prácticas de arquitectura.
-            </p>
+        .card-header {
+            background-color: #007bff !important;
+            color: white !important;
+            border-bottom: none;
+        }
 
-            <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Habilidades Técnicas</h4>
-            <div class="row">
-                <div class="col-md-6">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">🐍 Python</li>
-                        <li class="list-group-item">🧱 Django / Django REST Framework</li>
-                        <li class="list-group-item">💾 PostgreSQL / MySQL / SQLite</li>
-                    </ul>
+        .card-header h3,
+        .card-header h4 {
+            margin-bottom: 0;
+        }
+
+        .text-primary {
+            color: #007bff !important;
+        }
+
+        .info-group p {
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+
+        .badge-info {
+            background-color: #17a2b8;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+        }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .badge-danger {
+            background-color: #dc3545;
+        }
+
+        .badge-secondary {
+            background-color: #6c757d;
+        }
+
+        .status-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .skill-badge {
+            background-color: #007bff;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+        }
+
+        .timeline-item {
+            border-left: 3px solid #007bff;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background-color: #007bff;
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            top: 5px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            /* border-radius: 5%; */
+            /* border: 4px solid #007bff; */
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            color: #007bff;
+            margin-right: 8px;
+            width: 20px;
+        }
+
+        .section-divider {
+            border-bottom: 2px solid #e9ecef;
+            margin: 20px 0;
+        }
+
+        .progress {
+            height: 25px;
+            border-radius: 4px;
+        }
+
+        .progress-bar {
+            line-height: 25px;
+            font-size: 12px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+
+                <!-- Encabezado del perfil -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Currículum Vitae</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="static/img/foto1.jpg" alt="Foto de perfil" class="profile-img">
+                        <h4 class="text-primary mb-2">Tu Nombre Completo</h4>
+                        <p class="lead text-secondary mb-3">Desarrollador Backend Python | Django/Rest Framework | Sql Linux</p>
+
+                        <div class="info-group">
+                            <p><i class="fas fa-envelope contact-icon"></i>roberthbardales@gmail.com</p>
+                            <p><i class="fas fa-phone contact-icon"></i>+51 960 174 778</p>
+                            <p><i class="fas fa-map-marker-alt contact-icon"></i>Lima, Perú</p>
+                        </div>
+
+                        <div class="status-badges justify-content-center mt-3">
+                            <a href="https://www.linkedin.com/in/russell-b-b7053661/" target="_blank" class="badge badge-info">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="https://github.com/roberthbardales?tab=repositories" target="_blank" class="badge badge-secondary">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="http://134.122.30.149/" target="_blank" class="badge badge-success">
+                                <i class="fas fa-globe"></i> Portfolio
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">🌐 HTML / CSS / Bootstrap</li>
-                        <li class="list-group-item">⚙️ Git / GitHub</li>
-                        <li class="list-group-item">☁️ Deploy: Render, Railway, Heroku</li>
-                    </ul>
+
+                <!-- Sobre Mí -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-user mr-2"></i>Sobre Mí</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary">
+                            Egresado de Ingeniería de Sistemas de la Universidad Nacional Federico Villarreal. Con deseos de trabajar en una institución y aportar a su crecimiento mediante mi conocimiento, experiencia y dedicación.
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Experiencia</h4>
-            <div class="mb-3">
-                <h5 class="mb-1">Proyecto Blog Django</h5>
-                <p class="mb-1 text-muted"><small>2025 – Actualidad</small></p>
-                <p>
-                    Desarrollo de un sistema de blog profesional con autenticación, gestión de favoritos,
-                    categorías, búsqueda avanzada y panel administrativo personalizado.
-                </p>
-            </div>
+                <!-- Experiencia Laboral -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-briefcase mr-2"></i>Experiencia Laboral</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="timeline-item">
+                            <h5 class="text-primary mb-2">Desarrollador Senior Full Stack</h5>
+                            <p class="mb-2">
+                                <strong>Empresa Tech Solutions</strong> |
+                                <span class="text-secondary">Enero 2022 - Presente</span>
+                            </p>
+                            <ul class="text-secondary">
+                                <li>Desarrollo de aplicaciones web con React y Node.js</li>
+                                <li>Liderazgo de equipo de 5 desarrolladores</li>
+                                <li>Implementación de arquitecturas escalables y microservicios</li>
+                                <li>Mejora del rendimiento de aplicaciones en un 40%</li>
+                            </ul>
+                        </div>
 
-            <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Educación</h4>
-            <p><strong>Ingeniería de Sistemas</strong> – Universidad de Ejemplo</p>
-            <p class="text-muted"><small>2017 - 2022</small></p>
+                        <div class="timeline-item">
+                            <h5 class="text-primary mb-2">Desarrollador Full Stack</h5>
+                            <p class="mb-2">
+                                <strong>Startup Innovadora</strong> |
+                                <span class="text-secondary">Marzo 2020 - Diciembre 2021</span>
+                            </p>
+                            <ul class="text-secondary">
+                                <li>Desarrollo de MVP para producto SaaS</li>
+                                <li>Implementación de APIs RESTful</li>
+                                <li>Integración con servicios de terceros</li>
+                                <li>Optimización de bases de datos PostgreSQL</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h5 class="text-primary mb-2">Desarrollador Junior</h5>
+                            <p class="mb-2">
+                                <strong>Digital Agency</strong> |
+                                <span class="text-secondary">Julio 2018 - Febrero 2020</span>
+                            </p>
+                            <ul class="text-secondary">
+                                <li>Desarrollo de sitios web responsivos</li>
+                                <li>Mantenimiento y actualización de proyectos existentes</li>
+                                <li>Colaboración en proyectos ágiles con Scrum</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Educación -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-graduation-cap mr-2"></i>Educación</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-group mb-3">
+                            <p class="mb-2">
+                                <strong>Ingeniería de Sistemas</strong>
+                            </p>
+                            <p class="text-secondary mb-2">
+                                <i class="fas fa-university contact-icon"></i>Universidad Nacional | 2014 - 2018
+                            </p>
+                            <p class="text-secondary">
+                                Graduado con honores. Especialización en desarrollo de software y bases de datos.
+                            </p>
+                        </div>
+
+                        <div class="section-divider"></div>
+
+                        <div class="info-group">
+                            <p class="mb-2">
+                                <strong>Certificaciones</strong>
+                            </p>
+                            <p class="text-secondary mb-2">
+                                <i class="fas fa-certificate contact-icon"></i>AWS Solutions Architect Associate - 2022
+                            </p>
+                            <p class="text-secondary">
+                                <i class="fas fa-certificate contact-icon"></i>Scrum Master Professional - 2021
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Habilidades Técnicas -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-code mr-2"></i>Habilidades Técnicas</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <p class="mb-2"><strong>Frontend:</strong></p>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">React</span>
+                            <span class="skill-badge">Vue.js</span>
+                            <span class="skill-badge">HTML/CSS</span>
+                            <span class="skill-badge">Bootstrap</span>
+                            <span class="skill-badge">Tailwind</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="mb-2"><strong>Backend:</strong></p>
+                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">Django</span>
+                            <span class="skill-badge">Express</span>
+                            <span class="skill-badge">PHP</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="mb-2"><strong>Bases de Datos:</strong></p>
+                            <span class="skill-badge">PostgreSQL</span>
+                            <span class="skill-badge">MySQL</span>
+                            <span class="skill-badge">MongoDB</span>
+                            <span class="skill-badge">Redis</span>
+                        </div>
+
+                        <div>
+                            <p class="mb-2"><strong>Herramientas:</strong></p>
+                            <span class="skill-badge">Git</span>
+                            <span class="skill-badge">Docker</span>
+                            <span class="skill-badge">AWS</span>
+                            <span class="skill-badge">CI/CD</span>
+                            <span class="skill-badge">Linux</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Idiomas -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-language mr-2"></i>Idiomas</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <p class="mb-2"><strong>Español</strong></p>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width: 100%">Nativo</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="mb-2"><strong>Inglés</strong></p>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" style="width: 85%">Avanzado - 85%</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="mb-2"><strong>Portugués</strong></p>
+                            <div class="progress">
+                                <div class="progress-bar bg-info" style="width: 60%">Intermedio - 60%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intereses -->
+                <div class="card mb-5">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-heart mr-2"></i>Intereses</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-group">
+                            <p><i class="fas fa-laptop-code contact-icon"></i>Desarrollo de Software y Tecnologías Emergentes</p>
+                            <p><i class="fas fa-book contact-icon"></i>Lectura de Documentación Técnica</p>
+                            <p><i class="fas fa-users contact-icon"></i>Participación en Comunidades Tech</p>
+                            <p><i class="fas fa-hiking contact-icon"></i>Senderismo y Actividades al Aire Libre</p>
+                            <p><i class="fas fa-camera contact-icon"></i>Fotografía Digital</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script> -->
+
+
 {% include "includes/footer.html" %}
 
 {% endblock content %}

@@ -1,132 +1,370 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat - Inicio</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+{% extends "users/base_users.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<style>
+    .chat-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 0 10px;
+    }
+
+    .header-chat {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .header-chat h2 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    .header-chat p {
+        margin: 5px 0 0;
+        opacity: 0.9;
+    }
+
+    .users-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .users-card-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border-bottom: none;
+    }
+
+    .users-card-header h3 {
+        margin: 0;
+        color: white;
+        font-weight: 600;
+    }
+
+    .users-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .user-item {
+        background: white;
+        padding: 15px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .user-item:last-child {
+        border-bottom: none;
+    }
+
+    .user-item:hover {
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+    }
+
+    .user-item.online {
+        border-left: 4px solid #28a745;
+    }
+
+    .user-item.offline {
+        border-left: 4px solid #dc3545;
+        opacity: 0.7;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+
+    .user-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .user-details {
+        flex: 1;
+    }
+
+    .user-name {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        font-size: 1.1rem;
+        display: block;
+        transition: color 0.3s;
+    }
+
+    .user-name:hover {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+    .status-badge.online {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge.offline {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        animation: pulse 2s infinite;
+    }
+
+    .status-dot.online {
+        background-color: #28a745;
+    }
+
+    .status-dot.offline {
+        background-color: #dc3545;
+        animation: none;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
         }
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        50% {
+            opacity: 0.5;
         }
-        .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    }
+
+    .section-divider {
+        padding: 12px 20px;
+        background-color: #f8f9fa;
+        border-top: 2px solid #e9ecef;
+        border-bottom: 2px solid #e9ecef;
+        font-weight: 600;
+        color: #6c757d;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #999;
+    }
+
+    .empty-state i {
+        font-size: 60px;
+        margin-bottom: 20px;
+        color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+        .chat-container {
+            padding: 0 10px;
         }
-        .logout-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 20px;
-            border: 1px solid white;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s;
+
+        .header-chat h2 {
+            font-size: 1.5rem;
         }
-        .logout-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        h3 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .user-list {
-            list-style: none;
-        }
+
         .user-item {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
         }
-        .user-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+        .status-badge {
+            align-self: flex-start;
         }
-        .user-item a {
-            text-decoration: none;
-            color: #667eea;
-            font-weight: 600;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-        }
-        .user-item a:before {
-            content: "💬";
-            margin-right: 10px;
-            font-size: 24px;
-        }
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="header-content">
-            <h2>👋 Bienvenido, {{ user.full_name }}!</h2>
-            <a href="{% url 'users_app:user-logout' %}" class="logout-btn">Cerrar Sesión</a>
-        </div>
+    }
+</style>
+
+<div class="chat-container">
+    <!-- Header -->
+    <div class="header-chat">
+        <i class="fas fa-comments mb-3" style="font-size: 50px;"></i>
+        <h2>{{ request.user.full_name}}</h2>
+        <!-- <p>Selecciona un usuario para iniciar una conversación</p> -->
     </div>
 
-    <div class="container">
-        <h3>Usuarios disponibles para chatear:</h3>
-        <ul class="user-list">
-            {% for u in users %}
-            {% if u.id != user.id %}
-            <li class="user-item">
-                <!-- 🔹 Aquí usamos el ID en lugar del username -->
-                <a href="{% url 'chat_room' u.id %}">{{ u.full_name }}</a>
-                <span id="status-{{ u.id }}" style="margin-left:10px; color:white; padding:3px 8px; border-radius:5px; font-size:12px; background: {% if u.is_online %}green{% else %}red{% endif %}">
-                    {% if u.is_online %}● En línea{% else %}● Offline{% endif %}
-                </span>
-            </li>
-            {% endif %}
-            {% endfor %}
+    <!-- Card de Usuarios -->
+    <div class="users-card">
+        <div class="users-card-header">
+            <h3><i class="fas fa-users mr-2"></i>Usuarios Disponibles</h3>
+        </div>
+
+        <ul class="users-list" id="usersList">
+            <!-- Los usuarios se cargarán aquí con JavaScript -->
         </ul>
     </div>
+</div>
 
-    <script>
-        // 🔄 Actualizar estados de usuarios cada 5 segundos
-        function actualizarEstados() {
-            fetch("{% url 'chat_home' %}?json=1")
-                .then(response => response.json())
-                .then(data => {
-                    for (const userId in data) {
-                        const span = document.getElementById("status-" + userId);
-                        if (span) {
-                            if (data[userId]) {
-                                span.textContent = "● En línea";
-                                span.style.background = "green";
-                            } else {
-                                span.textContent = "● Offline";
-                                span.style.background = "red";
-                            }
-                        }
-                    }
-                })
-                .catch(error => console.error('Error actualizando estados:', error));
+<script>
+    // Función para renderizar la lista de usuarios
+    function renderUsersList(usersData) {
+        const usersList = document.getElementById('usersList');
+
+        // Separar usuarios en línea y offline
+        const onlineUsers = [];
+        const offlineUsers = [];
+
+        {% for u in users %}
+        {% if u.id != user.id %}
+        const userId{{ u.id }} = {{ u.id }};
+        const userName{{ u.id }} = "{{ u.full_name }}";
+        const userInitial{{ u.id }} = "{{ u.full_name|slice:':1'|upper }}";
+        const isOnline{{ u.id }} = usersData && usersData[userId{{ u.id }}] !== undefined
+            ? usersData[userId{{ u.id }}]
+            : {% if u.is_online %}true{% else %}false{% endif %};
+
+        const user{{ u.id }} = {
+            id: userId{{ u.id }},
+            name: userName{{ u.id }},
+            initial: userInitial{{ u.id }},
+            isOnline: isOnline{{ u.id }}
+        };
+
+        if (isOnline{{ u.id }}) {
+            onlineUsers.push(user{{ u.id }});
+        } else {
+            offlineUsers.push(user{{ u.id }});
+        }
+        {% endif %}
+        {% endfor %}
+
+        // Ordenar alfabéticamente
+        onlineUsers.sort((a, b) => a.name.localeCompare(b.name));
+        offlineUsers.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Limpiar lista
+        usersList.innerHTML = '';
+
+        // Agregar usuarios en línea
+        if (onlineUsers.length > 0) {
+            const onlineHeader = document.createElement('li');
+            onlineHeader.className = 'section-divider';
+            onlineHeader.innerHTML = '<i class="fas fa-circle text-success mr-2"></i>En Línea (' + onlineUsers.length + ')';
+            usersList.appendChild(onlineHeader);
+
+            onlineUsers.forEach(user => {
+                usersList.appendChild(createUserItem(user, true));
+            });
         }
 
-        setInterval(actualizarEstados, 5000);
+        // Agregar usuarios offline
+        if (offlineUsers.length > 0) {
+            const offlineHeader = document.createElement('li');
+            offlineHeader.className = 'section-divider';
+            offlineHeader.innerHTML = '<i class="fas fa-circle text-danger mr-2"></i>Desconectados (' + offlineUsers.length + ')';
+            usersList.appendChild(offlineHeader);
+
+            offlineUsers.forEach(user => {
+                usersList.appendChild(createUserItem(user, false));
+            });
+        }
+
+        // Si no hay usuarios
+        if (onlineUsers.length === 0 && offlineUsers.length === 0) {
+            const emptyState = document.createElement('li');
+            emptyState.className = 'empty-state';
+            emptyState.innerHTML = `
+                <i class="fas fa-user-slash"></i>
+                <h5>No hay usuarios disponibles</h5>
+                <p>No se encontraron usuarios para chatear</p>
+            `;
+            usersList.appendChild(emptyState);
+        }
+    }
+
+    // Función para crear un item de usuario
+    function createUserItem(user, isOnline) {
+        const li = document.createElement('li');
+        li.className = 'user-item ' + (isOnline ? 'online' : 'offline');
+        li.id = 'user-item-' + user.id;
+
+        const chatUrl = "{% url 'chat_room' 999999 %}".replace('999999', user.id);
+
+        li.innerHTML = `
+            <div class="user-info">
+                <div class="user-avatar">${user.initial}</div>
+                <div class="user-details">
+                    <a href="${chatUrl}" class="user-name">
+                        ${user.name}
+                    </a>
+                </div>
+            </div>
+            <span class="status-badge ${isOnline ? 'online' : 'offline'}" id="status-${user.id}">
+                <span class="status-dot ${isOnline ? 'online' : 'offline'}"></span>
+                ${isOnline ? 'En línea' : 'Desconectado'}
+            </span>
+        `;
+
+        return li;
+    }
+
+    // Actualizar estados de usuarios
+    function actualizarEstados() {
+        fetch("{% url 'chat_home' %}?json=1")
+            .then(response => response.json())
+            .then(data => {
+                renderUsersList(data);
+            })
+            .catch(error => console.error('Error actualizando estados:', error));
+    }
+
+    // Renderizar inicial
+    renderUsersList(null);
+
+    // Actualizar cada 5 segundos
+    setInterval(actualizarEstados, 5000);
+</script>
+<script>
+    setInterval(() => {
+        fetch("/chat/ping/", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+            }
+        });
+    }, 15000); // 15 segundos
     </script>
-</body>
-</html>
+
+{% endblock content %}

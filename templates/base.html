@@ -37,9 +37,236 @@
 
         {% endblock content %}
 </div>
-  <div class="text-center bg-primary text-white py-1" >
-        <p class="">Copyright © 2022 Todos los derechos reservados. </p>
+<style>
+  .footer-custom {
+      /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+      background:  #007bff;
+      color: white;
+      padding: 40px 0 20px;
+      margin-top: 60px;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.15);
+  }
+
+  .footer-section {
+      margin-bottom: 30px;
+  }
+
+  .footer-section h5 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+  }
+
+  .footer-section h5::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+  }
+
+  .footer-links {
+      list-style: none;
+      padding: 0;
+  }
+
+  .footer-links li {
+      margin-bottom: 10px;
+  }
+
+  .footer-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+  }
+
+  .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+  }
+
+  .social-icons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+  }
+
+  .social-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 18px;
+  }
+
+  .social-icon:hover {
+      background-color: white;
+      color: #667eea;
+      transform: translateY(-5px);
+  }
+
+  .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 20px;
+      margin-top: 30px;
+      text-align: center;
+  }
+
+  .footer-bottom p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+  }
+
+  .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.9);
+  }
+
+  .footer-contact-item i {
+      width: 20px;
+      text-align: center;
+  }
+
+  .heart-icon {
+      color: #ff6b6b;
+      animation: heartbeat 1.5s infinite;
+  }
+
+  @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+  }
+
+  @media (max-width: 768px) {
+      .footer-custom {
+          padding: 30px 0 15px;
+      }
+
+      .footer-section {
+          margin-bottom: 25px;
+          text-align: center;
+      }
+
+      .footer-section h5::after {
+          left: 50%;
+          transform: translateX(-50%);
+      }
+
+      .social-icons {
+          justify-content: center;
+      }
+
+      .footer-contact {
+          align-items: center;
+      }
+  }
+</style>
+
+<footer class="footer-custom">
+  <div class="container">
+      <div class="row">
+          <!-- Sobre el Blog -->
+          <div class="col-lg-4 col-md-6 footer-section">
+              <h5><i class="fas fa-graduation-cap mr-2"></i>Sobre el Blog</h5>
+              <p style="color: rgba(255,255,255,0.9); line-height: 1.8;">
+                  Un espacio dedicado a compartir conocimiento sobre Python, Django, desarrollo web y tecnologías modernas.
+                  Aprende, practica y crece como desarrollador.
+              </p>
+          </div>
+
+          <!-- Enlaces Rápidos -->
+          <div class="col-lg-2 col-md-6 footer-section">
+              <h5><i class="fas fa-link mr-2"></i>Enlaces</h5>
+              <ul class="footer-links">
+                  <li>
+                      <a href="{% url 'home_app:index' %}">
+                          <i class="fas fa-home"></i>Inicio
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{% url 'entrada_app:entry-lista' %}">
+                          <i class="fas fa-blog"></i>Blog
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{% url 'home_app:sobre_mi' %}">
+                          <i class="fas fa-user"></i>Sobre Mí
+                      </a>
+                  </li>
+                  <li>
+
+                  </li>
+              </ul>
+          </div>
+
+          <!-- Contacto -->
+          <div class="col-lg-3 col-md-6 footer-section">
+              <h5><i class="fas fa-address-book mr-2"></i>Contacto</h5>
+              <div class="footer-contact">
+                  <div class="footer-contact-item">
+                      <i class="fas fa-envelope"></i>
+                      <span>roberthbardales@gmail.com</span>
+                  </div>
+                  <div class="footer-contact-item">
+                      <i class="fas fa-phone"></i>
+                      <span>+51 960 174778</span>
+                  </div>
+                  <div class="footer-contact-item">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <span>Lima, Perú</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Redes Sociales -->
+          <div class="col-lg-3 col-md-6 footer-section">
+              <h5><i class="fas fa-share-alt mr-2"></i>Sígueme</h5>
+              <p style="color: rgba(255,255,255,0.9); margin-bottom: 15px;">
+                  Conéctate conmigo en redes sociales
+              </p>
+              <div class="social-icons">
+                <!-- <a href="https://facebook.com/tuusuario" target="_blank" class="but" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a> -->
+                <a href="https://www.facebook.com/russell.bardales7/" class="btn btn-success">Facebook</a>
+
+              </div>
+          </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+              <i class="fas fa-heart heart-icon"></i>Django & Bootstrap
+            </p>
+
+            <p>
+                <strong>© 2025</strong> - Todos los derechos reservados
+            </p>
+      </div>
   </div>
+</footer>
 
   {% block js %}
 

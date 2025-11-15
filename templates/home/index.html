@@ -59,6 +59,7 @@
 					{% endfor %}
 				</div>
 			</div>
+
 	</div>
 	<div class="row mb-4 justify-content-center  align-items-center">
 				<div class="col-md-10">
@@ -99,30 +100,55 @@
 					</div>
 	</div>
 
-	<div class="row mb-4 justify-content-center ">
-		<div class="col-12">
+	<style>
+		.card {
+			border: none;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+			transition: transform 0.3s;
+		}
 
-			<h5 class="mb-4 display-4 text-center articulos">Articulos Recientes</h5>
-		</div>
-	</div>
-	<div class="row  row-cols-1 row-cols-md-4 justify-content-center articulos_recientes" >
-			{% for entrada in entradas_recientes %}
-			<div class="col mb-4" >
-				<div class="card h-100">
-					<img src="{{ entrada.image.url }}">
-					<div class="card-body" >
-						<h5 class="card-title">
-						<a  href="{% url 'entrada_app:entry-detail' entrada.slug %}">{{ entrada.title | truncatechars:40}}</a>
+		.card:hover {
+			transform: translateY(-5px);
+		}
+
+		.card img {
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.card-title a {
+			color: #333;
+			text-decoration: none;
+		}
+
+		.card-title a:hover {
+			color: #007bff;
+		}
+	</style>
+
+	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+		{% for entrada in entradas_recientes %}
+		<div class="col mb-4">
+			<div class="card h-100">
+				<img src="{{ entrada.image.url }}" class="card-img-top" alt="{{ entrada.title }}">
+				<div class="card-body">
+					<h5 class="card-title">
+						<a href="{% url 'entrada_app:entry-detail' entrada.slug %}">
+							{{ entrada.title|truncatechars:50 }}
+						</a>
 					</h5>
-					<p class="card-text d-none d-sm-none d-md-block">{{ entrada.resume | truncatechars:40}}</p>
-					</div>
-					<div class="card-footer">
-						<small class="text-muted">Creado: {{ entrada.created }}</small>
-
-					</div>
+					<p class="card-text text-muted d-none d-md-block">
+						{{ entrada.resume|truncatechars:60 }}
+					</p>
+				</div>
+				<div class="card-footer bg-white">
+					<small class="text-muted">
+						<i class="far fa-calendar-alt"></i> {{ entrada.created|date:"d M Y" }}
+					</small>
 				</div>
 			</div>
-			{% endfor %}
+		</div>
+		{% endfor %}
 	</div>
 
 	<div class="row justify-content-center align-items-center  py-4">

@@ -10,6 +10,8 @@ from django.dispatch import receiver
 from applications.users.models import User
 from .models import Message, UserStatus
 
+from datetime import timedelta
+
 
 class ChatHomeView(LoginRequiredMixin, ListView):
     model = User
@@ -18,10 +20,15 @@ class ChatHomeView(LoginRequiredMixin, ListView):
     login_url = '/login/'
 
     def get_queryset(self):
+        online_threshold = timezone.now() - timedelta(seconds=120)
+
         users = User.objects.exclude(id=self.request.user.id)
-        status_map = {s.user_id: s.is_online for s in UserStatus.objects.all()}
+        status_map = {s.user_id: s.last_seen for s in UserStatus.objects.all()}
+
         for user in users:
-            user.is_online = status_map.get(user.id, False)
+            last_seen = status_map.get(user.id)
+            user.is_online = last_seen and last_seen > online_threshold
+
         return users
 
     def render_to_response(self, context, **response_kwargs):
@@ -76,3 +83,16 @@ def set_user_offline(sender, user, request, **kwargs):
         status.save()
     except UserStatus.DoesNotExist:
         pass
+
+from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
+from django.http import JsonResponse
+
+@csrf_exempt
+def ping(request):
+    if request.user.is_authenticated:
+        status, _ = UserStatus.objects.get_or_create(user=request.user)
+        status.last_seen = timezone.now()
+        status.save()
+        return JsonResponse({"ok": True})
+    return JsonResponse({"ok": False})

@@ -1,141 +1,344 @@
-
 {% extends "entrada/base_entrada.html" %}
-{% load  static %}
+{% load static %}
 
 {% block content %}
 
 {% include "includes/header.html" %}
 
-<!-- col-sm-4 col-lg-5 -->
+<style>
+    .col {
+    margin-bottom: 1px; /* Ajusta según necesites */
+}
 
-<div class="container" style="min-height: 600px">
-    <div class="row mb-4">
-        <div class="col-12">
-            <p class="h4">
+    .card {
+        border: none;
+        transition: all 0.3s;
 
-            </p>
-        </div>
-    </div>
+    }
+
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+
+    }
+
+    .card-header-custom {
+        background-color: #007bff !important;
+        color: white !important;
+        border-bottom: none;
+
+    }
+
+    .categoria-badge {
+        /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+        background: #007bff;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
+
+    .categoria-badge h4 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .search-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .entrada-card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        height: 95%;
+        transition: all 0.3s;
+
+    }
+
+    .entrada-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+
+    }
+
+    .entrada-img {
+        width: 90%;
+        height: 160px;
+        object-fit: cover;
+        transition: transform 0.3s;
+
+    }
+
+    .entrada-card:hover .entrada-img {
+        transform: scale(1.05);
+    }
+
+    .entrada-img-container {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .entrada-img-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 100%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .entrada-card:hover .entrada-img-overlay {
+        opacity: 1;
+    }
+
+    .categoria-sidebar {
+        position: sticky;
+        top: 20px;
+    }
+
+    .categoria-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .categoria-item {
+        border: none;
+        border-left: 3px solid transparent;
+        transition: all 0.3s;
+        padding: 12px 20px;
+    }
+
+    .categoria-item:hover {
+        background-color: #f8f9fa;
+        border-left-color: #007bff;
+        transform: translateX(5px);
+    }
+
+    .categoria-item.active {
+        background-color: #007bff;
+        color: white;
+        border-left-color: #0056b3;
+        font-weight: 600;
+    }
+
+    .card-title a {
+        color: #212529;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .card-title a:hover {
+        color: #007bff;
+    }
+
+    .pagination {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .page-link {
+        border: none;
+        color: #007bff;
+        padding: 10px 15px;
+    }
+
+    .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .empty-state i {
+        font-size: 80px;
+        color: #dc3545;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container" style="min-height: 600px; padding: 30px 0;">
     <div class="row">
-        <div class="col-xs-4  col-sm-12 col-md-10">
-            <div>
-                <form class="col-12" method="GET">
+        <!-- Contenido Principal -->
+        <div class="col-lg-10 mb-4">
+
+            <!-- Badge de Categoría Actual -->
+            {% if request.GET.categoria %}
+            <div class="categoria-badge text-center">
+                <i class="fas fa-folder-open mr-2"></i>
+                <h4 class="d-inline">{{ request.GET.categoria }}</h4>
+            </div>
+            {% else %}
+            <div class="categoria-badge text-center">
+                <i class="fas fa-th-large mr-2"></i>
+                <h4 class="d-inline">Todos los Posts</h4>
+            </div>
+            {% endif %}
+
+            <!-- Búsqueda -->
+            <div class="search-box">
+                <form method="GET">
                     {% if request.GET.categoria %}
-                        <div class="col-12 bg-success text-white p-1 rounded mb-4">
-                            <p class="h4">
-                                {{ request.GET.categoria }}
-                            </p>
-                        </div>
-                        <input type="hidden" name="categoria" value="{{ request.GET.categoria }}">
-                    {% else %}
-                        <div class="col-12 bg-success text-white p-1 rounded mb-4">
-                            <p class="h4">
-                                Todos
-                            </p>
-                        </div>
+                    <input type="hidden" name="categoria" value="{{ request.GET.categoria }}">
                     {% endif %}
 
-                    <div class="input-group mb-3">
+                    <div class="input-group">
+                        <!-- <div class="input-group-prepend">
+                            <span class="input-group-text bg-white border-right-0">
+                                <i class="fas fa-search text-muted"></i>
+                            </span>
+                        </div> -->
                         <input type="text"
-                               class="form-control"
+                               class="form-control border"
                                id="kword_prueba"
                                name="kword_prueba"
-                               placeholder="Buscar..."
+                               placeholder="Buscar artículos..."
                                value="{{ request.GET.kword_prueba }}">
                         <div class="input-group-append">
-                            <input type="submit" class="btn btn-success" value="Buscar">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search mr-1"></i>Buscar
+                            </button>
                         </div>
                     </div>
                 </form>
+            </div>
 
-                </div>
-                    <div class="row  row-cols-1 row-cols-lg-3 mt-0" >
-                        {% for entrada in entradas %}
-                        <div class="col mb-4 " style="font-size: 14px;">
-                            <div class="card h-100 ">
+            <!-- Grid de Entradas -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+                {% for entrada in entradas %}
+                <div class="col ">
+                    <div class="card entrada-card">
+                        <div class="entrada-img-container">
+                            <a href="{% url 'entrada_app:entry-detail' entrada.slug %}">
+                                <img class="entrada-img" src="{{ entrada.image.url }}" alt="{{ entrada.title }}">
+                                <div class="entrada-img-overlay"></div>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
                                 <a href="{% url 'entrada_app:entry-detail' entrada.slug %}">
-                                    <img class="img-fluid" src="{{entrada.image.url}}"">
+                                    {{ entrada.title|truncatechars:60 }}
                                 </a>
-                                <div class="card-body ">
-                                    <h5 class="card-title">
-                                        <a href="{% url 'entrada_app:entry-detail' entrada.slug %}">{{entrada.title | truncatechars:100}}</a>
-                                </h5>
-                                <p>
-                                    {{ entrada.resume | truncatechars:70 }}
-                                </p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">{{ entrada.created }}</small>
-                                </div>
+                            </h5>
+                            <p class="card-text text-muted">
+                                {{ entrada.resume|truncatechars:90 }}
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white border-top">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="far fa-calendar-alt mr-1"></i>
+                                    {{ entrada.created|date:"d M Y" }}
+                                </small>
+                                <a href="{% url 'entrada_app:entry-detail' entrada.slug %}"
+                                   class="btn btn-sm btn-outline-primary">
+                                    Leer más <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
                             </div>
                         </div>
-                        {%empty%}
-                        <h3 style="color:red;">No hay resultados</h3>
-                        {% endfor %}
                     </div>
-
-                <div class="col-12 mb-4">
-                        <div class="row justify-content-center mb-4">
-                            {% if is_paginated %}
-                            <nav aria-label="..." >
-                                <ul class="pagination">
-                                    {% if page_obj.has_previous %}
-                                    <li class="page-item">
-                                        <!-- <a href="?page={{page_obj.previous_page_number}}">Atras</a> -->
-                                        <a class="page-link" href="?{{ request.GET.urlencode }}&page={{page_obj.previous_page_number}}" tabindex="-1">Atras</a>
-                                    </li>
-                                    {% endif %}
-                                    {% for pagina in paginator.page_range %}
-                                    {% ifequal pagina page_obj.number %}
-                                    <!-- <li class="current"><span class="show-for-sr">You're on page</span> {{ pagina }}</li> -->
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#!"> {{ pagina }}<span class="sr-only">(current)</span></a>
-                                    </li>
-                                    {% else %}
-                                    <li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{pagina}}">{{ pagina }}</a></li>
-                                    {% endifequal %}
-                                    {% endfor %}
-                                    {% if page_obj.has_next %}
-                                    <li class="page-item">
-                                        <!-- <a href="?page={{page_obj.next_page_number}}">Siguiente</a> -->
-                                        <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Siguiente</a>
-                                    </li>
-                                    {% endif %}
-                                </ul>
-                            </nav>
-                            {% endif %}
-                        </div>
                 </div>
-
-        </div>
-        <div class="col-xs-8  col-sm-12 c col-md-2">
-            <div class="list-group list-group-flush border rounded-3 shadow-sm p-0">
-
-                <!-- Todo -->
-                <a href="{% url 'entrada_app:entry-lista' %}"
-                   class="list-group-item list-group-item-action py-2
-                          {% if not request.GET.categoria %}active{% endif %}">
-                    Todo
-                </a>
-
-                <!-- Categorías dinámicas -->
-                {% for categoria in categorias %}
-                    <a href="?categoria={{ categoria.short_name }}"
-                       class="list-group-item list-group-item-action py-2
-                              {% if request.GET.categoria == categoria.short_name %}active fw-semibold text-white{% endif %}">
-                        {{ categoria.short_name }}
-                    </a>
                 {% empty %}
-                    <span class="list-group-item text-muted text-center py-2">Sin categorías</span>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <h4 class="text-danger">No hay resultados</h4>
+                            <p class="text-muted">No se encontraron entradas que coincidan con tu búsqueda.</p>
+                            <!-- <a href="{% url 'entrada_app:entry-lista' %}" class="btn btn-primary mt-3">
+                                <i class="fas fa-home mr-2"></i>Ver todas las entradas
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
 
+            <!-- Paginación -->
+            {% if is_paginated %}
+            <div class="row justify-content-center mt-4">
+                <nav aria-label="Paginación">
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
+                                <i class="fas fa-chevron-left mr-1"></i>Atrás
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% for pagina in paginator.page_range %}
+                        <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">
+                                {{ pagina }}
+                            </a>
+                        </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+                                Siguiente<i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Sidebar de Categorías -->
+        <div class="col-lg-2">
+            <div class="categoria-sidebar">
+                <div class="categoria-card">
+                    <div class="card-header-custom text-center py-3">
+                        <h5 class="mb-0">
+                            <i class="fas fa-filter mr-2"></i>Categorías
+                        </h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <!-- Todo -->
+                        <a href="{% url 'entrada_app:entry-lista' %}"
+                           class="list-group-item categoria-item {% if not request.GET.categoria %}active{% endif %}">
+                            <i class="fas fa-th-large mr-2"></i>Todas
+                        </a>
+
+                        <!-- Categorías dinámicas -->
+                        {% for categoria in categorias %}
+                        <a href="?categoria={{ categoria.short_name }}"
+                           class="list-group-item categoria-item {% if request.GET.categoria == categoria.short_name %}active{% endif %}">
+                            <i class="fas fa-folder mr-2"></i>{{ categoria.short_name }}
+                        </a>
+                        {% empty %}
+                        <span class="list-group-item text-muted text-center">
+                            <i class="fas fa-inbox mr-2"></i>Sin categorías
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
 {% include "includes/footer.html" %}
-{% endblock content %}
 
+{% endblock content %}

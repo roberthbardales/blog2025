@@ -5,357 +5,438 @@
 
 {% include "includes/header.html" %}
 
-    <style>
-        /* body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f8f9fa;
-            padding: 20px 0;
-        } */
+<style>
 
-        .card {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            border: none;
-        }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 10px 0 0 0;
+    }
 
-        .card-header {
-            background-color: #007bff !important;
-            color: white !important;
-            border-bottom: none;
-        }
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        border: none;
+    }
 
-        .card-header h3,
-        .card-header h4 {
-            margin-bottom: 0;
-        }
+    .card-header {
+        background-color: #007bff !important;
+        color: white !important;
+        border-bottom: none;
+    }
 
-        .text-primary {
-            color: #007bff !important;
-        }
+    .card-header h3,
+    .card-header h4 {
+        margin-bottom: 0;
+    }
 
-        .info-group p {
-            line-height: 1.8;
-            margin-bottom: 0.5rem;
-        }
+    .text-primary {
+        color: #007bff !important;
+    }
 
-        .badge {
-            padding: 6px 12px;
-            font-size: 14px;
-        }
+    .info-group p {
+        line-height: 1.8;
+        margin-bottom: 0.5rem;
+    }
 
-        .badge-info {
-            background-color: #17a2b8;
-        }
+    .badge {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
 
-        .badge-success {
-            background-color: #28a745;
-        }
+    .badge-info {
+        background-color: #17a2b8;
+    }
 
-        .badge-warning {
-            background-color: #ffc107;
-            color: #212529;
-        }
+    .badge-success {
+        background-color: #28a745;
+    }
 
-        .badge-danger {
-            background-color: #dc3545;
-        }
+    .badge-warning {
+        background-color: #ffc107;
+        color: #212529;
+    }
 
-        .badge-secondary {
-            background-color: #6c757d;
-        }
+    .badge-danger {
+        background-color: #dc3545;
+    }
 
-        .status-badges {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
+    .badge-secondary {
+        background-color: #6c757d;
+    }
 
-        .skill-badge {
-            background-color: #007bff;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
-            display: inline-block;
-            margin: 5px 5px 5px 0;
-            font-size: 14px;
-        }
+    .status-badges {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 15px;
+    }
 
-        .timeline-item {
-            border-left: 3px solid #007bff;
-            padding-left: 20px;
-            margin-bottom: 25px;
-            position: relative;
-        }
+    .skill-badge {
+        background-color: #007bff;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        display: inline-block;
+        margin: 5px 5px 5px 0;
+        font-size: 14px;
+    }
 
-        .timeline-item::before {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background-color: #007bff;
-            border-radius: 50%;
-            position: absolute;
-            left: -8px;
-            top: 5px;
-        }
+    .timeline-item {
+        border-left: 3px solid #007bff;
+        padding-left: 20px;
+        margin-bottom: 25px;
+        position: relative;
+    }
 
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            /* border-radius: 5%; */
-            /* border: 4px solid #007bff; */
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
+    .timeline-item::before {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background-color: #007bff;
+        border-radius: 50%;
+        position: absolute;
+        left: -8px;
+        top: 5px;
+    }
 
-        .contact-icon {
-            color: #007bff;
-            margin-right: 8px;
-            width: 20px;
-        }
+    .profile-img {
+    width: 15%;
+    height: auto;
+    margin-bottom: 15px;
+    background-color: #006ce0;
+}
 
-        .section-divider {
-            border-bottom: 2px solid #e9ecef;
-            margin: 20px 0;
-        }
+    .contact-icon {
+        color: #007bff;
+        margin-right: 8px;
+        width: 20px;
+    }
 
-        .progress {
-            height: 25px;
-            border-radius: 4px;
-        }
+    .section-divider {
+        border-bottom: 2px solid #e9ecef;
+        margin: 20px 0;
+    }
 
-        .progress-bar {
-            line-height: 25px;
-            font-size: 12px;
-        }
-    </style>
+    .progress {
+        height: 25px;
+        border-radius: 4px;
+    }
 
-    <div class="container">
-        <div class="row mt-4">
-            <div class="col-md-10 offset-md-1">
+    .progress-bar {
+        line-height: 25px;
+        font-size: 12px;
+    }
+</style>
 
-                <!-- Encabezado del perfil -->
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="mb-0">Currículum Vitae</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+
+            <!-- Encabezado del perfil -->
+            <div class="card ">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="">Currículum Vitae</h3>
+                </div>
+                <div class="card-body text-center">
+                    <div class="profile-img mx-auto d-flex align-items-center justify-content-center">
+                        <img src="static/img/foto4.png" alt="Foto de perfil" class="img-fluid rounded">
                     </div>
-                    <div class="card-body text-center">
-                        <img src="static/img/foto1.jpg" alt="Foto de perfil" class="profile-img">
-                        <h4 class="text-primary mb-2">Tu Nombre Completo</h4>
-                        <p class="lead text-secondary mb-3">Desarrollador Backend Python | Django/Rest Framework | Sql Linux</p>
 
-                        <div class="info-group">
-                            <p><i class="fas fa-envelope contact-icon"></i>roberthbardales@gmail.com</p>
-                            <p><i class="fas fa-phone contact-icon"></i>+51 960 174 778</p>
-                            <p><i class="fas fa-map-marker-alt contact-icon"></i>Lima, Perú</p>
-                        </div>
+                    <h4 class="text-primary ">Russell Bardales</h4>
+                    <p class="lead text-secondary ">Desarrollador Backend Python | Django/REST Framework | SQL | Linux</p>
 
-                        <div class="status-badges justify-content-center mt-3">
-                            <a href="https://www.linkedin.com/in/russell-b-b7053661/" target="_blank" class="badge badge-info">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                            <a href="https://github.com/roberthbardales?tab=repositories" target="_blank" class="badge badge-secondary">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="http://134.122.30.149/" target="_blank" class="badge badge-success">
-                                <i class="fas fa-globe"></i> Portfolio
-                            </a>
+                    <div class="info-group">
+                        <p><i class="fas fa-envelope contact-icon"></i>roberthbardales@gmail.com</p>
+                        <p><i class="fas fa-phone contact-icon"></i>+51 960 174 778</p>
+                        <p><i class="fas fa-map-marker-alt contact-icon"></i>Lima, Perú</p>
+                    </div>
+
+                    <div class="status-badges justify-content-center mt-3">
+                        <a href="https://www.linkedin.com/in/russell-b-b7053661/" target="_blank" class="badge badge-info">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/roberthbardales?tab=repositories" target="_blank" class="badge badge-secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="http://134.122.30.149/" target="_blank" class="badge badge-success">
+                            <i class="fas fa-globe"></i> Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sobre Mí -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-user mr-2"></i>Sobre Mí</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary">
+                        Egresado de Ingeniería de Sistemas de la Universidad Nacional Federico Villarreal con más de 7 años de experiencia en administración de sistemas, infraestructura de TI y desarrollo de aplicaciones web. Especializado en tecnologías Backend con Python/Django, administración de servidores Windows y Linux, virtualización, y gestión de redes. Profesional proactivo con sólidos conocimientos en SQL Server, PostgreSQL, seguridad de redes y soporte técnico integral. Apasionado por la tecnología y el aprendizaje continuo, con deseos de aportar al crecimiento de la organización mediante mi conocimiento técnico, experiencia práctica y compromiso con la excelencia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Experiencia Laboral -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-briefcase mr-2"></i>Experiencia Laboral</h4>
+                </div>
+                <div class="card-body">
+                    <div class="timeline-item">
+                        <h5 class="text-primary mb-2">Desarrollador Backend Python/Django</h5>
+                        <p class="mb-2">
+                            <strong>Freelance / Proyectos Personales</strong> |
+                            <span class="text-secondary">2022 - Presente</span>
+                        </p>
+                        <ul class="text-secondary">
+                            <li>Desarrollo de aplicaciones web con Django y Django REST Framework</li>
+                            <li>Implementación de APIs RESTful para servicios backend</li>
+                            <li>Gestión de bases de datos PostgreSQL y SQL Server</li>
+                            <li>Creación de blog personal sobre Python, Django, PostgreSQL y tecnologías de seguridad</li>
+                            <li>Despliegue de aplicaciones en servidores Linux</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5 class="text-primary mb-2">Coordinador de TI / Sistemas</h5>
+                        <p class="mb-2">
+                            <strong>JYW Repuestos S.A.C.</strong> |
+                            <span class="text-secondary">Duracion (11 meses)</span>
+                        </p>
+                        <ul class="text-secondary">
+                            <li>Creación y administración de servidores virtuales en VMware vSphere 6.0 e Hyper-V</li>
+                            <li>Migración de servidores virtuales de VMware Workstation 12 a vSphere 6.0</li>
+                            <li>Administración de Active Directory: creación de usuarios, grupos, políticas, mapeos y cuotas en Windows Server 2012</li>
+                            <li>Configuración y gestión de Firewall, Proxy y control de accesos por IP</li>
+                            <li>Monitoreo de red y servidores utilizando PRTG</li>
+                            <li>Administración de correos electrónicos corporativos con Zimbra</li>
+                            <li>Gestión del Servidor Web (IIS) y generación de reportes en SQL Server 2008 R2</li>
+                            <li>Implementación de backups automáticos de bases de datos, servidores y snapshots</li>
+                            <li>Configuración de acceso remoto mediante VPN y TeamViewer</li>
+                            <li>Instalación y configuración de infraestructura de red: Access Points, Routers, Switches</li>
+                            <li>Soporte técnico integral a usuarios y mantenimiento de equipos informáticos</li>
+                            <li>Gestión de inventario de activos tecnológicos</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5 class="text-primary mb-2">Practicante de Sistemas</h5>
+                        <p class="mb-2">
+                            <strong>Inversiones Granos del Paraíso S.A.C.</strong> |
+                            <span class="text-secondary">Duracion (6 meses)</span>
+                        </p>
+                        <ul class="text-secondary">
+                            <li>Operación y soporte del Sistema de Ventas (FlexBusiness ERP)</li>
+                            <li>Facturación electrónica: impresión de facturas y boletas</li>
+                            <li>Soporte técnico a usuarios finales</li>
+                            <li>Instalación y configuración de impresoras locales y en red</li>
+                            <li>Ensamblaje de equipos, formateo e instalación de sistemas operativos Windows (XP, 7, 8)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educación -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-graduation-cap mr-2"></i>Educación</h4>
+                </div>
+                <div class="card-body">
+                    <div class="info-group mb-3">
+                        <p class="mb-2">
+                            <strong>Ingeniería de Sistemas</strong>
+                        </p>
+                        <p class="text-secondary mb-2">
+                            <i class="fas fa-university contact-icon"></i>Universidad Nacional Federico Villarreal
+                        </p>
+                        <p class="text-secondary">
+                            Egresado de la carrera de Ingeniería de Sistemas con sólida formación en desarrollo de software, administración de sistemas y bases de datos.
+                        </p>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="info-group mb-3">
+                        <p class="mb-2">
+                            <strong>Formación Complementaria</strong>
+                        </p>
+                        <p class="text-secondary mb-2">
+                            <i class="fas fa-certificate contact-icon"></i><strong>CCNA Routing and Switching V.5 (Módulo 1 y 2)</strong> - CIBERTEC | 2016 - 2017
+                        </p>
+                        <p class="text-secondary mb-2">
+                            <i class="fas fa-certificate contact-icon"></i><strong>Administración de Redes en Windows y Linux</strong> - SISTEMAS UNI | 2013 - 2015
+                        </p>
+                        <p class="text-secondary mb-2">
+                            <i class="fas fa-certificate contact-icon"></i><strong>Inglés Intermedio 3</strong> - ICPNA | 2015 - Actualidad
+                        </p>
+                        <p class="text-secondary">
+                            <i class="fas fa-certificate contact-icon"></i><strong>Django y Django REST Framework de Básico a Profesional</strong> - Udemy | 2022
+                        </p>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="info-group">
+                        <p class="mb-2">
+                            <strong>Cursos Especializados (SISTEMAS UNI)</strong>
+                        </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Linux - Administración</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Linux - Administración de Servicios Intranet</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Linux - Seguridad en Redes</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Modelamiento de Datos</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Ms Windows 2012 Server - Administración</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Ms Windows 2012 Server - Soporte y Configuración</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Ms Windows 2012 Server - Web Sites y Exchange Server</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Ms SQL Server 2012 - Implementación</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>PHP Nivel I - Programación Web</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>PHP Nivel II - DAO-POO</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>PHP Nivel III - PHP Avanzado</p>
+                                <p class="text-secondary mb-1"><i class="fas fa-check-circle contact-icon"></i>Seguridad de Redes TMG Server Firewalls</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Sobre Mí -->
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-user mr-2"></i>Sobre Mí</h4>
+            <!-- Habilidades Técnicas -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-code mr-2"></i>Habilidades Técnicas</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Backend & Desarrollo Web:</strong></p>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">Django</span>
+                        <span class="skill-badge">Django REST Framework</span>
+                        <span class="skill-badge">PHP</span>
+                        <span class="skill-badge">HTML/CSS</span>
                     </div>
-                    <div class="card-body">
-                        <p class="text-secondary">
-                            Egresado de Ingeniería de Sistemas de la Universidad Nacional Federico Villarreal. Con deseos de trabajar en una institución y aportar a su crecimiento mediante mi conocimiento, experiencia y dedicación.
+
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Bases de Datos:</strong></p>
+                        <span class="skill-badge">SQL Server 2008/2012</span>
+                        <span class="skill-badge">PostgreSQL</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">Modelamiento de Datos</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Sistemas Operativos & Servidores:</strong></p>
+                        <span class="skill-badge">Linux (Administración)</span>
+                        <span class="skill-badge">Windows Server 2012</span>
+                        <span class="skill-badge">Windows XP/7/8/10</span>
+                        <span class="skill-badge">IIS</span>
+                        <span class="skill-badge">Exchange Server</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Virtualización & Cloud:</strong></p>
+                        <span class="skill-badge">VMware vSphere 6.0</span>
+                        <span class="skill-badge">VMware Workstation</span>
+                        <span class="skill-badge">Hyper-V</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Redes & Seguridad:</strong></p>
+                        <span class="skill-badge">CCNA</span>
+                        <span class="skill-badge">Firewall</span>
+                        <span class="skill-badge">Proxy</span>
+                        <span class="skill-badge">VPN</span>
+                        <span class="skill-badge">TMG Server</span>
+                        <span class="skill-badge">Routers</span>
+                        <span class="skill-badge">Switches</span>
+                        <span class="skill-badge">Access Points</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Herramientas & Servicios:</strong></p>
+                        <span class="skill-badge">Active Directory</span>
+                        <span class="skill-badge">Zimbra Mail</span>
+                        <span class="skill-badge">PRTG (Monitoreo)</span>
+                        <span class="skill-badge">TeamViewer</span>
+                        <span class="skill-badge">Git</span>
+                        <span class="skill-badge">Docker</span>
+                    </div>
+
+                    <div>
+                        <p class="mb-2"><strong>Sistemas ERP:</strong></p>
+                        <span class="skill-badge">FlexBusiness ERP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Idiomas -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-language mr-2"></i>Idiomas</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Español</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 100%">Nativo</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="mb-2"><strong>Inglés</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" style="width: 50%">Básico - Intermedio</div>
+                        </div>
+                        <p class="text-secondary mt-2"><small><i class="fas fa-trophy contact-icon"></i>ELASH 1 - Puntuación: 121 (Junio 2014)</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyectos -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-project-diagram mr-2"></i>Proyectos</h4>
+                </div>
+                <div class="card-body">
+                    <div class="info-group">
+                        <h5 class="text-primary mb-2">Blog Personal de Python / Django</h5>
+                        <p class="text-secondary mb-2">
+                            <i class="fas fa-calendar contact-icon"></i>Octubre 2022 - Diciembre 2022
+                        </p>
+                        <p class="text-secondary mb-2">
+                            Blog personal desarrollado con Python y Django, enfocado en temas de desarrollo web, PostgreSQL, seguridad informática y hacking ético.
+                        </p>
+                        <p class="mb-0">
+                            <a href="http://134.122.30.149/" target="_blank" class="badge badge-success">
+                                <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                            </a>
                         </p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Experiencia Laboral -->
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-briefcase mr-2"></i>Experiencia Laboral</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="timeline-item">
-                            <h5 class="text-primary mb-2">Desarrollador Senior Full Stack</h5>
-                            <p class="mb-2">
-                                <strong>Empresa Tech Solutions</strong> |
-                                <span class="text-secondary">Enero 2022 - Presente</span>
-                            </p>
-                            <ul class="text-secondary">
-                                <li>Desarrollo de aplicaciones web con React y Node.js</li>
-                                <li>Liderazgo de equipo de 5 desarrolladores</li>
-                                <li>Implementación de arquitecturas escalables y microservicios</li>
-                                <li>Mejora del rendimiento de aplicaciones en un 40%</li>
-                            </ul>
-                        </div>
-
-                        <div class="timeline-item">
-                            <h5 class="text-primary mb-2">Desarrollador Full Stack</h5>
-                            <p class="mb-2">
-                                <strong>Startup Innovadora</strong> |
-                                <span class="text-secondary">Marzo 2020 - Diciembre 2021</span>
-                            </p>
-                            <ul class="text-secondary">
-                                <li>Desarrollo de MVP para producto SaaS</li>
-                                <li>Implementación de APIs RESTful</li>
-                                <li>Integración con servicios de terceros</li>
-                                <li>Optimización de bases de datos PostgreSQL</li>
-                            </ul>
-                        </div>
-
-                        <div class="timeline-item">
-                            <h5 class="text-primary mb-2">Desarrollador Junior</h5>
-                            <p class="mb-2">
-                                <strong>Digital Agency</strong> |
-                                <span class="text-secondary">Julio 2018 - Febrero 2020</span>
-                            </p>
-                            <ul class="text-secondary">
-                                <li>Desarrollo de sitios web responsivos</li>
-                                <li>Mantenimiento y actualización de proyectos existentes</li>
-                                <li>Colaboración en proyectos ágiles con Scrum</li>
-                            </ul>
-                        </div>
+            <!-- Intereses -->
+            <div class="card mb-5">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-heart mr-2"></i>Intereses</h4>
+                </div>
+                <div class="card-body">
+                    <div class="info-group">
+                        <p><i class="fas fa-laptop-code contact-icon"></i>Desarrollo de Software Backend y APIs</p>
+                        <p><i class="fas fa-server contact-icon"></i>Administración de Sistemas y Servidores</p>
+                        <p><i class="fas fa-shield-alt contact-icon"></i>Seguridad Informática y Hacking Ético</p>
+                        <p><i class="fas fa-network-wired contact-icon"></i>Infraestructura de Redes y Virtualización</p>
+                        <p><i class="fas fa-book contact-icon"></i>Aprendizaje Continuo de Nuevas Tecnologías</p>
+                        <p><i class="fas fa-database contact-icon"></i>Optimización de Bases de Datos</p>
                     </div>
                 </div>
-
-                <!-- Educación -->
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-graduation-cap mr-2"></i>Educación</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="info-group mb-3">
-                            <p class="mb-2">
-                                <strong>Ingeniería de Sistemas</strong>
-                            </p>
-                            <p class="text-secondary mb-2">
-                                <i class="fas fa-university contact-icon"></i>Universidad Nacional | 2014 - 2018
-                            </p>
-                            <p class="text-secondary">
-                                Graduado con honores. Especialización en desarrollo de software y bases de datos.
-                            </p>
-                        </div>
-
-                        <div class="section-divider"></div>
-
-                        <div class="info-group">
-                            <p class="mb-2">
-                                <strong>Certificaciones</strong>
-                            </p>
-                            <p class="text-secondary mb-2">
-                                <i class="fas fa-certificate contact-icon"></i>AWS Solutions Architect Associate - 2022
-                            </p>
-                            <p class="text-secondary">
-                                <i class="fas fa-certificate contact-icon"></i>Scrum Master Professional - 2021
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Habilidades Técnicas -->
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-code mr-2"></i>Habilidades Técnicas</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <p class="mb-2"><strong>Frontend:</strong></p>
-                            <span class="skill-badge">JavaScript</span>
-                            <span class="skill-badge">React</span>
-                            <span class="skill-badge">Vue.js</span>
-                            <span class="skill-badge">HTML/CSS</span>
-                            <span class="skill-badge">Bootstrap</span>
-                            <span class="skill-badge">Tailwind</span>
-                        </div>
-
-                        <div class="mb-3">
-                            <p class="mb-2"><strong>Backend:</strong></p>
-                            <span class="skill-badge">Node.js</span>
-                            <span class="skill-badge">Python</span>
-                            <span class="skill-badge">Django</span>
-                            <span class="skill-badge">Express</span>
-                            <span class="skill-badge">PHP</span>
-                        </div>
-
-                        <div class="mb-3">
-                            <p class="mb-2"><strong>Bases de Datos:</strong></p>
-                            <span class="skill-badge">PostgreSQL</span>
-                            <span class="skill-badge">MySQL</span>
-                            <span class="skill-badge">MongoDB</span>
-                            <span class="skill-badge">Redis</span>
-                        </div>
-
-                        <div>
-                            <p class="mb-2"><strong>Herramientas:</strong></p>
-                            <span class="skill-badge">Git</span>
-                            <span class="skill-badge">Docker</span>
-                            <span class="skill-badge">AWS</span>
-                            <span class="skill-badge">CI/CD</span>
-                            <span class="skill-badge">Linux</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Idiomas -->
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-language mr-2"></i>Idiomas</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <p class="mb-2"><strong>Español</strong></p>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width: 100%">Nativo</div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <p class="mb-2"><strong>Inglés</strong></p>
-                            <div class="progress">
-                                <div class="progress-bar bg-primary" style="width: 85%">Avanzado - 85%</div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <p class="mb-2"><strong>Portugués</strong></p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" style="width: 60%">Intermedio - 60%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Intereses -->
-                <div class="card mb-5">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-heart mr-2"></i>Intereses</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="info-group">
-                            <p><i class="fas fa-laptop-code contact-icon"></i>Desarrollo de Software y Tecnologías Emergentes</p>
-                            <p><i class="fas fa-book contact-icon"></i>Lectura de Documentación Técnica</p>
-                            <p><i class="fas fa-users contact-icon"></i>Participación en Comunidades Tech</p>
-                            <p><i class="fas fa-hiking contact-icon"></i>Senderismo y Actividades al Aire Libre</p>
-                            <p><i class="fas fa-camera contact-icon"></i>Fotografía Digital</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script> -->
-
-
+</div>
 {% include "includes/footer.html" %}
-
 {% endblock content %}

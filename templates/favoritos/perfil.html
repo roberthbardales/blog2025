@@ -124,30 +124,29 @@
                 </div>
             </div>
 
-            <!-- Card de Grupos -->
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-folder mr-2"></i>Mis Grupos</h5>
-                </div>
-                <div class="card-body p-2">
-                    <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-primary btn-block mb-3">
-                        <i class="fas fa-plus mr-2"></i>Gestionar Grupos
-                    </a>
-
-                    <div class="list-group list-group-flush">
-                        <a href="?grupo="
-                           class="list-group-item list-group-item-action btn-grupo {% if not grupo_activo %}active{% endif %}">
-                            <i class="fas fa-th mr-2"></i>Todos
-                        </a>
-                        {% for grupo in contexto_grupos %}
-                        <a href="?grupo={{ grupo.name }}"
-                           class="list-group-item list-group-item-action btn-grupo {% if grupo_activo == grupo.name %}active{% endif %}">
-                            <i class="fas fa-folder mr-2"></i>{{ grupo.name }}
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
+            <div class="div">
+                <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-outline-success btn-block mb-3">
+                    <i class="fas fa-plus mr-2"></i>CRUD GRUPOS
+                </a>
             </div>
+            <!-- Card de Grupos -->
+            <div class="list-group list-group-flush">
+
+                <!-- Todos -->
+                <a href="?grupo="
+                   class="list-group-item list-group-item-action {% if not request.GET.grupo %}active{% endif %}">
+                    <i class="fas fa-th"></i> Todos
+                </a>
+
+                {% for grupo in contexto_grupos %}
+                <a href="?grupo={{ grupo.name }}"
+                   class="list-group-item list-group-item-action {% if request.GET.grupo == grupo.name %}active{% endif %}">
+                    <i class="fas fa-folder"></i> {{ grupo.name }}
+                </a>
+                {% endfor %}
+
+            </div>
+
         </div>
 
         <!-- Contenido Principal -->

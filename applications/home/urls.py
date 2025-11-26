@@ -32,4 +32,8 @@ urlpatterns = [
         views.AboutMe.as_view(),
         name='sobre_mi',
     ),
+
+    #old times
+    path("visita/", views.VisitaView.as_view(), name="visita"),
+
 ]

@@ -1,14 +1,15 @@
 from applications.home.models import Home
 
-# procesor para recueprar telefono y correo del registro home
-#esta funcion o variables lo pueden ver todos los templates
-#se tiene que configurar base.py
-
 def home_contact(request):
-    
-    home = Home.objects.latest('created')
+    try:
+        home = Home.objects.latest('created')
+        phone = home.phone
+        correo = home.contact_email
+    except Home.DoesNotExist:
+        phone = ''
+        correo = ''
 
     return {
-        'phone': home.phone,
-        'correo': home.contact_email,
+        'phone': phone,
+        'correo': correo,
     }

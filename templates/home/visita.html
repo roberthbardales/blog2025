@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Visitas registradas</title>
+</head>
+<body>
+    <h1>¡Bienvenido a mi sitio!</h1>
+    <p>Visitas registradas:</p>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>IP</th>
+                <th>UserAgent</th>
+                <th>Language</th>
+                <th>Platform</th>
+                <th>Screen</th>
+                <th>Inner</th>
+                <th>MemoryGB</th>
+                <th>CPUcores</th>
+                <th>Mobile</th>
+                <th>TouchPoints</th>
+                <th>Online</th>
+                <th>URL</th>
+                <th>Referer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visita in visitas %}
+            <tr>
+                <td>{{ visita.Fecha }}</td>
+                <td>{{ visita.IP }}</td>
+                <td>{{ visita.UserAgent }}</td>
+                <td>{{ visita.Language }}</td>
+                <td>{{ visita.Platform }}</td>
+                <td>{{ visita.Screen }}</td>
+                <td>{{ visita.Inner }}</td>
+                <td>{{ visita.MemoryGB }}</td>
+                <td>{{ visita.CPUcores }}</td>
+                <td>{{ visita.Mobile }}</td>
+                <td>{{ visita.TouchPoints }}</td>
+                <td>{{ visita.Online }}</td>
+                <td>{{ visita.URL }}</td>
+                <td>{{ visita.Referer }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        async function enviarDatos() {
+            const data = {
+                user_agent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                online: navigator.onLine,
+                screen_width: screen.width,
+                screen_height: screen.height,
+                inner_width: window.innerWidth,
+                inner_height: window.innerHeight,
+                device_memory: navigator.deviceMemory || "Desconocida",
+                cpu_cores: navigator.hardwareConcurrency || "Desconocido",
+                url: window.location.href,
+                referer: document.referrer,
+                is_mobile: /Mobi|Android/i.test(navigator.userAgent),
+                touch_points: navigator.maxTouchPoints || 0
+            };
+
+            try {
+                await fetch("/visita/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+            } catch (err) {
+                console.error("Error enviando datos:", err);
+            }
+        }
+
+        window.addEventListener("load", enviarDatos);
+    </script>
+</body>
+</html>

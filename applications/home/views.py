@@ -99,4 +99,64 @@ class ContactCreateView2(CreateView):
 
         return super().form_valid(form)  # en lugar de redirect()
 
+# como en los  viejos tiempos en la u
 
+import json
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.shortcuts import render
+from django.http import JsonResponse
+from datetime import datetime
+
+# Lista global para almacenar visitas en memoria
+VISITAS = []
+
+@method_decorator(csrf_exempt, name='dispatch')
+class VisitaView(View):
+
+    def get(self, request, *args, **kwargs):
+        return self.registrar_visita(request)
+
+    def post(self, request, *args, **kwargs):
+        return self.registrar_visita(request)
+
+    def registrar_visita(self, request):
+        visited_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ip = request.META.get("REMOTE_ADDR", "Desconocida")
+
+        # Leer datos enviados por JS
+        if request.method == "POST":
+            try:
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                data = {}
+        else:
+            data = {}
+
+        # Datos del visitante
+        visita = {
+            "Fecha": visited_at,
+            "IP": ip,
+            "UserAgent": data.get("user_agent", request.META.get("HTTP_USER_AGENT", "")),
+            "Language": data.get("language", request.META.get("HTTP_ACCEPT_LANGUAGE", "")),
+            "Platform": data.get("platform", ""),
+            "Screen": f"{data.get('screen_width','')}x{data.get('screen_height','')}",
+            "Inner": f"{data.get('inner_width','')}x{data.get('inner_height','')}",
+            "MemoryGB": data.get("device_memory", ""),
+            "CPUcores": data.get("cpu_cores", ""),
+            "Mobile": data.get("is_mobile", ""),
+            "TouchPoints": data.get("touch_points", ""),
+            "Online": data.get("online", ""),
+            "URL": data.get("url", request.build_absolute_uri()),
+            "Referer": data.get("referer", request.META.get("HTTP_REFERER", ""))
+        }
+
+        # Guardar en lista global
+        VISITAS.append(visita)
+
+        if request.method == "POST":
+            return JsonResponse({"status": "ok"})
+
+        # Mostrar visitas en el template
+        return render(request, "home/visita.html", {"visitas": VISITAS})

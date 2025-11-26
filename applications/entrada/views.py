@@ -169,7 +169,7 @@ def buscador_general(request):
         resultado=Entry.objects.filter(
             Q(title__icontains=resultado) |
             Q(resume__icontains=resultado)
-    ).distinct
+    ).distinct()
     print(resultado)
     return render(request,'entrada/lista.html',{'resultado':resultado})
 

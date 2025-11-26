@@ -1,44 +1,34 @@
-# from django.core.exceptions import ImproperlyConfigured
-# import json
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-from pathlib import Path
-import firebase_admin
-
-from firebase_admin import credentials
+import environ
 from unipath import Path as UniPath
+import firebase_admin
+from firebase_admin import credentials
 
-
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# -------------------------------
+# BASE_DIR
+# -------------------------------
 BASE_DIR = UniPath(__file__).ancestor(2)
-# BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+# -------------------------------
+# django-environ
+# -------------------------------
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+# Cargar archivo .env (solo si existe)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# with open("secret.json") as f:
-#     secret = json.loads(f.read())
+# -------------------------------
+# SECRET_KEY & DEBUG
+# -------------------------------
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env.bool('DEBUG')
 
-# def get_secret(secret_name, secrets=secret):
-#     try:
-#         return secrets[secret_name]
-#     except:
-#         msg = "la variable %s no existe" % secret_name
-#         raise ImproperlyConfigured(msg)
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
-SECRET_KEY = '^cv997**%ht!&!+qunlefo#2i&7#tfn-9#1d5_253hhi8516#f'
-# Para debug de carga:
-# print("SECRET_KEY cargada:", SECRET_KEY)
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = []
-
-# Application definition
+# -------------------------------
+# INSTALLED_APPS
+# -------------------------------
 DJANGO_APPS = (
     'daphne',
     'django.contrib.admin',
@@ -63,13 +53,13 @@ THIRD_PARTY_APPS = (
     'ckeditor_uploader',
     'rest_framework',
     'channels',
-    # 'import_export',
-    # 'django_quill',
 )
 
-# 🔧 IMPORTANTE: suma tuplas, no listas
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
+# -------------------------------
+# MIDDLEWARE
+# -------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -82,6 +72,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'blog.urls'
 
+# -------------------------------
+# TEMPLATES
+# -------------------------------
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -99,75 +92,74 @@ TEMPLATES = [
     },
 ]
 
+# -------------------------------
 # WSGI & ASGI
+# -------------------------------
 WSGI_APPLICATION = 'blog.wsgi.application'
 ASGI_APPLICATION = 'blog.asgi.application'
 
-# Channels
+# -------------------------------
+# Channels (desarrollo: InMemory, prod: Redis)
+# -------------------------------
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Desarrollo
-        # Para producción usar Redis:
-        # "BACKEND": "channels_redis.core.RedisChannelLayer",
-        # "CONFIG": {"hosts": [("127.0.0.1", 6379)]},
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
     },
 }
 
-
-# Database
+# -------------------------------
+# DATABASES
+# -------------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_blog2025',
-        'USER': 'russell',
-        'PASSWORD': 'russell2020',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='5432'),
     }
 }
 
+# -------------------------------
 # Password validation
+# -------------------------------
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-
 AUTH_USER_MODEL = 'users.User'
-
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/chat/'
 
-
+# -------------------------------
 # Internationalization
+# -------------------------------
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Lima'
-# TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Static and Media files
+# -------------------------------
+# Static and Media
+# -------------------------------
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR.child('static')]
+STATIC_ROOT = BASE_DIR.child('staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.child('media')
 
-# CKEDITOR SETTINGS
+# -------------------------------
+# CKEDITOR
+# -------------------------------
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
@@ -202,27 +194,29 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-
-# Email configuration
+# -------------------------------
+# Email
+# -------------------------------
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "roberthbardales@gmail.com"
-EMAIL_HOST_PASSWORD = "uoqynxrrhwfcdtli"
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-
-cred = credentials.Certificate(BASE_DIR.child("firebase-key.json"))
+# -------------------------------
+# Firebase
+# -------------------------------
+cred_path = env('FIREBASE_KEY_PATH')
+cred = credentials.Certificate(BASE_DIR.child(cred_path))
 firebase_admin.initialize_app(cred)
+FIREBASE_CREDENTIALS = BASE_DIR.child(cred_path)
 
-
-
-# Ruta al JSON de la cuenta de servicio Firebase (no lo subas al repo)
-FIREBASE_CREDENTIALS = BASE_DIR.child('firebase-key.json')
-
-# Backends: agrega el backend de Firebase antes del backend por defecto (opcional)
+# -------------------------------
+# Authentication Backends
+# -------------------------------
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',         # Backend por defecto de Django tiene q estar primero
+    'django.contrib.auth.backends.ModelBackend',
     'applications.users.backends.FirebaseBackend',
 ]

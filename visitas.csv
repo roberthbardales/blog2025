@@ -1,0 +1,18 @@
+Fecha;IP;User-Agent;Language;Platform;Screen;Inner;Memory(GB);CPU cores;Mobile;Touch points;Online;URL;Referer
+2025-11-23 00:54:38;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-23 00:54:38;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x405;8;4;False;0;True;http://127.0.0.1:8000/visita/;
+2025-11-24 00:06:55;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:06:55;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x739;8;4;False;0;True;http://127.0.0.1:8000/visita/;
+2025-11-24 00:10:05;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:11:25;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:11:25;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x739;8;4;False;0;True;http://127.0.0.1:8000/visita/;
+2025-11-24 00:11:30;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:11:31;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x739;8;4;False;0;True;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:05;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:05;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x739;8;4;False;0;True;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:06;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:06;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x739;8;4;False;0;True;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:11;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:11;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x739;8;4;False;0;True;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:13;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";"es-419,es;q=0.9";;x;x;;;;;;http://127.0.0.1:8000/visita/;
+2025-11-24 00:12:14;127.0.0.1;"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36";es-419;Win32;1600x900;1600x739;8;4;False;0;True;http://127.0.0.1:8000/visita/;

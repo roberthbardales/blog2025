@@ -1,3 +1,5 @@
 # Ignorar la clave de servicio de Firebase/Google
-serviceAccountKey.json
+.env
 firebase-key.json
+firebase_login.html
+get_token.html

@@ -41,10 +41,11 @@ idna==3.10
 importlib-metadata==6.7.0
 incremental==22.10.0
 msgpack==1.0.5
+packaging==24.0
 Pillow==9.5.0
 proto-plus==1.26.1
 protobuf==4.24.4
-psycopg2==2.8.4
+psycopg2-binary==2.9.9
 pyasn1==0.5.1
 pyasn1-modules==0.3.0
 pycparser==2.21
@@ -53,12 +54,12 @@ PyJWT==2.8.0
 pyOpenSSL==25.3.0
 pyparsing==3.1.4
 pyphen==0.14.0
-pytz==2019.3
+pytz==2024.1
 requests==2.31.0
 rsa==4.9.1
 service-identity==21.1.0
 six==1.17.0
-sqlparse==0.3.1
+sqlparse==0.4.4
 tinycss2==1.2.1
 Twisted==23.8.0
 twisted-iocpsupport==1.0.4

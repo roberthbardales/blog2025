@@ -1,5 +1,23 @@
-# Ignorar la clave de servicio de Firebase/Google
+# Entorno virtual
+venv/
+
+# Variables de entorno
 .env
+
+# Archivos sensibles
 firebase-key.json
-firebase_login.html
-get_token.html
+
+# Archivos generados
+__pycache__/
+*.pyc
+*.log
+
+# Archivos estáticos recolectados
+staticfiles/
+
+# Backups
+zbackup bd/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

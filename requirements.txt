@@ -61,7 +61,6 @@ six==1.17.0
 sqlparse==0.4.4
 tinycss2==1.2.1
 Twisted==23.8.0
-twisted-iocpsupport==1.0.4
 txaio==23.1.1
 typing_extensions==4.15.0
 Unipath==1.1

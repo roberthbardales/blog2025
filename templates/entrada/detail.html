@@ -72,6 +72,15 @@
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         overflow: hidden;
     }
+    .sidebar-card-2 {
+
+        position: sticky;
+        top: 430px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
 
 
     .entry-image {
@@ -100,7 +109,7 @@
         border-left: 3px solid #007bff;
         background-color: white;
         border-radius: 8px;
-        padding: 20px;
+        padding: 4px;
         margin-bottom: 15px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.08);
         transition: all 0.3s;
@@ -250,37 +259,6 @@
                 </div>
             </div>
 
-            <!-- Sección de Likes -->
-            <div class="like-section">
-                <h5 class="mb-3"><i class="fas fa-heart mr-2 text-danger"></i>¿Te gustó este artículo?</h5>
-                {% if user.is_authenticated %}
-                <form action="{% url 'entrada_app:toggle-like' entry.id %}" method="post" class="d-inline">
-                    {% csrf_token %}
-                    {% if has_liked %}
-                    <button type="submit" class="btn btn-danger btn-like">
-                        <i class="fas fa-heart-broken mr-2"></i>Quitar Like
-                    </button>
-                    {% else %}
-                    <button type="submit" class="btn btn-primary btn-like">
-                        <i class="fas fa-heart mr-2"></i>Dar Like
-                    </button>
-                    {% endif %}
-                </form>
-                <span class="ml-3">
-                    <i class="fas fa-heart text-danger mr-1"></i>
-                    <strong>{{ likes_count }}</strong> personas dieron like
-                </span>
-                {% else %}
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle mr-2"></i>
-                    Debes <a href="{% url 'users_app:user-login' %}" class="alert-link">iniciar sesión</a> para dar like.
-                    <span class="ml-3">
-                        <i class="fas fa-heart text-danger mr-1"></i>
-                        <strong>{{ likes_count }}</strong> likes
-                    </span>
-                </div>
-                {% endif %}
-            </div>
 
             <!-- Sección de Comentarios -->
             <div class="mt-5">
@@ -340,7 +318,7 @@
 
                             <!-- Respuestas -->
                             {% for reply in comment.replies.all %}
-                            <div class="comment-card reply-card mt-3">
+                            <div class="comment-card reply-card mt-2">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
                                     <div>
                                         <a href="{% url 'entrada_app:view_profile' reply.user.pk %}" class="comment-author">
@@ -393,49 +371,85 @@
 
         <!-- Sidebar -->
         <div class="col-lg-3">
-            <div class="sidebar-card">
-                <div class="card-header-custom text-center py-3">
-                    <h5 class="mb-0"><i class="fas fa-info-circle mr-2"></i>{{ entry.category }}</h5>
-                    <!-- <span class="badge-category">
-                        <i class="fas fa-folder mr-1"></i>{{ entry.category }}
-                    </span> -->
-                </div>
-                <div class="p-3">
-                    <img class="entry-image" src="{{ entry.image.url }}" alt="{{ entry.title }}">
-
-                    <!-- Botones de Acción -->
-                    <div class="action-buttons">
-                        {% if user.is_authenticated %}
-                            {% if not is_favorito %}
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#guardarModal">
-                                <i class="fas fa-star mr-2"></i>Añadir a favoritos
-                            </button>
-                            {% else %}
-                            <form method="POST" action="{% url 'favoritos_app:add-favoritos2' entry.id %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger btn-block">
-                                    <i class="fas fa-star mr-2"></i>Quitar de favoritos
-                                </button>
-                            </form>
-                            {% endif %}
-
-                            {% if user.ocupation == User.ADMINISTRADOR or user.is_superuser %}
-                            <a href="{% url 'entrada_app:update-entrada' entry.id %}" class="btn btn-success btn-block">
-                                <i class="fas fa-edit mr-2"></i>Modificar
-                            </a>
-                            {% endif %}
-                        {% else %}
-                        <div class="alert alert-info text-center p-2">
-                            <p class="mb-2"><small>¿Quieres guardar este post?</small></p>
-                            <a href="{% url 'users_app:user-register' %}" class="btn btn-outline-primary btn-sm btn-block">
-                                <i class="fas fa-user-plus mr-1"></i>Regístrate
-                            </a>
-                        </div>
-                        {% endif %}
+                <div class="sidebar-card">
+                    <div class="card-header-custom text-center py-3">
+                        <h5 class="mb-0"><i class="fas fa-info-circle mr-2"></i>{{ entry.category }}</h5>
+                        <!-- <span class="badge-category">
+                            <i class="fas fa-folder mr-1"></i>{{ entry.category }}
+                        </span> -->
                     </div>
+                    <div class="p-3">
+                        <img class="entry-image" src="{{ entry.image.url }}" alt="{{ entry.title }}">
+
+                        <!-- Botones de Acción -->
+                        <div class="action-buttons">
+                            {% if user.is_authenticated %}
+                                {% if not is_favorito %}
+                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#guardarModal">
+                                    <i class="fas fa-star mr-2"></i>Añadir a favoritos
+                                </button>
+                                {% else %}
+                                <form method="POST" action="{% url 'favoritos_app:add-favoritos2' entry.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-block">
+                                        <i class="fas fa-star mr-2"></i>Quitar de favoritos
+                                    </button>
+                                </form>
+                                {% endif %}
+
+                                {% if user.ocupation == User.ADMINISTRADOR or user.is_superuser %}
+                                <a href="{% url 'entrada_app:update-entrada' entry.id %}" class="btn btn-success btn-block">
+                                    <i class="fas fa-edit mr-2"></i>Modificar
+                                </a>
+                                {% endif %}
+                            {% else %}
+                            <div class="alert alert-info text-center p-2">
+                                <p class="mb-2"><small>¿Quieres guardar este post?</small></p>
+                                <a href="{% url 'users_app:user-register' %}" class="btn btn-outline-primary btn-sm btn-block">
+                                    <i class="fas fa-user-plus mr-1"></i>Regístrate
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                <!-- Sección de Likes -->
+                 <hr>
+                <div class=" like-section">
+                    <h5 class="mb-3"><i class="fas fa-heart mr-2 text-danger"></i>¿Te gustó este artículo?</h5>
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'entrada_app:toggle-like' entry.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        {% if has_liked %}
+                        <button type="submit" class="btn btn-danger btn-like">
+                            <i class="fas fa-heart-broken mr-2"></i>Quitar Like
+                        </button>
+                        {% else %}
+                        <button type="submit" class="btn btn-primary btn-like">
+                            <i class="fas fa-heart mr-2"></i>Dar Like
+                        </button>
+                        {% endif %}
+                    </form>
+                    <span class="ml-3">
+                        <i class="fas fa-heart text-danger mr-1"></i>
+                        <strong>{{ likes_count }}</strong>
+                        <i class="bi bi-hand-thumbs-up-fill text-primary"></i>
+                    </span>
+                    {% else %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Debes <a href="{% url 'users_app:user-login' %}" class="alert-link">iniciar sesión</a> para dar like.
+                        <span class="ml-3">
+                            <i class="fas fa-heart text-danger mr-1"></i>
+                            <strong>{{ likes_count }}</strong> likes
+                        </span>
+                    </div>
+                    {% endif %}
                 </div>
-            </div>
+                </div>
+
+
         </div>
+
     </div>
 </div>
 

@@ -23,6 +23,14 @@
 
     }
 
+    .status-dot.offline {
+    background-color: #dc3545;
+    animation: none;
+}
+
+.user-status.offline {
+    opacity: 0.7;
+}
     .header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -347,8 +355,8 @@
                         <div class="user-details">
                             <h2>{{ other_user.get_full_name }}</h2>
                             <div class="user-status">
-                                <span class="status-dot"></span>
-                                <span>En línea</span>
+                                <span class="status-dot {% if not other_user.is_online %}offline{% endif %}"></span>
+                                <span>{% if other_user.is_online %}En línea{% else %}Desconectado{% endif %}</span>
                             </div>
                         </div>
                     </div>
@@ -474,5 +482,25 @@
         function playNotificationSound() {
             // Puedes agregar un sonido de notificación aquí si lo deseas
         }
+        // Actualizar estado del usuario cada 5 segundos
+function updateUserStatus() {
+    fetch(`/chat/user-status/${otherUserId}/`)
+        .then(response => response.json())
+        .then(data => {
+            const statusDot = document.querySelector('.status-dot');
+            const statusText = document.querySelector('.user-status span:last-child');
+
+            if (data.is_online) {
+                statusDot.classList.remove('offline');
+                statusText.textContent = 'En línea';
+            } else {
+                statusDot.classList.add('offline');
+                statusText.textContent = 'Desconectado';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+setInterval(updateUserStatus, 1000);
     </script>
 {% endblock content %}

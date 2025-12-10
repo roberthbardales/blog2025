@@ -5,66 +5,133 @@
 
 {% include "includes/header.html" %}
 
-<div class="container" style="min-height: 650px">
-    <div class="row justify-content-center">
+<style>
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border: none;
+        border-radius: 10px;
+    }
 
-        <!-- Columna izquierda: info del usuario y lista de grupos -->
-        <div class="col-sm-3 mt-4 px-4 py-4 bg-info">
-            <div class="card1 text-white">
-                <div class="card-body">
-                    <div class="col">
-                        <h5>{{ user.full_name }}</h5>
+    .card-header {
+        background-color: #007bff !important;
+        color: white !important;
+        border-bottom: none;
+    }
+
+    .profile-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .profile-info {
+        padding: 20px;
+    }
+
+    .profile-info h5 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .profile-info p {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    .profile-info i {
+        margin-right: 8px;
+        width: 20px;
+    }
+
+    .form-group-card {
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, rgba(32, 201, 151, 0.05) 100%);
+        border-radius: 10px;
+        padding: 25px;
+        border: 2px solid rgba(40, 167, 69, 0.2);
+    }
+
+    .form-group-title {
+        color: #28a745;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+</style>
+
+<div class="container" style="min-height: 650px; padding: 30px 0;">
+    <div class="row">
+
+        <!-- Sidebar Perfil -->
+        <div class="col-lg-3 mb-4">
+            <div class="card profile-card mb-3">
+                <div class="profile-info">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-user-circle" style="font-size: 60px;"></i>
                     </div>
-                    <div class="col">
-                        <p>{{ user.email }}</p>
-                    </div>
-                    <div class="col">
-                        <p>{{ user.get_ocupation_display }}</p>
-                    </div>
-                    <div class="col">
-                        <p>{{ user.date_birth }}</p>
-                    </div>
+
+                    <h5 class="text-center">{{ user.full_name }}</h5>
+                    <hr class="bg-white">
+
+                    <p><i class="fas fa-envelope"></i>{{ user.email }}</p>
+                    <p><i class="fas fa-briefcase"></i>{{ user.get_ocupation_display }}</p>
+                    <p><i class="fas fa-calendar"></i>{{ user.date_birth }}</p>
                 </div>
 
-                <div class="col-12">
+                <div class="px-3 pb-3">
                     {% if user.is_superuser %}
-                        <p>
-                            <a class="btn btn-dark btn-block h5 text-light" href="{% url 'users_app:user-lista' %}">Listar Usuarios</a>
-                        </p>
+                    <a class="btn btn-dark btn-block mb-2" href="{% url 'users_app:user-lista' %}">
+                        <i class="fas fa-users mr-2"></i>Listar Usuarios
+                    </a>
                     {% endif %}
-                </div>
 
-                <div class="col-12">
-                    <p>
-                        <a class="btn btn-warning btn-block h5 text-dark" href="{% url 'users_app:user-update' %}">Cambiar Contraseña</a>
-                    </p>
+                    <a class="btn btn-success btn-block text-white" href="{% url 'favoritos_app:perfil' %}">
+                        <i class="fas fa-arrow-left mr-2"></i>Volver a Favoritos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <div class="col-lg-9">
+
+            <div class="container py-1">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-pencil-alt me-2"></i>
+                            Editar Grupo
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_name" class="form-label">Nombre del Grupo</label>
+                                    <input type="text" value="{{ object.name }}"  class="form-control" name="name" id="id_name" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_description" class="form-label">Descripción</label>
+                                    <textarea class="form-control" name="description" id="id_description" rows="1" required>{{ object.description }}</textarea>
+                                </div>
+
+                                <div class="col-12 mt-3 text-center">
+                                    <button type="submit" class="btn btn-success w-50">
+                                        <i class="fas fa-save me-2"></i>Guardar Cambios
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <!-- Lista rápida de grupos -->
-            <div class="mt-4">
-                <h5 class="text-white">Volver a favoritos</h5>
-                <a href="{% url 'favoritos_app:perfil' %}" class="btn btn-success text-dark d-block mx-auto">
-                    Volver a favoritos
-                  </a>
-            </div>
         </div>
-
-        <div class="col-sm-1">
-            <!-- Espacio entre columnas -->
-        </div>
-
-        <!-- Columna derecha: CRUD de grupos -->
-        <div class="col-sm-8 mt-4 px-4 py-4 bg-info">
-            <h2>Editar Grupo</h2>
-
-            <form method="post">
-              {% csrf_token %}
-              {{ form.as_p }}  <!-- Django genera el form automáticamente -->
-              <button type="submit">Guardar cambios</button>
-            </form>
-        </div>
-
     </div>
 </div>
 

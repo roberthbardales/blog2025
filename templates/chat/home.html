@@ -7,9 +7,9 @@
 
 <style>
     .chat-container {
-        max-width: 600px;
+        max-width: 500px;
         margin: 20px auto;
-        padding: 0 10px;
+        padding: 0 50px;
     }
 
     .header-chat {
@@ -18,13 +18,13 @@
         padding: 10px;
         border-radius: 15px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         text-align: center;
     }
 
     .header-chat h2 {
         margin: 0;
-        font-weight: 700;
+        font-weight: 500;
         font-size: 30px;
     }
 
@@ -43,14 +43,14 @@
     .users-card-header {
         background-color: #007bff;
         color: white;
-        padding: 10px;
+        padding: 2px;
         border-bottom: none;
     }
 
     .users-card-header h3 {
         margin: 0;
         color: white;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     .users-list {
@@ -61,7 +61,7 @@
 
     .user-item {
         background: white;
-        padding: 15px 20px;
+        padding: 5px 10px;
         border-bottom: 1px solid #f0f0f0;
         transition: all 0.3s;
         display: flex;
@@ -173,7 +173,7 @@
     }
 
     .section-divider {
-        padding: 12px 20px;
+        padding: 2px 20px;
         background-color: #f8f9fa;
         border-top: 2px solid #e9ecef;
         border-bottom: 2px solid #e9ecef;
@@ -228,7 +228,7 @@
     <!-- Card de Usuarios -->
     <div class="users-card">
         <div class="users-card-header">
-            <h3><i class="fas fa-users mr-2"></i>Usuarios Disponibles</h3>
+            <h3><i class="fas fa-users mr-2"></i>Usuarios</h3>
         </div>
 
         <ul class="users-list" id="usersList">
@@ -353,8 +353,8 @@
     // Renderizar inicial
     renderUsersList(null);
 
-    // Actualizar cada 5 segundos
-    setInterval(actualizarEstados, 5000);
+    // Actualizar cada 2 segundos
+    setInterval(actualizarEstados, 2000);
 </script>
 <script>
     setInterval(() => {
@@ -364,7 +364,7 @@
                 "X-CSRFToken": "{{ csrf_token }}",
             }
         });
-    }, 15000); // 15 segundos
+    }, 2000); // 2 segundos
     </script>
 
 {% endblock content %}

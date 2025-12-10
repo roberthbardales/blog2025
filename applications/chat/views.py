@@ -20,7 +20,7 @@ class ChatHomeView(LoginRequiredMixin, ListView):
     login_url = '/login/'
 
     def get_queryset(self):
-        online_threshold = timezone.now() - timedelta(seconds=120)
+        online_threshold = timezone.now() - timedelta(seconds=10)
 
         users = User.objects.exclude(id=self.request.user.id)
         status_map = {s.user_id: s.last_seen for s in UserStatus.objects.all()}
@@ -38,6 +38,8 @@ class ChatHomeView(LoginRequiredMixin, ListView):
         return super().render_to_response(context, **response_kwargs)
 
 
+from datetime import timedelta
+
 class ChatRoomView(LoginRequiredMixin, TemplateView):
     template_name = 'chat/room.html'
     login_url = '/login/'
@@ -47,12 +49,19 @@ class ChatRoomView(LoginRequiredMixin, TemplateView):
         user_id = self.kwargs.get('user_id')
         other_user = get_object_or_404(User, id=user_id)
 
+        # ✅ Verificar si el usuario está online
+        online_threshold = timezone.now() - timedelta(seconds=10)
+        try:
+            status = UserStatus.objects.get(user=other_user)
+            other_user.is_online = status.last_seen and status.last_seen > online_threshold
+        except UserStatus.DoesNotExist:
+            other_user.is_online = False
+
         messages = Message.objects.filter(
             sender__in=[self.request.user, other_user],
             recipient__in=[self.request.user, other_user]
         ).order_by('created')
 
-        # ⚠️ CORREGIDO: Crear lista de diccionarios correctamente
         messages_with_time = []
         for msg in messages:
             messages_with_time.append({
@@ -64,7 +73,6 @@ class ChatRoomView(LoginRequiredMixin, TemplateView):
         context['other_user'] = other_user
         context['messages'] = messages_with_time
         return context
-
 
 # Signals para estado online/offline
 @receiver(user_logged_in)

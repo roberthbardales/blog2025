@@ -274,6 +274,8 @@
             <div class="row justify-content-center mt-4">
                 <nav aria-label="Paginación">
                     <ul class="pagination">
+
+                        {# Botón anterior #}
                         {% if page_obj.has_previous %}
                         <li class="page-item">
                             <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
@@ -282,14 +284,31 @@
                         </li>
                         {% endif %}
 
+                        {# Paginación compacta simple #}
                         {% for pagina in paginator.page_range %}
-                        <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
-                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">
-                                {{ pagina }}
-                            </a>
-                        </li>
+                            {% if pagina <= 2 %}
+                                {# Primeras 2 páginas siempre visibles #}
+                                <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+                                </li>
+                            {% elif pagina >= paginator.num_pages|add:"-1" %}
+                                {# Últimas 2 páginas siempre visibles #}
+                                <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+                                </li>
+                            {% elif pagina >= page_obj.number|add:"-2" and pagina <= page_obj.number|add:"2" %}
+                                {# Páginas alrededor de la actual #}
+                                <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+                                </li>
+                            {% elif pagina == 3 and page_obj.number > 5 %}
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            {% elif pagina == paginator.num_pages|add:"-2" and page_obj.number < paginator.num_pages|add:"-3" %}
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            {% endif %}
                         {% endfor %}
 
+                        {# Botón siguiente #}
                         {% if page_obj.has_next %}
                         <li class="page-item">
                             <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
@@ -297,10 +316,12 @@
                             </a>
                         </li>
                         {% endif %}
+
                     </ul>
                 </nav>
             </div>
             {% endif %}
+
 
         </div>
 

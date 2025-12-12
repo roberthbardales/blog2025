@@ -46,6 +46,7 @@ LOCAL_APPS = (
     'applications.entrada',
     'applications.favoritos',
     'applications.chat',
+    'applications.notas',
 )
 
 THIRD_PARTY_APPS = (

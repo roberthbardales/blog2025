@@ -19,18 +19,17 @@
         flex-direction: column;
         overflow: hidden;
         padding: 2px;
-
-
     }
 
     .status-dot.offline {
-    background-color: #dc3545;
-    animation: none;
-}
+        background-color: #dc3545;
+        animation: none;
+    }
 
-.user-status.offline {
-    opacity: 0.7;
-}
+    .user-status.offline {
+        opacity: 0.7;
+    }
+
     .header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -40,14 +39,12 @@
         justify-content: space-between;
         align-items: center;
         z-index: 10;
-
     }
 
     .header-user-info {
         display: flex;
         align-items: center;
         gap: 1px;
-
     }
 
     .user-avatar {
@@ -120,7 +117,6 @@
         box-shadow: 0 0 30px rgba(0,0,0,0.1);
         overflow: hidden;
         height: calc(100vh - 80px);
-
     }
 
     #chat-log {
@@ -218,7 +214,6 @@
         border-top: 2px solid #f0f0f0;
         gap: 1px;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-
     }
 
     #chat-input {
@@ -332,7 +327,6 @@
 
         .input-container {
             padding: 15px;
-
         }
 
         #send-button {
@@ -346,161 +340,145 @@
 </style>
 
 
-    <div class="chat-container">
-                <div class="header">
-                    <div class="header-user-info">
-                        <div class="user-avatar">
-                            {{ other_user.get_full_name|slice:":1"|upper }}
-                        </div>
-                        <div class="user-details">
-                            <h2>{{ other_user.get_full_name }}</h2>
-                            <div class="user-status">
-                                <span class="status-dot {% if not other_user.is_online %}offline{% endif %}"></span>
-                                <span>{% if other_user.is_online %}En línea{% else %}Desconectado{% endif %}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="{% url 'chat_home' %}" class="back-btn">
-                        <i class="fas fa-arrow-left"></i>
-                        <span>Volver</span>
-                    </a>
-                </div>
-                <div id="chat-log">
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="message {% if message.sender.id == user.id %}sent{% else %}received{% endif %}">
-                                <strong>{{ message.sender.get_full_name }}</strong>
-                                <p>{{ message.content }}</p>
-                                <span class="timestamp">{{ message.formatted_time }}</span>
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <div class="empty-chat">
-                            <i class="far fa-comment-dots"></i>
-                            <h4>No hay mensajes aún</h4>
-                            <p>Sé el primero en enviar un mensaje</p>
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="typing-indicator" id="typing-indicator">
-                    {{ other_user.get_full_name }} está escribiendo...
-                </div>
-
-            <div class="input-container" >
-                <input id="chat-input"
-                    type="text"
-                    placeholder="Escribe tu mensaje..."
-                    autocomplete="off"
-                    maxlength="500">
-                <button id="send-button">
-                    <i class="fas fa-paper-plane"></i>
-                    <span>Enviar</span>
-                </button>
+<div class="chat-container">
+    <div class="header">
+        <div class="header-user-info">
+            <div class="user-avatar">
+                {{ other_user.get_full_name|slice:":1"|upper }}
             </div>
+            <div class="user-details">
+                <h2>{{ other_user.get_full_name }}</h2>
+                <div class="user-status">
+                    <span class="status-dot {% if not other_user.is_online %}offline{% endif %}"></span>
+                    <span>{% if other_user.is_online %}En linea{% else %}Desconectado{% endif %}</span>
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'chat_home' %}" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver</span>
+        </a>
+    </div>
+    <div id="chat-log">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {% if message.sender.id == user.id %}sent{% else %}received{% endif %}">
+                    <strong>{{ message.sender.get_full_name }}</strong>
+                    <p>{{ message.content }}</p>
+                    <span class="timestamp">{{ message.formatted_time }}</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-chat">
+                <i class="far fa-comment-dots"></i>
+                <h4>No hay mensajes aun</h4>
+                <p>Se el primero en enviar un mensaje</p>
+            </div>
+        {% endif %}
     </div>
 
-    <script>
-        const otherUserId = {{ other_user.id }};
-        const currentUserId = {{ user.id }};
-        const currentUserName = "{{ user.get_full_name }}";
-        const otherUserName = "{{ other_user.get_full_name }}";
+    <div class="typing-indicator" id="typing-indicator">
+        {{ other_user.get_full_name }} esta escribiendo...
+    </div>
 
-        const chatSocket = new WebSocket(
-            'ws://' + window.location.host + '/ws/chat/' + otherUserId + '/'
-        );
+    <div class="input-container">
+        <input id="chat-input"
+               type="text"
+               placeholder="Escribe tu mensaje..."
+               autocomplete="off"
+               maxlength="500">
+        <button id="send-button">
+            <i class="fas fa-paper-plane"></i>
+            <span>Enviar</span>
+        </button>
+    </div>
+</div>
 
-        const chatLog = document.querySelector('#chat-log');
-        const input = document.querySelector('#chat-input');
-        const sendBtn = document.querySelector('#send-button');
-        const typingIndicator = document.querySelector('#typing-indicator');
+<script>
+    const otherUserId = {{ other_user.id }};
+    const currentUserId = {{ user.id }};
+    const currentUserName = "{{ user.get_full_name }}";
+    const otherUserName = "{{ other_user.get_full_name }}";
 
-        chatSocket.onopen = function(e) {
-            console.log('Conexión WebSocket establecida');
-        };
+    const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
 
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
+    const chatSocket = new WebSocket(
+        wsScheme + '://' + window.location.host + '/ws/chat/' + otherUserId + '/'
+    );
 
-            // Remover mensaje vacío si existe
-            const emptyChat = chatLog.querySelector('.empty-chat');
-            if (emptyChat) {
-                emptyChat.remove();
-            }
+    const chatLog = document.querySelector('#chat-log');
+    const input = document.querySelector('#chat-input');
+    const sendBtn = document.querySelector('#send-button');
+    const typingIndicator = document.querySelector('#typing-indicator');
 
-            const msgDiv = document.createElement('div');
-            const messageClass = data.sender_id === currentUserId ? 'sent' : 'received';
-            msgDiv.className = 'message ' + messageClass;
+    chatSocket.onopen = function(e) {
+        console.log('Conexion WebSocket establecida');
+    };
 
-            const now = new Date();
-            const timestamp = now.getHours().toString().padStart(2,'0') + ':' +
-                            now.getMinutes().toString().padStart(2,'0');
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const emptyChat = chatLog.querySelector('.empty-chat');
+        if (emptyChat) emptyChat.remove();
 
-            msgDiv.innerHTML = `
-                <strong>${data.sender_name}</strong>
-                <p>${data.message}</p>
-                <span class="timestamp">${timestamp}</span>
-            `;
+        const msgDiv = document.createElement('div');
+        const messageClass = data.sender_id === currentUserId ? 'sent' : 'received';
+        msgDiv.className = 'message ' + messageClass;
 
-            chatLog.appendChild(msgDiv);
-            chatLog.scrollTop = chatLog.scrollHeight;
-        };
+        const now = new Date();
+        const timestamp = now.getHours().toString().padStart(2,'0') + ':' +
+                          now.getMinutes().toString().padStart(2,'0');
 
-        chatSocket.onclose = function(e) {
-            console.error('Chat socket cerrado inesperadamente');
-        };
-
-        chatSocket.onerror = function(e) {
-            console.error('Error en WebSocket:', e);
-        };
-
-        function sendMessage() {
-            const message = input.value.trim();
-            if (!message) return;
-
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-
-            input.value = '';
-            input.focus();
-        }
-
-        sendBtn.onclick = sendMessage;
-
-        input.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Auto-scroll al cargar
+        msgDiv.innerHTML = `
+            <strong>${data.sender_name}</strong>
+            <p>${data.message}</p>
+            <span class="timestamp">${timestamp}</span>
+        `;
+        chatLog.appendChild(msgDiv);
         chatLog.scrollTop = chatLog.scrollHeight;
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket cerrado inesperadamente');
+    };
+
+    chatSocket.onerror = function(e) {
+        console.error('Error en WebSocket:', e);
+    };
+
+    function sendMessage() {
+        const message = input.value.trim();
+        if (!message) return;
+        chatSocket.send(JSON.stringify({'message': message}));
+        input.value = '';
         input.focus();
+    }
 
-        // Sonido de notificación (opcional)
-        function playNotificationSound() {
-            // Puedes agregar un sonido de notificación aquí si lo deseas
-        }
-        // Actualizar estado del usuario cada 5 segundos
-function updateUserStatus() {
-    fetch(`/chat/user-status/${otherUserId}/`)
-        .then(response => response.json())
-        .then(data => {
-            const statusDot = document.querySelector('.status-dot');
-            const statusText = document.querySelector('.user-status span:last-child');
+    sendBtn.onclick = sendMessage;
+    input.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') sendMessage();
+    });
 
-            if (data.is_online) {
-                statusDot.classList.remove('offline');
-                statusText.textContent = 'En línea';
-            } else {
-                statusDot.classList.add('offline');
-                statusText.textContent = 'Desconectado';
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
+    chatLog.scrollTop = chatLog.scrollHeight;
+    input.focus();
 
-setInterval(updateUserStatus, 1000);
-    </script>
+    function updateUserStatus() {
+        fetch(`/chat/user-status/${otherUserId}/`)
+            .then(response => response.json())
+            .then(data => {
+                const statusDot = document.querySelector('.status-dot');
+                const statusText = document.querySelector('.user-status span:last-child');
+                if (data.is_online) {
+                    statusDot.classList.remove('offline');
+                    statusText.textContent = 'En linea';
+                } else {
+                    statusDot.classList.add('offline');
+                    statusText.textContent = 'Desconectado';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    setInterval(updateUserStatus, 2000);
+</script>
+
 {% endblock content %}

@@ -7,6 +7,7 @@ venv/
 # Archivos sensibles
 firebase-key.json
 
+
 # Archivos generados
 __pycache__/
 *.pyc
@@ -16,7 +17,7 @@ __pycache__/
 staticfiles/
 
 # Backups
-zbackup bd/
+"zbackup bd"/
 
 # Archivos del sistema
 .DS_Store

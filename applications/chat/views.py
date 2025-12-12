@@ -7,6 +7,9 @@ from django.utils import timezone
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
 
+from django.contrib.auth.decorators import login_required
+
+
 from applications.users.models import User
 from .models import Message, UserStatus
 
@@ -104,3 +107,22 @@ def ping(request):
         status.save()
         return JsonResponse({"ok": True})
     return JsonResponse({"ok": False})
+
+
+
+@login_required
+def user_status(request, user_id):
+    """Endpoint para verificar si un usuario está online"""
+    try:
+        user = User.objects.get(id=user_id)
+        online_threshold = timezone.now() - timedelta(seconds=10)
+        
+        try:
+            status = UserStatus.objects.get(user=user)
+            is_online = status.last_seen and status.last_seen > online_threshold
+        except UserStatus.DoesNotExist:
+            is_online = False
+        
+        return JsonResponse({'is_online': is_online})
+    except User.DoesNotExist:
+        return JsonResponse({'is_online': False}, status=404)

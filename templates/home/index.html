@@ -194,4 +194,107 @@
 
 {% include "includes/footer.html" %}
 
+<script>
+    (function() {
+        async function enviarDatosPC() {
+            try {
+                const ua = navigator.userAgent;
+                let navegadorNombre = 'Desconocido';
+                let navegadorVersion = 'Desconocido';
+
+                if (ua.indexOf('Firefox') > -1) {
+                    navegadorNombre = 'Firefox';
+                    navegadorVersion = ua.match(/Firefox\/(\d+\.\d+)/)?.[1] || 'N/A';
+                } else if (ua.indexOf('Edg') > -1) {
+                    navegadorNombre = 'Edge';
+                    navegadorVersion = ua.match(/Edg\/(\d+\.\d+)/)?.[1] || 'N/A';
+                } else if (ua.indexOf('Chrome') > -1) {
+                    navegadorNombre = 'Chrome';
+                    navegadorVersion = ua.match(/Chrome\/(\d+\.\d+)/)?.[1] || 'N/A';
+                } else if (ua.indexOf('Safari') > -1) {
+                    navegadorNombre = 'Safari';
+                    navegadorVersion = ua.match(/Version\/(\d+\.\d+)/)?.[1] || 'N/A';
+                }
+
+                let gpu = 'No disponible';
+                try {
+                    const canvas = document.createElement('canvas');
+                    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                    if (gl) {
+                        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                        if (debugInfo) {
+                            gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        }
+                    }
+                } catch (e) {}
+
+                let bateria = { nivel: 'N/A', cargando: 'N/A' };
+                try {
+                    if ('getBattery' in navigator) {
+                        const battery = await navigator.getBattery();
+                        bateria = {
+                            nivel: Math.round(battery.level * 100) + '%',
+                            cargando: battery.charging ? 'Sí' : 'No'
+                        };
+                    }
+                } catch (e) {}
+
+                const datos = {
+                    plataforma: navigator.platform,
+                    navegador: {
+                        nombre: navegadorNombre,
+                        version: navegadorVersion,
+                        motor: navigator.product || 'N/A'
+                    },
+                    cookies_habilitadas: navigator.cookieEnabled ? 'Sí' : 'No',
+                    do_not_track: navigator.doNotTrack || 'No especificado',
+                    pantalla: {
+                        resolucion: `${screen.width}x${screen.height}`,
+                        resolucion_disponible: `${screen.availWidth}x${screen.availHeight}`,
+                        profundidad_color: screen.colorDepth,
+                        orientacion: screen.orientation?.type || 'N/A',
+                        pixel_ratio: window.devicePixelRatio
+                    },
+                    ventana: {
+                        tamanio: `${window.outerWidth}x${window.outerHeight}`,
+                        viewport: `${window.innerWidth}x${window.innerHeight}`
+                    },
+                    hardware: {
+                        cpu_nucleos: navigator.hardwareConcurrency || 'N/A',
+                        memoria: navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'N/A',
+                        gpu: gpu,
+                        touchscreen: navigator.maxTouchPoints > 0 ? 'Sí' : 'No',
+                        tipo_conexion: navigator.connection?.effectiveType || 'N/A'
+                    },
+                    zona_horaria: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    idioma_sistema: navigator.language,
+                    almacenamiento: {
+                        localStorage: typeof(Storage) !== "undefined" ? 'Disponible' : 'No disponible',
+                        sessionStorage: typeof(Storage) !== "undefined" ? 'Disponible' : 'No disponible',
+                        indexedDB: 'indexedDB' in window ? 'Disponible' : 'No disponible'
+                    },
+                    bateria: bateria
+                };
+
+                await fetch('/xvisitax/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(datos)
+                });
+
+            } catch (error) {
+                console.log('Registro de visita no disponible');
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', enviarDatosPC);
+        } else {
+            enviarDatosPC();
+        }
+    })();
+    </script>
+
 {% endblock content %}

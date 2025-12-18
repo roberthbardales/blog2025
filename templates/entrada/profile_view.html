@@ -10,118 +10,195 @@
 
 {% include "includes/header.html" %}
 
-<div class="container">
-    <div class="row mt-4">
-        <div class="col-md-8 offset-md-2">
-            <!-- Encabezado del perfil -->
-            <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Perfil de Usuario</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Información del usuario -->
-                            <h4 class="text-primary mb-3">{{ profile_user.full_name }}</h4>
-
-                            <div class="info-group mb-3">
-                                <p class="mb-2">
-                                    <strong>Email:</strong>
-                                    <span class="text-secondary">{{ profile_user.email }}</span>
-                                </p>
-
-                                {% if profile_user.genero %}
-                                <p class="mb-2">
-                                    <strong>Género:</strong>
-                                    <span class="text-secondary">{{ profile_user.get_genero_display }}</span>
-                                </p>
-                                {% endif %}
-
-                                {% if profile_user.date_birth %}
-                                <p class="mb-2">
-                                    <strong>Fecha de Nacimiento:</strong>
-                                    <span class="text-secondary">{{ profile_user.date_birth|date:"d/m/Y" }}</span>
-                                </p>
-                                {% endif %}
-
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Card Principal del Perfil -->
+            <div class="card1 shadow-sm border-0">
+                <!-- Header con gradiente -->
+                <div class="card-header bg-primary text-white py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="avatar-circle me-3">
+                            <span class="avatar-initials">{{ profile_user.full_name|slice:":1" }}</span>
+                        </div>
+                        <div>
+                            <h3 class="mb-1">{{ profile_user.full_name }}</h3>
+                            <p class="mb-0 opacity-75">
                                 {% if profile_user.ocupation %}
-                                <p class="mb-2">
-                                    <strong>Tipo de Usuario:</strong>
-                                    <span class="badge badge-info">{{ profile_user.get_ocupation_display }}</span>
-                                </p>
-                                {% endif %}
-
-                                <p class="mb-2">
-                                    <strong>Miembro desde:</strong>
-                                    <span class="text-secondary">{{ profile_user.created_at|date:"F Y" }}</span>
-                                </p>
-                            </div>
-
-                            <!-- Estados del usuario -->
-                            <div class="status-badges mt-3">
-                                {% if profile_user.is_active %}
-                                    <span class="badge badge-success">Activo</span>
+                                    {{ profile_user.get_ocupation_display }}
                                 {% else %}
-                                    <span class="badge badge-secondary">Inactivo</span>
+                                    Usuario
                                 {% endif %}
-
-                                {% if profile_user.is_staff %}
-                                    <span class="badge badge-warning">Staff</span>
-                                {% endif %}
-
-                                {% if profile_user.is_superuser %}
-                                    <span class="badge badge-danger">Superusuario</span>
-                                {% endif %}
-                            </div>
-
-                            <!-- Botón Editar Perfil -->
-                            {% if user.is_authenticated and user == profile_user %}
-                            <div class="mt-4">
-                                <a href="{% url 'users_app:user-update' %}" class="btn btn-primary">
-                                    Cambiar Contraseña
-                                </a>
-                            </div>
-                            {% endif %}
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Botón de cerrar sesión (solo para el usuario autenticado viendo su propio perfil) -->
-            <!-- {% if user.is_authenticated and user == profile_user %}
-            <div class="text-center mb-5">
-                <form method="POST" action="{% url 'users_app:user-logout' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
-                </form>
-            </div>
-            {% endif %} -->
+                <!-- Cuerpo del Card -->
+                <div class="card-body p-4">
+                    <!-- Información Personal -->
+                    <h5 class="text-muted mb-2 border-bottom pb-2">Información Personal</h5>
 
+                    <div class="row g-2 mb-2">
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <i class="bi bi-envelope text-primary me-2"></i>
+                                <small class="text-muted d-block">Email</small>
+                                <strong>{{ profile_user.email }}</strong>
+                            </div>
+                        </div>
+
+                        {% if profile_user.genero %}
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <i class="bi bi-person text-primary me-2"></i>
+                                <small class="text-muted d-block">Género</small>
+                                <strong>{{ profile_user.get_genero_display }}</strong>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if profile_user.date_birth %}
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <i class="bi bi-calendar text-primary me-2"></i>
+                                <small class="text-muted d-block">Fecha de Nacimiento</small>
+                                <strong>{{ profile_user.date_birth|date:"d/m/Y" }}</strong>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <i class="bi bi-clock-history text-primary me-2"></i>
+                                <small class="text-muted d-block">Miembro desde</small>
+                                <strong>{{ profile_user.created_at|date:"d/m/Y" }}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información de Auditoría -->
+                    <h5 class="text-muted mb-2 border-bottom pb-2 mt-3">Información de la Cuenta</h5>
+
+                    <div class="row g-2 mb-2">
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <i class="bi bi-calendar-plus text-primary me-2"></i>
+                                <small class="text-muted d-block">Fecha de Creación</small>
+                                <strong>{{ profile_user.created_at|date:"d/m/Y H:i" }}</strong>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <i class="bi bi-arrow-clockwise text-primary me-2"></i>
+                                <small class="text-muted d-block">Última Actualización</small>
+                                <strong>{{ profile_user.updated_at|date:"d/m/Y H:i" }}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estados -->
+                    <h5 class="text-muted mb-2 border-bottom pb-2 mt-3">Estado de la Cuenta</h5>
+                    <div class="d-flex gap-2 flex-wrap mb-2">
+                        {% if profile_user.is_active %}
+                            <span class="badge bg-success">✓ Activo</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Inactivo</span>
+                        {% endif %}
+
+                        {% if profile_user.is_staff %}
+                            <span class="badge bg-warning text-dark">Staff</span>
+                        {% endif %}
+
+                        {% if profile_user.is_superuser %}
+                            <span class="badge bg-danger">Superusuario</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    {% if user.is_authenticated and user == profile_user %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end col-12">
+
+                        <a href="{% url 'users_app:user-update' %}" class="btn btn-primary">
+                            <i class="bi bi-key me-2"></i>Cambiar Contraseña
+                        </a>
+
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-{% include "includes/footer.html" %}
+
 
 <style>
-.info-group p {
-    line-height: 1.8;
-}
 
-.status-badges {
+
+/* Avatar circular */
+.avatar-circle {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
-.card {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.avatar-initials {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
 }
 
+/* Items de información */
+.info-item {
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.info-item:hover {
+    transform: translateY(-2px);
+    background: #e9ecef;
+}
+
+.info-item i {
+    font-size: 20px;
+}
+
+/* Card principal */
+.card1 {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Badges mejorados */
 .badge {
-    padding: 6px 12px;
-    font-size: 14px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .avatar-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .avatar-initials {
+        font-size: 24px;
+    }
 }
 </style>
+
 
 {% endblock content %}

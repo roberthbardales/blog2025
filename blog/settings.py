@@ -189,12 +189,22 @@ CKEDITOR_CONFIGS = {
             ['TextColor', 'Format', 'FontSize', 'Link'],
             ['Image', 'Smiley', 'Iframe'],
             ['RemoveFormat', 'Source'],
-            ['CodeSnippet'],
+            ['CodeSnippet', 'QuickCode'],  # ← Agrega 'QuickCode' aquí
         ],
         'extraPlugins': 'codesnippet',
+        'codeSnippet_theme': 'monokai',  # Añade esto para mejor visualización
+        'codeSnippet_languages': {
+            'python': 'Python',
+            'javascript': 'JavaScript',
+            'html': 'HTML',
+            'css': 'CSS',
+            'java': 'Java',
+            'php': 'PHP',
+            'sql': 'SQL',
+            'bash': 'Bash',
+        },
     }
 }
-
 # -------------------------------
 # Email
 # -------------------------------

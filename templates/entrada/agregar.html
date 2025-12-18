@@ -58,6 +58,9 @@
                             </div>
                         <div class="col-12">
                             <h5>Contenido</h5>
+                            <button type="button" id="quick-code-btn" class="btn btn-sm btn-warning mb-2" title="Selecciona texto y haz clic aquí (o usa Ctrl+K)">
+                                <i class="fa fa-code"></i> 📝 Convertir a Código
+                            </button>
                             {{form.media}}
                             {{form.content}}
                         </div>
@@ -77,7 +80,66 @@
 
         </div>
     </div>
-    <!-- </div> -->
 </div>
+
+<script>
+// Script para convertir texto seleccionado en code snippet con Ctrl+K
+document.addEventListener('DOMContentLoaded', function() {
+    // Esperar a que CKEditor esté completamente cargado
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.on('instanceReady', function(evt) {
+            var editor = evt.editor;
+
+            // Verificar si el editor tiene el plugin codesnippet
+            if (editor.plugins.codesnippet) {
+
+                // Función para convertir texto a code snippet
+                function convertToCodeSnippet() {
+                    var selection = editor.getSelection();
+                    var selectedText = selection.getSelectedText();
+
+                    if (selectedText && selectedText.trim() !== '') {
+                        // Escapar caracteres especiales HTML
+                        var escapedText = selectedText
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&#39;');
+
+                        // Crear el code snippet
+                        var codeSnippet = '<pre><code class="language-python">' + escapedText + '</code></pre>';
+
+                        // Eliminar la selección actual e insertar el code snippet
+                        editor.insertHtml('');
+                        editor.insertHtml(codeSnippet);
+
+                        console.log('✅ Code snippet insertado');
+                    } else {
+                        // Si no hay texto seleccionado, abrir el diálogo normal
+                        editor.execCommand('codesnippet');
+                    }
+                }
+
+                // Agregar comando personalizado
+                editor.addCommand('quickCodeSnippet', {
+                    exec: convertToCodeSnippet
+                });
+
+                // Asignar atajo de teclado: Ctrl+K
+                editor.setKeystroke(CKEDITOR.CTRL + 75, 'quickCodeSnippet');
+
+                // Conectar el botón HTML con la función
+                document.getElementById('quick-code-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    convertToCodeSnippet();
+                });
+
+                console.log('✅ Atajo Ctrl+K y botón HTML configurado');
+            }
+        });
+    }
+});
+</script>
 
 {% endblock content %}

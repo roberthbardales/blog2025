@@ -34,6 +34,7 @@ urlpatterns = [
     ),
 
     #old times
-    path("visita/", views.VisitaView.as_view(), name="visita"),
+    # path("visita/", views.VisitaView.as_view(), name="visita"),
+    path('xvisitax/', views.VisitaView.as_view(), name='visita'),
 
 ]

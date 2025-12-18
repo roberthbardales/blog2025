@@ -18,7 +18,8 @@
     }
 
     .profile-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* background: linear-gradient(135deg, #4560d9 0%, #7695cd 100%); */
+        background-color: #007bff;
         border-radius: 10px;
         color: white;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -92,6 +93,22 @@
         border-color: #007bff;
         box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
     }
+    .avatar-initials {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 3px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 700;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        backdrop-filter: blur(10px);
+    }
 </style>
 
 <div class="container" style="min-height: 650px; padding: 30px 0;">
@@ -101,14 +118,19 @@
             <!-- Card de Perfil -->
             <div class="card profile-card mb-3">
                 <div class="profile-info">
-                    <div class="text-center mb-3">
-                        <i class="fas fa-user-circle" style="font-size: 60px;"></i>
+                    <div class="text-center">
+
+                        <div class="avatar-initials">
+                            {% if user.full_name %}
+                            {{ user.full_name|slice:":1"|upper }}
+                            {% endif %}
+                        </div>
                     </div>
                     <h5 class="text-center">{{ user.full_name }}</h5>
                     <hr class="bg-white">
-                    <p><i class="fas fa-envelope"></i>{{ user.email }}</p>
-                    <p><i class="fas fa-briefcase"></i>{{ user.get_ocupation_display }}</p>
-                    <p><i class="fas fa-calendar"></i>{{ user.date_birth }}</p>
+                    <a class="btn btn-success btn-block text-dark" href="{% url 'entrada_app:view_profile' user.id %}">
+                        <i class="fas fa-key mr-2"></i>Ver Perfil
+                    </a>
                 </div>
 
                 <div class="px-3 pb-3">
@@ -118,17 +140,22 @@
                     </a>
                     {% endif %}
 
-                    <a class="btn btn-warning btn-block text-dark" href="{% url 'users_app:user-update' %}">
-                        <i class="fas fa-key mr-2"></i>Cambiar Contraseña
+                    <a class="btn btn-warning btn-block text-dark" href="{% url 'notas_app:lista-notas' %}">
+                        <i class="fas fa-key mr-2"></i>Notas
                     </a>
+                    <!-- <a class="btn btn-warning btn-block text-dark" href="{% url 'users_app:user-update' %}">
+                        <i class="fas fa-key mr-2"></i>Cambiar Contraseña
+                    </a> -->
                 </div>
             </div>
 
-            <div class="div">
-                <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-outline-success btn-block mb-3">
-                    <i class="fas fa-plus mr-2"></i>CRUD GRUPOS
+            <div class="col-12 d-flex justify-content-center">
+                <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-outline-success btn-md mb-3">
+                    <i class="fas fa-plus me-2"></i>CRUD GRUPOS
                 </a>
             </div>
+
+
             <!-- Card de Grupos -->
             <div class="list-group list-group-flush">
 

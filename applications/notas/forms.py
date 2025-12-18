@@ -17,7 +17,7 @@ class NotaForm(forms.ModelForm):
                 'rows': 6
             }),
             'color': forms.Select(attrs={
-                'class': 'form-control'
+                'class': 'form-select'  # ✅ Cambiado de form-control a form-select
             }),
             'es_importante': forms.CheckboxInput(attrs={
                 'class': 'form-check-input'
@@ -29,3 +29,8 @@ class NotaForm(forms.ModelForm):
             'color': 'Color de la nota',
             'es_importante': 'Marcar como importante'
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Opcional: personalizar el placeholder del select
+        self.fields['color'].empty_label = None  # Elimina "--------"

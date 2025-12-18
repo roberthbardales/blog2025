@@ -2,84 +2,188 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Visitas registradas</title>
-</head>
-<body>
-    <h1>¡Bienvenido a mi sitio!</h1>
-    <p>Visitas registradas:</p>
-
-    <table border="1" cellpadding="5" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>IP</th>
-                <th>UserAgent</th>
-                <th>Language</th>
-                <th>Platform</th>
-                <th>Screen</th>
-                <th>Inner</th>
-                <th>MemoryGB</th>
-                <th>CPUcores</th>
-                <th>Mobile</th>
-                <th>TouchPoints</th>
-                <th>Online</th>
-                <th>URL</th>
-                <th>Referer</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for visita in visitas %}
-            <tr>
-                <td>{{ visita.Fecha }}</td>
-                <td>{{ visita.IP }}</td>
-                <td>{{ visita.UserAgent }}</td>
-                <td>{{ visita.Language }}</td>
-                <td>{{ visita.Platform }}</td>
-                <td>{{ visita.Screen }}</td>
-                <td>{{ visita.Inner }}</td>
-                <td>{{ visita.MemoryGB }}</td>
-                <td>{{ visita.CPUcores }}</td>
-                <td>{{ visita.Mobile }}</td>
-                <td>{{ visita.TouchPoints }}</td>
-                <td>{{ visita.Online }}</td>
-                <td>{{ visita.URL }}</td>
-                <td>{{ visita.Referer }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <script>
-        async function enviarDatos() {
-            const data = {
-                user_agent: navigator.userAgent,
-                platform: navigator.platform,
-                language: navigator.language,
-                online: navigator.onLine,
-                screen_width: screen.width,
-                screen_height: screen.height,
-                inner_width: window.innerWidth,
-                inner_height: window.innerHeight,
-                device_memory: navigator.deviceMemory || "Desconocida",
-                cpu_cores: navigator.hardwareConcurrency || "Desconocido",
-                url: window.location.href,
-                referer: document.referrer,
-                is_mobile: /Mobi|Android/i.test(navigator.userAgent),
-                touch_points: navigator.maxTouchPoints || 0
-            };
-
-            try {
-                await fetch("/visita/", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
-                });
-            } catch (err) {
-                console.error("Error enviando datos:", err);
-            }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros de Visitas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        window.addEventListener("load", enviarDatos);
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #00ff00;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 2px solid #00ff00;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2em;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .stats {
+            background: #0a0a0a;
+            border: 1px solid #00ff00;
+            padding: 1px;
+
+        }
+
+        .stats p {
+            font-size: 1em;
+            margin: 0px 0;
+        }
+
+        .registro {
+            background: #0a0a0a;
+            border: 1px solid #00ff00;
+            padding: 20px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            position: relative;
+        }
+
+        .registro-header {
+            background: #00ff00;
+            color: #000;
+            padding: 4px 12px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 5px 5px 0 0;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .registro-id {
+            font-size: 0.9em;
+        }
+
+        .registro-numero {
+            background: #000;
+            color: #00ff00;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.3em;
+            color: #ff6b6b;
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .registro {
+                font-size: 0.85em;
+                padding: 15px;
+            }
+
+            .registro-header {
+                margin: -15px -15px 10px -15px;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖥️ REGISTROS DE VISITAS</h1>
+            <p>Sistema de monitoreo de accesos</p>
+        </header>
+
+        <div class="stats">
+            <p>📊 <strong>Total de registros:</strong> {{ total }}</p>
+            <p>🕒 <strong>Última actualización:</strong> <span id="tiempo"></span></p>
+        </div>
+
+        {% if registros %}
+            {% for registro in registros reversed %}
+                <div class="registro">
+                    <div class="registro-header">
+                        <span class="registro-id">📋 Registro</span>
+                        <span class="registro-numero">#{{ forloop.revcounter }}</span>
+                    </div>
+                    {{ registro }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty">
+                ⚠️ No hay registros disponibles todavía
+            </div>
+        {% endif %}
+
+        <button class="refresh-btn" onclick="location.reload()">🔄 Actualizar</button>
+    </div>
+
+    <script>
+        function actualizarTiempo() {
+            const ahora = new Date();
+            const formato = ahora.toLocaleString('es-PE', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('tiempo').textContent = formato;
+        }
+
+        actualizarTiempo();
+        setInterval(actualizarTiempo, 1000);
+
+        setInterval(() => {
+            location.reload();
+        }, 30000);
     </script>
 </body>
 </html>

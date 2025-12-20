@@ -28,11 +28,6 @@
         font-size: 30px;
     }
 
-    .header-chat p {
-        margin: 5px 0 0;
-        opacity: 0.9;
-    }
-
     .users-card {
         background: white;
         border-radius: 15px;
@@ -222,7 +217,6 @@
     <div class="header-chat">
         <i class="fas fa-comments mb-3" style="font-size: 50px;"></i>
         <h2>{{ request.user.full_name }}</h2>
-        <!-- <p>Selecciona un usuario para iniciar una conversación</p> -->
     </div>
 
     <!-- Card de Usuarios -->
@@ -238,87 +232,54 @@
 </div>
 
 <script>
-    // Función para renderizar la lista de usuarios
-    function renderUsersList(usersData) {
-        const usersList = document.getElementById('usersList');
-
-        // Separar usuarios en línea y offline
-        const onlineUsers = [];
-        const offlineUsers = [];
-
+    // Datos iniciales de usuarios desde el backend
+    const usersData = {
         {% for u in users %}
         {% if u.id != user.id %}
-        const userId{{ u.id }} = {{ u.id }};
-        const userName{{ u.id }} = "{{ u.full_name }}";
-        const userInitial{{ u.id }} = "{{ u.full_name|slice:':1'|upper }}";
-        const isOnline{{ u.id }} = usersData && usersData[userId{{ u.id }}] !== undefined
-            ? usersData[userId{{ u.id }}]
-            : {% if u.is_online %}true{% else %}false{% endif %};
-
-        const user{{ u.id }} = {
-            id: userId{{ u.id }},
-            name: userName{{ u.id }},
-            initial: userInitial{{ u.id }},
-            isOnline: isOnline{{ u.id }}
-        };
-
-        if (isOnline{{ u.id }}) {
-            onlineUsers.push(user{{ u.id }});
-        } else {
-            offlineUsers.push(user{{ u.id }});
-        }
+        {{ u.id }}: {
+            id: {{ u.id }},
+            name: "{{ u.full_name }}",
+            initial: "{{ u.full_name|slice:':1'|upper }}",
+            isOnline: {% if u.is_online %}true{% else %}false{% endif %}
+        },
         {% endif %}
         {% endfor %}
+    };
 
-        // Ordenar alfabéticamente
-        onlineUsers.sort((a, b) => a.name.localeCompare(b.name));
-        offlineUsers.sort((a, b) => a.name.localeCompare(b.name));
+    // Función para actualizar solo el estado de un usuario específico
+    function updateUserStatus(userId, isOnline) {
+        const userItem = document.getElementById(`user-item-${userId}`);
+        const statusBadge = document.getElementById(`status-${userId}`);
 
-        // Limpiar lista
-        usersList.innerHTML = '';
+        if (!userItem || !statusBadge) return;
 
-        // Agregar usuarios en línea
-        if (onlineUsers.length > 0) {
-            const onlineHeader = document.createElement('li');
-            onlineHeader.className = 'section-divider';
-            onlineHeader.innerHTML = '<i class="fas fa-circle text-success mr-2"></i>En Línea (' + onlineUsers.length + ')';
-            usersList.appendChild(onlineHeader);
-
-            onlineUsers.forEach(user => {
-                usersList.appendChild(createUserItem(user, true));
-            });
+        // Actualizar clases del item
+        if (isOnline) {
+            userItem.classList.remove('offline');
+            userItem.classList.add('online');
+        } else {
+            userItem.classList.remove('online');
+            userItem.classList.add('offline');
         }
 
-        // Agregar usuarios offline
-        if (offlineUsers.length > 0) {
-            const offlineHeader = document.createElement('li');
-            offlineHeader.className = 'section-divider';
-            offlineHeader.innerHTML = '<i class="fas fa-circle text-danger mr-2"></i>Desconectados (' + offlineUsers.length + ')';
-            usersList.appendChild(offlineHeader);
+        // Actualizar badge de estado
+        statusBadge.className = `status-badge ${isOnline ? 'online' : 'offline'}`;
+        statusBadge.innerHTML = `
+            <span class="status-dot ${isOnline ? 'online' : 'offline'}"></span>
+            ${isOnline ? 'En línea' : 'Desconectado'}
+        `;
 
-            offlineUsers.forEach(user => {
-                usersList.appendChild(createUserItem(user, false));
-            });
-        }
-
-        // Si no hay usuarios
-        if (onlineUsers.length === 0 && offlineUsers.length === 0) {
-            const emptyState = document.createElement('li');
-            emptyState.className = 'empty-state';
-            emptyState.innerHTML = `
-                <i class="fas fa-user-slash"></i>
-                <h5>No hay usuarios disponibles</h5>
-                <p>No se encontraron usuarios para chatear</p>
-            `;
-            usersList.appendChild(emptyState);
+        // Actualizar datos locales
+        if (usersData[userId]) {
+            usersData[userId].isOnline = isOnline;
         }
     }
 
     // Función para crear un item de usuario
     function createUserItem(user, isOnline) {
         const li = document.createElement('li');
-        li.className = 'user-item ' + (isOnline ? 'online' : 'offline');
-        li.id = 'user-item-' + user.id;
+        li.className = `user-item ${isOnline ? 'online' : 'offline'}`;
+        li.id = `user-item-${user.id}`;
 
         const chatUrl = "{% url 'chat_room' 999999 %}".replace('999999', user.id);
 
@@ -340,31 +301,120 @@
         return li;
     }
 
-    // Actualizar estados de usuarios
-    function actualizarEstados() {
-        fetch("{% url 'chat_home' %}?json=1")
-            .then(response => response.json())
-            .then(data => {
-                renderUsersList(data);
-            })
-            .catch(error => console.error('Error actualizando estados:', error));
+    // Función para renderizar la lista completa de usuarios
+    function renderUsersList() {
+        const usersList = document.getElementById('usersList');
+
+        // Separar usuarios en línea y offline
+        const onlineUsers = [];
+        const offlineUsers = [];
+
+        Object.values(usersData).forEach(user => {
+            if (user.isOnline) {
+                onlineUsers.push(user);
+            } else {
+                offlineUsers.push(user);
+            }
+        });
+
+        // Ordenar alfabéticamente
+        onlineUsers.sort((a, b) => a.name.localeCompare(b.name));
+        offlineUsers.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Limpiar lista
+        usersList.innerHTML = '';
+
+        // Agregar usuarios en línea
+        if (onlineUsers.length > 0) {
+            const onlineHeader = document.createElement('li');
+            onlineHeader.className = 'section-divider';
+            onlineHeader.innerHTML = `<i class="fas fa-circle text-success mr-2"></i>En Línea (${onlineUsers.length})`;
+            usersList.appendChild(onlineHeader);
+
+            onlineUsers.forEach(user => {
+                usersList.appendChild(createUserItem(user, true));
+            });
+        }
+
+        // Agregar usuarios offline
+        if (offlineUsers.length > 0) {
+            const offlineHeader = document.createElement('li');
+            offlineHeader.className = 'section-divider';
+            offlineHeader.innerHTML = `<i class="fas fa-circle text-danger mr-2"></i>Desconectados (${offlineUsers.length})`;
+            usersList.appendChild(offlineHeader);
+
+            offlineUsers.forEach(user => {
+                usersList.appendChild(createUserItem(user, false));
+            });
+        }
+
+        // Si no hay usuarios
+        if (onlineUsers.length === 0 && offlineUsers.length === 0) {
+            const emptyState = document.createElement('li');
+            emptyState.className = 'empty-state';
+            emptyState.innerHTML = `
+                <i class="fas fa-user-slash"></i>
+                <h5>No hay usuarios disponibles</h5>
+                <p>No se encontraron usuarios para chatear</p>
+            `;
+            usersList.appendChild(emptyState);
+        }
     }
 
-    // Renderizar inicial
-    renderUsersList(null);
+    // Actualizar estados de usuarios (versión optimizada)
+    function actualizarEstados() {
+        fetch("{% url 'chat_home' %}?json=1", {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let cambios = false;
 
-    // Actualizar cada 2 segundos
-    setInterval(actualizarEstados, 2000);
-</script>
-<script>
-    setInterval(() => {
-        fetch("/chat/ping/", {
+            // Actualizar solo los usuarios que cambiaron de estado
+            Object.keys(data).forEach(userId => {
+                const newStatus = data[userId];
+                const currentStatus = usersData[userId]?.isOnline;
+
+                if (currentStatus !== newStatus) {
+                    updateUserStatus(parseInt(userId), newStatus);
+                    cambios = true;
+                }
+            });
+
+            // Si hubo cambios, re-renderizar para actualizar los contadores
+            if (cambios) {
+                renderUsersList();
+            }
+        })
+        .catch(error => console.error('Error actualizando estados:', error));
+    }
+
+    // Enviar ping para mantener al usuario actual como "online"
+    function enviarPing() {
+        fetch("{% url 'ping' %}", {
             method: "POST",
             headers: {
                 "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/json"
             }
-        });
-    }, 2000); // 2 segundos
+        })
+        .then(response => response.json())
+        .catch(error => console.error('Error en ping:', error));
+    }
+
+    // Renderizar inicial
+    renderUsersList();
+
+    // Actualizar estados cada 2 segundos
+    setInterval(actualizarEstados, 2000);
+
+    // Enviar ping cada 2 segundos
+    setInterval(enviarPing, 2000);
+
+    // Enviar ping inmediatamente al cargar
+    enviarPing();
 </script>
 
 {% endblock content %}

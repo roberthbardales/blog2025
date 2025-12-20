@@ -4,7 +4,8 @@
 {% block content %}
 
 {% include "includes/header.html" %}
-    <style>
+
+<style>
     * {
         margin: 0;
         padding: 0;
@@ -21,15 +22,6 @@
         padding: 2px;
     }
 
-    .status-dot.offline {
-        background-color: #dc3545;
-        animation: none;
-    }
-
-    .user-status.offline {
-        opacity: 0.7;
-    }
-
     .header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -44,7 +36,7 @@
     .header-user-info {
         display: flex;
         align-items: center;
-        gap: 1px;
+        gap: 15px;
     }
 
     .user-avatar {
@@ -71,6 +63,7 @@
         display: flex;
         align-items: center;
         gap: 6px;
+        transition: all 0.3s ease;
     }
 
     .status-dot {
@@ -79,6 +72,12 @@
         border-radius: 50%;
         background-color: #28a745;
         animation: pulse 2s infinite;
+        transition: all 0.3s ease;
+    }
+
+    .status-dot.offline {
+        background-color: #dc3545;
+        animation: none;
     }
 
     @keyframes pulse {
@@ -212,7 +211,7 @@
         padding: 25px 30px;
         background: white;
         border-top: 2px solid #f0f0f0;
-        gap: 1px;
+        gap: 15px;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     }
 
@@ -255,34 +254,6 @@
 
     #send-button:active {
         transform: translateY(0);
-    }
-
-    .typing-indicator {
-        display: none;
-        padding: 10px 15px;
-        color: #6c757d;
-        font-size: 0.85rem;
-        font-style: italic;
-    }
-
-    .typing-indicator.active {
-        display: block;
-        margin-bottom: 30px;
-    }
-
-    .date-divider {
-        text-align: center;
-        margin: 20px 0;
-        position: relative;
-    }
-
-    .date-divider span {
-        background: #f5f7fa;
-        padding: 5px 15px;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        color: #6c757d;
-        font-weight: 600;
     }
 
     .empty-chat {
@@ -339,7 +310,6 @@
     }
 </style>
 
-
 <div class="chat-container">
     <div class="header">
         <div class="header-user-info">
@@ -348,9 +318,9 @@
             </div>
             <div class="user-details">
                 <h2>{{ other_user.get_full_name }}</h2>
-                <div class="user-status">
-                    <span class="status-dot {% if not other_user.is_online %}offline{% endif %}"></span>
-                    <span>{% if other_user.is_online %}En linea{% else %}Desconectado{% endif %}</span>
+                <div class="user-status" id="user-status">
+                    <span class="status-dot {% if not other_user.is_online %}offline{% endif %}" id="status-dot"></span>
+                    <span id="status-text">{% if other_user.is_online %}En línea{% else %}Desconectado{% endif %}</span>
                 </div>
             </div>
         </div>
@@ -359,6 +329,7 @@
             <span>Volver</span>
         </a>
     </div>
+
     <div id="chat-log">
         {% if messages %}
             {% for message in messages %}
@@ -371,14 +342,10 @@
         {% else %}
             <div class="empty-chat">
                 <i class="far fa-comment-dots"></i>
-                <h4>No hay mensajes aun</h4>
-                <p>Se el primero en enviar un mensaje</p>
+                <h4>No hay mensajes aún</h4>
+                <p>Sé el primero en enviar un mensaje</p>
             </div>
         {% endif %}
-    </div>
-
-    <div class="typing-indicator" id="typing-indicator">
-        {{ other_user.get_full_name }} esta escribiendo...
     </div>
 
     <div class="input-container">
@@ -401,7 +368,6 @@
     const otherUserName = "{{ other_user.get_full_name }}";
 
     const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
-
     const chatSocket = new WebSocket(
         wsScheme + '://' + window.location.host + '/ws/chat/' + otherUserId + '/'
     );
@@ -409,10 +375,12 @@
     const chatLog = document.querySelector('#chat-log');
     const input = document.querySelector('#chat-input');
     const sendBtn = document.querySelector('#send-button');
-    const typingIndicator = document.querySelector('#typing-indicator');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
 
+    // WebSocket handlers
     chatSocket.onopen = function(e) {
-        console.log('Conexion WebSocket establecida');
+        console.log('✅ Conexión WebSocket establecida');
     };
 
     chatSocket.onmessage = function(e) {
@@ -438,13 +406,14 @@
     };
 
     chatSocket.onclose = function(e) {
-        console.error('Chat socket cerrado inesperadamente');
+        console.error('❌ Chat socket cerrado');
     };
 
     chatSocket.onerror = function(e) {
-        console.error('Error en WebSocket:', e);
+        console.error('❌ Error en WebSocket:', e);
     };
 
+    // Enviar mensaje
     function sendMessage() {
         const message = input.value.trim();
         if (!message) return;
@@ -458,27 +427,53 @@
         if (e.key === 'Enter') sendMessage();
     });
 
-    chatLog.scrollTop = chatLog.scrollHeight;
-    input.focus();
-
+    // Actualizar estado del otro usuario
     function updateUserStatus() {
         fetch(`/chat/user-status/${otherUserId}/`)
             .then(response => response.json())
             .then(data => {
-                const statusDot = document.querySelector('.status-dot');
-                const statusText = document.querySelector('.user-status span:last-child');
-                if (data.is_online) {
+                const isOnline = data.is_online;
+
+                // Actualizar el punto de estado
+                if (isOnline) {
                     statusDot.classList.remove('offline');
-                    statusText.textContent = 'En linea';
+                    statusText.textContent = 'En línea';
                 } else {
                     statusDot.classList.add('offline');
                     statusText.textContent = 'Desconectado';
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('❌ Error actualizando estado:', error));
     }
 
+    // Enviar ping para mantener online al usuario actual
+    function enviarPing() {
+        fetch("/chat/ping/", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .catch(error => console.error('❌ Error en ping:', error));
+    }
+
+    // Inicialización
+    chatLog.scrollTop = chatLog.scrollHeight;
+    input.focus();
+
+    // Actualizar estado cada 2 segundos
     setInterval(updateUserStatus, 2000);
+
+    // Enviar ping cada 2 segundos
+    setInterval(enviarPing, 2000);
+
+    // Ping inmediato al cargar
+    enviarPing();
+
+    // Verificar estado inmediatamente
+    updateUserStatus();
 </script>
 
 {% endblock content %}

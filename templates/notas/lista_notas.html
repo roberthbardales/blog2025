@@ -8,7 +8,7 @@
 <style>
     /* Estilos del perfil */
     .profile-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #007bff;
         border-radius: 15px;
         color: white;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -53,10 +53,10 @@
     /* Header de notas */
     .notes-header {
         background: white;
-        padding: 25px;
+        padding: 10px;
         border-radius: 15px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -64,7 +64,7 @@
 
     .notes-header h1 {
         font-size: 28px;
-        font-weight: 700;
+        font-weight: 500;
         color: #2d3748;
         margin: 0;
     }
@@ -409,7 +409,7 @@
     }
 </style>
 
-<div class="container py-4">
+<div class="container py-4" style="min-height: 600px;">
     <div class="row">
         <!-- Sidebar Perfil -->
         <div class="col-lg-3 mb-4">
@@ -468,12 +468,12 @@
                                 </a>
 
                                 <!-- Botón de eliminar -->
-                                <button type="button"
+                                <!-- <button type="button"
                                         class="btn btn-danger btn-sm"
                                         title="Eliminar"
                                         onclick="confirmarEliminacion('{{ nota.pk }}', '{{ nota.titulo|escapejs }}')">
                                     🗑️
-                                </button>
+                                </button> -->
                             </div>
 
 

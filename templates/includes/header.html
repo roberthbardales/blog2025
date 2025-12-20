@@ -30,20 +30,32 @@
                     <li class="nav-item  mx-1">
                         <a class="nav-link btn btn-outline-success text-white" href="{% url 'chat_home' %}">Chat<span class="sr-only"></span></a>
                     </li>
-                    <li class="nav-item  mx-1">
-                        {% if not user.is_anonymous %}
-                        <a href="{% url 'favoritos_app:perfil' %}" class="nav-link btn btn-warning text-dark">Perfil</a>
+
+                    {% if not user.is_anonymous %}
+                    <li class="nav-item mx-1">
+                            <a href="{% url 'favoritos_app:perfil' %}" class="nav-link p-0">
+                                {% if user.avatar_url %}
+                                <img src="{{ user.avatar_url }}"
+                                alt="Avatar"
+                                style="width:50px; height:50px; border-radius:50%;">
+
+                                {% else %}
+                                        <a class="btn btn-warning text-dark" href="{% url 'favoritos_app:perfil' %}">Perfil</a>
+                                    </li>
+                                {% endif %}
+                            </a>
                         {% else %}
-                        <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">Iniciar Sesion</a>
+                            <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">Iniciar Sesion</a>
+                        </li>
                         {% endif %}
-                    </li>
+
+
                     <li class="nav-item mx-1">
                         {% if not user.is_anonymous %}
                         <a href="{% url 'users_app:user-logout' %}"  class="nav-link btn btn-danger text-white ">Salir</a>
 
                         {% endif %}
                     </li>
-
                         {% if not user.is_anonymous %}
                         <li class="nav-item mx-1">
                             <a class="nav-link text-white" href="{% url 'favoritos_app:perfil' %}">{{user.name}}</a>

@@ -8,7 +8,7 @@
 <style>
     /* Estilos del perfil */
     .profile-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #007bff;
         border-radius: 15px;
         color: white;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -54,21 +54,21 @@
     .form-card {
         background: white;
         border-radius: 15px;
-        padding: 35px;
+        padding: 20px;
         box-shadow: 0 2px 15px rgba(0,0,0,0.08);
     }
 
     .form-card h1 {
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 700;
         color: #2d3748;
-        margin-bottom: 30px;
-        padding-bottom: 15px;
-        border-bottom: 3px solid #667eea;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid #007bff;
     }
 
     .form-group {
-        margin-bottom: 25px;
+        margin-bottom: 5px;
     }
 
     .form-group label {
@@ -85,19 +85,16 @@
         padding: 12px 15px;
         font-size: 15px;
         transition: all 0.3s;
-        width: 100%;
     }
 
     .form-control:focus {
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        outline: none;
     }
 
     textarea.form-control {
-        min-height: 200px;
+        min-height: 150px;
         resize: vertical;
-        font-family: inherit;
     }
 
     /* Selector de colores personalizado */
@@ -117,13 +114,7 @@
         margin-top: 10px;
     }
 
-    .form-check input[type="checkbox"] {
-        width: 22px;
-        height: 22px;
-        margin-right: 10px;
-        cursor: pointer;
-        accent-color: #667eea;
-    }
+
 
     .form-check label {
         cursor: pointer;
@@ -138,12 +129,12 @@
     .form-actions {
         display: flex;
         gap: 15px;
-        margin-top: 35px;
-        padding-top: 25px;
+        margin-top: 5px;
+        padding-top: 15px;
         border-top: 2px solid #f7fafc;
     }
 
-    .btn-submit {
+    /* .btn-submit {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
@@ -175,9 +166,7 @@
         cursor: pointer;
         transition: all 0.3s;
         text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
+        display: inline-block;
     }
 
     .btn-cancel:hover {
@@ -185,7 +174,7 @@
         border-color: #cbd5e0;
         color: #2d3748;
         text-decoration: none;
-    }
+    } */
 
     /* Mensajes de error */
     .errorlist {
@@ -205,6 +194,10 @@
     }
 
     /* Vista previa de colores en el select */
+    #id_color {
+        font-weight: 600;
+    }
+
     #id_color option[value="yellow"] {
         background: #fff8b8;
     }
@@ -250,7 +243,8 @@
     }
 </style>
 
-<div class="container py-4">
+
+<div class="container py-4" style="min-height: 600px;">
     <div class="row">
         <!-- Sidebar Perfil -->
         <div class="col-lg-3 mb-4">
@@ -276,7 +270,7 @@
         </div>
 
         <!-- Contenido Principal -->
-        <div class="col-lg-9">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
             <div class="form-card">
                 <h1>✏️ Editar Nota</h1>
 
@@ -340,20 +334,22 @@
                         </small>
                         {% if form.es_importante.errors %}
                             <ul class="errorlist">
-                                {% for error in form.es_importante.errors %}
+                                {% for error in  form.es_importante.errors %}
                                     <li>{{ error }}</li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
                     </div>
+                    <div class="mt-4">
+                        <div class="text-center">
+                            <a href="{% url 'notas_app:lista-notas' %}" class="btn btn-warning me-2">
+                                <i class="fas fa-times me-2"></i>Cancelar
+                            </a>
 
-                    <div class="form-actions">
-                        <a href="{% url 'notas_app:detalle-nota' object.pk %}" class="btn-cancel">
-                            <i class="fas fa-times"></i> Cancelar
-                        </a>
-                        <button type="submit" class="btn-submit">
-                            <i class="fas fa-save"></i> Guardar Cambios
-                        </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Guardar Nota
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

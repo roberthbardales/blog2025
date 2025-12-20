@@ -47,18 +47,18 @@ class UserRegisterView(FormView):
     success_url = reverse_lazy('users_app:user-login')
 
     def form_valid(self, form):
-        #
-        User.objects.create_user(
+        # Crear el usuario con todos los datos incluyendo avatar
+        user = User.objects.create_user(
             form.cleaned_data['email'],
             form.cleaned_data['password1'],
             full_name=form.cleaned_data['full_name'],
             ocupation=form.cleaned_data['ocupation'],
             genero=form.cleaned_data['genero'],
             date_birth=form.cleaned_data['date_birth'],
+            avatar=form.cleaned_data.get('avatar'),  # ✅ Avatar opcional
         )
         # enviar el codigo al email del user
         return super(UserRegisterView, self).form_valid(form)
-
 
 
 class LoginUser(FormView):
@@ -122,60 +122,63 @@ class UserListView(LoginRequiredMixin,ListView):
     API firebase etc
     """
 
-User = get_user_model()
-
-
 class FirebaseLoginView(APIView):
     """
     🔐 Autenticación con Firebase (Google)
-    - Verifica el token de Firebase.
-    - Crea el usuario si no existe.
-    - Marca is_active, is_staff y ocupation en true/'Usuario'.
-    - Inicia sesión en Django.
+    - Verifica el token de Firebase
+    - Crea el usuario si no existe (incluye avatar_url)
+    - Si ya existe, actualiza avatar_url solo si no tiene avatar manual
     """
-    # No agregamos permission_classes aquí porque el usuario aún no está logueado
 
     def post(self, request):
         id_token = request.data.get("idToken")
         if not id_token:
             return Response({"error": "No se envió token"}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Verificar token Firebase
         try:
             decoded = firebase_auth.verify_id_token(id_token)
         except Exception as e:
             return Response({"error": f"Token inválido: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Datos desde Firebase
         email = decoded.get("email")
         name = decoded.get("name", "")
+        picture = decoded.get("picture")
+
         if not email:
             return Response({"error": "El token no contiene email válido"}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Buscar o crear usuario
         user, created = User.objects.get_or_create(
             email=email,
             defaults={
                 "full_name": name or "",
                 "ocupation": User.USUARIO,
                 "is_active": True,
-                "is_staff": True,
+                "is_staff": False,
+                "avatar_url": picture or "",
             }
         )
 
-        if not user.is_superuser:
-            user.is_active = True
-            user.is_staff = True
-            user.ocupation = User.USUARIO
+        # Si el usuario ya existía
+        if not created:
+            # Solo actualizar avatar_url si NO tiene avatar local
+            if not user.avatar and picture:
+                user.avatar_url = picture
+                user.save()
+        else:
+            # Usuario nuevo → quitar contraseña tradicional
             user.set_unusable_password()
             user.save()
 
+        # Iniciar sesión en Django
         login(request, user, backend='applications.users.backends.FirebaseBackend')
-        # login(request, user, backend='applications.users.backends.FirebaseAuthentication')
-
 
         return Response({
             "message": "✅ Autenticado correctamente",
-            # "email": user.email,
-            # "nuevo_usuario": created,
-            # "superusuario": user.is_superuser
+            "nuevo_usuario": created,
+            "email": user.email,
         }, status=status.HTTP_200_OK)
 
 class FirebaseLogoutView(APIView):

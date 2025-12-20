@@ -36,6 +36,7 @@ class UserRegisterForm(forms.ModelForm):
             'ocupation',
             'genero',
             'date_birth',
+            'avatar',  # ✅ Campo avatar agregado
         )
         widgets = {
             'email': forms.EmailInput(
@@ -67,6 +68,11 @@ class UserRegisterForm(forms.ModelForm):
                     'type': 'date',
                     'class':'form-control'
                 },
+            ),
+            'avatar': forms.FileInput(
+                attrs={
+                    'accept': 'image/*'  # Solo acepta imágenes
+                }
             ),
         }
 
@@ -103,7 +109,6 @@ class LoginForm(forms.Form):
         if not authenticate(email=email, password=password):
             raise forms.ValidationError('Los datos de usuario no son correctos')
 
-
         return self.cleaned_data
 
 
@@ -129,14 +134,3 @@ class UpdatePasswordForm(forms.Form):
             }
         )
     )
-
-    # def clean(self):
-    #     cleaned_data = super(UpdatePasswordForm, self).clean()
-    #     password1 = self.cleaned_data['password1']
-    #     password2 = self.cleaned_data['password2']
-
-    #     if not authenticate(email=password1, password=password2):
-    #         raise forms.ValidationError('La Contraseña Ingresada no es Correecta')
-
-
-    #     return self.cleaned_data

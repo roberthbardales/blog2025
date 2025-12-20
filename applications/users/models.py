@@ -49,6 +49,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         null=True
     )
+    avatar = models.ImageField(
+        'Avatar',
+        upload_to='avatars/',
+        blank=True,
+        null=True
+    )
+    #
+    avatar_url = models.URLField(
+        'URL Avatar Google',
+        blank=True,
+        null=True,
+        help_text='URL de la imagen de Google'
+    )
     #
     firebase_uid = models.CharField(max_length=255, blank=True, null=True, unique=True)
 

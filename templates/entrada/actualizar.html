@@ -9,18 +9,15 @@
 {% block content %}
 {% include "includes/header.html" %}
 
-
-<div class="container text-light " >
-    <!-- <div class="row bg-primary mt-2 mb-2 justify-content-center " > -->
-        <div class="row mb-4 mt-4">
+<div class="container text-light " style="min-height: 600px">
+    <div class="row mt-3">
             <div class="col-2 d-none d-sm-block d-md-none d-lg-block">
-
             </div>
         <div class="col-lg-8 bg-primary">
-    <form class=" mt-2 mb-2 "  method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <form class=""  method="POST" enctype="multipart/form-data">{% csrf_token %}
         <div class="col-12 mt-4 mb-4 ">
             <p class="h3 text-center">Modificar Post</p>
-        </div>   
+        </div>
             <div class="form-row  mb-4 justify-content-center text-light">
                 <div class="col-2">
                     <p>In Home:</p>
@@ -38,11 +35,12 @@
                     {{form.tag}}
                 </div>
             </div>
-            
+
             <div class="form-row justify-content-center">
                 <div class="col-6">
                     <p>usuario</p>
-                    {{form.user}}
+                    <input type="text" value="{{ user.email }}" class="form-control form-control-sm" readonly>
+
                 </div>
                 <div class="col-6">
                     <p>categoria</p>
@@ -58,6 +56,9 @@
                     </div>
                 <div class="col-12">
                     <h5>Contenido</h5>
+                    <button type="button" id="quick-code-btn" class="btn btn-sm btn-warning mb-2" title="Selecciona texto y haz clic aquí (o usa Ctrl+K)">
+                        <i class="fa fa-code"></i> 📝 Convertir a Código
+                    </button>
                     {{form.media}}
                     {{form.content}}
                 </div>
@@ -74,10 +75,68 @@
     </form>
     </div>
     <div class="col-2 d-none d-sm-block d-md-none d-lg-block">
-            
+
     </div>
     </div>
 </div>
 
+<script>
+    // Script para convertir texto seleccionado en code snippet con Ctrl+K
+    document.addEventListener('DOMContentLoaded', function() {
+        // Esperar a que CKEditor esté completamente cargado
+        if (typeof CKEDITOR !== 'undefined') {
+            CKEDITOR.on('instanceReady', function(evt) {
+                var editor = evt.editor;
 
+                // Verificar si el editor tiene el plugin codesnippet
+                if (editor.plugins.codesnippet) {
+
+                    // Función para convertir texto a code snippet
+                    function convertToCodeSnippet() {
+                        var selection = editor.getSelection();
+                        var selectedText = selection.getSelectedText();
+
+                        if (selectedText && selectedText.trim() !== '') {
+                            // Escapar caracteres especiales HTML
+                            var escapedText = selectedText
+                                .replace(/&/g, '&amp;')
+                                .replace(/</g, '&lt;')
+                                .replace(/>/g, '&gt;')
+                                .replace(/"/g, '&quot;')
+                                .replace(/'/g, '&#39;');
+
+                            // Crear el code snippet
+                            var codeSnippet = '<pre><code class="language-python">' + escapedText + '</code></pre>';
+
+                            // Eliminar la selección actual e insertar el code snippet
+
+                            editor.insertHtml(codeSnippet);
+
+                            console.log('✅ Code snippet insertado');
+                        } else {
+                            // Si no hay texto seleccionado, abrir el diálogo normal
+                            editor.execCommand('codesnippet');
+                        }
+                    }
+
+                    // Agregar comando personalizado
+                    editor.addCommand('quickCodeSnippet', {
+                        exec: convertToCodeSnippet
+                    });
+
+                    // Asignar atajo de teclado: Ctrl+K
+                    editor.setKeystroke(CKEDITOR.CTRL + 75, 'quickCodeSnippet');
+
+                    // Conectar el botón HTML con la función
+                    document.getElementById('quick-code-btn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        convertToCodeSnippet();
+                    });
+
+                    console.log('✅ Atajo Ctrl+K y botón HTML configurado');
+                }
+            });
+        }
+    });
+    </script>
 {% endblock content %}

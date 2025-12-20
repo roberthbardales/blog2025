@@ -52,14 +52,14 @@ class EntradaForm(forms.ModelForm):
             ),
             'tag':forms.SelectMultiple(
                 attrs={
-
                     'class':'form-control form-control-sm w-85',
+                    'size': '3',
                 }
             ),
             'resume':forms.Textarea(
                 attrs={
                     'class':'form-control form-control-md',
-                    'rows':'2',
+                    'rows':'1',
                 }
             ),
 
@@ -69,6 +69,8 @@ class EntradaForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Quitar el "---------" del select
         self.fields['category'].empty_label = None
+
+
 
 
 class CommentForm(forms.ModelForm):

@@ -6606,3 +6606,5785 @@ Cargando: Sí
 
 ================================================================================
 
+
+================================================================================
+REGISTRO #20260105165509775
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 16:55:09
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105165955991
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 16:59:55
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105170015855
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:00:15
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105173205507
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:32:05
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174010597
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:40:10
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174020378
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:40:20
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174036014
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:40:36
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174153562
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:41:53
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174231950
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:42:31
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174246623
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:42:46
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174256815
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:42:56
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174437474
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:44:37
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174530991
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:45:30
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174659161
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:46:59
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174751528
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:47:51
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174752723
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:47:52
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174753824
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:47:53
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174757421
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:47:57
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174819921
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:48:19
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174848123
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:48:48
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174930477
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:49:30
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105174953958
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:49:53
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175000551
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:50:00
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175050988
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:50:50
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175105341
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:05
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175107793
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:07
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175109457
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:09
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175122369
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:22
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175128736
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:28
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175137913
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:37
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175150075
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:50
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175154876
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:54
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175158694
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:51:58
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175230638
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:52:30
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175836535
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:58:36
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175849182
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:58:49
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175858471
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:58:58
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175919142
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:59:19
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175929637
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:59:29
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105175930999
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 17:59:30
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180005244
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:00:05
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180022379
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:00:22
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180043044
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:00:43
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180053767
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:00:53
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180129526
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:01:29
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180134595
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:01:34
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180139114
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:01:39
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180145764
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:01:45
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105180215538
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:02:15
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 3g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181008346
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:10:08
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181036217
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:10:36
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181046729
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:10:46
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181054747
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:10:54
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181123776
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:11:23
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181128528
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:11:28
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181132112
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:11:32
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181153184
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:11:53
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181208217
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:12:08
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181213111
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:12:13
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181358525
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:13:58
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181823978
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:18:23
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181841170
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:18:41
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181847236
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:18:47
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181854471
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:18:54
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181857650
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:18:57
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181904668
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:19:04
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181912705
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:19:12
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181919740
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:19:19
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181930004
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:19:30
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181939336
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:19:39
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181944619
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:19:44
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105181956113
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:19:56
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182005062
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:20:05
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182011699
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:20:11
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182019562
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:20:19
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182032167
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:20:32
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182128090
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:21:28
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182132787
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:21:32
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182144748
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:21:44
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182152605
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:21:52
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182205558
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:22:05
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182214998
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:22:14
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182218876
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:22:18
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182224557
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:22:24
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182232223
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:22:32
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182237530
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:22:37
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182306885
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:23:06
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182330483
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:23:30
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182353402
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:23:53
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182410230
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:24:10
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182418534
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:24:18
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182422513
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:24:22
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182430419
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:24:30
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182446069
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:24:46
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182458969
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:24:58
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182612966
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:26:12
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105182614844
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:26:14
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+
+
+================================================================================
+REGISTRO #20260105184649334
+================================================================================
+
+--- FECHA Y HORA ---
+Timestamp: 2026-01-05 18:46:49
+
+--- DATOS DE RED ---
+IP: 127.0.0.1
+Host: 127.0.0.1:8000
+Protocolo: HTTP
+
+--- SISTEMA OPERATIVO ---
+Plataforma: Win32
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+
+--- NAVEGADOR ---
+Nombre: Chrome
+Versión: 143.0
+Motor: Gecko
+Cookies Habilitadas: Sí
+Do Not Track: No especificado
+
+--- PANTALLA ---
+Resolución: 1600x900
+Resolución Disponible: 1600x860
+Profundidad de Color: 24 bits
+Orientación: landscape-primary
+Relación de Píxeles: 1
+
+--- VENTANA DEL NAVEGADOR ---
+Tamaño de Ventana: 1600x860
+Viewport: 1600x739
+
+--- HARDWARE ---
+Núcleos de CPU: 4
+Memoria RAM: 8 GB
+GPU: ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)
+Touchscreen: No
+Conexión: 4g
+
+--- UBICACIÓN Y ZONA HORARIA ---
+Zona Horaria: America/Lima
+Idioma del Sistema: es-419
+Idiomas Preferidos: es-419,es;q=0.9
+
+--- CARACTERÍSTICAS DEL NAVEGADOR ---
+JavaScript: Habilitado
+Local Storage: Disponible
+Session Storage: Disponible
+IndexedDB: Disponible
+
+--- BATERÍA (si está disponible) ---
+Nivel de Batería: 100%
+Cargando: Sí
+
+================================================================================
+

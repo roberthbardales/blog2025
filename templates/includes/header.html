@@ -33,21 +33,25 @@
 
                     {% if not user.is_anonymous %}
                     <li class="nav-item mx-1">
-                            <a href="{% url 'favoritos_app:perfil' %}" class="nav-link p-0">
-                                {% if user.avatar_url %}
-                                <img src="{{ user.avatar_url }}"
-                                alt="Avatar"
-                                style="width:50px; height:50px; border-radius:50%;">
-
-                                {% else %}
-                                        <a class="btn btn-warning text-dark" href="{% url 'favoritos_app:perfil' %}">Perfil</a>
-                                    </li>
-                                {% endif %}
-                            </a>
-                        {% else %}
-                            <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">Iniciar Sesion</a>
-                        </li>
-                        {% endif %}
+                        <a href="{% url 'favoritos_app:perfil' %}" class="nav-link p-0">
+                            {% if user.avatar %}
+                                <img src="{{ user.avatar.url }}" alt="Avatar"
+                                     style="width:50px; height:50px; border-radius:50%;">
+                            {% elif user.avatar_url %}
+                                <img src="{{ user.avatar_url }}" alt="Avatar"
+                                     style="width:50px; height:50px; border-radius:50%;">
+                            {% else %}
+                                <span class="btn btn-warning text-dark">Perfil</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item mx-1">
+                        <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">
+                            Iniciar Sesión
+                        </a>
+                    </li>
+                {% endif %}
 
 
                     <li class="nav-item mx-1">

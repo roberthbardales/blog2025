@@ -13,6 +13,9 @@ __pycache__/
 *.pyc
 *.log
 
+# Archivos subidos por usuarios
+media/
+
 # Archivos estáticos recolectados
 staticfiles/
 

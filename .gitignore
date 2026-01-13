@@ -25,3 +25,6 @@ staticfiles/
 # Archivos del sistema
 .DS_Store
 Thumbs.db
+
+# Archivos temporales
+visitas_pc.txt

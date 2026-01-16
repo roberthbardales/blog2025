@@ -1,0 +1,339 @@
+<!-- templates/visitor_logs.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Visitantes - Panel Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #666;
+        }
+
+        .user-info strong {
+            color: #667eea;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .stat-card .subtitle {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .top-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .top-section h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .item-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            align-items: center;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item:hover {
+            background: white;
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .item-count {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px 10px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .ip-cell {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .coords {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .path-cell {
+            font-size: 0.9em;
+            color: #666;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            border: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Panel de Visitantes</h1>
+            <div class="user-info">
+                👤 <strong>{{ request.user.get_full_name }}</strong> (Administrador)
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-primary" onclick="location.reload()">
+                🔄 Actualizar Datos
+            </button>
+            <a href="{% url 'users_app:user-logout' %}" class="btn btn-secondary">
+                🚪 Salir
+            </a>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total de Visitas</h3>
+                <div class="number">{{ total_visits }}</div>
+                <div class="subtitle">Desde el inicio</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>IPs Únicas</h3>
+                <div class="number">{{ unique_ips }}</div>
+                <div class="subtitle">Visitantes diferentes</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Últimas 24 horas</h3>
+                <div class="number">{{ visits_24h }}</div>
+                <div class="subtitle">Visitas recientes</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Última Semana</h3>
+                <div class="number">{{ visits_week }}</div>
+                <div class="subtitle">7 días</div>
+            </div>
+        </div>
+
+
+        <!-- Tabla de visitas -->
+        <h2 style="margin-bottom: 15px;">📋 Registro Detallado (Últimas 50 visitas)</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>IP Address</th>
+                        <th>Fecha y Hora</th>
+                        <th>País</th>
+                        <th>Ciudad</th>
+                        <th>Región</th>
+                        <th>Coordenadas</th>
+                        <th>Página Visitada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td class="ip-cell">{{ log.ip_location.ip_address }}</td>
+                        <td>{{ log.timestamp|date:"d/m/Y H:i:s" }}</td>
+                        <td>{{ log.ip_location.country|default:"N/A" }}</td>
+                        <td>{{ log.ip_location.city|default:"N/A" }}</td>
+                        <td>{{ log.ip_location.region|default:"N/A" }}</td>
+                        <td class="coords">
+                            {% if log.ip_location.latitude and log.ip_location.longitude %}
+                                {{ log.ip_location.latitude|floatformat:4 }},
+                                {{ log.ip_location.longitude|floatformat:4 }}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                        <td class="path-cell" title="{{ log.path }}">
+                            {{ log.path|default:"/" }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="empty-state">
+                            <p style="font-size: 1.2em;">🔍 No hay registros aún</p>
+                            <p>Las visitas comenzarán a registrarse automáticamente</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -14,6 +14,29 @@ from django.views.generic import (
     CreateView,
 )
 
+
+from django.shortcuts import render
+from django.db.models import Count
+from datetime import timedelta
+from django.utils import timezone
+
+from .models import VisitorLog, IPLocation
+from applications.users.mixins import AdministradorPermisoMixin  # Ajusta la ruta según tu estructura
+from django.views.generic import TemplateView
+
+
+#
+from django.views import View
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+import os
+from datetime import datetime
+import json
+#
+
+
 #apps de entrada
 from applications.entrada.models import Entry
 
@@ -99,169 +122,62 @@ class ContactCreateView2(CreateView):
 
         return super().form_valid(form)  # en lugar de redirect()
 
-# como en los  viejos tiempos en la u
+#
+# views.py
 
 
-from django.views import View
-from django.http import JsonResponse
-from django.shortcuts import render
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-import os
-from datetime import datetime
-import json
-
-
-@method_decorator(csrf_exempt, name='dispatch')
-class VisitaView(View):
+class VisitorLogsView(AdministradorPermisoMixin, TemplateView):
     """
-    Vista para capturar datos (POST) y visualizar registros (GET)
+    Vista para ver los logs de visitantes
+    Solo accesible por ADMINISTRADORES
     """
-    archivo_path = 'visitas_pc.txt'
+    template_name = 'home/visitor_logs.html'
 
-    def get(self, request):
-        """Muestra todos los registros guardados"""
-        registros = []
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-        # Leer el archivo si existe
-        if os.path.exists(self.archivo_path):
-            try:
-                with open(self.archivo_path, 'r', encoding='utf-8') as archivo:
-                    contenido = archivo.read()
-                    # Dividir por separadores
-                    registros_raw = contenido.split('='*80)
-                    # Limpiar y filtrar registros vacíos
-                    registros = [r.strip() for r in registros_raw if r.strip()]
-            except Exception as e:
-                registros = [f"Error al leer archivo: {str(e)}"]
-        else:
-            registros = ["No hay registros aún."]
+        # Obtener todas las visitas (últimas 200)
+        logs = VisitorLog.objects.select_related('ip_location').all()[:50]
 
-        return render(request, 'home/visita.html', {
-            'registros': registros,
-            'total': len(registros)
+        # Estadísticas
+        total_visits = VisitorLog.objects.count()
+        unique_ips = IPLocation.objects.count()
+
+        # Visitas de las últimas 24 horas
+        last_24h = timezone.now() - timedelta(hours=24)
+        visits_24h = VisitorLog.objects.filter(timestamp__gte=last_24h).count()
+
+        # Visitas de la última semana
+        last_week = timezone.now() - timedelta(days=7)
+        visits_week = VisitorLog.objects.filter(timestamp__gte=last_week).count()
+
+        # Top 10 países
+        top_countries = (
+            IPLocation.objects
+            .values('country')
+            .annotate(count=Count('visits'))
+            .order_by('-count')[:10]
+        )
+
+        # Top 10 ciudades
+        top_cities = (
+            IPLocation.objects
+            .exclude(city='')
+            .values('city', 'country')
+            .annotate(count=Count('visits'))
+            .order_by('-count')[:10]
+        )
+
+        context.update({
+            'logs': logs,
+            'total_visits': total_visits,
+            'unique_ips': unique_ips,
+            'visits_24h': visits_24h,
+            'visits_week': visits_week,
+            'top_countries': top_countries,
+            'top_cities': top_cities,
         })
 
-    def post(self, request):
-        """Recibe y guarda los datos capturados por JavaScript"""
-        try:
-            # Datos enviados desde el navegador
-            datos_cliente = json.loads(request.body)
+        return context
 
-            # Combinar con datos del servidor
-            datos_completos = {
-                'servidor': self._obtener_datos_servidor(request),
-                'cliente': datos_cliente
-            }
-
-            # Formatear y guardar
-            registro = self._formatear_registro(datos_completos)
-            self._guardar_en_archivo(registro)
-
-            return JsonResponse({
-                'status': 'success',
-                'mensaje': 'Datos registrados correctamente'
-            })
-        except Exception as e:
-            return JsonResponse({
-                'status': 'error',
-                'mensaje': f'Error: {str(e)}'
-            }, status=500)
-
-    def _obtener_datos_servidor(self, request):
-        """Datos que Django puede obtener del servidor"""
-        return {
-            'ip': self._obtener_ip_cliente(request),
-            'user_agent': request.META.get('HTTP_USER_AGENT', 'Desconocido'),
-            'idioma': request.META.get('HTTP_ACCEPT_LANGUAGE', 'Desconocido'),
-            'encoding': request.META.get('HTTP_ACCEPT_ENCODING', 'Desconocido'),
-            'referer': request.META.get('HTTP_REFERER', 'Directo'),
-            'metodo': request.method,
-            'ruta': request.path,
-            'host': request.META.get('HTTP_HOST', 'Desconocido'),
-            'protocolo': request.scheme,
-            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        }
-
-    def _obtener_ip_cliente(self, request):
-        """Obtiene la IP real del cliente"""
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0].strip()
-        else:
-            ip = request.META.get('REMOTE_ADDR', 'Desconocida')
-        return ip
-
-    def _formatear_registro(self, datos):
-        """Formatea los datos en un registro legible"""
-        s = datos['servidor']
-        c = datos['cliente']
-
-        # Generar ID único basado en timestamp
-        timestamp_id = datetime.now().strftime('%Y%m%d%H%M%S%f')[:-3]
-
-        return f"""
-{'='*80}
-REGISTRO #{timestamp_id}
-{'='*80}
-
---- FECHA Y HORA ---
-Timestamp: {s['timestamp']}
-
---- DATOS DE RED ---
-IP: {s['ip']}
-Host: {s['host']}
-Protocolo: {s['protocolo'].upper()}
-
---- SISTEMA OPERATIVO ---
-Plataforma: {c.get('plataforma', 'N/A')}
-User Agent: {s['user_agent']}
-
---- NAVEGADOR ---
-Nombre: {c.get('navegador', {}).get('nombre', 'N/A')}
-Versión: {c.get('navegador', {}).get('version', 'N/A')}
-Motor: {c.get('navegador', {}).get('motor', 'N/A')}
-Cookies Habilitadas: {c.get('cookies_habilitadas', 'N/A')}
-Do Not Track: {c.get('do_not_track', 'N/A')}
-
---- PANTALLA ---
-Resolución: {c.get('pantalla', {}).get('resolucion', 'N/A')}
-Resolución Disponible: {c.get('pantalla', {}).get('resolucion_disponible', 'N/A')}
-Profundidad de Color: {c.get('pantalla', {}).get('profundidad_color', 'N/A')} bits
-Orientación: {c.get('pantalla', {}).get('orientacion', 'N/A')}
-Relación de Píxeles: {c.get('pantalla', {}).get('pixel_ratio', 'N/A')}
-
---- VENTANA DEL NAVEGADOR ---
-Tamaño de Ventana: {c.get('ventana', {}).get('tamanio', 'N/A')}
-Viewport: {c.get('ventana', {}).get('viewport', 'N/A')}
-
---- HARDWARE ---
-Núcleos de CPU: {c.get('hardware', {}).get('cpu_nucleos', 'N/A')}
-Memoria RAM: {c.get('hardware', {}).get('memoria', 'N/A')}
-GPU: {c.get('hardware', {}).get('gpu', 'N/A')}
-Touchscreen: {c.get('hardware', {}).get('touchscreen', 'N/A')}
-Conexión: {c.get('hardware', {}).get('tipo_conexion', 'N/A')}
-
---- UBICACIÓN Y ZONA HORARIA ---
-Zona Horaria: {c.get('zona_horaria', 'N/A')}
-Idioma del Sistema: {c.get('idioma_sistema', 'N/A')}
-Idiomas Preferidos: {s['idioma']}
-
---- CARACTERÍSTICAS DEL NAVEGADOR ---
-JavaScript: Habilitado
-Local Storage: {c.get('almacenamiento', {}).get('localStorage', 'N/A')}
-Session Storage: {c.get('almacenamiento', {}).get('sessionStorage', 'N/A')}
-IndexedDB: {c.get('almacenamiento', {}).get('indexedDB', 'N/A')}
-
---- BATERÍA (si está disponible) ---
-Nivel de Batería: {c.get('bateria', {}).get('nivel', 'N/A')}
-Cargando: {c.get('bateria', {}).get('cargando', 'N/A')}
-
-{'='*80}
-
-"""
-
-    def _guardar_en_archivo(self, registro):
-        """Guarda el registro en el archivo"""
-        with open(self.archivo_path, 'a', encoding='utf-8') as archivo:
-            archivo.write(registro)
+# como en los  viejos tiempos en la u

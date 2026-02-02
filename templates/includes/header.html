@@ -73,9 +73,19 @@
                     </ul>
 
                     <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="form-inline my-2 my-lg-0">{% csrf_token %}
-                        <input class="form-control mr-sm-2" id="kword_general" name="kword_general" type="search" placeholder="Busqueda General" aria-label="Search" value="{{request.GET.kword_general}}">
+                        <input class="form-control mr-sm-2" id="kword_general" name="kword_general" type="search" placeholder="Busqueda... " aria-label="Search" value="{{request.GET.kword_general}}" style="max-width: 140px;">
                         <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
+
+                    <!-- Widget del clima -->
+                    <div class="ml-3 text-white d-flex align-items-center">
+                        <!-- <span class="badge badge-info mr-2 mb-1" style="font-size: 0.95rem; padding: 0.5rem 0.75rem;">
+                            🌐 {{ mi_ip }}
+                        </span> -->
+                        <span class="badge text-light" style="font-size: 1.1rem;">
+                            🌡️ {{ temperatura }}°C
+                        </span>
+                    </div>
 
                 </div>
             </div>

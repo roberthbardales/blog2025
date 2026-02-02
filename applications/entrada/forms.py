@@ -1,76 +1,77 @@
+from django import forms
 
-
-from django  import forms
-
-from .models import Entry,Comment
+from .models import Entry, Comment
 from applications.users.models import User
 
 class EntradaForm(forms.ModelForm):
+    # Definir category explícitamente para quitar el "-------"
+    category = forms.ModelChoiceField(
+        queryset=None,  # Se establece en __init__
+        empty_label=None,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control form-control-sm',
+            }
+        )
+    )
 
     class Meta:
         model = Entry
-        #fields =(__all_)
-        fields =(
-        # 'user',
-        'category',
-        'tag',
-        'title',
-        'resume',
-        'content',
-        'public',
-        'image',
-        'portada',
-        'in_home',
+        fields = (
+            'category',
+            'tag',
+            'title',
+            'resume',
+            'content',
+            'public',
+            'image',
+            'portada',
+            'in_home',
         )
-        widgets={
-
-            'user':forms.Select(
+        widgets = {
+            'user': forms.Select(
                 attrs={
-                'class':'form-control form-control-sm',
-
+                    'class': 'form-control form-control-sm',
                 }
             ),
-            'category':forms.Select(
+            'public': forms.CheckboxInput(
                 attrs={
-                'class':'form-control form-control-sm',
+                    'checked': '',
                 }
             ),
-            'public':forms.CheckboxInput(
+            'in_home': forms.CheckboxInput(
                 attrs={
-                    'checked':'',
+                    'checked': '',
                 }
             ),
-            'in_home':forms.CheckboxInput(
+            'title': forms.TextInput(
                 attrs={
-                    'checked':'',
+                    'class': 'form-control form-control-sm',
                 }
             ),
-            'title':forms.TextInput(
+            'tag': forms.SelectMultiple(
                 attrs={
-                    'class':'form-control form-control-sm',
-                }
-            ),
-            'tag':forms.SelectMultiple(
-                attrs={
-                    'class':'form-control form-control-sm w-85',
+                    'class': 'form-control form-control-sm w-85',
                     'size': '3',
                 }
             ),
-            'resume':forms.Textarea(
+            'resume': forms.Textarea(
                 attrs={
-                    'class':'form-control form-control-md',
-                    'rows':'1',
+                    'class': 'form-control form-control-md',
+                    'rows': '2',
                 }
             ),
-
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Quitar el "---------" del select
-        self.fields['category'].empty_label = None
+        # Establecer el queryset para category
+        from applications.entrada.models import Category  # Ajusta el import según tu estructura
+        self.fields['category'].queryset = Category.objects.all()
 
-
+        # Seleccionar el primer tag por defecto en posts nuevos
+        if not self.instance.pk and self.fields['tag'].queryset.exists():
+            self.initial['tag'] = [self.fields['tag'].queryset.first().pk]
 
 
 class CommentForm(forms.ModelForm):
@@ -79,7 +80,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('content', 'parent_id')  # agregamos parent_id
+        fields = ('content', 'parent_id')
         widgets = {
             'content': forms.Textarea(
                 attrs={
@@ -89,4 +90,3 @@ class CommentForm(forms.ModelForm):
                 }
             )
         }
-

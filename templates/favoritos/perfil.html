@@ -119,15 +119,20 @@
             <div class="card profile-card mb-3">
                 <div class="profile-info">
                     <div class="text-center">
+                        <div class="image">
+                                {% if user.avatar %}
+                                    <img src="{{ user.avatar.url }}" alt="Avatar"
+                                         style="width:100px; height:100px; border:10%; border: 1px solid white;">
+                                {% elif user.avatar_url %}
+                                    <img src="{{ user.avatar_url }}" alt="Avatar"
+                                         style="width:100px; height:100px; border:10%; border: 1px solid white;">
+                                {% else %}
+                                    <span class="btn btn-warning text-dark">Perfil</span>
+                                {% endif %}
 
-                        <div class="avatar-initials">
-                            {% if user.full_name %}
-                            {{ user.full_name|slice:":1"|upper }}
-                            {% endif %}
                         </div>
                     </div>
-                    <h5 class="text-center">{{ user.full_name }}</h5>
-                    <hr class="bg-white">
+                    <h5 class="text-center mt-2">{{ user.full_name }}</h5>
                     <a class="btn btn-success btn-block text-dark" href="{% url 'entrada_app:view_profile' user.id %}">
                         <i class="fas fa-key mr-2"></i>Ver Perfil
                     </a>

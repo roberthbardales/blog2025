@@ -1,3 +1,5 @@
+# applications/home/processors.py
+import requests
 from applications.home.models import Home
 
 def home_contact(request):
@@ -13,3 +15,61 @@ def home_contact(request):
         'phone': phone,
         'correo': correo,
     }
+
+# ip y clima
+
+def obtener_ip(request):
+    """Context processor para obtener la IP pública"""
+
+    context = {
+        "mi_ip": "No disponible",
+        "ciudad": "Lima",
+        "pais": "PE",
+    }
+
+    try:
+        url_ip = "https://ipapi.co/json/"
+        response_ip = requests.get(url_ip, timeout=5)
+        response_ip.raise_for_status()
+        data_ip = response_ip.json()
+
+        context["mi_ip"] = data_ip.get("ip", "No disponible")
+        context["ciudad"] = data_ip.get("city", "Lima")
+        context["pais"] = data_ip.get("country_code", "PE")
+
+    except requests.RequestException as e:
+        print(f"Error obteniendo IP: {e}")
+
+    return context
+
+
+def obtener_clima(request):
+    """Context processor para obtener el clima actual"""
+
+    context = {
+        "temperatura": "N/A",
+        "viento": "N/A",
+        "direccion_viento": "N/A",
+    }
+
+    try:
+        url_clima = (
+            "https://api.open-meteo.com/v1/forecast"
+            "?latitude=-12.0464"
+            "&longitude=-77.0428"
+            "&current_weather=true"
+        )
+        response_clima = requests.get(url_clima, timeout=5)
+        response_clima.raise_for_status()
+        data_clima = response_clima.json()
+
+        clima_actual = data_clima.get("current_weather", {})
+
+        context["temperatura"] = clima_actual.get("temperature", "N/A")
+        context["viento"] = clima_actual.get("windspeed", "N/A")
+        context["direccion_viento"] = clima_actual.get("winddirection", "N/A")
+
+    except requests.RequestException as e:
+        print(f"Error obteniendo clima: {e}")
+
+    return context

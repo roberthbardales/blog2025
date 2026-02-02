@@ -35,7 +35,8 @@ import os
 from datetime import datetime
 import json
 #
-
+#clima
+import requests
 
 #apps de entrada
 from applications.entrada.models import Entry
@@ -180,4 +181,3 @@ class VisitorLogsView(AdministradorPermisoMixin, TemplateView):
 
         return context
 
-# como en los  viejos tiempos en la u

@@ -89,6 +89,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'applications.procesors.home_contact',
+                'applications.procesors.obtener_ip',
+                'applications.procesors.obtener_clima',
             ],
         },
     },
@@ -169,7 +171,7 @@ CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery
 CKEDITOR_CONFIGS = {
     'default': {
         'width': 'full',
-        'height': '350',
+        'height': '250',
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
@@ -183,12 +185,13 @@ CKEDITOR_CONFIGS = {
     'special': {
         'toolbar': 'Special',
         'width': '100%',
-        'height': '350',
+        'height': '450',
         'toolbar_Special': [
             ['Bold', 'Italic', 'Underline'],
             ['NumberedList', 'BulletedList', '-', 'OutIdent', 'Ident', '-', 'JustifyLeft', 'JustifyRight', 'JustifyCenter'],
             ['TextColor', 'Format', 'FontSize', 'Link'],
-            ['Image', 'Smiley', 'Iframe'],
+            # ['Image', 'Smiley', 'Iframe',],
+            ['Image', 'Iframe',],
             ['RemoveFormat', 'Source'],
             ['CodeSnippet', 'QuickCode'],  # ← Agrega 'QuickCode' aquí
         ],

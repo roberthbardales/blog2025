@@ -1,0 +1,158 @@
+{% extends "entrada/base_entrada.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+    <div class="container_clima">
+    <div class="weather-container">
+        <div class="weather-header">
+            <h2>🌦 Clima actual en Lima</h2>
+            <p class="weather-timestamp">Última actualización: {{ hora|default:"--:--" }}</p>
+        </div>
+
+        {% if temperatura %}
+            <div class="weather-grid">
+                <div class="weather-card">
+                    <div class="weather-icon">🌡</div>
+                    <div class="weather-info">
+                        <span class="weather-label">Temperatura</span>
+                        <span class="weather-value">{{ temperatura }}°C</span>
+                    </div>
+                </div>
+
+                <div class="weather-card">
+                    <div class="weather-icon">💨</div>
+                    <div class="weather-info">
+                        <span class="weather-label">Viento</span>
+                        <span class="weather-value">{{ viento }} km/h</span>
+                    </div>
+                </div>
+
+            </div>
+        {% else %}
+            <div class="weather-error">
+                <p>⚠️ No se pudo obtener la información del clima.</p>
+                <p class="error-hint">Por favor, intenta recargar la página.</p>
+            </div>
+        {% endif %}
+    </div>
+    <div>
+
+    </div>
+</div>
+
+
+<style>
+    .container_clima {
+        min-height: 550px;
+    }
+
+    .weather-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .weather-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .weather-header h2 {
+        margin: 0;
+        font-size: 2rem;
+        color: #2c3e50;
+    }
+
+    .weather-timestamp {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+
+    .weather-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .weather-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: white;
+    }
+
+    .weather-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .weather-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .weather-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .weather-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .weather-value {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .weather-error {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        color: #856404;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .weather-error p {
+        margin: 0.5rem 0;
+    }
+
+    .error-hint {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+        .weather-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .weather-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .weather-value {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+{% endblock content %}

@@ -18,14 +18,20 @@ def home_contact(request):
 
 # ip y clima
 
+from django.conf import settings
+
 def obtener_ip(request):
-    """Context processor para obtener la IP pública"""
+    """Context processor para obtener la IP"""
 
     context = {
-        "mi_ip": "No disponible",
+        "mi_ip": request.META.get("REMOTE_ADDR", "No disponible"),
         "ciudad": "Lima",
         "pais": "PE",
     }
+
+    # ❌ NO llamar ipapi en desarrollo
+    if settings.DEBUG:
+        return context
 
     try:
         url_ip = "https://ipapi.co/json/"
@@ -33,14 +39,15 @@ def obtener_ip(request):
         response_ip.raise_for_status()
         data_ip = response_ip.json()
 
-        context["mi_ip"] = data_ip.get("ip", "No disponible")
+        context["mi_ip"] = data_ip.get("ip", context["mi_ip"])
         context["ciudad"] = data_ip.get("city", "Lima")
         context["pais"] = data_ip.get("country_code", "PE")
 
-    except requests.RequestException as e:
-        print(f"Error obteniendo IP: {e}")
+    except requests.RequestException:
+        pass  # no imprimir nada
 
     return context
+
 
 
 def obtener_clima(request):

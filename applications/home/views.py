@@ -35,6 +35,15 @@ import os
 from datetime import datetime
 import json
 #
+
+import json
+from django.views import View
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+
+
 #clima
 import requests
 
@@ -181,3 +190,32 @@ class VisitorLogsView(AdministradorPermisoMixin, TemplateView):
 
         return context
 
+
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class VisitorCreateView(View):
+    """
+    Endpoint público para registrar visitas vía fetch/AJAX
+    """
+
+    def post(self, request, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse(
+                {'error': 'JSON inválido'},
+                status=400
+            )
+
+        # Ejemplo de datos recibidos
+        # page, user_agent, referrer, etc.
+        # print("VISITA:", data)
+
+        # IP simple (sin ipapi)
+        ip = request.META.get('REMOTE_ADDR')
+
+        # Aquí luego puedes guardar en DB
+        # VisitorLog.objects.create(ip=ip, ...)
+
+        return JsonResponse({'ok': True})

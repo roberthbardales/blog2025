@@ -34,13 +34,18 @@ urlpatterns = [
     ),
 
     path(
+        'visit/',
+        views.VisitorCreateView.as_view(),
+        name='visit_create'
+    ),
+
+
+    path(
         'xxvisitaxx/',
         views.VisitorLogsView.as_view(),
         name='visitor_logs'
     ),
 
-    #old times
-    # path("visita/", views.VisitaView.as_view(), name="visita"),
-    # path('xvisitax/', views.VisitaView.as_view(), name='visita'),
+
 
 ]

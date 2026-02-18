@@ -13,6 +13,9 @@ urlpatterns = [
     # path('api/users/', include('users.urls')),
     re_path('', include('applications.home.urls')),
     re_path('', include('applications.entrada.urls')),
+    #api
+    re_path('api/', include('applications.entrada.api_urls')),
+
     re_path('', include('applications.favoritos.urls')),
     re_path('chat/', include('applications.chat.urls')),
     re_path('', include('applications.notas.urls')),

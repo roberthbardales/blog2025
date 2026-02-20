@@ -3,6 +3,7 @@ import environ
 from unipath import Path as UniPath
 import firebase_admin
 from firebase_admin import credentials
+from datetime import timedelta #para jwt
 
 # -------------------------------
 # BASE_DIR
@@ -53,10 +54,43 @@ THIRD_PARTY_APPS = (
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
+    'rest_framework_simplejwt',
     'channels',
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+# -------------------------------
+# Django REST Framework
+# -------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+}
+
+# -------------------------------
+# Simple JWT
+# -------------------------------
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+
+# from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 # -------------------------------
 # MIDDLEWARE

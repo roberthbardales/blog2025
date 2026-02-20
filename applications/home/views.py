@@ -147,7 +147,7 @@ class VisitorLogsView(AdministradorPermisoMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         # Obtener todas las visitas (últimas 200)
-        logs = VisitorLog.objects.select_related('ip_location').all()[:50]
+        logs = VisitorLog.objects.select_related('ip_location').all()[:200]
 
         # Estadísticas
         total_visits = VisitorLog.objects.count()

@@ -4,19 +4,16 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 # DRF imports
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth import authenticate, login,get_user_model
+from django.contrib.auth import authenticate, login, get_user_model
 from firebase_admin import auth as firebase_auth
-from .mixins import UsuarioAPIMixin,AdministradorAPIMixin
-# from .permissions import EsUsuario
-
-
-
+from .mixins import UsuarioAPIMixin, AdministradorAPIMixin
 
 from django.views.generic import (
     View,
@@ -24,20 +21,14 @@ from django.views.generic import (
     CreateView,
     ListView,
 )
-
-from django.views.generic.edit import (
-    FormView
-)
+from django.views.generic.edit import FormView
 
 from .forms import (
     UserRegisterForm,
     LoginForm,
     UpdatePasswordForm,
 )
-#
 from .models import User
-#
-
 from django.contrib.auth import get_user_model, login
 
 
@@ -47,7 +38,6 @@ class UserRegisterView(FormView):
     success_url = reverse_lazy('users_app:user-login')
 
     def form_valid(self, form):
-        # Crear el usuario con todos los datos incluyendo avatar
         user = User.objects.create_user(
             form.cleaned_data['email'],
             form.cleaned_data['password1'],
@@ -55,9 +45,8 @@ class UserRegisterView(FormView):
             ocupation=form.cleaned_data['ocupation'],
             genero=form.cleaned_data['genero'],
             date_birth=form.cleaned_data['date_birth'],
-            avatar=form.cleaned_data.get('avatar'),  # ✅ Avatar opcional
+            avatar=form.cleaned_data.get('avatar'),
         )
-        # enviar el codigo al email del user
         return super(UserRegisterView, self).form_valid(form)
 
 
@@ -75,16 +64,11 @@ class LoginUser(FormView):
         return super(LoginUser, self).form_valid(form)
 
 
-
 class LogoutView(View):
-
     def get(self, request, *args, **kargs):
         logout(request)
-        return HttpResponseRedirect(
-            reverse(
-                'users_app:user-login'
-            )
-        )
+        return HttpResponseRedirect(reverse('users_app:user-login'))
+
 
 class UpdatePasswordView(LoginRequiredMixin, FormView):
     template_name = 'users/cambiar_contraseña.html'
@@ -97,18 +81,16 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
         user = authenticate(
             email=usuario.email,
             password=form.cleaned_data['password1']
-
         )
-
         if user:
             new_password = form.cleaned_data['password2']
             usuario.set_password(new_password)
             usuario.save()
-
         logout(self.request)
         return super(UpdatePasswordView, self).form_valid(form)
 
-class UserListView(LoginRequiredMixin,ListView):
+
+class UserListView(LoginRequiredMixin, ListView):
     template_name = "users/lista_usuarios.html"
     context_object_name = 'usuarios'
     success_url = reverse_lazy('entrada_app:entry-lista')
@@ -118,30 +100,21 @@ class UserListView(LoginRequiredMixin,ListView):
         return User.objects.usuarios_sistema()
 
 
-    """
-    API firebase etc
-    """
-
+@method_decorator(csrf_exempt, name='dispatch')
 class FirebaseLoginView(APIView):
-    """
-    🔐 Autenticación con Firebase (Google)
-    - Verifica el token de Firebase
-    - Crea el usuario si no existe (incluye avatar_url)
-    - Si ya existe, actualiza avatar_url solo si no tiene avatar manual
-    """
+    authentication_classes = []  # ← DRF no intenta autenticar
+    permission_classes = []      # ← sin restricciones de permiso
 
     def post(self, request):
         id_token = request.data.get("idToken")
         if not id_token:
             return Response({"error": "No se envió token"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Verificar token Firebase
         try:
             decoded = firebase_auth.verify_id_token(id_token)
         except Exception as e:
             return Response({"error": f"Token inválido: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Datos desde Firebase
         email = decoded.get("email")
         name = decoded.get("name", "")
         picture = decoded.get("picture")
@@ -149,7 +122,6 @@ class FirebaseLoginView(APIView):
         if not email:
             return Response({"error": "El token no contiene email válido"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Buscar o crear usuario
         user, created = User.objects.get_or_create(
             email=email,
             defaults={
@@ -161,18 +133,14 @@ class FirebaseLoginView(APIView):
             }
         )
 
-        # Si el usuario ya existía
         if not created:
-            # Solo actualizar avatar_url si NO tiene avatar local
             if not user.avatar and picture:
                 user.avatar_url = picture
                 user.save()
         else:
-            # Usuario nuevo → quitar contraseña tradicional
             user.set_unusable_password()
             user.save()
 
-        # Iniciar sesión en Django
         login(request, user, backend='applications.users.backends.FirebaseBackend')
 
         return Response({
@@ -181,12 +149,10 @@ class FirebaseLoginView(APIView):
             "email": user.email,
         }, status=status.HTTP_200_OK)
 
+
 class FirebaseLogoutView(APIView):
-    """
-    Cierra la sesión del usuario en Django.
-    """
     def post(self, request):
-        logout(request)  # Esto limpia la sesión en Django
+        logout(request)
         return Response({"message": "✅ Sesión cerrada correctamente"}, status=status.HTTP_200_OK)
 
 
@@ -194,20 +160,11 @@ def login_google_view(request):
     return render(request, "users/login_google.html")
 
 
-
-
 def firebase_datos_view(request):
     return render(request, "users/firebase_datos.html")
 
 
-
-#pruebas API
-
-
-#mixinAPI para roles y permisos
-class SobreMiAPIView(UsuarioAPIMixin,APIView):
-    # permission_classes = [EsUsuario]
-
+class SobreMiAPIView(UsuarioAPIMixin, APIView):
     def get(self, request):
         user = request.user
         data = {

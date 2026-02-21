@@ -39,19 +39,18 @@
     import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
-        apiKey: "AIzaSyBZvcvGrPIBwhvOzp6EZzTq7IHzGuRErHs",
-        authDomain: "blog2025-8088a.firebaseapp.com",
-        projectId: "blog2025-8088a",
-        storageBucket: "blog2025-8088a.firebasestorage.app",
-        messagingSenderId: "749428454575",
-        appId: "1:749428454575:web:048dbc52892c7a09a6905a"
+        apiKey: "{{ FIREBASE_API_KEY }}",
+        authDomain: "{{ FIREBASE_AUTH_DOMAIN }}",
+        projectId: "{{ FIREBASE_PROJECT_ID }}",
+        storageBucket: "{{ FIREBASE_PROJECT_ID }}.firebasestorage.app",
+        messagingSenderId: "{{ FIREBASE_MESSAGING_SENDER_ID }}",
+        appId: "{{ FIREBASE_APP_ID }}"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
-    // ✅ Obtener CSRF token de las cookies
     function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -67,7 +66,7 @@
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRFToken": getCookie('csrftoken'),  // ← CSRF agregado
+                    "X-CSRFToken": getCookie('csrftoken'),
                 },
                 body: JSON.stringify({ idToken: token })
             });

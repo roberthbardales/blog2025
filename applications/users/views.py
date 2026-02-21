@@ -1,3 +1,6 @@
+from django.conf import settings
+
+
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.urls import reverse_lazy, reverse
@@ -62,6 +65,15 @@ class LoginUser(FormView):
         )
         login(self.request, user)
         return super(LoginUser, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['FIREBASE_API_KEY'] = settings.FIREBASE_API_KEY
+        context['FIREBASE_AUTH_DOMAIN'] = settings.FIREBASE_AUTH_DOMAIN
+        context['FIREBASE_PROJECT_ID'] = settings.FIREBASE_PROJECT_ID
+        context['FIREBASE_MESSAGING_SENDER_ID'] = settings.FIREBASE_MESSAGING_SENDER_ID
+        context['FIREBASE_APP_ID'] = settings.FIREBASE_APP_ID
+        return context
 
 
 class LogoutView(View):

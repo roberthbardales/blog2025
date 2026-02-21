@@ -262,6 +262,12 @@ cred = credentials.Certificate(BASE_DIR.child(cred_path))
 firebase_admin.initialize_app(cred)
 FIREBASE_CREDENTIALS = BASE_DIR.child(cred_path)
 
+# Firebase web config (para el template)
+FIREBASE_API_KEY = env('FIREBASE_API_KEY')
+FIREBASE_AUTH_DOMAIN = env('FIREBASE_AUTH_DOMAIN')
+FIREBASE_PROJECT_ID = env('FIREBASE_PROJECT_ID')
+FIREBASE_MESSAGING_SENDER_ID = env('FIREBASE_MESSAGING_SENDER_ID')
+FIREBASE_APP_ID = env('FIREBASE_APP_ID')
 # -------------------------------
 # Authentication Backends
 # -------------------------------

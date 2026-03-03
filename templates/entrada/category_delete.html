@@ -1,0 +1,140 @@
+{% extends "users/base_users.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<style>
+    .card-header {
+        background-color: #dc3545 !important;
+        color: white !important;
+    }
+
+    .form-card {
+        border-radius: 8px;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    }
+
+    .confirm-icon {
+        font-size: 60px;
+        color: #dc3545;
+    }
+
+    .info-row {
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        padding: 10px 16px;
+        margin-bottom: 8px;
+        border-left: 4px solid #007bff;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #495057;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        color: #212529;
+    }
+
+    .btn-eliminar {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        color: white;
+        font-weight: 600;
+        padding: 8px 24px;
+    }
+
+    .btn-eliminar:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .btn-cancelar {
+        font-weight: 600;
+        padding: 8px 24px;
+    }
+
+    .warning-text {
+        font-size: 0.9rem;
+        color: #856404;
+        background-color: #fff3cd;
+        border: 1px solid #ffc107;
+        border-radius: 6px;
+        padding: 10px 14px;
+    }
+</style>
+
+<div class="container" style="min-height: 637px; padding: 10px 0;">
+    <div class="row">
+        <div class="col-12">
+
+            <!-- Card Header Principal -->
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-6">
+                    <div class="card-header">
+                        <h3 class="mb-0 text-center">
+                            <i class="fas fa-trash mr-2"></i>
+                            Eliminar Categoría
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card form-card">
+                        <div class="card-body text-center py-4">
+
+                            <!-- Ícono de advertencia -->
+                            <i class="fas fa-exclamation-triangle confirm-icon mb-3"></i>
+
+                            <h5 class="mb-1">¿Estás seguro de que deseas eliminar esta categoría?</h5>
+                            <p class="text-muted mb-4">Esta acción no se puede deshacer.</p>
+
+                            <!-- Datos de la categoría -->
+                            <div class="text-left mb-3">
+
+                                <div class="info-row">
+                                    <span class="info-label"><i class="fas fa-tag mr-1"></i>Nombre Corto</span>
+                                    <div class="info-value">{{ object.short_name }}</div>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label"><i class="fas fa-font mr-1"></i>Nombre</span>
+                                    <div class="info-value">{{ object.name }}</div>
+                                </div>
+                            </div>
+
+                            <!-- Advertencia -->
+                            <div class="warning-text mb-4">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Al eliminar esta categoría, se perderán todos los datos asociados a ella.
+                            </div>
+
+                            <!-- Botones de confirmación -->
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a href="{% url 'entrada_app:categorias-lista' %}" class="btn btn-secondary btn-cancelar mr-2">
+                                        <i class="fas fa-times mr-1"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-eliminar">
+                                        <i class="fas fa-trash mr-1"></i> Sí, eliminar
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

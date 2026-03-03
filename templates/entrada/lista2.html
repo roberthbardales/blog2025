@@ -1,0 +1,237 @@
+{% extends "users/base_users.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<style>
+    .card-header {
+        background-color: #007bff !important;
+        color: white !important;
+    }
+
+    .table-custom {
+        width: 100%;
+        background-color: white;
+        border-radius: 6px;
+        overflow: hidden;
+        font-size: 0.92rem;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    }
+
+    .table-custom thead th {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        white-space: nowrap;
+    }
+
+    .table-custom tbody td {
+        padding: 8px 10px;
+        vertical-align: middle;
+    }
+
+    .table-custom tbody tr:hover {
+        background-color: #f0f6ff;
+    }
+
+    .entry-thumb {
+        width: 65px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 5px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    /* Badges booleanos */
+    .badge-yes  { background-color: #28a745; color: white; padding: 3px 9px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; }
+    .badge-no   { background-color: #dc3545; color: white; padding: 3px 9px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; }
+
+    .badge-categoria {
+        background-color: #17a2b8;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .search-box .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+</style>
+
+<div class="container-fluid" style="min-height: 637px; padding: 15px;">
+
+    <!-- Header -->
+    <div class="row justify-content-center mb-2">
+        <div class="col-md-11">
+            <div class="card-header" style="border-radius: 6px 6px 0 0;">
+                <h3 class="mb-0 text-center">
+                    <i class="fas fa-newspaper mr-2"></i>
+                    Gestión de Entradas
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-11">
+
+            <!-- Búsqueda + Botón agregar -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
+
+                <!-- Búsqueda -->
+                <form method="get" action="" class="search-box" style="max-width: 350px; width: 100%;">
+                    <div class="input-group input-group-sm">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Buscar por título..."
+                               name="kword"
+                               value="{{ request.GET.kword }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search">    Buscar</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Botón agregar -->
+                <a href="" class="btn btn-sm btn-primary">
+                    <i class="fas fa-plus mr-1"></i> Nueva Entrada
+                </a>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-custom table-striped table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-hashtag mr-1"></i>ID</th>
+                                    <th><i class="fas fa-image mr-1"></i>Imagen</th>
+                                    <th><i class="fas fa-heading mr-1"></i>Título</th>
+                                    <th><i class="fas fa-user mr-1"></i>Usuario</th>
+                                    <th><i class="fas fa-tag mr-1"></i>Categoría</th>
+                                    <th class="text-center"><i class="fas fa-globe mr-1"></i>Público</th>
+                                    <th class="text-center"><i class="fas fa-bookmark mr-1"></i>Portada</th>
+                                    <th class="text-center"><i class="fas fa-home mr-1"></i>In Home</th>
+                                    <th class="text-center"><i class="fas fa-cog mr-1"></i>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entry in contexto_entradas %}
+                                <tr>
+                                    <td><strong class="text-primary">#{{ entry.id }}</strong></td>
+                                    <td>
+                                        {% if entry.image %}
+                                            <img src="{{ entry.image.url }}"
+                                                 alt="{{ entry.title }}"
+                                                 class="entry-thumb">
+                                        {% else %}
+                                            <span class="text-muted"><i class="fas fa-image"></i> Sin imagen</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <strong>{{ entry.title|truncatechars:55 }}</strong>
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-user-circle text-secondary mr-1"></i>
+                                        {{ entry.user.get_full_name|default:entry.user.email }}
+                                    </td>
+                                    <td>
+                                        <span class="badge-categoria">{{ entry.category }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        {% if entry.public %}
+                                            <span class="badge-yes"><i class="fas fa-check mr-1"></i></span>
+                                        {% else %}
+                                            <span class="badge-no"><i class="fas fa-times mr-1"></i></span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if entry.portada %}
+                                            <span class="badge-yes"><i class="fas fa-check mr-1"></i></span>
+                                        {% else %}
+                                            <span class="badge-no"><i class="fas fa-times mr-1"></i></span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if entry.in_home %}
+                                            <span class="badge-yes"><i class="fas fa-check mr-1"></i></span>
+                                        {% else %}
+                                            <span class="badge-no"><i class="fas fa-times mr-1"></i></span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center" style="white-space: nowrap;">
+                                        <!-- Ver detalle -->
+                                        <a href="{% url 'entrada_app:entry-detail' entry.slug %}"
+                                           class="btn btn-sm btn-info mr-1"
+                                           title="Ver">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <!-- Eliminar -->
+                                        <a href=""
+                                           class="btn btn-sm btn-danger"
+                                           title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="9" class="text-center py-5">
+                                        <i class="fas fa-newspaper text-muted" style="font-size: 60px;"></i>
+                                        <h5 class="mt-3 text-muted">No hay entradas registradas</h5>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paginación -->
+            {% if is_paginated %}
+            <div class="d-flex justify-content-center mt-3">
+                <nav>
+                    <ul class="pagination pagination-sm">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
+                                <i class="fas fa-chevron-left"></i> Atrás
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% for pagina in paginator.page_range %}
+                        <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+                        </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+                                Siguiente <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

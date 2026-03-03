@@ -92,6 +92,16 @@ class EntryListView(ListView):
             # resultado = resultado.filter(title__icontains=kword_general)
         return resultado
 
+
+class EntryListView2(ListView):
+    model = Entry
+    template_name = "entrada/lista2.html"
+    context_object_name = "contexto_entradas"
+    paginate_by = 50   # opcional pero muy pro 😎
+    ordering = ["-created"]  # viene de TimeStampedModel
+
+
+
 class EntryDetailView(DetailView):
     template_name = 'entrada/detail.html'
     model = Entry
@@ -258,3 +268,21 @@ class UserProfileView(UsuarioPermisoMixin,DetailView):
             # Usuarios normales solo ven usuarios que NO sean admin ni superuser
             return User.objects.exclude(is_superuser=True).exclude(ocupation=User.ADMINISTRADOR)
 
+# Category
+
+class CategoryListView(AdministradorPermisoMixin,ListView):
+    model = Category
+    template_name = "entrada/category_list.html"
+    context_object_name ='context_categorias'
+
+class CategoryDeleteView(AdministradorPermisoMixin, DeleteView):
+    model = Category
+    template_name = "entrada/category_delete.html"
+    # context_object_name ='context_categorias'
+    success_url = reverse_lazy("entrada_app:categorias-lista")
+
+class CategoryCreateView(AdministradorPermisoMixin, CreateView):
+    model = Category
+    fields = ["short_name", "name"]
+    template_name = "entrada/category_add.html"
+    success_url = reverse_lazy("entrada_app:categorias-lista")

@@ -17,6 +17,11 @@ urlpatterns = [
         name='entry-lista',
     ),
     path(
+        'entradas/lista2/',
+        views.EntryListView2.as_view(),
+        name='entry-lista2',
+    ),
+    path(
         'entrada/<slug>/',
         views.EntryDetailView.as_view(),
         name='entry-detail',
@@ -54,4 +59,23 @@ urlpatterns = [
          views.UserProfileView.as_view(),
          name='view_profile'
     ),
+
+    #Category solo para el administrador y/o superuser
+    path(
+        'categorias/',
+         views.CategoryListView.as_view(),
+         name='categorias-lista'
+    ),
+    path(
+        'categorias/<int:pk>/delete/',
+        views.CategoryDeleteView.as_view(),
+        name='categorias-delete'
+    ),
+    path(
+        'categorias/agregar/',
+        views.CategoryCreateView.as_view(),
+        name='categorias-add',
+    ),
+
+
 ]

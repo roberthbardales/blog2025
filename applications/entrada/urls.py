@@ -22,6 +22,13 @@ urlpatterns = [
         name='entry-lista2',
     ),
     path(
+        'entradas/<int:pk>/delete/',
+        views.EntryDeleteView.as_view(),
+        name='entry-delete',
+    ),
+
+
+    path(
         'entrada/<slug>/',
         views.EntryDetailView.as_view(),
         name='entry-detail',
@@ -75,6 +82,11 @@ urlpatterns = [
         'categorias/agregar/',
         views.CategoryCreateView.as_view(),
         name='categorias-add',
+    ),
+    path(
+        'categorias/<int:pk>/modificar/',
+        views.CategoryUpdateView.as_view(),
+        name='categorias-update',
     ),
 
 

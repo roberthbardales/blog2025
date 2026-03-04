@@ -17,14 +17,14 @@
     }
 
     .confirm-icon {
-        font-size: 60px;
+        font-size: 40px;
         color: #dc3545;
     }
 
     .info-row {
         background-color: #f8f9fa;
         border-radius: 6px;
-        padding: 10px 16px;
+        padding: px 16px;
         margin-bottom: 8px;
         border-left: 4px solid #007bff;
     }
@@ -73,6 +73,7 @@
     <div class="row">
         <div class="col-12">
 
+            <!-- Card Header Principal -->
 
 
             <div class="row justify-content-center">
@@ -82,41 +83,47 @@
 
                             <!-- Ícono de advertencia -->
                             <i class="fas fa-exclamation-triangle confirm-icon mb-3"></i>
+                            <h5 class="mb-1">¿Estás seguro de que deseas eliminar esta Entrada?</h5>
 
-                            <h5 class="mb-1">¿Estás seguro de que deseas eliminar esta categoría?</h5>
-
-
-                        <!-- Datos de la categoría -->
-                        <div class="table-responsive mb-3 pt-2">
-                            <table class="table table-bordered table-sm text-center">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>
-                                            <i class="fas  mr-1"></i> Nombre Corto
-                                        </th>
-                                        <th>
-                                            <i class="fas  mr-1"></i> Nombre
-                                        </th>
-                                    </tr>
-                                </thead>
+                        <!-- Datos de la Entrada -->
+                        <div class="table-responsive mb-3">
+                            <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td>{{ object.short_name }}</td>
-                                        <td>{{ object.name }}</td>
+                                        <th>ID</th>
+                                        <td>{{ object.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Título</th>
+                                        <td>{{ object.title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <td>{{ object.user }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Categoría</th>
+                                        <td>{{ object.category }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <td>
+                                            <img src="{{ object.image.url }}" alt="Imagen" width="200">
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
+                            <!-- Advertencia -->
                             <!-- Botones de confirmación -->
                             <form method="POST" action="">
                                 {% csrf_token %}
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a href="{% url 'entrada_app:categorias-lista' %}" class="btn btn-secondary btn-cancelar mr-2">
-                                        <i class="fas  mr-1"></i> Cancelar
+                                    <a href="{% url 'entrada_app:entry-lista2' %}" class="btn btn-secondary btn-cancelar mr-2">
+                                        <i class="fas fa-times mr-1"></i> Cancelar
                                     </a>
                                     <button type="submit" class="btn btn-eliminar">
-                                        <i class="fas  mr-1"></i> Sí, eliminar
+                                        <i class="fas fa-trash mr-1"></i> Sí, eliminar
                                     </button>
                                 </div>
                             </form>

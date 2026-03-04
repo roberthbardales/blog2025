@@ -134,19 +134,19 @@
                     </div>
                     <h5 class="text-center mt-2">{{ user.full_name }}</h5>
                     <a class="btn btn-success btn-block text-dark" href="{% url 'entrada_app:view_profile' user.id %}">
-                        <i class="fas fa-key mr-2"></i>Ver Perfil
+                        <i class="fas mr-2"></i>Ver Perfil
                     </a>
                 </div>
 
                 <div class="px-3 pb-3">
                     {% if user.is_superuser %}
                     <a class="btn btn-dark btn-block mb-2" href="{% url 'users_app:user-lista' %}">
-                        <i class="fas fa-users mr-2"></i>Listar Usuarios
+                        <i class=" mr-2"></i>Listar Usuarios
                     </a>
                     {% endif %}
 
                     <a class="btn btn-warning btn-block text-dark" href="{% url 'notas_app:lista-notas' %}">
-                        <i class="fas fa-key mr-2"></i>Notas
+                        <i class=" mr-2"></i>Notas
                     </a>
                     <!-- <a class="btn btn-warning btn-block text-dark" href="{% url 'users_app:user-update' %}">
                         <i class="fas fa-key mr-2"></i>Cambiar Contraseña
@@ -156,7 +156,7 @@
 
             <div class="col-12 d-flex justify-content-center">
                 <a href="{% url 'favoritos_app:grupos_crud' %}" class="btn btn-outline-success btn-md mb-3">
-                    <i class="fas fa-plus me-2"></i>CRUD GRUPOS
+                    <i class="fas  me-2"></i>CRUD GRUPOS
                 </a>
             </div>
 
@@ -186,7 +186,7 @@
             <!-- Header -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h4 class="mb-0"><i class="fas fa-star mr-2"></i>Mis Posts Guardados</h4>
+                    <h4 class="mb-0 text-center"><i class="mr-2"></i>Mis Posts Guardados</h4>
                 </div>
             </div>
 
@@ -266,14 +266,14 @@
                                 <div class="col-6">
                                     <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}"
                                        class="btn btn-primary btn-block">
-                                        <i class="fas fa-eye mr-1"></i>Ver Post
+                                        <i class="fas  mr-1"></i>Ver Post
                                     </a>
                                 </div>
                                 <div class="col-6">
                                     <form method="post" action="{% url 'favoritos_app:delete-favoritos' entrada.id %}">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-danger btn-block">
-                                            <i class="fas fa-trash mr-1"></i>Eliminar
+                                            <i class="fas mr-1"></i>Eliminar
                                         </button>
                                     </form>
                                 </div>

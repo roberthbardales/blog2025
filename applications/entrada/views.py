@@ -92,13 +92,32 @@ class EntryListView(ListView):
             # resultado = resultado.filter(title__icontains=kword_general)
         return resultado
 
-
+#crud entradas
 class EntryListView2(ListView):
     model = Entry
     template_name = "entrada/lista2.html"
     context_object_name = "contexto_entradas"
-    paginate_by = 50   # opcional pero muy pro 😎
+    paginate_by = 50
     ordering = ["-created"]  # viene de TimeStampedModel
+
+def get_queryset(self):
+    queryset = super().get_queryset()
+    q = self.request.GET.get("q")
+
+    if q:
+        queryset = queryset.filter(
+            Q(title__icontains=q) |
+            Q(content__icontains=q)
+        )
+
+    return queryset
+
+
+class EntryDeleteView(AdministradorPermisoMixin, DeleteView):
+    model = Entry
+    template_name = "entrada/lista2_delete.html"
+    # context_object_name ='context_categorias'
+    success_url = reverse_lazy("entrada_app:entry-lista2")
 
 
 
@@ -285,4 +304,10 @@ class CategoryCreateView(AdministradorPermisoMixin, CreateView):
     model = Category
     fields = ["short_name", "name"]
     template_name = "entrada/category_add.html"
+    success_url = reverse_lazy("entrada_app:categorias-lista")
+
+class CategoryUpdateView(AdministradorPermisoMixin, UpdateView):
+    model = Category
+    fields = ["short_name", "name"]
+    template_name = "entrada/category_edit.html"
     success_url = reverse_lazy("entrada_app:categorias-lista")

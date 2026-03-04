@@ -23,7 +23,7 @@
     .table-custom thead th {
         background-color: #007bff;
         color: white;
-        padding: 10px 10px;
+        padding: 5px 5px;
         font-weight: 600;
         text-transform: uppercase;
         font-size: 0.78rem;
@@ -31,9 +31,15 @@
     }
 
     .table-custom tbody td {
-        padding: 8px 10px;
+        padding: 2px 2px;
         vertical-align: middle;
     }
+    .td-title {
+    max-width: 280px;      /* ajusta a tu gusto */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
     .table-custom tbody tr:hover {
         background-color: #f0f6ff;
@@ -41,7 +47,7 @@
 
     .entry-thumb {
         width: 65px;
-        height: 48px;
+        height: 8px;
         object-fit: cover;
         border-radius: 5px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.15);
@@ -73,7 +79,7 @@
         <div class="col-md-11">
             <div class="card-header" style="border-radius: 6px 6px 0 0;">
                 <h3 class="mb-0 text-center">
-                    <i class="fas fa-newspaper mr-2"></i>
+                    <i class="fas  mr-2"></i>
                     Gestión de Entradas
                 </h3>
             </div>
@@ -103,7 +109,7 @@
                 </form>
 
                 <!-- Botón agregar -->
-                <a href="" class="btn btn-sm btn-primary">
+                <a href="{% url 'entrada_app:add-entrada' %}" class="btn btn-sm btn-primary">
                     <i class="fas fa-plus mr-1"></i> Nueva Entrada
                 </a>
             </div>
@@ -112,12 +118,12 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table table-custom table-striped table-bordered mb-0">
+                        <table class="table table-custom table- table-bordered mb-0">
                             <thead>
                                 <tr>
-                                    <th><i class="fas fa-hashtag mr-1"></i>ID</th>
-                                    <th><i class="fas fa-image mr-1"></i>Imagen</th>
-                                    <th><i class="fas fa-heading mr-1"></i>Título</th>
+                                    <th><i class="fas  mr-1"></i>ID</th>
+                                    <th><i class="fas fa mr-1"></i>Imagen</th>
+                                    <th><i class="fas fa- mr-1"></i>Título</th>
                                     <th><i class="fas fa-user mr-1"></i>Usuario</th>
                                     <th><i class="fas fa-tag mr-1"></i>Categoría</th>
                                     <th class="text-center"><i class="fas fa-globe mr-1"></i>Público</th>
@@ -132,15 +138,21 @@
                                     <td><strong class="text-primary">#{{ entry.id }}</strong></td>
                                     <td>
                                         {% if entry.image %}
+                                        <a href="{% url 'entrada_app:entry-detail' entry.slug %}">
+
                                             <img src="{{ entry.image.url }}"
-                                                 alt="{{ entry.title }}"
-                                                 class="entry-thumb">
+                                            alt="{{ entry.title }}"
+                                            class="entry-thumb">
+                                        </a>
                                         {% else %}
                                             <span class="text-muted"><i class="fas fa-image"></i> Sin imagen</span>
                                         {% endif %}
                                     </td>
-                                    <td>
-                                        <strong>{{ entry.title|truncatechars:55 }}</strong>
+                                    <td class="td-title">
+                                        <a href="{% url 'entrada_app:entry-detail' entry.slug %}">
+                                            <strong>{{ entry.title|truncatechars:50 }}</strong>
+
+                                        </a>
                                     </td>
                                     <td>
                                         <i class="fas fa-user-circle text-secondary mr-1"></i>
@@ -178,7 +190,7 @@
                                             <i class="fas fa-eye"></i>
                                         </a>
                                         <!-- Eliminar -->
-                                        <a href=""
+                                        <a href="{% url 'entrada_app:entry-delete' entry.id %}"
                                            class="btn btn-sm btn-danger"
                                            title="Eliminar">
                                             <i class="fas fa-trash"></i>

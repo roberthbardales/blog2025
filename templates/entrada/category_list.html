@@ -69,7 +69,7 @@
                 <div class="col-md-10">
                         <div class="card-header">
                             <h3 class="mb-0 text-center">
-                                <i class="fas fa-users mr-2"></i>
+                                <i class="fas mr-2"></i>
                                 Gestión de Categorías
                             </h3>
                         </div>
@@ -89,7 +89,7 @@
                     <div class="card">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-custom table-striped  table-bordered  mb-0">                                    <thead>
+                                <table class="table table-custom   table-bordered  mb-0">                                    <thead>
                                         <tr>
                                             <th><i class="fas fa-hashtag mr-1"></i>ID</th>
                                             <th><i class="fas fa-user mr-1"></i>Nombre Corto</th>
@@ -108,17 +108,17 @@
                                             <td class="text-center">
 
                                                 <!-- Editar -->
-                                                <a href=""
+                                                <a href="{% url 'entrada_app:categorias-update' item.id %}"
                                                    class="btn btn-sm btn-warning mr-1"
                                                    title="Editar">
-                                                    <i class="fas fa-edit">Editar</i>
+                                                    <i class="fas ">Editar</i>
                                                 </a>
 
                                                 <!-- Eliminar -->
                                                 <a href="{% url 'entrada_app:categorias-delete' item.id %}"
                                                    class="btn btn-sm btn-danger"
                                                    title="Eliminar">
-                                                    <i class="fas fa-trash">Eliminar</i>
+                                                    <i class="fas ">Eliminar</i>
                                                 </a>
 
                                             </td>

@@ -55,7 +55,7 @@
                     <div class="card-header">
                         <h3 class="mb-0 text-center">
                             <i class="fas mr-2"></i>
-                            Agregar Categoría
+                            Modificar esta Categoría
                         </h3>
                     </div>
                 </div>
@@ -69,38 +69,39 @@
                             <form method="POST" action="">
                                 {% csrf_token %}
 
-                                <!-- Nombre Corto -->
-                                <div class="form-group mb-3">
-                                    <label class="form-label" for="short_name">
-                                        <i class="fas  mr-1 text-primary"></i> Nombre Corto
-                                    </label>
-                                    <input type="text"
-                                           class="form-control"
-                                           id="short_name"
-                                           name="short_name"
-                                           required>
-                                </div>
+                               <!-- Nombre Corto -->
+<div class="form-group mb-3">
+    <label class="form-label" for="short_name">
+        <i class="fas mr-1 text-primary"></i> Nombre Corto
+    </label>
+    <input type="text"
+           class="form-control"
+           id="short_name"
+           name="short_name"
+           value="{{ form.short_name.value|default_if_none:'' }}"
+           required>
+</div>
 
-                                <!-- Nombre -->
-                                <div class="form-group mb-4">
-                                    <label class="form-label" for="name">
-                                        <i class="fas mr-1 text-primary"></i> Nombre
-                                    </label>
-                                    <input type="text"
-                                           class="form-control"
-                                           id="name"
-                                           name="name"
-
-                                           required>
-                                </div>
+<!-- Nombre -->
+<div class="form-group mb-4">
+    <label class="form-label" for="name">
+        <i class="fas mr-1 text-primary"></i> Nombre
+    </label>
+    <input type="text"
+           class="form-control"
+           id="name"
+           name="name"
+           value="{{ form.name.value|default_if_none:'' }}"
+           required>
+</div>
 
                                 <!-- Botones -->
                                 <div class="d-flex justify-content-end">
                                     <a href="{% url 'entrada_app:categorias-lista' %}" class="btn btn-secondary btn-cancelar mr-2">
-                                        <i class="fas  mr-1"></i> Cancelar
+                                        <i class="fas fa-times mr-1"></i> Cancelar
                                     </a>
                                     <button type="submit" class="btn btn-guardar">
-                                        <i class="fas  mr-1"></i> Guardar
+                                        <i class="fas fa-save mr-1"></i> Guardar
                                     </button>
                                 </div>
 

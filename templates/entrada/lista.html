@@ -180,12 +180,12 @@
             <!-- Badge de Categoría Actual -->
             {% if request.GET.categoria %}
             <div class="categoria-badge text-center">
-                <i class="fas fa-folder-open mr-2"></i>
+                <i class="fas mr-2"></i>
                 <h4 class="d-inline">{{ request.GET.categoria }}</h4>
             </div>
             {% else %}
             <div class="categoria-badge text-center">
-                <i class="fas fa-th-large mr-2"></i>
+                <i class="fas  mr-2"></i>
                 <h4 class="d-inline">Todos los Posts</h4>
             </div>
             {% endif %}
@@ -247,7 +247,7 @@
                                 </small>
                                 <a href="{% url 'entrada_app:entry-detail' entrada.slug %}"
                                    class="btn btn-sm btn-outline-primary">
-                                    Leer más <i class="fas fa-arrow-right ml-1"></i>
+                                    Leer más <i class="fas ml-1"></i>
                                 </a>
                             </div>
                         </div>
@@ -333,15 +333,15 @@
                     <div class="list-group list-group-flush">
                         <!-- Todo -->
                         <a href="{% url 'entrada_app:entry-lista' %}"
-                           class="list-group-item categoria-item {% if not request.GET.categoria %}active{% endif %}">
-                            <i class="fas fa-th-large mr-2"></i>Todas
+                           class="list-group-item categoria-item {% if not request.GET.categoria %}active{% endif %} text-center">
+                            <i class="fas mr-2"></i>Todas
                         </a>
 
                         <!-- Categorías dinámicas -->
                         {% for categoria in categorias %}
                         <a href="?categoria={{ categoria.short_name }}"
                            class="list-group-item categoria-item {% if request.GET.categoria == categoria.short_name %}active{% endif %}">
-                            <i class="fas fa-folder mr-2"></i>{{ categoria.short_name }}
+                            <i class="fas mr-2"></i>{{ categoria.short_name }}
                         </a>
                         {% empty %}
                         <span class="list-group-item text-muted text-center">

@@ -381,7 +381,7 @@
         <div class="col-lg-3">
                 <div class="sidebar-card">
                     <div class="card-header-custom text-center py-3">
-                        <h5 class="mb-0"><i class="fas fa-info-circle mr-2"></i>{{ entry.category }}</h5>
+                        <h5 class="mb-0"><i class="fas mr-2"></i>{{ entry.category }}</h5>
                         <!-- <span class="badge-category">
                             <i class="fas fa-folder mr-1"></i>{{ entry.category }}
                         </span> -->
@@ -394,13 +394,13 @@
                             {% if user.is_authenticated %}
                                 {% if not is_favorito %}
                                 <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#guardarModal">
-                                    <i class="fas fa-star mr-2"></i>Añadir a favoritos
+                                    <i class="fas mr-2"></i>Añadir a favoritos
                                 </button>
                                 {% else %}
                                 <form method="POST" action="{% url 'favoritos_app:add-favoritos2' entry.id %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger btn-block">
-                                        <i class="fas fa-star mr-2"></i>Quitar de favoritos
+                                        <i class="fas mr-2"></i>Quitar de favoritos
                                     </button>
                                 </form>
                                 {% endif %}
@@ -423,7 +423,7 @@
                 <!-- Sección de Likes -->
                  <hr>
                 <div class=" like-section">
-                    <h5 class="mb-3"><i class="fas fa-heart mr-2 text-danger"></i>¿Te gustó este artículo?</h5>
+                    <h5 class="mb-3"><i class="fas mr-2 text-danger"></i>¿Te gustó este artículo?</h5>
                     {% if user.is_authenticated %}
                     <form action="{% url 'entrada_app:toggle-like' entry.id %}" method="post" class="d-inline">
                         {% csrf_token %}
@@ -433,12 +433,12 @@
                         </button>
                         {% else %}
                         <button type="submit" class="btn btn-primary btn-like">
-                            <i class="fas fa-heart mr-2"></i>Dar Like
+                            <i class="fas mr-2"></i>Dar Like
                         </button>
                         {% endif %}
                     </form>
                     <span class="ml-3">
-                        <i class="fas fa-heart text-danger mr-1"></i>
+                        <i class="fas text-danger mr-1"></i>
                         <strong>{{ likes_count }}</strong>
                         <i class="bi bi-hand-thumbs-up-fill text-primary"></i>
                     </span>

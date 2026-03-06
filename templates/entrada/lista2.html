@@ -93,7 +93,7 @@
             <div class="d-flex justify-content-between align-items-center mb-2">
 
                 <!-- Búsqueda -->
-                <form method="get" action="" class="search-box" style="max-width: 350px; width: 100%;">
+                <form method="get" action="" class="search-box" style="max-width: 250px; width: 100%;">
                     <div class="input-group input-group-sm">
                         <input type="text"
                                class="form-control"
@@ -102,12 +102,15 @@
                                value="{{ request.GET.kword }}">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
-                                <i class="fas fa-search">    Buscar</i>
+                               Buscar
                             </button>
                         </div>
                     </div>
                 </form>
 
+                <a href="?kwusuario={{ request.user.username }}" class="btn btn-sm btn-primary">
+                    <i class="fas mr-1"></i> Mis Posts
+                </a>
                 <!-- Botón agregar -->
                 <a href="{% url 'entrada_app:add-entrada' %}" class="btn btn-sm btn-primary">
                     <i class="fas fa-plus mr-1"></i> Nueva Entrada

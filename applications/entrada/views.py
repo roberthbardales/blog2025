@@ -98,20 +98,31 @@ class EntryListView2(ListView):
     template_name = "entrada/lista2.html"
     context_object_name = "contexto_entradas"
     paginate_by = 50
-    ordering = ["-created"]  # viene de TimeStampedModel
+    ordering = ["-created"]
 
-def get_queryset(self):
-    queryset = super().get_queryset()
-    q = self.request.GET.get("q")
+    def get_queryset(self):
+        queryset = super().get_queryset()
 
-    if q:
-        queryset = queryset.filter(
-            Q(title__icontains=q) |
-            Q(content__icontains=q)
-        )
+        # filtro buscador
+        kword = self.request.GET.get("kword")
+        if kword:
+            queryset = queryset.filter(
+                Q(title__icontains=kword) |
+                Q(content__icontains=kword)
+            )
 
-    return queryset
+        # filtro por usuario actual
+        queryset = self.filtrar_usuario(queryset)
 
+        return queryset
+
+    def filtrar_usuario(self, queryset):
+        if "kwusuario" in self.request.GET:
+            queryset = queryset.filter(
+                user=self.request.user
+            )
+
+        return queryset
 
 class EntryDeleteView(AdministradorPermisoMixin, DeleteView):
     model = Entry

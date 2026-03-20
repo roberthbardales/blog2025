@@ -141,16 +141,16 @@
                 <div class="px-3 pb-3">
                     {% if user.is_superuser %}
                     <a class="btn btn-dark btn-block mb-2" href="{% url 'users_app:user-lista' %}">
-                        <i class=" mr-2"></i>Listar Usuarios
+                        <i class=" mr-2"></i>Usuarios
+                    </a>
+                    <a class="btn btn-danger btn-block text" href="{% url 'home_app:visitor_logs' %}">
+                        <i class=" mr-2"></i>Visitas
                     </a>
                     {% endif %}
-
                     <a class="btn btn-warning btn-block text-dark" href="{% url 'notas_app:lista-notas' %}">
                         <i class=" mr-2"></i>Notas
                     </a>
-                    <!-- <a class="btn btn-warning btn-block text-dark" href="{% url 'users_app:user-update' %}">
-                        <i class="fas fa-key mr-2"></i>Cambiar Contraseña
-                    </a> -->
+
                 </div>
             </div>
 
@@ -167,7 +167,7 @@
                 <!-- Todos -->
                 <a href="?grupo="
                    class="list-group-item list-group-item-action {% if not request.GET.grupo %}active{% endif %}">
-                    <i class="fas fa-th"></i> Todos
+                    <i class="fas fa-folder"></i> Todos
                 </a>
 
                 {% for grupo in contexto_grupos %}

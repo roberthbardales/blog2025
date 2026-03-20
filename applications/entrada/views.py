@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy,reverse
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 #forms
 from django.views.generic import(
@@ -214,7 +215,7 @@ def buscador_general(request):
     return render(request,'entrada/lista.html',{'resultado':resultado})
 
 #like
-from django.http import HttpResponseRedirect
+# from django.http import HttpResponseRedirect
 
 class ToggleLikeView(View):
     def post(self, request, pk, *args, **kwargs):

@@ -1,8 +1,5 @@
 from django.conf import settings
-
-
 from django.shortcuts import render
-from django.core.mail import send_mail
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,14 +11,12 @@ from django.utils.decorators import method_decorator
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth import authenticate, login, get_user_model
+
 from firebase_admin import auth as firebase_auth
-from .mixins import UsuarioAPIMixin, AdministradorAPIMixin
+from .mixins import UsuarioAPIMixin
 
 from django.views.generic import (
     View,
-    TemplateView,
-    CreateView,
     ListView,
 )
 from django.views.generic.edit import FormView
@@ -32,7 +27,6 @@ from .forms import (
     UpdatePasswordForm,
 )
 from .models import User
-from django.contrib.auth import get_user_model, login
 
 
 class UserRegisterView(FormView):

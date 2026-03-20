@@ -31,11 +31,9 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-import os
-from datetime import datetime
-import json
-#
+from django.db.models import Q
 
+#
 import json
 from django.views import View
 from django.http import JsonResponse
@@ -43,9 +41,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 
-
-#clima
-import requests
 
 #apps de entrada
 from applications.entrada.models import Entry
@@ -134,46 +129,51 @@ class ContactCreateView2(CreateView):
 
 #
 # views.py
-
-
 class VisitorLogsView(AdministradorPermisoMixin, TemplateView):
-    """
-    Vista para ver los logs de visitantes
-    Solo accesible por ADMINISTRADORES
-    """
     template_name = 'home/visitor_logs.html'
+
+    # 🔹 Filtro reutilizable para Perú
+    def get_peru_filter(self):
+        countries = ['peru', 'perú']
+        query = Q()
+        for c in countries:
+            query |= Q(ip_location__country__iexact=c)
+        return query
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Obtener todas las visitas (últimas 200)
-        logs = VisitorLog.objects.select_related('ip_location').all()[:200]
+        # 🔹 Base queryset filtrado
+        peru_filter = self.get_peru_filter()
+        peru_logs = VisitorLog.objects.select_related('ip_location').filter(peru_filter)
+
+        # Logs recientes
+        logs = peru_logs[:200]
 
         # Estadísticas
-        total_visits = VisitorLog.objects.count()
-        unique_ips = IPLocation.objects.count()
+        total_visits = peru_logs.count()
+        unique_ips = IPLocation.objects.filter(peru_filter).count()
 
-        # Visitas de las últimas 24 horas
-        last_24h = timezone.now() - timedelta(hours=24)
-        visits_24h = VisitorLog.objects.filter(timestamp__gte=last_24h).count()
+        # Fechas
+        now = timezone.now()
+        visits_24h = peru_logs.filter(timestamp__gte=now - timedelta(hours=24)).count()
+        visits_week = peru_logs.filter(timestamp__gte=now - timedelta(days=7)).count()
 
-        # Visitas de la última semana
-        last_week = timezone.now() - timedelta(days=7)
-        visits_week = VisitorLog.objects.filter(timestamp__gte=last_week).count()
-
-        # Top 10 países
+        # Top países (aunque será Perú, se mantiene estructura)
         top_countries = (
             IPLocation.objects
+            .filter(peru_filter)
             .values('country')
             .annotate(count=Count('visits'))
             .order_by('-count')[:10]
         )
 
-        # Top 10 ciudades
+        # Top ciudades en Perú
         top_cities = (
             IPLocation.objects
+            .filter(peru_filter)
             .exclude(city='')
-            .values('city', 'country')
+            .values('city')
             .annotate(count=Count('visits'))
             .order_by('-count')[:10]
         )
@@ -190,6 +190,58 @@ class VisitorLogsView(AdministradorPermisoMixin, TemplateView):
 
         return context
 
+
+    template_name = 'home/visitor_logs.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Base queryset filtrado por Perú
+        peru_logs = VisitorLog.objects.select_related('ip_location')\
+            .filter(ip_location__country__iexact='Peru')
+
+        # Últimos logs
+        logs = peru_logs[:200]
+
+        # Estadísticas
+        total_visits = peru_logs.count()
+        unique_ips = IPLocation.objects.filter(country__iexact='Peru').count()
+
+        # Fechas
+        now = timezone.now()
+        visits_24h = peru_logs.filter(timestamp__gte=now - timedelta(hours=24)).count()
+        visits_week = peru_logs.filter(timestamp__gte=now - timedelta(days=7)).count()
+
+        # Top países (ya será solo Perú, pero lo dejo por consistencia)
+        top_countries = (
+            IPLocation.objects
+            .filter(country__iexact='Peru')
+            .values('country')
+            .annotate(count=Count('visits'))
+            .order_by('-count')[:10]
+        )
+
+        # Top ciudades en Perú
+        top_cities = (
+            IPLocation.objects
+            .filter(country__iexact='Peru')
+            .exclude(city='')
+            .values('city')
+            .annotate(count=Count('visits'))
+            .order_by('-count')[:10]
+        )
+
+        context.update({
+            'logs': logs,
+            'total_visits': total_visits,
+            'unique_ips': unique_ips,
+            'visits_24h': visits_24h,
+            'visits_week': visits_week,
+            'top_countries': top_countries,
+            'top_cities': top_cities,
+        })
+
+        return context
 
 
 

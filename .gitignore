@@ -28,3 +28,7 @@ Thumbs.db
 
 # Archivos temporales
 visitas_pc.txt
+
+# AI / CLI tools
+.aider.*
+*.history

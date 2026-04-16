@@ -1,5 +1,6 @@
 # applications/chat/views.py OPTIMIZADO
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, TemplateView
 from django.http import JsonResponse
@@ -11,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
 from applications.users.models import User
+from applications.amigos.models import Friendship
 from .models import Message, UserStatus
 
 from datetime import timedelta
@@ -26,7 +28,13 @@ class ChatHomeView(LoginRequiredMixin, ListView):
         # Umbral: usuario online si hizo ping en los últimos 5 segundos
         online_threshold = timezone.now() - timedelta(seconds=5)
 
-        users = User.objects.exclude(id=self.request.user.id)
+        friendships = Friendship.objects.get_friends(self.request.user)
+        friend_ids = set()
+        for friendship in friendships:
+            friend = friendship.receiver if friendship.sender_id == self.request.user.id else friendship.sender
+            friend_ids.add(friend.id)
+
+        users = User.objects.filter(id__in=friend_ids).exclude(id=self.request.user.id)
 
         # Obtener todos los estados de una vez (más eficiente)
         status_dict = {
@@ -57,6 +65,9 @@ class ChatRoomView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user_id = self.kwargs.get('user_id')
         other_user = get_object_or_404(User, id=user_id)
+
+        if not Friendship.objects.are_friends(self.request.user, other_user):
+            raise Http404("No tienes permiso para abrir este chat")
 
         # Verificar estado online del otro usuario
         online_threshold = timezone.now() - timedelta(seconds=5)

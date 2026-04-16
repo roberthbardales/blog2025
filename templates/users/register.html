@@ -1,107 +1,88 @@
-<!-- head para PC -->
-{% extends "users/base_users.html" %}
-{% load  static %}
+﻿{% extends "users/base_users.html" %}
+{% load static %}
 
 {% block content %}
 
 {% include "includes/header.html" %}
 
-<div class="container" style="min-height: 637px;">
-    <div class="row  w-100">
+<div class="container py-3">
+  <div class="row justify-content-center align-items-center" style="min-height: 85vh;">
+    <div class="col-lg-6 col-md-10">
+      <div class="card border-0 shadow-lg overflow-hidden bg-primary text-white">
+        <div class="card-body px-4 px-lg-5 py-3 py-lg-4">
+          <div class="text-center mb-3">
+            <h1 class="h2 font-weight-bold  text-white">Crear cuenta</h1>
+          </div>
 
-        <div class="col-12 mb-4">
-
-        </div>
-
-    <div class="col-lg-6 bg-primary offset-lg-3 mb-4  text-light">
-
-        <p class="display h2 mt-4 text-center">
-            Ingrese sus Datos
-        </p>
-        <div class="col-12 mb-4 mt-4">
-            <form class="form-contorl " method="post" enctype="multipart/form-data">{% csrf_token %}
-
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                    <p>Email:
-                    </p>
-                    {{ form.email }}
-                    </div>
-                    <div class="form-group col-md-6">
-                    <p>Nombres:
-                    </p>
-                    {{ form.full_name }}
-                    </div>
-                    <div class="form-group col-md-6">
-                    <p>Ocupacion:
-                    </p>
-                    <select name="ocupation" class="form-control" id="id_ocupation">
-                        <option value="1" selected="selected">Usuario</option>
-
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                    <p>Genero:
-                    </p>
-                    <select name="genero" placeholder="Genero ..." class="form-control" id="id_genero">
-
-                        <option value="M" selected="selected" >Masculino</option>
-                        <option value="F">Femenino</option>
-                        <option value="O">Otros</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                    <p>Fecha Nacimiento:
-                    </p>
-                    {{ form.date_birth }}
-                    </div>
-
-                    <!-- ✅ CAMPO AVATAR AGREGADO -->
-                    <div class="form-group col-md-12">
-                    <p>Avatar (Opcional):
-                    </p>
-                    {{ form.avatar }}
-                    <small class="form-text text-light">Sube una imagen de perfil (opcional)</small>
-                    </div>
-                    <!-- FIN CAMPO AVATAR -->
-
-                    <div class="form-group col-md-12">
-                    <p>Contraseña:
-                    </p>
-                    {{ form.password1 }}
-                    </div>
-                    <div class="form-group col-md-12">
-                    <p>Repetir Contraseña:
-                    </p>
-                    {{ form.password2 }}
-                    {% for e in  form.password2.errors %}
-                    <p style="color:red;">{{ e }}</p>
-                    {% endfor %}
-                    </div>
-                    <div class="form-group col-md-12">
-                        <button class="btn btn-success btn-block" type="submit">Registrar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        {% if form.errors %}
-    <div class="alert alert-danger">
-        <strong>Errores en el formulario:</strong>
-        <ul>
-            {% for field, errors in form.errors.items %}
+          {% if form.errors %}
+          <div class="alert alert-light text-dark">
+            <strong>Revisa el formulario:</strong>
+            <ul class="mb-0">
+              {% for field, errors in form.errors.items %}
                 <li><strong>{{ field }}:</strong> {{ errors }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
 
-{% if form.non_field_errors %}
-    <div class="alert alert-danger">
-        {{ form.non_field_errors }}
+          {% if form.non_field_errors %}
+          <div class="alert alert-light text-dark">
+            {{ form.non_field_errors }}
+          </div>
+          {% endif %}
+
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-row">
+              <div class="form-group col-12 mb-2">
+                <label for="{{ form.email.id_for_label }}" class="font-weight text-white">Email</label>
+                {{ form.email }}
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <label for="{{ form.full_name.id_for_label }}" class="font-weight text-white">Nombres</label>
+                {{ form.full_name }}
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <label for="{{ form.ocupation.id_for_label }}" class="font-weight text-white">Ocupacion</label>
+                {{ form.ocupation }}
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <label for="{{ form.genero.id_for_label }}" class="font-weight text-white">Genero</label>
+                {{ form.genero }}
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <label for="{{ form.date_birth.id_for_label }}" class="font-weight text-white">Fecha de nacimiento</label>
+                {{ form.date_birth }}
+              </div>
+
+              <div class="form-group col-12 mb-2">
+                <label for="{{ form.avatar.id_for_label }}" class="font-weight text-white">Avatar (Opcional)</label>
+                {{ form.avatar }}
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <label for="{{ form.password1.id_for_label }}" class="font-weight text-white">Contrasena</label>
+                {{ form.password1 }}
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <label for="{{ form.password2.id_for_label }}" class="font-weight text-white">Repetir contrasena</label>
+                {{ form.password2 }}
+              </div>
+            </div>
+
+            <button class="btn btn-success text-white btn-block btn mt-4 mb-2" type="submit">Registrar</button>
+            <a class="btn btn-outline-light btn-block" href="{% url 'users_app:user-login' %}">Ya tengo cuenta</a>
+          </form>
+        </div>
+      </div>
     </div>
-{% endif %}
-</div>
-</div>
+  </div>
 </div>
 
 {% endblock content %}

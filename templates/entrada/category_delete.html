@@ -11,34 +11,10 @@
         color: white !important;
     }
 
-    .form-card {
-        border-radius: 8px;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-    }
 
     .confirm-icon {
         font-size: 60px;
         color: #dc3545;
-    }
-
-    .info-row {
-        background-color: #f8f9fa;
-        border-radius: 6px;
-        padding: 10px 16px;
-        margin-bottom: 8px;
-        border-left: 4px solid #007bff;
-    }
-
-    .info-label {
-        font-weight: 600;
-        color: #495057;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-    }
-
-    .info-value {
-        font-size: 1rem;
-        color: #212529;
     }
 
     .btn-eliminar {
@@ -59,21 +35,16 @@
         padding: 8px 24px;
     }
 
-    .warning-text {
-        font-size: 0.9rem;
-        color: #856404;
-        background-color: #fff3cd;
-        border: 1px solid #ffc107;
-        border-radius: 6px;
-        padding: 10px 14px;
-    }
 </style>
 
+  {% include "includes/barra_lateral.html" %}
+  <!-- CONTENIDO PRINCIPAL -->
+
+
+<div class="col-lg-9">
 <div class="container" style="min-height: 637px; padding: 10px 0;">
     <div class="row">
         <div class="col-12">
-
-
 
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -130,4 +101,5 @@
     </div>
 </div>
 
+</div>
 {% endblock content %}

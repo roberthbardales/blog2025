@@ -45,7 +45,10 @@ urlpatterns = [
         views.VisitorLogsView.as_view(),
         name='visitor_logs'
     ),
-
+    # home/urls
+    # .py — agrega
+    path('portafolio/', views.PortafolioView.as_view(), name='portafolio'),
+    path('inicio/', views.InicioView.as_view(), name='index2'),
 
 
 ]

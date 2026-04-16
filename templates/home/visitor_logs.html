@@ -1,212 +1,111 @@
-<!-- templates/visitor_logs.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Visitantes - Panel Admin</title>
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+﻿{% extends "users/base_users.html" %}
+{% load static %}
 
-body {
-    font-family: sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    padding: 20px;
-}
+{% block content %}
+{% include "includes/header.html" %}
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-}
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
+{% include "includes/barra_lateral.html" %}
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.stat-card {
-    background: #667eea;
-    color: #fff;
-    padding: 15px;
-    border-radius: 6px;
-    text-align: center;
-}
-
-.stat-card .number {
-    font-size: 1.8em;
-    font-weight: bold;
-}
-
-.content-grid {
-    display: grid;
-    gap: 15px;
-}
-
-@media (min-width: 768px) {
-    .content-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.top-section {
-    background: #f5f5f5;
-    padding: 12px;
-    border-radius: 6px;
-}
-
-.list-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.item-count {
-    background: #667eea;
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.75em;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th, td {
-    padding: 10px 6px;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background: #667eea;
-    color: #fff;
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 15px;
-}
-
-.btn {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.btn-primary { background: #667eea; }
-.btn-secondary { background: #6c757d; }
-</style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 Panel de Visitantes</h1>
-            <div class="user-info">
-                👤 <strong>{{ request.user.get_full_name }}</strong> (Administrador)
-            </div>
+    <div class="col-lg-9">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="mb-0">
+            <h2 class="mb-1 font-weight-bold">Registro de visitas</h2>
+          </div>
         </div>
-
-        <div class="actions">
-            <button class="btn btn-primary" onclick="location.reload()">
-                🔄 Actualizar Datos
-            </button>
-            <a href="{% url 'home_app:index' %}" class="btn btn-secondary">
-                🚪 Salir
-            </a>
+          <div class="row mb-4">
+    <div class="col-md-6 col-xl-3 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <span class="badge badge-primary mb-2 px-3 py-2">Total</span>
+          <h3 class="mb-0 text-primary">{{ total_visits }}</h3>
+          <small class="text-muted">Visitas registradas</small>
         </div>
-
-        <!-- Estadísticas -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Total de Visitas</h3>
-                <div class="number">{{ total_visits }}</div>
-                <div class="subtitle">Desde el inicio</div>
-            </div>
-
-            <div class="stat-card">
-                <h3>IPs Únicas</h3>
-                <div class="number">{{ unique_ips }}</div>
-                <div class="subtitle">Visitantes diferentes</div>
-            </div>
-
-            <div class="stat-card">
-                <h3>Últimas 24 horas</h3>
-                <div class="number">{{ visits_24h }}</div>
-                <div class="subtitle">Visitas recientes</div>
-            </div>
-
-            <div class="stat-card">
-                <h3>Última Semana</h3>
-                <div class="number">{{ visits_week }}</div>
-                <div class="subtitle">7 días</div>
-            </div>
-        </div>
-
-
-        <!-- Tabla de visitas -->
-        <h2 style="margin-bottom: 15px;">📋 Registro Detallado (Últimas 50 visitas)</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>IP Address</th>
-                        <th>Fecha y Hora</th>
-                        <th>País</th>
-                        <th>Ciudad</th>
-                        <th>Región</th>
-                        <th>Coordenadas</th>
-                        <th>Página Visitada</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for log in logs %}
-                    <tr>
-                        <td class="ip-cell">{{ log.ip_location.ip_address }}</td>
-                        <td>{{ log.timestamp|date:"d/m/Y H:i:s" }}</td>
-                        <td>{{ log.ip_location.country|default:"N/A" }}</td>
-                        <td>{{ log.ip_location.city|default:"N/A" }}</td>
-                        <td>{{ log.ip_location.region|default:"N/A" }}</td>
-                        <td class="coords">
-                            {% if log.ip_location.latitude and log.ip_location.longitude %}
-                                {{ log.ip_location.latitude|floatformat:4 }},
-                                {{ log.ip_location.longitude|floatformat:4 }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                        </td>
-                        <td class="path-cell" title="{{ log.path }}">
-                            {{ log.path|default:"/" }}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="7" class="empty-state">
-                            <p style="font-size: 1.2em;">🔍 No hay registros aún</p>
-                            <p>Las visitas comenzarán a registrarse automáticamente</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+      </div>
     </div>
-</body>
-</html>
+    <div class="col-md-6 col-xl-3 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <span class="badge badge-success mb-2 px-3 py-2">IPs</span>
+          <h3 class="mb-0 text-success">{{ unique_ips }}</h3>
+          <small class="text-muted">Visitantes únicos</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <span class="badge badge-warning text-dark mb-2 px-3 py-2">24h</span>
+          <h3 class="mb-0 text-warning">{{ visits_24h }}</h3>
+          <small class="text-muted">Visitas recientes</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <span class="badge badge-info mb-2 px-3 py-2">Semana</span>
+          <h3 class="mb-0 text-info">{{ visits_week }}</h3>
+          <small class="text-muted">Ultimos 7 días</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card border-0 shadow-sm">
+
+    <div class="table-responsive">
+      <table class="table table-hover mb-0 align-middle">
+        <thead class="thead-light">
+          <tr>
+            <th>IP Address</th>
+            <th>Fecha y Hora</th>
+            <th>País</th>
+            <th>Ciudad</th>
+            <th>Región</th>
+            <th>Coordenadas</th>
+            <th>Página Visitada</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for log in logs %}
+          <tr>
+            <td><code>{{ log.ip_location.ip_address }}</code></td>
+            <td>{{ log.timestamp|date:"d/m/Y H:i:s" }}</td>
+            <td>{{ log.ip_location.country|default:"N/A" }}</td>
+            <td>{{ log.ip_location.city|default:"N/A" }}</td>
+            <td>{{ log.ip_location.region|default:"N/A" }}</td>
+            <td>
+              {% if log.ip_location.latitude and log.ip_location.longitude %}
+                {{ log.ip_location.latitude|floatformat:4 }}, {{ log.ip_location.longitude|floatformat:4 }}
+              {% else %}
+                N/A
+              {% endif %}
+            </td>
+            <td title="{{ log.path }}">{{ log.path|default:"/" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center py-5 text-muted">
+              <i class="fas fa-search fa-3x mb-3 d-block"></i>
+              No hay registros aun.
+              <div class="mt-2">Las visitas comenzaran a registrarse automaticamente.</div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endblock content %}

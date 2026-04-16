@@ -75,6 +75,11 @@
     }
 </style>
 
+
+  {% include "includes/barra_lateral.html" %}
+  <!-- CONTENIDO PRINCIPAL -->
+<div class="col-lg-9">
+
 <div class="container" style="min-height: 637px; padding: 10px 0;">
     <div class="row">
         <div class="col-12">
@@ -85,33 +90,6 @@
                 </div>
             </div>
 
-            <!-- Usuario Actual -->
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <div class="user-badge text-center">
-                        <i class="fas fa-user-shield"></i>
-                        <p class="mb-0 h6">{{ user.full_name }}</p>
-                        <small>{{ user.email }}</small>
-                    </div>
-                </div>
-
-                <!-- Estadísticas Rápidas -->
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card stats-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <div>
-                                        <h6 class="mb-0 text-muted">Total Usuarios</h6>
-                                        <h4 class="mb-0">{{ usuarios.count }}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Tabla de Usuarios -->
             <div class="card">
                 <div class="card-body p-0">
@@ -119,14 +97,13 @@
                         <table class="table table-custom mb-0">
                             <thead>
                                 <tr>
-                                    <th><i class="fas fa-hashtag mr-1"></i>ID</th>
-                                    <th><i class="fas fa-user mr-1"></i>Nombre</th>
-                                    <th><i class="fas fa-envelope mr-1"></i>Email</th>
-                                    <th><i class="fas fa-briefcase mr-1"></i>Ocupación</th>
-                                    <th><i class="fas fa-venus-mars mr-1"></i>Género</th>
-                                    <th><i class="fas fa-user-shield mr-1"></i>Staff</th>
-                                    <th><i class="fas fa-toggle-on mr-1"></i>Estado</th>
-                                    <th><i class="fas fa-clock mr-1"></i>Últi. Sesion</th>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Ocupación</th>
+                                    <th>Staff</th>
+                                    <th>Estado</th>
+                                    <th>Última</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -136,12 +113,7 @@
                                     <td>{{ usuario.full_name }}</td>
                                     <td><i class="fas fa-envelope text-muted mr-1"></i>{{ usuario.email }}</td>
                                     <td>{{ usuario.get_ocupation_display }}</td>
-                                    <td>
-                                        {% if usuario.genero == 'M' %}<i class="fas fa-mars text-primary"></i> Masculino
-                                        {% elif usuario.genero == 'F' %}<i class="fas fa-venus text-danger"></i> Femenino
-                                        {% else %}<i class="fas fa-genderless text-secondary"></i> {{ usuario.genero }}
-                                        {% endif %}
-                                    </td>
+
                                     <td>
                                         {% if usuario.is_staff %}
                                             <span class="badge-status badge-staff"><i class="fas fa-check mr-1"></i>Staff</span>
@@ -151,9 +123,9 @@
                                     </td>
                                     <td>
                                         {% if usuario.is_active %}
-                                            <span class="badge-status badge-active"><i class="fas fa-check-circle mr-1"></i>Activo</span>
+                                            <span class="badge-status badge-active"><i class="fas fa-check-circle mr-1"></i></span>
                                         {% else %}
-                                            <span class="badge-status badge-inactive"><i class="fas fa-times-circle mr-1"></i>Inactivo</span>
+                                            <span class="badge-status badge-inactive"><i class="fas fa-times-circle mr-1"></i></span>
                                         {% endif %}
                                     </td>
                                     <td>
@@ -180,6 +152,10 @@
 
         </div>
     </div>
+</div>
+
+</div>
+</div>
 </div>
 
 {% endblock content %}

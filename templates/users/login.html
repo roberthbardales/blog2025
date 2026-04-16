@@ -1,37 +1,175 @@
-{% extends "users/base_users.html" %}
+﻿{% extends "users/base_users.html" %}
 {% load static %}
 
 {% block content %}
 
 {% include "includes/header.html" %}
 
-<div class="container" style="min-height: 637px;">
-    <div class="row w-100">
-        <div class="col-12 mb-4"></div>
-        <div class="col-12 mb-4"></div>
-        <div class="col-lg-4 bg-primary offset-lg-4 mt-4">
-            <form class="mb-1 mt-1 px-4 py-4" method="post" enctype="multipart/form-data">{% csrf_token %}
-                <h5 class="display-5 h2 text-center text-white">Administrador de Blog</h5>
-                    {{form.as_p}}
-                    <div class="text-center px-2 py-3">
-                        <input type="submit" class="btn btn-success btn-block" value="Ingresar" />
-                    </div>
-                    <div class="text-center px-2 py-1">
-                        <a class="btn btn-warning btn-block" href="{% url 'users_app:user-register'%}">Registrar</a>
-                    </div>
-            </form>
-            <div class="col-12 text-center mb-4">
-                <button
-                    type="button"
-                    class="btn btn-danger btn-block d-flex align-items-center justify-content-center"
-                    style="gap: 8px;"
-                    onclick="loginWithGoogle()"
-                >
-                    Acceder con Google
-                </button>
+<style>
+  body {
+    background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
+  }
+
+  .login-shell {
+    min-height: calc(100vh - 90px);
+    padding: 1.5rem 0 2.25rem;
+  }
+
+  .login-card {
+    border: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 16px 32px rgba(15, 23, 42, .14);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  }
+
+  .login-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
+    color: #fff;
+    position: relative;
+  }
+
+  .login-hero::after {
+    content: "";
+    position: absolute;
+    right: -65px;
+    top: -65px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.10);
+    pointer-events: none;
+  }
+
+  .login-avatar {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,.55);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, .16);
+  }
+
+  .login-form .form-control {
+    border-radius: .75rem;
+    border: 1px solid #d6deea;
+    min-height: 42px;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, .04);
+  }
+
+  .login-form .form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 .2rem rgba(37, 99, 235, .12);
+  }
+
+  .login-btn {
+    border-radius: .75rem;
+    min-height: 42px;
+    font-weight: 600;
+    box-shadow: 0 8px 16px rgba(25, 135, 84, .16);
+  }
+
+  .login-google {
+    border-radius: .75rem;
+    min-height: 42px;
+    font-weight: 600;
+  }
+
+  .login-divider {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    color: #94a3b8;
+    font-size: .85rem;
+  }
+
+  .login-divider::before,
+  .login-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #d6deea;
+  }
+
+  .login-divider span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    font-weight: 600;
+    color: #64748b;
+    background: #f8fbff;
+    padding: 0 .25rem;
+  }
+
+  .login-note {
+    font-size: .9rem;
+  }
+</style>
+
+<div class="container ">
+  <div class="row justify-content-center align-items-center login-shell">
+    <div class="col-md-10 col-lg-5">
+      <div class="card login-card">
+        <div class="card-body p-0">
+          <div class="login-hero px-4 px-lg-5 py-3 text-center">
+            <img src="{% static 'img/unknown.png' %}" alt="Usuario" class="login-avatar rounded-circle mb-3">
+            <h2 class="h4 font-weight-bold mb-2 text-white">Iniciar sesión</h2>
+            <p class="mb-0 text-white-50">Usa tu correo y contraseña o accede con Google.</p>
+          </div>
+
+          <div class="px-4 px-lg-5 py-3 login-form">
+            {% if form.non_field_errors %}
+            <div class="alert alert-warning border-0 shadow-sm">
+              {{ form.non_field_errors }}
             </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <div class="form-group mb-2">
+                <label for="{{ form.email.id_for_label }}" class="font-weight-bold text-dark">Correo electrónico</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <small class="text-danger d-block mt-1">{{ form.email.errors }}</small>
+                {% endif %}
+              </div>
+
+              <div class="form-group mb-2">
+                <label for="{{ form.password.id_for_label }}" class="font-weight-bold text-dark">Contraseña</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                <small class="text-danger d-block mt-1">{{ form.password.errors }}</small>
+                {% endif %}
+              </div>
+
+              <button type="submit" class="btn btn-success text-white btn-block login-btn mt-3 mb-2">
+                Ingresar
+              </button>
+
+              <a class="btn btn-outline-primary btn-block login-btn mb-2" href="{% url 'users_app:user-register' %}">
+                Crear cuenta
+              </a>
+
+              <div class="login-divider mb-2">
+                <span>o</span>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-danger btn-block d-flex align-items-center justify-content-center login-google"
+                style="gap: 10px;"
+                onclick="loginWithGoogle()"
+              >
+                <i class="fab fa-google"></i>
+                Acceder con Google
+              </button>
+            </form>
+          </div>
         </div>
+      </div>      
     </div>
+  </div>
 </div>
 
 <script type="module">
@@ -72,17 +210,17 @@
             });
 
             const data = await response.json();
-            console.log("✅ Login backend:", data);
+            console.log("Login backend:", data);
 
             if (response.ok) {
                 window.location.href = "/";
             } else {
-                alert("❌ Error: " + data.error);
+                alert("Error: " + data.error);
             }
 
         } catch (error) {
-            console.error("🔥 Error en login:", error);
-            alert("Ocurrió un error al autenticar con Google");
+            console.error("Error en login:", error);
+            alert("Ocurrio un error al autenticar con Google");
         }
     };
 </script>

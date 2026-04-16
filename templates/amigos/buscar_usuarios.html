@@ -1,0 +1,177 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Buscar Personas{% endblock %}
+
+{% block content %}
+{% include "includes/header.html" %}
+{% include "includes/barra_lateral.html" %}
+
+<div class="col-lg-9">
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body bg-primary text-white rounded">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+        <div class="mb-3 mb-md-0">
+          <span class="badge badge-light text-primary mb-2">
+            <i class="fas fa-search mr-1"></i>Descubrir personas
+          </span>
+          <h2 class="mb-2 font-weight-bold">Buscar personas</h2>
+          <p class="mb-0" style="max-width: 720px; opacity: .92;">
+            Encuentra usuarios por nombre o email y conecta con nuevas personas desde tu red.
+          </p>
+        </div>
+        <div>
+          <a href="{% url 'amigos_app:lista' %}" class="btn btn-light btn-lg text-primary font-weight-bold">
+            <i class="fas fa-arrow-left mr-1"></i> Mis amigos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert alert-{{ msg.tags }} alert-dismissible fade show shadow-sm" role="alert">
+        {{ msg }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <form method="get">
+        <label class="small text-muted mb-1">
+          <i class="fas fa-keyboard mr-1"></i>Escribe un nombre o email
+        </label>
+        <div class="input-group input-group-lg">
+          <input type="text" name="kword" value="{{ kword }}" class="form-control" placeholder="Buscar por nombre o email...">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-search mr-1"></i> Buscar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% if kword %}
+    {% if usuarios %}
+    <div class="row">
+      {% for item in usuarios %}
+      <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card border-0 shadow-sm h-100 text-center">
+          <div class="card-body d-flex flex-column align-items-center py-4">
+            {% if item.user.avatar %}
+              <img src="{{ item.user.avatar.url }}" class="rounded-circle mb-3" width="80" height="80" style="object-fit: cover;" alt="{{ item.user.full_name }}">
+            {% else %}
+              <img src="{% static 'img/unknown.png' %}" class="rounded-circle mb-3" width="80" height="80" style="object-fit: cover;" alt="Usuario">
+            {% endif %}
+
+            <a href="{% url 'entrada_app:view_profile' item.user.id %}" class="h5 mb-1 text-primary text-decoration-none">
+              {{ item.user.full_name }}
+            </a>
+
+            {% if item.user.full_name != item.user.email %}
+              <small class="text-muted text-truncate w-100" title="{{ item.user.email }}">{{ item.user.email }}</small>
+            {% endif %}
+
+            <div class="w-100 mt-3">
+              {% if item.status == None %}
+                <form method="post" action="{% url 'amigos_app:enviar' item.user.pk %}">
+                  {% csrf_token %}
+                  <button class="btn btn-primary btn-block">
+                    <i class="fas fa-user-plus mr-1"></i>Agregar
+                  </button>
+                </form>
+              {% elif item.status == 'accepted' %}
+                <span class="btn btn-success btn-block disabled">
+                  <i class="fas fa-user-check mr-1"></i>Amigos
+                </span>
+              {% elif item.status == 'pending' and item.soy_sender %}
+                <span class="badge badge-warning text-dark mb-2 px-3 py-2">
+                  <i class="fas fa-clock mr-1"></i>Solicitud enviada
+                </span>
+                <form method="post" action="{% url 'amigos_app:cancelar' item.friendship.pk %}">
+                  {% csrf_token %}
+                  <button class="btn btn-outline-secondary btn-block">
+                    <i class="fas fa-ban mr-1"></i>Cancelar
+                  </button>
+                </form>
+              {% elif item.status == 'pending' and not item.soy_sender %}
+                <span class="badge badge-info mb-2 px-3 py-2">
+                  <i class="fas fa-user mr-1"></i>Te envió solicitud
+                </span>
+                <div class="d-flex" style="gap: .5rem;">
+                  <form method="post" action="{% url 'amigos_app:aceptar' item.friendship.pk %}" class="flex-fill">
+                    {% csrf_token %}
+                    <button class="btn btn-success btn-block">
+                      <i class="fas fa-check mr-1"></i>Aceptar
+                    </button>
+                  </form>
+                  <form method="post" action="{% url 'amigos_app:rechazar' item.friendship.pk %}" class="flex-fill">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-danger btn-block">
+                      <i class="fas fa-times mr-1"></i>Rechazar
+                    </button>
+                  </form>
+                </div>
+              {% elif item.status == 'blocked' %}
+                <span class="btn btn-danger btn-block disabled">
+                  <i class="fas fa-ban mr-1"></i>Bloqueado
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+    <nav class="mt-4">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?kword={{ kword }}&page={{ page_obj.previous_page_number }}">
+              <i class="fas fa-chevron-left"></i>
+            </a>
+          </li>
+        {% endif %}
+        <li class="page-item disabled">
+          <span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+        </li>
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?kword={{ kword }}&page={{ page_obj.next_page_number }}">
+              <i class="fas fa-chevron-right"></i>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <div class="card border-0 shadow-sm">
+      <div class="card-body text-center py-5 text-muted">
+        <i class="fas fa-user-slash fa-3x text-success mb-3 d-block"></i>
+        <h5 class="mb-2">No se encontraron resultados</h5>
+        <p class="mb-0">No encontramos usuarios para <strong>"{{ kword }}"</strong>.</p>
+      </div>
+    </div>
+    {% endif %}
+  {% else %}
+    <div class="card border-0 shadow-sm">
+      <div class="card-body text-center py-5 text-muted">
+        <i class="fas fa-search fa-3x text-success mb-3 d-block"></i>
+        <h5 class="mb-2">Empieza una búsqueda</h5>
+        <p class="mb-0">Escribe un nombre o email para encontrar personas.</p>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

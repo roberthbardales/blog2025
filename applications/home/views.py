@@ -148,3 +148,12 @@ class VisitorCreateView(View):
         # VisitorLog.objects.create(ip=ip, ...)
 
         return JsonResponse({'ok': True})
+
+
+# home/views.py — agrega esta vista
+class PortafolioView(TemplateView):
+    template_name = "home/portafolio.html"
+
+
+class InicioView(TemplateView):
+    template_name = "home/inicio2.html"

@@ -88,12 +88,12 @@ class UserPageView(ListView):
             Q(user=usuario),
             Q(entry__title__icontains=kword_favorito,) |
             Q(entry__title__trigram_similar=kword_favorito,)
-        ).order_by('-created')
+        ).select_related('entry', 'entry__category', 'group').order_by('-created')
             # print(queryset)
             return(queryset)
 
         if usuario.is_authenticated:
-            queryset = Favorites.objects.entradas_user(usuario)
+            queryset = Favorites.objects.entradas_user(usuario).select_related('entry', 'entry__category', 'group')
 
             # --- Filtro por grupo ---
             grupo = self.request.GET.get("grupo", "").strip()
@@ -307,7 +307,7 @@ class FavoritosByGrupoListView(UsuarioPermisoMixin, ListView):
         resultado= Favorites.objects.filter(
             user=self.request.user,
             group__id=grupo_id
-        )
+        ).select_related('entry', 'entry__category', 'group')
         # print("/*/*/*/*/*")
         # print(resultado)
         return resultado

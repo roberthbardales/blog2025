@@ -9,13 +9,11 @@
     .col {
     margin-bottom: 1px; /* Ajusta según necesites */
 }
-
     .card {
         border: none;
         transition: all 0.3s;
 
     }
-
 
     .card:hover {
         transform: translateY(-5px);
@@ -23,27 +21,12 @@
 
     }
 
-    .card-header-custom {
-        background-color: #007bff !important;
-        color: white !important;
-        border-bottom: none;
-
-    }
-
     .categoria-badge {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        /* background: #007bff; */
-        color: white;
-        padding: 15px;
-        border-radius: 15px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-        margin-bottom: 20px;
+        /* background: linear-gradient(135deg, #764ba2 100%); */
+        padding: 5px;
+        margin-bottom: 15px;
     }
 
-    .categoria-badge h4 {
-        margin: 0;
-        font-weight: 600;
-    }
 
     .search-box {
         background-color: white;
@@ -176,19 +159,39 @@
     <div class="row">
         <!-- Contenido Principal -->
         <div class="col-lg-10 mb-4">
+            <div class="row">
+                <div class="col-md-9 text-start">
+                    {% if request.GET.categoria %}
+                    <div class="categoria-badge text-start">
+                        <div class="card-header" style="background-color:#007bff;">
+                            <h5 class="mb-0 text-white">
+                               Categoria: {{ request.GET.categoria }}
+                            </h5>
+                        </div>
 
-            <!-- Badge de Categoría Actual -->
-            {% if request.GET.categoria %}
-            <div class="categoria-badge text-center">
-                <i class="fas mr-2"></i>
-                <h4 class="d-inline">{{ request.GET.categoria }}</h4>
+                    </div>
+
+                    {% else %}
+                    <div class="categoria-badge text-start">
+                        <div class="card-header" style="background-color:#007bff;">
+                            <h5 class="mb-0 text-white">
+                            Categoria: Todos
+                            </h5>
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+                </div>
+                <div class="col-md-3 text-right">
+                    {% if not user.is_anonymous %}
+                        <a class="btn btn-success btn-lg text-white mt-2" href="{% url 'entrada_app:add-entrada' %}">
+                            Agregar Post
+                        </a>
+                    {% endif %}
+                </div>
             </div>
-            {% else %}
-            <div class="categoria-badge text-center">
-                <i class="fas  mr-2"></i>
-                <h4 class="d-inline">Todos los Posts</h4>
-            </div>
-            {% endif %}
+
 
             <!-- Búsqueda -->
             <div class="search-box">

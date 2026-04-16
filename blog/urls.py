@@ -16,6 +16,7 @@ urlpatterns = [
     re_path('', include('applications.home.urls')),
     re_path('', include('applications.entrada.urls')),
     re_path('', include('applications.favoritos.urls')),
+    re_path('', include('applications.amigos.urls')),
     # re_path('', include('applications.rag.urls')),          #rag
     re_path('chat/', include('applications.chat.urls')),
     re_path('', include('applications.notas.urls')),

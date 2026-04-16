@@ -1,0 +1,222 @@
+{% load static %}
+
+<style>
+  /* Estilo base de todas las tarjetas */
+  .card {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra ligera */
+      border: none; /* Sin borde */
+  }
+
+  /* Tarjeta de perfil */
+  .profile-card {
+      background-color: #007bff; /* Fondo azul */
+      border-radius: 10px;        /* Bordes redondeados */
+      color: white;               /* Texto blanco */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Sombra más pronunciada */
+  }
+
+  /* Imagen de avatar */
+  .profile-card img {
+      border: 3px solid white;   /* Borde blanco */
+      object-fit: cover;         /* Ajuste de imagen */
+  }
+
+  /* Botones dentro de profile-card */
+  .profile-card .btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.25rem;
+      font-size: 0.875rem;
+  }
+
+  /* Badges de ocupación o notificaciones */
+  .profile-card .badge {
+      font-size: 0.8rem;
+  }
+
+  .nav-white-border {
+      border: 1px solid #ffffff !important;
+      border-radius: 0 !important;
+  }
+
+  /* Pequeños detalles de texto dentro del perfil */
+  .profile-card p.small,
+  .profile-card small {
+      margin-bottom: 0.25rem;
+      font-size: 0.8rem;
+  }
+
+  /* Lista de navegación */
+  .list-group-item {
+      cursor: pointer;
+      transition: background-color 0.2s;
+  }
+
+  .list-group-item:hover {
+      background-color: rgba(0, 123, 255, 0.2);
+  }
+
+  .list-group-item.active {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+      color: #fff;
+  }
+
+  .list-group-item.active i,
+  .list-group-item.active .badge {
+      color: #fff !important;
+  }
+
+  .list-group-item i {
+      width: 20px; /* Alinea iconos */
+  }
+
+  /* Badges dentro de la lista de navegación */
+  .list-group-item .badge {
+      float: right;
+      font-size: 0.75rem;
+  }
+  /* Solo genera espacio arriba dentro de filtro-card */
+  .filtro-card .card-header {
+      padding-top: 0.4rem;   /* espacio interno arriba */
+      padding-right: 1rem;
+      padding-bottom: 0;
+      padding-left: 1rem;
+      font-size: 0.9rem;
+  }
+</style>
+<div class="container" style="min-height:650px; padding:30px 0;">
+  <div class="row">
+
+  <!-- SIDEBAR -->
+  <div class="col-lg-3 mb-4">
+
+    <!-- Card perfil -->
+    <div class="card profile-card mb-3">
+      <div class="profile-info text-center p-3">
+
+        {% if user.avatar %}
+          <img src="{{ user.avatar.url }}" alt="Avatar"
+              class="rounded-circle mb-2"
+              width="100" height="100"
+              style="object-fit:cover; border:3px solid white;">
+        {% elif user.avatar_url %}
+          <img src="{{ user.avatar_url }}" alt="Avatar"
+              class="rounded-circle mb-2"
+              width="100" height="100"
+              style="object-fit:cover; border:3px solid white;">
+        {% else %}
+          <img src="{% static 'img/unknown.png' %}" alt="Avatar"
+              class="rounded-circle mb-2"
+              width="100" height="100"
+              style="border:3px solid white;">
+        {% endif %}
+
+        <h5 class="mt-2 mb-0">{{ user.full_name }}</h5>
+        <small class="text-white-50">{{ user.email }}</small>
+
+        {% if user.ocupation %}
+        <div class="mt-1 mb-2">
+          <span class="badge badge-light text-primary">
+            {{ user.get_ocupation_display }}
+          </span>
+        </div>
+        {% endif %}
+
+      </div>
+
+      <div class="px-3 pb-3">
+        {% if user.is_superuser %}
+        <a class="btn btn-dark btn-block btn-sm mb-1"
+          href="{% url 'users_app:user-lista' %}">
+          <i class="fas fa-users mr-1"></i>Usuarios
+        </a>
+        <a class="btn btn-danger btn-block btn-sm mb-1"
+          href="{% url 'home_app:visitor_logs' %}">
+          <i class="fas fa-chart-bar mr-1"></i>Visitas
+        </a>
+        <a class="btn btn-warning btn-block btn-sm mb-1"
+          href="{% url 'entrada_app:categorias-lista' %}">
+          <i class="fas fa-chart-bar mr-1"></i> Categorias
+        </a>
+        <a class="btn btn-success btn-block btn-sm mb-1"
+          href="{% url 'entrada_app:entry-lista2' %}">
+          <i class="fas fa-chart-bar mr-1"></i> Posts
+        </a>
+        {% endif %}
+
+              <!-- Navegación -->
+    <div class="card mb-3 shadow-sm nav-white-border mt-4">
+
+      <div class="list-group list-group-flush">
+        <a href="{% url 'amigos_app:lista' %}"
+          class="list-group-item list-group-item-action d-flex align-items-center justify-content-between {% if request.path == '/amigos/' %}active{% endif %}">
+          <span>
+            <i class="fas fa-user-friends mr-2 text-primary"></i>Amigos
+          </span>
+          {% if solicitudes_pendientes %}
+          <span class="badge badge-warning badge-pill">
+            {{ solicitudes_pendientes }}
+          </span>
+          {% endif %}
+        </a>
+        <a href="{% url 'amigos_app:perfil' %}"
+          class="list-group-item list-group-item-action d-flex align-items-center {% if request.resolver_match.view_name == 'amigos_app:perfil' %}active{% endif %}">
+          <i class="fas fa-clipboard-list mr-2 text-success"></i>Mis Posts
+        </a>
+        <a href="/chat/"
+          class="list-group-item list-group-item-action d-flex align-items-center {% if request.path|slice:':6' == '/chat/' %}active{% endif %}">
+          <i class="fas fa-comments mr-2 text-info"></i>Chat
+        </a>
+        <a href="{% url 'favoritos_app:perfil' %}"
+          class="list-group-item list-group-item-action d-flex align-items-center {% if request.resolver_match.view_name == 'favoritos_app:perfil' %}active{% endif %}">
+          <i class="fas fa-star mr-2 text-warning"></i>Favoritos
+        </a>
+        <a href="{% url 'favoritos_app:grupos_crud' %}"
+          class="list-group-item list-group-item-action d-flex align-items-center {% if request.resolver_match.view_name == 'favoritos_app:grupos_crud' %}active{% endif %}">
+          <i class="fas fa-layer-group mr-2 text-danger"></i>Grupos Favoritos
+        </a>
+        <a href="{% url 'notas_app:lista-notas' %}"
+          class="list-group-item list-group-item-action d-flex align-items-center {% if request.path == '/notas/' %}active{% endif %}">
+          <i class="fas fa-sticky-note mr-2 text-success"></i>Mis Notas
+        </a>
+      </div>
+    </div>
+
+
+      </div>
+    </div>
+
+    <!-- Navegación -->
+    <!-- <div class="list-group mb-3">
+      <a href="{% url 'amigos_app:lista' %}"
+        class="list-group-item list-group-item-action">
+        <i class="fas fa-user-friends mr-2 text-primary"></i>Amigos
+        {% if solicitudes_pendientes %}
+        <span class="badge badge-warning float-right">
+          {{ solicitudes_pendientes }}
+        </span>
+        {% endif %}
+      </a>
+      <a href="{% url 'favoritos_app:perfil' %}"
+        class="list-group-item list-group-item-action">
+        <i class="fas fa-star mr-2 text-warning"></i>Favoritos
+      </a>
+      <a href="{% url 'notas_app:lista-notas' %}"
+        class="list-group-item list-group-item-action">
+        <i class="fas fa-sticky-note mr-2 text-success"></i>Notas
+      </a>
+      <a href="/chat/"
+        class="list-group-item list-group-item-action">
+        <i class="fas fa-comments mr-2 text-info"></i>Chat
+      </a>
+
+      <a href="{% url 'amigos_app:perfil' %}"
+        class="list-group-item list-group-item-action">
+        <i class="fas fa-user mr-2 text-secondary"></i>Mi Perfil
+      </a>
+    </div> -->
+
+  </div>
+  <!-- FIN SIDEBAR -->
+

@@ -1,0 +1,354 @@
+{% extends "home/base_home.html" %}
+{% load static %}
+
+{% block title %}Portafolio Backend Jr | Python Django{% endblock title %}
+
+{% block description %}
+<meta name="description" content="Portafolio de desarrollador backend junior con Python, Django, PostgreSQL, Linux y Bootstrap 4.">
+{% endblock description %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<style>
+  .hero-shell {
+    background: linear-gradient(135deg, #0b5ed7 0%, #0d6efd 35%, #1b2a4e 100%);
+    color: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 45px rgba(13, 110, 253, 0.25);
+  }
+
+  .hero-shell:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 28%),
+      radial-gradient(circle at bottom left, rgba(255,255,255,0.12), transparent 30%);
+    pointer-events: none;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+  }
+
+  .section-title {
+    letter-spacing: -0.03em;
+  }
+
+  .soft-card {
+    border: 0;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(18, 38, 63, 0.08);
+  }
+
+  .project-card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(18, 38, 63, 0.12) !important;
+  }
+
+  .pill-list .badge {
+    margin-right: .35rem;
+    margin-bottom: .45rem;
+  }
+
+  .timeline {
+    border-left: 3px solid #0d6efd;
+    padding-left: 1.25rem;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-item:before {
+    content: "";
+    position: absolute;
+    left: -1.47rem;
+    top: .35rem;
+    width: 12px;
+    height: 12px;
+    background: #0d6efd;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(13,110,253,.15);
+  }
+</style>
+
+<div class="container py-5">
+  <section class="hero-shell p-4 p-lg-5 mb-5">
+    <div class="row align-items-center position-relative">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <span class="badge badge-light text-primary px-3 py-2 mb-3">Backend Jr | Python | Django | PostgreSQL</span>
+        <h1 class="display-4 font-weight-bold mb-3">Construyo soluciones backend limpias, utiles y listas para crecer</h1>
+        <p class="lead mb-4" style="color: rgba(255,255,255,.85);">
+          Me enfoco en aplicaciones con Django, APIs REST, autenticacion, paneles de administracion y despliegue en Linux.
+          Busco proyectos donde pueda aportar orden, rendimiento y buena experiencia de usuario desde el backend.
+        </p>
+
+        <div class="d-flex flex-wrap">
+          <a href="#proyectos" class="btn btn-light btn-lg mr-3 mb-2 text-primary font-weight-bold">Ver proyectos</a>
+          <a href="#contacto" class="btn btn-outline-light btn-lg mb-2">Contactarme</a>
+        </div>
+
+        <div class="mt-4 pill-list">
+          <span class="badge badge-light">Python</span>
+          <span class="badge badge-light">Django</span>
+          <span class="badge badge-light">Django REST Framework</span>
+          <span class="badge badge-light">PostgreSQL</span>
+          <span class="badge badge-light">Linux</span>
+          <span class="badge badge-light">Nginx</span>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="hero-card rounded-lg p-4 p-lg-5">
+          <div class="text-center mb-4">
+            <img src="/static/img/foto4.png" alt="Perfil" class="rounded-circle shadow-sm mb-3" style="width: 140px; height: 140px; object-fit: cover; border: 4px solid rgba(255,255,255,.25);">
+            <h2 class="h3 mb-1">Russell Roberth Bardales</h2>
+            <p class="mb-0" style="color: rgba(255,255,255,.8);">Desarrollador Backend Jr</p>
+          </div>
+
+          <div class="row text-center">
+            <div class="col-4">
+              <div class="soft-card bg-white p-3 h-100">
+                <div class="h4 mb-1 text-primary font-weight-bold">4+</div>
+                <small class="text-muted">Proyectos</small>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="soft-card bg-white p-3 h-100">
+                <div class="h4 mb-1 text-primary font-weight-bold">100%</div>
+                <small class="text-muted">Enfoque backend</small>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="soft-card bg-white p-3 h-100">
+                <div class="h4 mb-1 text-primary font-weight-bold">Linux</div>
+                <small class="text-muted">Deploy</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-5">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <h2 class="h2 font-weight-bold section-title mb-2">Lo que hago mejor</h2>
+        <p class="text-muted mb-0">Una mezcla de backend, datos y despliegue para llevar proyectos a produccion.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card soft-card h-100">
+          <div class="card-body">
+            <div class="badge badge-primary mb-3">Backend</div>
+            <h3 class="h5 font-weight-bold">APIs y logica de negocio</h3>
+            <p class="text-muted mb-0">Construccion de endpoints, validaciones, permisos y procesos robustos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card soft-card h-100">
+          <div class="card-body">
+            <div class="badge badge-success mb-3">Datos</div>
+            <h3 class="h5 font-weight-bold">PostgreSQL</h3>
+            <p class="text-muted mb-0">Modelado de tablas, consultas, relaciones y optimizacion basica.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card soft-card h-100">
+          <div class="card-body">
+            <div class="badge badge-warning mb-3">Linux</div>
+            <h3 class="h5 font-weight-bold">Despliegue</h3>
+            <p class="text-muted mb-0">Entornos VPS, Nginx, servicio web y configuracion para produccion.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card soft-card h-100">
+          <div class="card-body">
+            <div class="badge badge-danger mb-3">UI</div>
+            <h3 class="h5 font-weight-bold">Bootstrap 4</h3>
+            <p class="text-muted mb-0">Interfaces limpias, rapidas y responsive para mejorar la experiencia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos" class="mb-5">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <h2 class="h2 font-weight-bold section-title mb-2">Proyectos destacados</h2>
+        <p class="text-muted mb-0">Cuatro muestras concretas de trabajo orientado a backend jr.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="card project-card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="bg-light p-2 rounded mb-3 d-inline-block">
+              <span class="badge badge-primary mb-2">Django</span>
+              <span class="badge badge-secondary mb-2">Bootstrap</span>
+            </div>
+            <h3 class="h4 font-weight-bold">Sistema de blog personal</h3>
+            <p class="text-muted">Blog con publicaciones, categorias, usuarios, permisos y panel de administracion.</p>
+            <ul class="text-muted mb-0">
+              <li>CRUD completo de contenido</li>
+              <li>Autenticacion y roles</li>
+              <li>Interfaz responsive</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex">
+              <a href="#" class="btn btn-primary flex-grow-1 mr-3">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <div class="card project-card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="bg-light p-2 rounded mb-3 d-inline-block">
+              <span class="badge badge-success mb-2">API REST</span>
+              <span class="badge badge-secondary mb-2">JWT</span>
+            </div>
+            <h3 class="h4 font-weight-bold">API para e-commerce</h3>
+            <p class="text-muted">Backend para productos, pedidos, autenticacion y consumo desde frontend web o movil.</p>
+            <ul class="text-muted mb-0">
+              <li>Endpoints de productos y pedidos</li>
+              <li>Seguridad con tokens</li>
+              <li>Base escalable</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex">
+              <a href="#" class="btn btn-success flex-grow-1 mr-3">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <div class="card project-card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="bg-light p-2 rounded mb-3 d-inline-block">
+              <span class="badge badge-warning mb-2">Python</span>
+              <span class="badge badge-secondary mb-2">Administracion</span>
+            </div>
+            <h3 class="h4 font-weight-bold">Portal de turnos</h3>
+            <p class="text-muted">Sistema para reservar citas, ordenar solicitudes y gestionar disponibilidad.</p>
+            <ul class="text-muted mb-0">
+              <li>Agenda de turnos</li>
+              <li>Estados de atencion</li>
+              <li>Flujo simple para usuarios</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex">
+              <a href="#" class="btn btn-warning flex-grow-1 mr-3">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <div class="card project-card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="bg-light p-2 rounded mb-3 d-inline-block">
+              <span class="badge badge-danger mb-2">Django</span>
+              <span class="badge badge-secondary mb-2">Dashboard</span>
+            </div>
+            <h3 class="h4 font-weight-bold">Panel de metricas</h3>
+            <p class="text-muted">Tablero para visualizar indicadores, revisar estadisticas y tomar decisiones rapidas.</p>
+            <ul class="text-muted mb-0">
+              <li>Resumen visual de datos</li>
+              <li>Filtros por fecha</li>
+              <li>Exportacion lista</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex">
+              <a href="#" class="btn btn-danger flex-grow-1 mr-3">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-5">
+    <div class="row">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <div class="card soft-card h-100">
+          <div class="card-body p-4">
+            <h2 class="h3 font-weight-bold section-title mb-3">Experiencia y enfoque</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h3 class="h5 font-weight-bold mb-1">Backend con Django</h3>
+                <p class="text-muted mb-0">Construccion de aplicaciones, autenticacion, permisos y CRUDs completos.</p>
+              </div>
+              <div class="timeline-item">
+                <h3 class="h5 font-weight-bold mb-1">Base de datos y reportes</h3>
+                <p class="text-muted mb-0">Trabajo con PostgreSQL, consultas, filtros y estructuras faciles de mantener.</p>
+              </div>
+              <div class="timeline-item mb-0">
+                <h3 class="h5 font-weight-bold mb-1">Despliegue en Linux</h3>
+                <p class="text-muted mb-0">Configuracion de entornos para publicar servicios de forma ordenada.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5" id="contacto">
+        <div class="card soft-card h-100">
+          <div class="card-body p-4">
+            <h2 class="h3 font-weight-bold section-title mb-3">Contacto rapido</h2>
+            <p class="text-muted mb-4">Si buscas un perfil backend junior con ganas de aprender y aportar, aqui estoy.</p>
+            <div class="mb-3">
+              <div class="text-muted small mb-1">Correo</div>
+              <div class="font-weight-bold">roberthbardales@gmail.com</div>
+            </div>
+            <div class="mb-3">
+              <div class="text-muted small mb-1">Telefono</div>
+              <div class="font-weight-bold">+51 960 174 778</div>
+            </div>
+            <div class="mb-4">
+              <div class="text-muted small mb-1">Ubicacion</div>
+              <div class="font-weight-bold">Lima, Peru</div>
+            </div>
+            <a href="https://wa.me/51960174778" class="btn btn-success btn-block">Escribirme por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% include "includes/footer.html" %}
+
+{% endblock content %}

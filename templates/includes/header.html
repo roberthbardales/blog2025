@@ -3,37 +3,36 @@
     <div class="col-12">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top ">
             <div class="container">
-                <a class="navbar-brand d-sm-none d-lg-block" href="{% url 'home_app:index' %}"><img class="img-fluid " src="{% static 'img/logo2.jpg' %}" style="max-height: 3rem;"></a>
+                <a class="navbar-brand d-sm-none d-lg-block" href="{% url 'home_app:index2' %}"><img class="img-fluid " src="{% static 'img/logo2.jpg' %}" style="max-height: 3rem;"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-sm-none d-md-block" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-<!--
+
                     <li class="nav-item mx-1">
                         <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:index' %}">Inicio</a>
-                    </li> -->
+                    </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link btn btn-outline-success text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
                     </li>
 
-                    <li class="nav-item  mx-1">
-                        {% if not user.is_anonymous %}
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'entrada_app:add-entrada' %}">Agregar<span class=""></span></a>
-                        {% else %}
-                        <span hidden="hidden">Error oculto</span>
-                        {% endif %}
-                    </li>
+
                     <li class="nav-item  mx-1">
                         <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:sobre_mi' %}">Sobre Mi<span class="sr-only"></span></a>
                     </li>
+
                     <li class="nav-item  mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'chat_home' %}">Chat<span class="sr-only"></span></a>
+                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:portafolio' %}">Proyectos<span class="sr-only"></span></a>
                     </li>
+
+                    <!-- <li class="nav-item  mx-1">
+                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'chat_home' %}">Chat<span class="sr-only"></span></a>
+                    </li> -->
 
                     {% if not user.is_anonymous %}
                     <li class="nav-item mx-1">
-                        <a href="{% url 'favoritos_app:perfil' %}" class="nav-link p-0">
+                        <a href="{% url 'amigos_app:perfil' %}" class="nav-link p-0">
                             {% if user.avatar %}
                                 <img src="{{ user.avatar.url }}" alt="Avatar"
                                      style="width:50px; height:50px; border-radius:50%;">
@@ -60,6 +59,8 @@
 
                         {% endif %}
                     </li>
+
+
                         {% if not user.is_anonymous %}
                         <li class="nav-item mx-1">
                             <a class="nav-link text-white" href="{% url 'favoritos_app:perfil' %}">{{user.name}}</a>

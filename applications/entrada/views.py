@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy,reverse
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 from django.http import HttpResponseRedirect
 
 #forms
@@ -85,11 +85,10 @@ class EntryListView(ListView):
         categoria= self.request.GET.get('categoria','')
         kword_general = self.request.GET.get('kword_general', '').strip()
         #consulta de busqueda
-        resultado= Entry.objects.buscar_entrada_categoria(kword,categoria)
+        resultado= Entry.objects.buscar_entrada_categoria(kword,categoria).select_related('user', 'category')
 
         if kword_general:
-
-            resultado = Entry.objects.buscar_general(kword_general)
+            resultado = Entry.objects.buscar_general(kword_general).select_related('user', 'category')
             # resultado = resultado.filter(title__icontains=kword_general)
         return resultado
 
@@ -102,7 +101,7 @@ class EntryListView2(ListView):
     ordering = ["-created"]
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().select_related('user', 'category')
 
         # filtro buscador
         kword = self.request.GET.get("kword")
@@ -138,11 +137,20 @@ class EntryDetailView(DetailView):
     model = Entry
     context_object_name = 'entry'
 
+    def get_queryset(self):
+        return super().get_queryset().select_related('user', 'category')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         # Formulario de comentarios
-        context['main_comments'] = self.object.comments.filter(parent__isnull=True).order_by('created')
+        comments_qs = Comment.objects.select_related('user').prefetch_related(
+            Prefetch(
+                'replies',
+                queryset=Comment.objects.select_related('user').order_by('created')
+            )
+        )
+        context['main_comments'] = comments_qs.filter(post=self.object, parent__isnull=True).order_by('created')
         context['comment_form'] = CommentForm()
         # Usuario actual
         user = self.request.user
@@ -298,6 +306,7 @@ class UserProfileView(UsuarioPermisoMixin,DetailView):
         else:
             # Usuarios normales solo ven usuarios que NO sean admin ni superuser
             return User.objects.exclude(is_superuser=True).exclude(ocupation=User.ADMINISTRADOR)
+
 
 # Category
 

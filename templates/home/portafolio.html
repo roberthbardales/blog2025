@@ -1,0 +1,242 @@
+{% extends "entrada/base_entrada.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<style>
+  body {
+    background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
+  }
+
+  .portfolio-hero {
+    border: 0;
+    border-radius: 1.1rem;
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, .16);
+    position: relative;
+  }
+
+  .portfolio-hero::after {
+    content: "";
+    position: absolute;
+    right: -90px;
+    top: -90px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.10);
+    pointer-events: none;
+  }
+
+  .portfolio-hero .card-body {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+  }
+
+  .portfolio-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .45rem .75rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.14);
+    color: #fff;
+    margin-right: .35rem;
+    margin-top: .35rem;
+    font-size: .85rem;
+  }
+
+  .project-card {
+    border: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
+    transition: transform .18s ease, box-shadow .18s ease;
+    border-left: 5px solid #2563eb;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, .14);
+  }
+
+  .project-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .project-panel {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, .08);
+  }
+
+  .project-btn {
+    border-radius: .8rem;
+    font-weight: 600;
+  }
+</style>
+
+  <div class="container py-5">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10 text-center">
+        <div class="card portfolio-hero">
+          <div class="card-body">
+            <!-- <span class="badge badge-light text-primary mb-3 px-3 py-2">Portafolio Backend Jr</span> -->
+            <h1 class="display-5 font-weight-bold mb-3">Proyectos con Python/Django</h1>
+            <!-- <p class="lead text-white-50 mb-0">
+              Cuatro proyectos que muestran trabajo con Python, Django, APIs, autenticacion y desplegado en Linux.
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 gy-5">
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card h-100 project-card bg-white">
+          <img src="{% static 'img/001.jpg' %}"
+               class="project-image"
+               alt="Proyecto">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="project-meta mb-0">
+                <span class="badge badge-primary">Django</span>
+                <span class="badge badge-secondary">Bootstrap</span>
+              </div>
+              <span class="badge badge-success">Activo</span>
+            </div>
+            <h2 class="h4 font-weight-bold">Sistema de blog personal</h2>
+            <p class="text-secondary mb-3">
+              Plataforma para publicar articulos, organizar contenido por categorias y administrar usuarios con un panel simple.
+            </p>
+            <ul class="text-secondary pl-3 mb-0">
+              <li>CRUD de publicaciones y categorias.</li>
+              <li>Autenticacion de usuarios y roles.</li>
+              <li>Diseno responsive con Bootstrap.</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex" style="gap: .75rem;">
+              <a href="#" class="btn btn-primary flex-grow-1 project-btn">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card h-100 project-card bg-white">
+          <img src="{% static 'img/001.jpg' %}"
+               class="project-image"
+               alt="Proyecto">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="project-meta mb-0">
+                <span class="badge badge-success">API REST</span>
+                <span class="badge badge-secondary">JWT</span>
+              </div>
+              <span class="badge badge-warning">Backend</span>
+            </div>
+            <h2 class="h4 font-weight-bold">API para e-commerce</h2>
+            <p class="text-secondary mb-3">
+              Servicio backend para catalogo, carrito, ordenes y autenticacion, pensado para conectar una tienda web o movil.
+            </p>
+            <ul class="text-secondary pl-3 mb-0">
+              <li>Endpoints para productos y pedidos.</li>
+              <li>Autenticacion con tokens.</li>
+              <li>Base para frontend moderno.</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex" style="gap: .75rem;">
+              <a href="#" class="btn btn-success flex-grow-1 project-btn">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card h-100 project-card bg-white">
+          <img src="{% static 'img/001.jpg' %}"
+               class="project-image"
+               alt="Proyecto">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="project-meta mb-0">
+                <span class="badge badge-warning">Python</span>
+                <span class="badge badge-secondary">Administracion</span>
+              </div>
+              <span class="badge badge-info">Interno</span>
+            </div>
+            <h2 class="h4 font-weight-bold">ERP (Inventario,Ventas,RRHH)</h2>
+            <p class="text-secondary mb-3">
+              Sistema para reservar citas, ordenar solicitudes y gestionar disponibilidad desde un panel administrativo.
+            </p>
+            <ul class="text-secondary pl-3 mb-0">
+              <li>Agenda y control de turnos.</li>
+              <li>Estados de atencion y seguimiento.</li>
+              <li>Interfaz clara para usuarios y admins.</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex" style="gap: .75rem;">
+              <a href="#" class="btn btn-warning flex-grow-1 project-btn">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card h-100 project-card bg-white">
+          <img src="{% static 'img/001.jpg' %}"
+               class="project-image"
+               alt="Proyecto">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="project-meta mb-0">
+                <span class="badge badge-danger">Django</span>
+                <span class="badge badge-secondary">Dashboard</span>
+              </div>
+              <span class="badge badge-dark">Reportes</span>
+            </div>
+            <h2 class="h4 font-weight-bold">Panel de metricas</h2>
+            <p class="text-secondary mb-3">
+              Dashboard para visualizar informacion clave, revisar estadisticas y tomar decisiones rapidas desde una sola vista.
+            </p>
+            <ul class="text-secondary pl-3 mb-0">
+              <li>Indicadores resumidos en tarjetas.</li>
+              <li>Filtros por fecha o categoria.</li>
+              <li>Preparado para exportar reportes.</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-flex" style="gap: .75rem;">
+              <a href="#" class="btn btn-danger flex-grow-1 project-btn">Ver demo</a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+{% endblock content %}

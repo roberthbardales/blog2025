@@ -11,7 +11,7 @@ class UserRegisterForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Contraseña',
-                'class':'form-control form-control-sm'
+                'class':'form-control rounded'
             }
         )
     )
@@ -21,7 +21,7 @@ class UserRegisterForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Repetir Contraseña',
-                'class':'form-control form-control-sm',
+                'class':'form-control rounded',
             }
         )
     )
@@ -42,31 +42,31 @@ class UserRegisterForm(forms.ModelForm):
             'email': forms.EmailInput(
                 attrs={
                     'placeholder': 'Correo Electronico ...',
-                    'class':'form-control'
+                    'class':'form-control rounded'
                 }
             ),
             'full_name': forms.TextInput(
                 attrs={
                     'placeholder': 'nombres ...',
-                    'class':'form-control'
+                    'class':'form-control rounded'
                 }
             ),
             'ocupation': forms.Select(
                 attrs={
-                    'class':'form-control',
+                    'class':'form-control rounded',
 
                 }
             ),
             'genero': forms.Select(
                 attrs={
                     'placeholder': 'Genero ...',
-                    'class':'form-control',
+                    'class':'form-control rounded',
                 }
             ),
             'date_birth': forms.DateInput(
                 attrs={
                     'type': 'date',
-                    'class':'form-control'
+                    'class':'form-control rounded'
                 },
             ),
             'avatar': forms.FileInput(
@@ -87,7 +87,7 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'Correo Electronico',
-                'class':'form-control mr-sm-2',
+                'class':'form-control rounded',
             }
         )
     )
@@ -96,7 +96,7 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'contraseña',
-                'class':'form-control mr-sm-2',
+                'class':'form-control rounded',
             }
         )
     )

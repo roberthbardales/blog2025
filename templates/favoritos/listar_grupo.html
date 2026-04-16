@@ -1,243 +1,231 @@
-{% extends "favoritos/base_favoritos.html" %}
+﻿{% extends "favoritos/base_favoritos.html" %}
 {% load static %}
 
-{% block content %}
-
-{% include "includes/header.html" %}
-
+{% block css %}
 <style>
-    .card {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        border: none;
-    }
+  .groups-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #0d6efd 55%, #2563eb 100%);
+    color: #fff;
+    border: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 18px 36px rgba(15, 23, 42, .18);
+    position: relative;
+  }
 
-    .card-header {
-        background-color: #007bff !important;
-        color: white !important;
-        border-bottom: none;
-    }
+  .groups-hero::after {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -70px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.10);
+    pointer-events: none;
+  }
 
-    .profile-card {
-        background-color: #007bff;
-        border-radius: 10px;
-        color: white;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+  .groups-hero .card-body {
+    position: relative;
+    z-index: 1;
+  }
 
-    .profile-info {
-        padding: 20px;
-    }
+  .group-form-card,
+  .group-table-card {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
+  }
 
-    .profile-info h5 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 15px;
-    }
+  .group-form-card .form-control {
+    border-radius: .8rem;
+    border: 1px solid #cbd5e1;
+  }
 
-    .profile-info p {
-        margin-bottom: 8px;
-        font-size: 0.95rem;
-    }
+  .group-form-card .form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 .2rem rgba(37,99,235,.12);
+  }
 
-    .profile-info i {
-        margin-right: 8px;
-        width: 20px;
-    }
+  .group-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .45rem .75rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.14);
+    font-size: .85rem;
+    margin-right: .35rem;
+    margin-top: .35rem;
+  }
 
-    .table-container {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+  .group-table thead th {
+    background: #f8fafc;
+    color: #334155;
+    border-top: 0;
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: 700;
+  }
 
-    .table thead {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
+  .group-table tbody tr:hover {
+    background: #f8fafc;
+  }
 
-    .table thead th {
-        border: none;
-        font-weight: 600;
-    }
+  .group-id {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 52px;
+    padding: .35rem .65rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    color: #fff;
+    font-weight: 700;
+  }
 
-    .table tbody tr:hover {
-        background-color: #f8f9fa;
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .form-group-card {
-        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, rgba(32, 201, 151, 0.05) 100%);
-        border-radius: 10px;
-        padding: 20px;
-        border: 2px solid rgba(40, 167, 69, 0.2);
-        margin-bottom: 20px;
-    }
-
-    .form-group-title {
-        color: #28a745;
-        font-weight: 600;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .badge-id {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-weight: 600;
-    }
-    .avatar-initials {
-        width: 60px;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.4);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        font-weight: 700;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        backdrop-filter: blur(10px);
-    }
+  .empty-groups {
+    border: 1px dashed rgba(37,99,235,.25);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(37,99,235,.04), rgba(37,99,235,.01));
+  }
 </style>
+{% endblock %}
 
-<div class="container" style="min-height: 650px; padding: 30px 0;">
-    <div class="row">
-        <!-- Sidebar Perfil -->
-        <div class="col-lg-3 mb-4">
-            <!-- Card de Perfil -->
-            <div class="card profile-card mb-3">
-                <div class="profile-info">
-                    <div class="text-center">
+{% block content %}
+{% include "includes/header.html" %}
+{% include "includes/barra_lateral.html" %}
 
-                        <div class="avatar-initials">
-                            {% if user.full_name %}
-                            {{ user.full_name|slice:":1"|upper }}
-                            {% else %}
-                            {{ user.email|slice:":2"|upper }}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <h5 class="text-center">{{ user.full_name }}</h5>
-                    <hr class="bg-white">
-
-                </div>
-
-                <div class="px-3 pb-3">
-
-
-                    <a class="btn btn-success btn-block text-white" href="{% url 'favoritos_app:perfil' %}">
-                        <i class="fas fa-arrow-left mr-2"></i>Volver a Favoritos
-                    </a>
-                </div>
-            </div>
+<div class="col-lg-9 py-4">
+  <div class="card groups-hero mb-4">
+    <div class="card-body">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+        <div class="mb-3 mb-md-0">
+          <span class="badge badge-light text-primary mb-2">
+            <i class="fas fa-layer-group mr-1"></i>Favoritos organizados
+          </span>
+          <h2 class="mb-2 font-weight-bold">Gestión de grupos</h2>
+          <p class="mb-0" style="max-width: 720px; opacity: .92;">
+            Crea grupos para ordenar tus favoritos y mantener todo más claro.
+          </p>
         </div>
-
-        <!-- Contenido Principal -->
-        <div class="col-lg-9">
-            <!-- Header -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h4 class="mb-0"><i class="fas fa-layer-group mr-2"></i>Gestión de Grupos</h4>
-                </div>
-            </div>
-
-
-
-            <!-- Formulario para crear grupo -->
-            <div class="form-group-card">
-                <div class="form-group-title">
-                    <i class="fas fa-plus-circle"></i>
-                    <span>Crear Nuevo Grupo</span>
-                </div>
-                <form method="post" action="{% url 'favoritos_app:grupos_crud' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="create">
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <input type="text" name="name" class="form-control" placeholder="Nombre del grupo" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <input type="text" name="description" class="form-control" placeholder="Descripción">
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <button type="submit" class="btn btn-success w-100">
-                                <i class="fas fa-save mr-1"></i>Crear
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Tabla para listar, editar y eliminar -->
-            <div class="card">
-
-                <div class="card-body p-0">
-                    <div class="table-container">
-                        <table class="table table-hover mb-0">
-                            <thead>
-                                <tr>
-                                    <th width="10%" class="text-center">ID</th>
-                                    <th width="25%">Nombre</th>
-                                    <th width="40%">Descripción</th>
-                                    <th width="25%" class="text-center">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for grupo in grupos %}
-                                <tr>
-                                    <form method="post" action="{% url 'favoritos_app:grupos_crud' %}" style="display: contents;">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="grupo_id" value="{{ grupo.id }}">
-
-                                        <td class="text-center align-middle">
-                                            <span class="badge-id">{{ grupo.id }}</span>
-                                        </td>
-
-                                        <td class="align-middle">
-                                            <strong>{{ grupo.name }}</strong>
-                                        </td>
-
-                                        <td class="align-middle">
-                                            <span class="text-muted">{{ grupo.description|default:"Sin descripción" }}</span>
-                                        </td>
-
-                                        <td class="text-center align-middle">
-                                            <a href="{% url 'favoritos_app:grupo_editar' grupo.id %}"
-                                               class="btn btn-primary btn-sm mr-2">
-                                                <i class="fas fa-edit mr-1"></i>Editar
-                                            </a>
-                                            <button type="submit" name="action" value="delete"
-                                                    class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('¿Estás seguro de que deseas eliminar el grupo \'{{ grupo.name }}\'?');">
-                                                <i class="fas fa-trash mr-1"></i>Eliminar
-                                            </button>
-                                        </td>
-                                    </form>
-                                </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="4" class="text-center py-5">
-                                        <i class="fas fa-folder-open text-muted" style="font-size: 60px;"></i>
-                                        <h5 class="mt-3 text-muted">No hay grupos creados</h5>
-                                        <p class="text-muted">Usa el formulario de arriba para crear tu primer grupo</p>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <span class="group-pill"><i class="fas fa-folder-open"></i>{{ grupos|length }} grupos</span>
+          <span class="group-pill"><i class="fas fa-star"></i>Favoritos más limpios</span>
         </div>
+      </div>
     </div>
+  </div>
+
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert alert-{{ msg.tags }} alert-dismissible fade show shadow-sm" role="alert">
+        {{ msg }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="card group-form-card mb-4">
+    <div class="card-header bg-white d-flex align-items-center justify-content-between">
+      <div>
+        <h5 class="mb-0 text-dark">Crear nuevo grupo</h5>
+        <small class="text-muted">Define un nombre y una descripción opcional</small>
+      </div>
+      <span class="badge badge-success">Nuevo</span>
+    </div>
+    <div class="card-body">
+      <form method="post" action="{% url 'favoritos_app:grupos_crud' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="create">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="small text-muted mb-1">Nombre</label>
+            <input type="text" name="name" class="form-control" placeholder="" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="small text-muted mb-1">Descripción</label>
+            <input type="text" name="description" class="form-control" placeholder="">
+          </div>
+          <div class="col-md-2 mb-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fas fa-save mr-1"></i>Crear
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card group-table-card">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="mb-0 text-dark">Tus grupos</h5>
+        <small class="text-muted">Edita o elimina los grupos que ya no uses</small>
+      </div>
+      <span class="badge badge-primary">{{ grupos|length }}</span>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table group-table mb-0">
+          <thead>
+            <tr>
+              <th class="text-center" width="10%">ID</th>
+              <th width="25%">Nombre</th>
+              <th width="40%">Descripción</th>
+              <th class="text-center" width="25%">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for grupo in grupos %}
+            <tr>
+              <td class="text-center align-middle">
+                <span class="group-id">{{ grupo.id }}</span>
+              </td>
+              <td class="align-middle">
+                <strong class="text-dark">{{ grupo.name }}</strong>
+              </td>
+              <td class="align-middle text-muted">
+                {{ grupo.description|default:"Sin descripción" }}
+              </td>
+              <td class="text-center align-middle">
+                <div class="d-flex justify-content-center flex-wrap" style="gap: .5rem;">
+                  <a href="{% url 'favoritos_app:grupo_editar' grupo.id %}" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-edit mr-1"></i>Editar
+                  </a>
+                  <form method="post" action="{% url 'favoritos_app:grupos_crud' %}" class="d-inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="grupo_id" value="{{ grupo.id }}">
+                    <button type="submit" class="btn btn-outline-danger btn-sm"
+                            onclick="return confirm('¿Estás seguro de eliminar el grupo {{ grupo.name }}?');">
+                      <i class="fas fa-trash mr-1"></i>Eliminar
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4" class="text-center py-5">
+                <div class="empty-groups p-4">
+                  <i class="fas fa-folder-open fa-3x text-primary mb-3 d-block"></i>
+                  <h5 class="mb-2">No hay grupos creados</h5>
+                  <p class="text-muted mb-0">Usa el formulario superior para crear tu primer grupo.</p>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
 </div>
 
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "users/base_users.html" %}
+﻿{% extends "users/base_users.html" %}
 {% load static %}
 
 {% block content %}
@@ -6,103 +6,8 @@
 {% include "includes/header.html" %}
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background: #f5f7fa;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        padding: 2px;
-    }
-
-    .header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 20px 30px;
-        box-shadow: 0 3px 15px rgba(0,0,0,0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 10;
-    }
-
-    .header-user-info {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .user-avatar {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        font-weight: bold;
-        border: 2px solid rgba(255,255,255,0.5);
-    }
-
-    .user-details h2 {
-        font-size: 1.3rem;
-        margin-bottom: 2px;
-    }
-
-    .user-status {
-        font-size: 0.85rem;
-        opacity: 0.9;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.3s ease;
-    }
-
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #28a745;
-        animation: pulse 2s infinite;
-        transition: all 0.3s ease;
-    }
-
-    .status-dot.offline {
-        background-color: #dc3545;
-        animation: none;
-    }
-
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-    }
-
-    .back-btn {
-        background: rgba(255,255,255,0.2);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 500;
-    }
-
-    .back-btn:hover {
-        background: rgba(255,255,255,0.3);
-        transform: translateX(-3px);
-        text-decoration: none;
-        color: white;
+        background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
     }
 
     .chat-container {
@@ -110,150 +15,94 @@
         display: flex;
         flex-direction: column;
         max-width: 600px;
-        width: 50%;
+        width: 100%;
         margin: 0 auto;
         background: white;
-        box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.10);
         overflow: hidden;
-        height: calc(100vh - 80px);
+        height: calc((100vh - 80px) * 0.9);
+        border-radius: 20px;
+        min-width: 0;
+        border: 1px solid rgba(13, 110, 253, 0.08);
+    }
+
+    .chat-header {
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+        border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
     #chat-log {
         flex: 1;
         overflow-y: auto;
-        overflow-x: hidden;
-        padding: 5px;
-        background: linear-gradient(to bottom, #f9f9f9 0%, #ffffff 100%);
+        padding: 18px;
         display: flex;
         flex-direction: column;
-        gap: 5px;
-        max-height: 100%;
+        gap: 14px;
+        min-height: 0;
+        max-height: calc((100vh - 220px) * 0.9);
+        scroll-behavior: smooth;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     }
 
     #chat-log::-webkit-scrollbar {
-        width: 8px;
+        width: 9px;
     }
 
     #chat-log::-webkit-scrollbar-track {
-        background: #f1f1f1;
+        background: #eef2f7;
     }
 
     #chat-log::-webkit-scrollbar-thumb {
-        background: #667eea;
-        border-radius: 4px;
-    }
-
-    #chat-log::-webkit-scrollbar-thumb:hover {
-        background: #5568d3;
+        background: #b8c5d6;
+        border-radius: 999px;
     }
 
     .message {
         padding: 14px 18px;
         border-radius: 18px;
-        max-width: 65%;
+        max-width: 70%;
         word-wrap: break-word;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        animation: fadeIn 0.3s ease-out;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(15px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+        line-height: 1.45;
+        font-size: 0.96rem;
     }
 
     .sent {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0d6efd, #0b5ed7);
         color: white;
         margin-left: auto;
-        border-bottom-right-radius: 4px;
+        border-bottom-right-radius: 6px;
+        border-top-right-radius: 8px;
     }
 
     .received {
-        background: white;
+        background: #fff;
         color: #333;
         border: 1px solid #e9ecef;
-        border-bottom-left-radius: 4px;
-    }
-
-    .message strong {
-        font-size: 0.8rem;
-        margin-bottom: 6px;
-        opacity: 0.85;
-        font-weight: 600;
-    }
-
-    .message p {
-        margin: 0;
-        line-height: 1.5;
-        font-size: 0.95rem;
-    }
-
-    .message .timestamp {
-        font-size: 0.7rem;
-        opacity: 0.6;
-        margin-top: 6px;
-        text-align: right;
-        font-weight: 500;
+        border-bottom-left-radius: 6px;
+        border-top-left-radius: 8px;
     }
 
     .input-container {
         display: flex;
-        padding: 25px 30px;
-        background: white;
-        border-top: 2px solid #f0f0f0;
-        gap: 15px;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        gap: 12px;
+        padding: 16px;
+        border-top: 1px solid #e9ecef;
+        background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+        flex-shrink: 0;
     }
 
     #chat-input {
         flex: 1;
-        padding: 14px 22px;
-        border: 2px solid #e0e0e0;
-        border-radius: 25px;
-        font-size: 0.95rem;
-        outline: none;
-        transition: all 0.3s;
-        font-family: inherit;
-    }
-
-    #chat-input:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        border-radius: 999px;
+        border: 1px solid #d9e3f0;
+        box-shadow: inset 0 1px 2px rgba(15,23,42,.04);
     }
 
     #send-button {
-        padding: 14px 35px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
-    }
-
-    #send-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    }
-
-    #send-button:active {
-        transform: translateY(0);
+        border-radius: 999px;
+        box-shadow: 0 8px 18px rgba(13, 110, 253, 0.25);
     }
 
     .empty-chat {
@@ -262,72 +111,29 @@
         color: #999;
     }
 
-    .empty-chat i {
-        font-size: 60px;
-        margin-bottom: 20px;
-        color: #ddd;
-    }
-
-    @media (max-width: 768px) {
-        .header {
-            padding: 15px 20px;
-        }
-
-        .header-user-info h2 {
-            font-size: 1.1rem;
-        }
-
-        .user-avatar {
-            width: 35px;
-            height: 35px;
-            font-size: 16px;
-        }
-
-        .chat-container {
-            width: 100%;
-            height: calc(100vh - 60px);
-        }
-
-        #chat-log {
-            padding: 20px 15px;
-        }
-
-        .message {
-            max-width: 80%;
-        }
-
-        .input-container {
-            padding: 15px;
-        }
-
-        #send-button {
-            padding: 14px 20px;
-        }
-
-        #send-button span {
-            display: none;
-        }
+    .empty-chat {
+        background: radial-gradient(circle at top, rgba(13,110,253,.08), transparent 55%);
     }
 </style>
 
+<!-- Barra lateral -->
+{% include "includes/barra_lateral.html" %}
+
 <div class="chat-container">
-    <div class="header">
-        <div class="header-user-info">
-            <div class="user-avatar">
+    <div class="d-flex justify-content-between align-items-center text-white px-3 py-3 chat-header">
+        <div class="d-flex align-items-center">
+            <div class="rounded-circle bg-white text-primary d-inline-flex align-items-center justify-content-center mr-3 shadow-sm" style="width: 42px; height: 42px; font-weight: 600; border: 2px solid rgba(255,255,255,.55);">
                 {{ other_user.get_full_name|slice:":1"|upper }}
             </div>
-            <div class="user-details">
-                <h2>{{ other_user.get_full_name }}</h2>
-                <div class="user-status" id="user-status">
+            <div>
+                <h2 class="h5 mb-0">{{ other_user.get_full_name }}</h2>
+                <div class="small" id="user-status">
                     <span class="status-dot {% if not other_user.is_online %}offline{% endif %}" id="status-dot"></span>
-                    <span id="status-text">{% if other_user.is_online %}En línea{% else %}Desconectado{% endif %}</span>
+                    <span id="status-text" class="ml-1">{% if other_user.is_online %}En línea{% else %}Desconectado{% endif %}</span>
                 </div>
             </div>
         </div>
-        <a href="{% url 'chat_home' %}" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            <span>Volver</span>
-        </a>
+        <a href="{% url 'chat_home' %}" class="btn btn-light btn-sm">Volver</a>
     </div>
 
     <div id="chat-log">
@@ -335,15 +141,15 @@
             {% for message in messages %}
                 <div class="message {% if message.sender.id == user.id %}sent{% else %}received{% endif %}">
                     <strong>{{ message.sender.get_full_name }}</strong>
-                    <p>{{ message.content }}</p>
-                    <span class="timestamp">{{ message.formatted_time }}</span>
+                    <p class="mb-1">{{ message.content }}</p>
+                    <span class="small text-muted">{{ message.formatted_time }}</span>
                 </div>
             {% endfor %}
         {% else %}
             <div class="empty-chat">
-                <i class="far fa-comment-dots"></i>
+                <i class="far fa-comment-dots fa-3x mb-3"></i>
                 <h4>No hay mensajes aún</h4>
-                <p>Sé el primero en enviar un mensaje</p>
+                <p class="mb-0">Sé el primero en enviar un mensaje</p>
             </div>
         {% endif %}
     </div>
@@ -351,14 +157,18 @@
     <div class="input-container">
         <input id="chat-input"
                type="text"
+               class="form-control"
                placeholder="Escribe tu mensaje..."
                autocomplete="off"
                maxlength="500">
-        <button id="send-button">
-            <i class="fas fa-paper-plane"></i>
+        <button id="send-button" class="btn btn-primary px-4">
+            <i class="fas fa-paper-plane mr-1"></i>
             <span>Enviar</span>
         </button>
     </div>
+</div>
+
+</div>
 </div>
 
 <script>
@@ -378,9 +188,8 @@
     const statusDot = document.getElementById('status-dot');
     const statusText = document.getElementById('status-text');
 
-    // WebSocket handlers
-    chatSocket.onopen = function(e) {
-        console.log('✅ Conexión WebSocket establecida');
+    chatSocket.onopen = function() {
+        console.log('Conexión WebSocket establecida');
     };
 
     chatSocket.onmessage = function(e) {
@@ -398,22 +207,23 @@
 
         msgDiv.innerHTML = `
             <strong>${data.sender_name}</strong>
-            <p>${data.message}</p>
-            <span class="timestamp">${timestamp}</span>
+            <p class="mb-1">${data.message}</p>
+            <span class="small text-muted">${timestamp}</span>
         `;
         chatLog.appendChild(msgDiv);
-        chatLog.scrollTop = chatLog.scrollHeight;
+        requestAnimationFrame(() => {
+            chatLog.scrollTop = chatLog.scrollHeight;
+        });
     };
 
-    chatSocket.onclose = function(e) {
-        console.error('❌ Chat socket cerrado');
+    chatSocket.onclose = function() {
+        console.error('Chat socket cerrado');
     };
 
     chatSocket.onerror = function(e) {
-        console.error('❌ Error en WebSocket:', e);
+        console.error('Error en WebSocket:', e);
     };
 
-    // Enviar mensaje
     function sendMessage() {
         const message = input.value.trim();
         if (!message) return;
@@ -427,14 +237,11 @@
         if (e.key === 'Enter') sendMessage();
     });
 
-    // Actualizar estado del otro usuario
     function updateUserStatus() {
         fetch(`/chat/user-status/${otherUserId}/`)
             .then(response => response.json())
             .then(data => {
                 const isOnline = data.is_online;
-
-                // Actualizar el punto de estado
                 if (isOnline) {
                     statusDot.classList.remove('offline');
                     statusText.textContent = 'En línea';
@@ -443,36 +250,33 @@
                     statusText.textContent = 'Desconectado';
                 }
             })
-            .catch(error => console.error('❌ Error actualizando estado:', error));
+            .catch(error => console.error('Error actualizando estado:', error));
     }
 
-    // Enviar ping para mantener online al usuario actual
     function enviarPing() {
-        fetch("/chat/ping/", {
+        fetch("{% url 'ping' %}", {
             method: "POST",
             headers: {
                 "X-CSRFToken": "{{ csrf_token }}",
                 "Content-Type": "application/json"
             }
-        })
-        .then(response => response.json())
-        .catch(error => console.error('❌ Error en ping:', error));
+        }).catch(err=>console.error(err));
     }
 
-    // Inicialización
-    chatLog.scrollTop = chatLog.scrollHeight;
+    requestAnimationFrame(() => {
+        chatLog.scrollTop = chatLog.scrollHeight;
+    });
     input.focus();
 
-    // Actualizar estado cada 2 segundos
+    chatLog.addEventListener('wheel', function(e) {
+        if (chatLog.scrollHeight > chatLog.clientHeight) {
+            e.stopPropagation();
+        }
+    }, { passive: true });
+
     setInterval(updateUserStatus, 2000);
-
-    // Enviar ping cada 2 segundos
     setInterval(enviarPing, 2000);
-
-    // Ping inmediato al cargar
     enviarPing();
-
-    // Verificar estado inmediatamente
     updateUserStatus();
 </script>
 

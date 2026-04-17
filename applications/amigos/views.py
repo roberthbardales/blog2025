@@ -186,7 +186,7 @@ class BloquearUsuarioView(LoginRequiredMixin, View):
 class PerfilRedView(LoginRequiredMixin, ListView):
     template_name = 'amigos/perfil_red.html'
     context_object_name = 'mis_posts'
-    paginate_by = 10
+    paginate_by = 8
     login_url = reverse_lazy('users_app:user-login')
 
     def get_queryset(self):

@@ -32,3 +32,8 @@ visitas_pc.txt
 # AI / CLI tools
 .aider.*
 *.history
+
+# Gemini
+*.bat
+GEMINI.md
+gemini.bat

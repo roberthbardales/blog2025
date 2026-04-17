@@ -76,7 +76,7 @@ class UserPageView(ListView):
     template_name = "favoritos/perfil.html"
     context_object_name = 'entradas_user'
     login_url = reverse_lazy('users_app:user-login')
-    paginate_by = 6
+    paginate_by = 4
 
     def get_queryset(self):
         usuario = self.request.user

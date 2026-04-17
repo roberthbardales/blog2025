@@ -1,4 +1,7 @@
 
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
 img {
     max-width: 100%;
     height: auto !important;
@@ -22,49 +25,50 @@ html {
     -webkit-box-shadow: 0 0 10px #0c0c0c3b;
             box-shadow: 0 0 10px #0c0c0c3b; }
 
-/* .btn-primary:hover,
-.btn-primary:focus {
-    background-color: #ba5f26 !important; } */
-
 .btn-primary:active {
     background-color: #3788f2 !important;
     border-color: #3788f2 !important; }
 
-/* .btn-primary:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(47, 128, 235, 0.5) !important;
-            box-shadow: 0 0 0 0.2rem rgba(47, 128, 235, 0.5) !important; } */
+/* Custom styles for modern look */
+.hero-section {
+    background: linear-gradient(to right, #e0f2f7, #c1e7f0); /* Light blue gradient */
+    padding: 60px 0;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
 
-/* .display-5{
+.profile-img-modern {
+    border: 5px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    font-size: 3rem;
-    font-family: 'Open Sans', sans-serif;
-} */
+.profile-card-modern {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
-/* .bg-primary {
-    background-color: #ff401c !important; }
-  
-  .text-primary {
-    color: #ff401c !important; }
-  
-  .btn-primary {
-    background-color: #ff401c !important;
-    border-color: #b51d00 !important; }
-  
-  .btn-primary:hover,
-  .btn-primary:focus {
-    background-color: #e82500 !important; }
-  
-  .btn-primary:active {
-    background-color: #b51d00 !important;
-    border-color: #821500 !important; }
-  
-  .btn-primary:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 64, 28, 0.5) !important;
-            box-shadow: 0 0 0 0.2rem rgba(255, 64, 28, 0.5) !important; } */
-/*             
-html {
-    font-size: 14px; 
-    } */
-/* body {
+.profile-card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
 
-    font-family: 'Open Sans', sans-serif; } */
+.skill-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.project-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}

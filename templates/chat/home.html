@@ -177,6 +177,7 @@
             id: {{ u.id }},
             name: "{{ u.full_name }}",
             initial: "{{ u.full_name|slice:':1'|upper }}",
+            avatarUrl: "{% if u.avatar %}{{ u.avatar.url }}{% elif u.avatar_url %}{{ u.avatar_url }}{% endif %}",
             isOnline: {% if u.is_online %}true{% else %}false{% endif %}
         },
         {% endif %}
@@ -216,10 +217,14 @@
 
         const chatUrl = "{% url 'chat_room' 999999 %}".replace('999999', user.id);
 
+        const avatarHtml = user.avatarUrl
+            ? `<img src="${user.avatarUrl}" alt="Avatar de ${user.name}" style="width:100%; height:100%; object-fit:cover;">`
+            : `<i class="fas fa-user" aria-hidden="true"></i><span class="sr-only">Usuario</span>`;
+
         li.innerHTML = `
             <div class="d-flex align-items-center">
-                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mr-3 shadow-sm" style="width: 42px; height: 42px; font-weight: 600;">
-                    ${user.initial}
+                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mr-3 shadow-sm overflow-hidden flex-shrink-0" style="width: 42px; height: 42px; font-weight: 600;">
+                    ${avatarHtml}
                 </div>
                 <a href="${chatUrl}" class="font-weight-bold text-dark">${user.name}</a>
             </div>

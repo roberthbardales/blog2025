@@ -1,0 +1,120 @@
+{% extends "home/base_home.html" %}
+{% load static %}
+
+{% block title %}Portafolio Backend Developer{% endblock title %}
+
+{% block description %}
+<meta name="description" content="Portafolio de desarrollador backend con Python, Django, PostgreSQL y Linux. Enfocado en soluciones web robustas.">
+{% endblock description %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container py-5">
+  <div class="row align-items-center mb-5 hero-section">
+    <div class="col-lg-7 mb-4 mb-lg-0">
+      <span class="badge badge-info px-3 py-2 mb-3" data-sr-id="1">Python | Django | PostgreSQL | Linux</span>
+      <h1 class="display-4 font-weight-bold mb-3" data-sr-id="2">Creando Soluciones Backend Robustas y Escalables</h1>
+      <p class="lead text-muted mb-4" data-sr-id="3">
+        Desarrollador enfocado en la creación de aplicaciones web con Python y Django, implementando APIs RESTful, sistemas de autenticación avanzados y bases de datos optimizadas. Mi objetivo es construir backends limpios, eficientes y listos para crecer.
+      </p>
+      <div class="d-flex flex-wrap" data-sr-id="4">
+        <a href="#habilidades" class="btn btn-primary btn-lg mr-3 mb-2">Mis Habilidades</a>
+        <a href="#contacto" class="btn btn-outline-secondary btn-lg mb-2">Contactar</a>
+      </div>
+    </div>
+
+    <div class="col-lg-5" data-sr-id="5">
+      <div class="card border-0 shadow-lg profile-card-modern">
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <img src="{% static 'img/foto4.png' %}" alt="Perfil" class="img-fluid rounded-circle mb-3 profile-img-modern" style="max-width: 160px;">
+            <h2 class="h4 mb-1">Russell Roberth Bardales</h2>
+            <p class="text-muted mb-0">Backend Developer | Python & Django</p>
+          </div>
+          <hr>
+          <p class="text-muted text-center">"La elegancia del código reside en su simplicidad y eficiencia."</p>
+          <div class="row text-center mt-3">
+            <div class="col-4">
+              <h3 class="h5 mb-0">5+</h3>
+              <small class="text-muted">Proyectos</small>
+            </div>
+            <div class="col-4">
+              <h3 class="h5 mb-0">3+</h3>
+              <small class="text-muted">Años Exp.</small>
+            </div>
+            <div class="col-4">
+              <h3 class="h5 mb-0">Committed</h3>
+              <small class="text-muted">Learning</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="habilidades" class="row mb-5 py-4">
+    <div class="col-12 mb-4" data-sr-id="6">
+      <h2 class="h3 font-weight-bold text-center">Mi Stack Tecnológico</h2>
+      <p class="text-muted text-center mb-4">Herramientas y tecnologías que utilizo para construir soluciones robustas.</p>
+    </div>
+    <div class="col-md-3 col-6 mb-3" data-sr-id="7">
+      <div class="card border-0 shadow-sm h-100 skill-card">
+        <div class="card-body text-center">
+          <i class="fab fa-python fa-3x mb-3 text-primary"></i>
+          <h3 class="h5 font-weight-bold mb-2">Python</h3>
+          <p class="text-muted mb-0">Lenguaje principal para lógica de negocio.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-3" data-sr-id="8">
+      <div class="card border-0 shadow-sm h-100 skill-card">
+        <div class="card-body text-center">
+          <i class="fab fa-django fa-3x mb-3 text-success"></i>
+          <h3 class="h5 font-weight-bold mb-2">Django</h3>
+          <p class="text-muted mb-0">Framework para desarrollo rápido y seguro.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-3" data-sr-id="9">
+      <div class="card border-0 shadow-sm h-100 skill-card">
+        <div class="card-body text-center">
+          <i class="fas fa-database fa-3x mb-3 text-info"></i>
+          <h3 class="h5 font-weight-bold mb-2">PostgreSQL</h3>
+          <p class="text-muted mb-0">Base de datos relacional robusta y escalable.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-3" data-sr-id="10">
+      <div class="card border-0 shadow-sm h-100 skill-card">
+        <div class="card-body text-center">
+          <i class="fab fa-linux fa-3x mb-3 text-dark"></i>
+          <h3 class="h5 font-weight-bold mb-2">Linux</h3>
+          <p class="text-muted mb-0">Entorno de despliegue y administración de servidores.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contacto" class="row mb-5 py-4 justify-content-center">
+    <div class="col-12 col-lg-6" data-sr-id="11">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 text-center">
+          <h2 class="h3 font-weight-bold mb-3">Hablemos</h2>
+          <p class="text-muted mb-4">Estoy disponible para nuevas oportunidades y colaboraciones. ¡No dudes en contactarme!</p>
+          <ul class="list-unstyled mb-4">
+            <li class="mb-2"><i class="fas fa-envelope mr-2 text-primary"></i> roberthbardales@gmail.com</li>
+            <li class="mb-2"><i class="fas fa-phone-alt mr-2 text-primary"></i> +51 960 174 778</li>
+            <li><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Lima, Perú</li>
+          </ul>
+          <a href="https://wa.me/51960174778" class="btn btn-success btn-lg btn-block"><i class="fab fa-whatsapp mr-2"></i> Enviar Mensaje por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+{% endblock content %}

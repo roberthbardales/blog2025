@@ -106,44 +106,41 @@
   }
 </style>
 
-<div class="container ">
+<div class="container">
+
   <div class="row justify-content-center align-items-center login-shell">
     <div class="col-md-10 col-lg-5">
       <div class="card login-card">
         <div class="card-body p-0">
-          <div class="login-hero px-4 px-lg-5 py-3 text-center">
-            <img src="{% static 'img/unknown.png' %}" alt="Usuario" class="login-avatar rounded-circle mb-3">
+
+          <div class="login-hero px-4 px-lg-5 py-2 text-center">
+            <img src="{% static 'img/unknown.png' %}" class="login-avatar rounded-circle mb-3">
             <h2 class="h4 font-weight-bold mb-2 text-white">Iniciar sesión</h2>
             <p class="mb-0 text-white-50">Usa tu correo y contraseña o accede con Google.</p>
           </div>
 
           <div class="px-4 px-lg-5 py-3 login-form">
+
             {% if form.non_field_errors %}
             <div class="alert alert-warning border-0 shadow-sm">
               {{ form.non_field_errors }}
             </div>
             {% endif %}
 
-            <form method="post" enctype="multipart/form-data">
+            <form method="post">
               {% csrf_token %}
 
               <div class="form-group mb-2">
-                <label for="{{ form.email.id_for_label }}" class="font-weight-bold text-dark">Correo electrónico</label>
+                <label class="font-weight-bold">Correo electrónico</label>
                 {{ form.email }}
-                {% if form.email.errors %}
-                <small class="text-danger d-block mt-1">{{ form.email.errors }}</small>
-                {% endif %}
               </div>
 
               <div class="form-group mb-2">
-                <label for="{{ form.password.id_for_label }}" class="font-weight-bold text-dark">Contraseña</label>
+                <label class="font-weight-bold">Contraseña</label>
                 {{ form.password }}
-                {% if form.password.errors %}
-                <small class="text-danger d-block mt-1">{{ form.password.errors }}</small>
-                {% endif %}
               </div>
 
-              <button type="submit" class="btn btn-success text-white btn-block login-btn mt-3 mb-2">
+              <button type="submit" class="btn btn-success btn-block login-btn mt-3 mb-2">
                 Ingresar
               </button>
 
@@ -155,74 +152,83 @@
                 <span>o</span>
               </div>
 
-              <button
-                type="button"
-                class="btn btn-danger btn-block d-flex align-items-center justify-content-center login-google"
-                style="gap: 10px;"
-                onclick="loginWithGoogle()"
-              >
-                <i class="fab fa-google"></i>
-                Acceder con Google
+              <button type="button"
+                class="btn btn-danger btn-block login-google"
+                onclick="loginWithGoogle()">
+                <i class="fab fa-google"></i> Acceder con Google
               </button>
+
             </form>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
   </div>
+
+</div>
+
+<!-- 🔥 CAJA FLOTANTE -->
+
+		<div id="demoBox" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0d6efd;
+    color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+">
+<p class="text-center">Inicia Sesion con:</p>
+    <strong>Usuario: </strong>demo1@gmail.com<br>
+    <strong>Contraseña: </strong>123456
+	<p class="text-center">
+		<button class="btn btn-danger mt-2" onclick="document.getElementById('demoBox').style.display='none'">Cerrar</button>
+
+	</p>
 </div>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    const firebaseConfig = {
-        apiKey: "{{ FIREBASE_API_KEY }}",
-        authDomain: "{{ FIREBASE_AUTH_DOMAIN }}",
-        projectId: "{{ FIREBASE_PROJECT_ID }}",
-        storageBucket: "{{ FIREBASE_PROJECT_ID }}.firebasestorage.app",
-        messagingSenderId: "{{ FIREBASE_MESSAGING_SENDER_ID }}",
-        appId: "{{ FIREBASE_APP_ID }}"
-    };
+const firebaseConfig = {
+    apiKey: "{{ FIREBASE_API_KEY }}",
+    authDomain: "{{ FIREBASE_AUTH_DOMAIN }}",
+    projectId: "{{ FIREBASE_PROJECT_ID }}",
+    storageBucket: "{{ FIREBASE_PROJECT_ID }}.appspot.com",
+    messagingSenderId: "{{ FIREBASE_MESSAGING_SENDER_ID }}",
+    appId: "{{ FIREBASE_APP_ID }}"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+window.loginWithGoogle = async () => {
+    const result = await signInWithPopup(auth, provider);
+    const token = await result.user.getIdToken();
+
+    const response = await fetch("/login/firebase/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie('csrftoken'),
+        },
+        body: JSON.stringify({ idToken: token })
+    });
+
+    if (response.ok) {
+        window.location.href = "/";
     }
-
-    window.loginWithGoogle = async () => {
-        try {
-            const result = await signInWithPopup(auth, provider);
-            const token = await result.user.getIdToken();
-
-            const response = await fetch("/login/firebase/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": getCookie('csrftoken'),
-                },
-                body: JSON.stringify({ idToken: token })
-            });
-
-            const data = await response.json();
-            console.log("Login backend:", data);
-
-            if (response.ok) {
-                window.location.href = "/";
-            } else {
-                alert("Error: " + data.error);
-            }
-
-        } catch (error) {
-            console.error("Error en login:", error);
-            alert("Ocurrio un error al autenticar con Google");
-        }
-    };
+};
 </script>
 
 {% endblock content %}

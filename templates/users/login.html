@@ -226,7 +226,8 @@ window.loginWithGoogle = async () => {
     });
 
     if (response.ok) {
-        window.location.href = "/";
+        // Redirige al home del chat (name='chat_home' en applications/chat/urls.py)
+        window.location.href = "{% url 'chat_home' %}";
     }
 };
 </script>

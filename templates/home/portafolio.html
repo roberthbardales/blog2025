@@ -65,10 +65,31 @@
     border: none;
   }
 
+  :root {
+    /* Alto fijo del carrusel en el modal para evitar que el modal cambie de tamanio */
+    --modal-carousel-img-height: clamp(260px, 160vh, 520px);
+  }
+
+  .modal-body {
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    height: var(--modal-carousel-img-height);
+    border-radius: 1rem;
+    background: #0f172a; /* fondo mientras cargan imagenes */
+  }
+
+  .carousel-item {
+    height: var(--modal-carousel-img-height);
+  }
+
   .carousel-inner img {
-    height: 400px;
+    width: 100%;
+    height: var(--modal-carousel-img-height);
     object-fit: cover;
     border-radius: 1rem;
+    display: block;
   }
 </style>
 
@@ -195,9 +216,7 @@
       <!-- HEADER -->
       <div class="modal-header">
         <h5 class="modal-title font-weight-bold">Proyecto {{i}}</h5>
-        <button type="button" class="close" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
       </div>
 
       <!-- BODY -->

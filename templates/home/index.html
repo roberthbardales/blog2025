@@ -43,6 +43,10 @@
     z-index: 1;
     padding: 2rem;
   }
+
+  .subscribe-hero .card-body {
+    padding: 1.5rem 2rem;
+  }
 </style>
 
 <div class="container" >
@@ -120,14 +124,14 @@
 			</div>
 
 	</div>
-	<div class="row mb-4 justify-content-center  align-items-center">
-				<div class="col-md-10">
-						<div class="card h-100 shadow bienvenido">
-						<div class="card-body bg-warning">
-							<h5 class="card-title ">{{ home.about_title }}</h5>
-							<p class="card-text ">{{ home.about_text }}</p>
+ 	<div class="row mb-4 justify-content-center  align-items-center">
+ 				<div class="col-md-10">
+						<div class="card portfolio-hero subscribe-hero h-100 bienvenido">
+						<div class="card-body text-center">
+							<h5 class="card-title text-white mb-2">{{ home.about_title }}</h5>
+							<p class="card-text text-white-50 mb-3">{{ home.about_text }}</p>
 				<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+							<button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#exampleModal">
 								Suscribete
 							</button>
 

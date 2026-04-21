@@ -39,7 +39,8 @@
 
         if (response.ok) {
           // alert(`Bienvenido ${data.email}`); //para comprobar
-          window.location.href = "/"; // redirige donde quieras
+          // Redirige al home del chat (name='chat_home' en applications/chat/urls.py)
+          window.location.href = "{% url 'chat_home' %}";
         } else {
           alert("❌ Error: " + data.error);
         }

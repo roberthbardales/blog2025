@@ -17,13 +17,6 @@
     color: #fff;
     background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
     box-shadow: 0 18px 36px rgba(15, 23, 42, .16);
-    position: relative;
-  }
-
-  .portfolio-hero .card-body {
-    position: relative;
-    z-index: 1;
-    padding: 2rem;
   }
 
   .project-card {
@@ -31,229 +24,174 @@
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
-    transition: transform .18s ease, box-shadow .18s ease;
     border-left: 5px solid #2563eb;
   }
 
-  .project-card:hover {
-    transform: none;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, .10) !important;
-  }
-
-
-
   .project-image {
     width: 100%;
-    height: 220px;
+    height: 250px;
     object-fit: cover;
-    cursor: pointer;
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-
-  .project-image:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 34px rgba(15, 23, 42, .14);
-  }
-
-  .project-btn {
-    border-radius: .8rem;
-    font-weight: 600;
-  }
-
-  .modal-content {
-    border-radius: 1.2rem;
-    border: none;
-  }
-
-  :root {
-    /* Alto fijo del carrusel en el modal para evitar que el modal cambie de tamanio */
-    --modal-carousel-img-height: clamp(260px, 160vh, 520px);
-  }
-
-  .modal-body {
-    overflow: hidden;
-  }
-
-  .carousel-inner {
-    height: var(--modal-carousel-img-height);
-    border-radius: 1rem;
-    background: #0f172a; /* fondo mientras cargan imagenes */
-  }
-
-  .carousel-item {
-    height: var(--modal-carousel-img-height);
-  }
-
-  .carousel-inner img {
-    width: 100%;
-    height: var(--modal-carousel-img-height);
-    object-fit: cover;
-    border-radius: 1rem;
-    display: block;
   }
 </style>
 
 <div class="container py-3">
+
+  <!-- HERO -->
   <div class="row justify-content-center mb-3">
     <div class="col-lg-10 text-center">
       <div class="card portfolio-hero">
-        <div class="card-body">
-          <h1 class="display-5 font-weight-bold mb-1">Proyectos con Python/Django</h1>
-          <!-- <p class="lead text-white-50">Ingeniería de Sistemas | Desarrollo Backend</p> -->
+        <div class="card-body py-3">
+          <h1 class="display-5 font-weight-bold mb-0">Proyectos Full Stack con Python</h1>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row g-4 gy-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="row">
 
-    <!-- ================= PROYECTO 1 ================= -->
-    <div class="col-12 col-md-6 mb-3">
-      <div class="card h-100 project-card bg-white">
-        <img src="{% static 'img/001.jpg' %}" class="project-image" alt="Blog" data-bs-toggle="modal" data-bs-target="#modal1">
-        <div class="card-body p-1">
-          <div class="d-flex justify-content-between align-items-start mb-3">
-            <div class="project-meta">
-              <span class="badge bg-primary">Django</span>
-              <span class="badge bg-secondary text-white">Bootstrap</span>
+        <!-- PROYECTO 1 -->
+        <div class="col-12 mb-5">
+          <div class="card shadow-sm">
+
+            <div class="card-header text-center bg-white border-0">
+              <h2 class="h5 font-weight-bold text-uppercase">
+                Red Social & Blog <span class="text-success">Profesional</span>
+              </h2>
             </div>
-            <span class="badge bg-success">Activo</span>
-          </div>
-          <h2 class="h4 font-weight-bold">Sistema de blog personal</h2>
-          <p class="text-secondary">Plataforma para publicar artículos y administrar categorías.</p>
-        </div>
-        <div class="card-footer bg-white border-0 p-4 pt-0">
-          <div class="d-flex" style="gap: .75rem;">
-            <a href="#" class="btn btn-primary flex-grow-1 project-btn">Ver demo</a>
-            <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ================= PROYECTO 2 ================= -->
-    <div class="col-12 col-md-6 mb-3">
-      <div class="card h-100 project-card bg-white">
-        <img src="{% static 'img/001.jpg' %}" class="project-image" alt="E-commerce" data-bs-toggle="modal" data-bs-target="#modal2">
-        <div class="card-body p-1">
-          <div class="d-flex justify-content-between align-items-start mb-3">
-            <div class="project-meta">
-              <span class="badge bg-success text-white">API REST</span>
-              <span class="badge bg-secondary text-white">JWT</span>
+            <div id="carouselProject1" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100 project-image">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100 project-image">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselProject1" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#carouselProject1" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
             </div>
-            <span class="badge bg-warning text-dark">Backend</span>
-          </div>
-          <h2 class="h4 font-weight-bold">API para e-commerce</h2>
-          <p class="text-secondary">Servicio backend para carrito, órdenes y autenticación.</p>
-        </div>
-        <div class="card-footer bg-white border-0 p-4 pt-0">
-          <div class="d-flex" style="gap: .75rem;">
-            <a href="#" class="btn btn-success text-white flex-grow-1 project-btn">Ver demo</a>
-            <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ================= PROYECTO 3 ================= -->
-    <div class="col-12 col-md-6 mb-3">
-      <div class="card h-100 project-card bg-white">
-        <img src="{% static 'img/001.jpg' %}" class="project-image" alt="ERP" data-bs-toggle="modal" data-bs-target="#modal3">
-        <div class="card-body p-1">
-          <div class="d-flex justify-content-between align-items-start mb-3">
-            <div class="project-meta">
-              <span class="badge bg-warning text-dark">Python</span>
-              <span class="badge bg-secondary text-white">Administración</span>
-            </div>
-            <span class="badge bg-info text-dark">Interno</span>
-          </div>
-          <h2 class="h4 font-weight-bold">ERP (Inventario, Ventas)</h2>
-          <p class="text-secondary">Sistema para gestionar citas y disponibilidad administrativa.</p>
-        </div>
-        <div class="card-footer bg-white border-0 p-4 pt-0">
-          <div class="d-flex" style="gap: .75rem;">
-            <a href="#" class="btn btn-warning text-dark flex-grow-1 project-btn">Ver demo</a>
-            <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
+            <div class="card-body text-center">
+              <div class="mb-3">
+                <span class="badge badge-success mr-2 mb-2">Python/Django</span>
+                <span class="badge badge-primary mr-2 mb-2">PostgreSQL</span>
+                <span class="badge badge-info mr-2 mb-2">WebSockets</span>
+                <span class="badge badge-dark mr-2 mb-2">Firebase</span>
+              </div>
 
-    <!-- ================= PROYECTO 4 ================= -->
-    <div class="col-12 col-md-6 mb-3">
-      <div class="card h-100 project-card bg-white">
-        <img src="{% static 'img/001.jpg' %}" class="project-image" alt="Metricas" data-bs-toggle="modal" data-bs-target="#modal4">
-        <div class="card-body p-1">
-          <div class="d-flex justify-content-between align-items-start mb-3">
-            <div class="project-meta">
-              <span class="badge bg-danger">Django</span>
-              <span class="badge bg-secondary text-white">Dashboard</span>
-            </div>
-            <span class="badge bg-dark">Reportes</span>
-          </div>
-          <h2 class="h4 font-weight-bold">Panel de métricas</h2>
-          <p class="text-secondary">Dashboard para visualizar estadísticas y KPIs clave.</p>
-        </div>
-        <div class="card-footer bg-white border-0 p-4 pt-0">
-          <div class="d-flex" style="gap: .75rem;">
-            <a href="#" class="btn btn-danger flex-grow-1 project-btn">Ver demo</a>
-            <a href="#" class="btn btn-outline-secondary flex-grow-1 project-btn">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ================= MODALES ================= -->
-
-{% for i in "1234" %}
-<div class="modal fade" id="modal{{i}}" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-
-      <!-- HEADER -->
-      <div class="modal-header">
-        <h5 class="modal-title font-weight-bold">Proyecto {{i}}</h5>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-
-      <!-- BODY -->
-      <div class="modal-body">
-
-        <div id="carouselModal{{i}}" class="carousel slide mb-3" data-ride="carousel">
-
-          <div class="carousel-inner rounded">
-            <div class="carousel-item active">
-              <img src="{% static 'img/001.jpg' %}" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'img/002.jpg' %}" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'img/003.jpg' %}" class="d-block w-100">
+              <a href="https://codigobase.duckdns.org/" target="_blank"
+                 class="btn btn-success btn-lg font-weight-bold">
+                Ver Demo
+              </a>
             </div>
           </div>
+        </div>
 
-          <!-- CONTROLES -->
-          <a class="carousel-control-prev" href="#carouselModal{{i}}" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-            <span class="sr-only">Anterior</span>
-          </a>
+        <!-- PROYECTO 2 -->
+        <div class="col-12 mb-4">
+          <div class="card project-card border border-primary">
 
-          <a class="carousel-control-next" href="#carouselModal{{i}}" role="button" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-            <span class="sr-only">Siguiente</span>
-          </a>
 
+            <!-- TITULO ARRIBA -->
+            <div class="card-header text-center bg-white border-0">
+              <h2 class="h5 font-weight-bold text-uppercase">
+                SISTEMA ERP (Inventario, Ventas, RRHH)
+              </h2>
+            </div>
+
+            <!-- CARRUSEL -->
+            <div id="carouselProject2" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static 'img/001.png' %}" class="project-image">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="project-image">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselProject2" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#carouselProject2" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
+
+            <div class="card-body text-center">
+
+              <div class="mb-3">
+                <span class="badge badge-success mr-2 mb-2">Python</span>
+                <span class="badge badge-success mr-2 mb-2">Django</span>
+                <span class="badge badge-primary mr-2 mb-2">PostgreSQL</span>
+                <span class="badge badge-dark mr-2 mb-2">Bootstrap</span>
+              </div>
+
+              <a href="https://demo2026.duckdns.org/" target="_blank"
+                 class="btn btn-success font-weight-bold">
+                Ver Demo
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 3 -->
+        <div class="col-12 mb-4">
+         <div class="card project-card border border-primary ">
+
+            <!-- TITULO ARRIBA -->
+            <div class="card-header text-center bg-white border-0">
+              <h2 class="h5 font-weight-bold text-uppercase">
+                SISTEMA ECOMMERCE
+              </h2>
+            </div>
+
+            <!-- CARRUSEL -->
+            <div id="carouselProject3" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static 'img/001.png' %}" class="project-image">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="project-image">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselProject3" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#carouselProject3" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
+
+            <div class="card-body text-center">
+
+              <div class="mb-3">
+                <span class="badge badge-success mr-2 mb-2">Python</span>
+                <span class="badge badge-success mr-2 mb-2">Django</span>
+                <span class="badge badge-primary mr-2 mb-2">PostgreSQL</span>
+                <span class="badge badge-dark mr-2 mb-2">Bootstrap</span>
+              </div>
+
+              <a href="https://carrito.duckdns.org/" target="_blank"
+                 class="btn btn-success font-weight-bold">
+                Ver Demo
+              </a>
+
+            </div>
+          </div>
         </div>
 
       </div>
-
     </div>
   </div>
 </div>
-{% endfor %}
 
 {% endblock %}

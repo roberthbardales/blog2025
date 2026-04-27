@@ -1,95 +1,144 @@
-{% load  static %}
-<div class="row">
-    <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top ">
-            <div class="container">
-                <a class="navbar-brand d-sm-none d-lg-block" href="{% url 'home_app:index' %}"><img class="img-fluid " src="{% static 'img/logo2.jpg' %}" style="max-height: 3rem;"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-none d-md-block" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+{% load static %}
 
-                    <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:index' %}">Inicio</a>
-                    </li>
-                    <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
-                    </li>
+<style>
+  .site-navbar {
+    background: linear-gradient(90deg, #0d6efd 0%, #0b5ed7 55%, #084298 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
 
+  .site-navbar .navbar-brand img {
+    max-height: 3rem;
+    width: auto;
+    display: block;
+  }
 
-                    <li class="nav-item  mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:portafolio' %}">Proyectos<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item  mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'home_app:sobre_mi' %}">Sobre Mi<span class="sr-only"></span></a>
-                    </li>
+  .site-navbar .nav-link.btn {
+    border-radius: 0.35rem;
+    padding: 0.45rem 0.95rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  }
 
+  .site-navbar .nav-link.btn-outline-light {
+    border-color: #28a745;
+    color: #ffffff;
+  }
 
-                    <!-- <li class="nav-item  mx-1">
-                        <a class="nav-link btn btn-outline-success text-white" href="{% url 'chat_home' %}">Chat<span class="sr-only"></span></a>
-                    </li> -->
+  .site-navbar .nav-link.btn:hover,
+  .site-navbar .nav-link.btn:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+  }
 
-                    {% if not user.is_anonymous %}
-                    <li class="nav-item mx-1">
-                        <a href="{% url 'amigos_app:perfil' %}" class="nav-link p-0">
-                            {% if user.avatar %}
-                                <img src="{{ user.avatar.url }}" alt="Avatar"
-                                     style="width:50px; height:50px; border-radius:50%;">
-                            {% elif user.avatar_url %}
-                                <img src="{{ user.avatar_url }}" alt="Avatar"
-                                     style="width:50px; height:50px; border-radius:50%;">
-                            {% else %}
-                                <span class="btn btn-warning text-dark">Perfil</span>
-                            {% endif %}
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="nav-item mx-1">
-                        <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">
-                            Iniciar Sesión
-                        </a>
-                    </li>
-                {% endif %}
+  .site-navbar .nav-link.btn-outline-light:hover,
+  .site-navbar .nav-link.btn-outline-light:focus {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #ffffff;
+  }
 
+  .site-navbar .weather-badge {
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
 
-                    <li class="nav-item mx-1">
-                        {% if not user.is_anonymous %}
-                        <a href="{% url 'users_app:user-logout' %}"  class="nav-link btn btn-danger text-white ">Salir</a>
+  .site-navbar .search-form .form-control {
+    border-radius: 0.35rem;
+    min-width: 170px;
+  }
 
-                        {% endif %}
-                    </li>
+  .site-navbar .search-form .btn {
+    border-radius: 0.35rem;
+  }
 
+  .site-navbar .profile-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #28a745;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
 
-                        {% if not user.is_anonymous %}
-                        <li class="nav-item mx-1">
-                            <a class="nav-link text-white" href="{% url 'favoritos_app:perfil' %}">{{user.name}}</a>
-                        </li>
-                            {% else %}
-                            <li class="nav-item mx-1">
-                            <a class="nav-link btn text-white" href="{% url 'users_app:user-login' %}">Usuario: Anonimo</a>
-                        </li>
-                            {% endif %}
+  .site-navbar .profile-avatar:hover,
+  .site-navbar .profile-avatar:focus {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    border-color: #28a745;
+  }
 
-                    </ul>
+  @media (min-width: 992px) {
+    .site-navbar .navbar-toggler {
+      display: none;
+    }
+  }
+</style>
 
-                    <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="form-inline my-2 my-lg-0">{% csrf_token %}
-                        <input class="form-control mr-sm-2" id="kword_general" name="kword_general" type="search" placeholder="Busqueda... " aria-label="Search" value="{{request.GET.kword_general}}" style="max-width: 140px;">
-                        <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
-                    </form>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top site-navbar">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home_app:index' %}">
+      <img class="img-fluid" src="{% static 'img/logo2.jpg' %}" alt="Logo del sitio">
+    </a>
 
-                    <!-- Widget del clima -->
-                    <div class="ml-3 text-white d-flex align-items-center">
-                        <!-- <span class="badge badge-info mr-2 mb-1" style="font-size: 0.95rem; padding: 0.5rem 0.75rem;">
-                            🌐 {{ mi_ip }}
-                        </span> -->
-                        <span class="badge text-light" style="font-size: 1.1rem;">
-                            🌡️ {{ temperatura }}°C
-                        </span>
-                    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-                </div>
-            </div>
-        </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto align-items-lg-center">
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:index' %}">Inicio</a>
+        </li>
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a class="nav-link btn btn-outline-light text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
+        </li>
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:portafolio' %}">Proyectos</a>
+        </li>
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:sobre_mi' %}">Sobre mí</a>
+        </li>
+
+        {% if not user.is_anonymous %}
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a href="{% url 'amigos_app:perfil' %}" class="nav-link p-0 d-flex align-items-center">
+            {% if user.avatar %}
+              <img src="{{ user.avatar.url }}" alt="Avatar de {{ user.name }}" class="profile-avatar">
+            {% elif user.avatar_url %}
+              <img src="{{ user.avatar_url }}" alt="Avatar de {{ user.name }}" class="profile-avatar">
+            {% else %}
+              <span class="btn btn-warning text-dark">Perfil</span>
+            {% endif %}
+          </a>
+        </li>
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a href="{% url 'users_app:user-logout' %}" class="nav-link btn btn-danger text-white">Salir</a>
+        </li>
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a class="nav-link text-white font-weight-bold" href="{% url 'favoritos_app:perfil' %}">{{ user.name }}</a>
+        </li>
+        {% else %}
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">Iniciar sesión</a>
+        </li>
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a class="nav-link text-white" href="{% url 'users_app:user-login' %}">Usuario anónimo</a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="form-inline my-2 my-lg-0 search-form">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" id="kword_general" name="kword_general" type="search" placeholder="Buscar..." aria-label="Buscar" value="{{ request.GET.kword_general }}">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+
+      <div class="ml-lg-3 mt-3 mt-lg-0 text-white d-flex align-items-center">
+        <span class="weather-badge">🌡️ {{ temperatura }}°C</span>
+      </div>
     </div>
-</div>
+  </div>
+</nav>

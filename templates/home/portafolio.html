@@ -25,23 +25,37 @@
     overflow: hidden;
     box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
     border-left: 5px solid #2563eb;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(15, 23, 42, .15);
   }
 
   .project-image {
     width: 100%;
-    height: 250px;
+    height: 280px;
     object-fit: cover;
+  }
+
+  .badge-custom {
+    padding: 0.5rem 0.8rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.85rem;
   }
 </style>
 
 <div class="container py-3">
 
   <!-- HERO -->
-  <div class="row justify-content-center mb-3">
+  <div class="row justify-content-center mb-5">
     <div class="col-lg-10 text-center">
       <div class="card portfolio-hero">
-        <div class="card-body py-3">
+        <div class="card-body py-4">
           <h1 class="display-5 font-weight-bold mb-0">Proyectos Full Stack con Python</h1>
+          <!-- <p class="lead mt-2 opacity-75">Soluciones escalables con Python & Django</p> -->
         </div>
       </div>
     </div>
@@ -53,138 +67,342 @@
 
         <!-- PROYECTO 1 -->
         <div class="col-12 mb-5">
-          <div class="card shadow-sm">
-
-            <div class="card-header text-center bg-white border-0">
-              <h2 class="h5 font-weight-bold text-uppercase">
-                Red Social & Blog <span class="text-success">Profesional</span>
-              </h2>
-            </div>
-
+          <div class="card project-card border-0 shadow-lg" style="border-left: 5px solid #2563eb !important;">
             <div id="carouselProject1" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselProject1" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselProject1" data-slide-to="1"></li>
+                <li data-target="#carouselProject1" data-slide-to="2"></li>
+                <li data-target="#carouselProject1" data-slide-to="3"></li>
+                <li data-target="#carouselProject1" data-slide-to="4"></li>
+                <li data-target="#carouselProject1" data-slide-to="5"></li>
+                <li data-target="#carouselProject1" data-slide-to="6"></li>
+                <li data-target="#carouselProject1" data-slide-to="7"></li>
+                <li data-target="#carouselProject1" data-slide-to="8"></li>
+                <li data-target="#carouselProject1" data-slide-to="9"></li>
+              </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{% static 'img/001.png' %}" class="d-block w-100 project-image">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 1">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Dashboard</h5>
+                  </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100 project-image">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Blog</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 3">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Perfil de Usuario</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 4">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Chats Privados</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;"" alt="Red Social Preview 5">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Notificaciones</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;"" alt="Red Social Preview 6">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Grupos</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;"" alt="Red Social Preview 7">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Galería de Fotos</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;"" alt="Red Social Preview 8">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Comentarios</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;"" alt="Red Social Preview 9">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Ajustes</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;"" alt="Red Social Preview 10">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Estadísticas</h5>
+                  </div>
                 </div>
               </div>
-              <a class="carousel-control-prev" href="#carouselProject1" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+              <a class="carousel-control-prev" href="#carouselProject1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
               </a>
-              <a class="carousel-control-next" href="#carouselProject1" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
+              <a class="carousel-control-next" href="#carouselProject1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
               </a>
             </div>
-
-            <div class="card-body text-center">
-              <div class="mb-3">
-                <span class="badge badge-success mr-2 mb-2">Python/Django</span>
-                <span class="badge badge-primary mr-2 mb-2">PostgreSQL</span>
-                <span class="badge badge-info mr-2 mb-2">WebSockets</span>
-                <span class="badge badge-dark mr-2 mb-2">Firebase</span>
+            <div class="card-body py-3 px-4">
+              <div class="row align-items-center">
+                <div class="col-lg-8">
+                  <h2 class="h3 font-weight-bold mb-2">
+                    Red Social & Blog <span class="text-primary">Profesional</span>
+                  </h2>
+                  <p class="text-muted mb-3">
+                    Plataforma completa con autenticación, CHAT en tiempo real, gestión de perfiles, likes, comentarios, etc.
+                  </p>
+                  <div class="mb-0">
+                    <span class="badge badge-success badge-custom mr-1 mb-1">Django</span>
+                    <span class="badge badge-primary badge-custom mr-1 mb-1">PostgreSQL</span>
+                    <span class="badge badge-info badge-custom mr-1 mb-1">Channels</span>
+                    <span class="badge badge-warning badge-custom mr-1 mb-1">Channels</span>
+                    <span class="badge badge-danger badge-custom mr-1 mb-1">Channels</span>
+                    <span class="badge badge-dark badge-custom mr-1 mb-1">Channels</span>
+                    <span class="badge badge-info badge-custom mr-1 mb-1">Channels</span>
+                  </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-right mt-3 mt-lg-0">
+                  <a href="https://codigobase.duckdns.org/" target="_blank"
+                     class="btn btn-primary btn-md px-4 font-weight-bold shadow-sm rounded-pill transition-all">
+                    IR AL BLOG
+                  </a>
+                </div>
               </div>
-
-              <a href="https://codigobase.duckdns.org/" target="_blank"
-                 class="btn btn-success btn-lg font-weight-bold">
-                Ver Demo
-              </a>
             </div>
           </div>
         </div>
 
         <!-- PROYECTO 2 -->
-        <div class="col-12 mb-4">
-          <div class="card project-card border border-primary">
+        <div class="col-12 mb-5">
+          <div class="card project-card border-0 shadow-lg" style="border-left: 5px solid #10b981 !important;">
 
-
-            <!-- TITULO ARRIBA -->
-            <div class="card-header text-center bg-white border-0">
-              <h2 class="h5 font-weight-bold text-uppercase">
-                SISTEMA ERP (Inventario, Ventas, RRHH)
-              </h2>
-            </div>
-
-            <!-- CARRUSEL -->
+            <!-- CARRUSEL GRANDE -->
             <div id="carouselProject2" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselProject2" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselProject2" data-slide-to="1"></li>
+                <li data-target="#carouselProject2" data-slide-to="2"></li>
+                <li data-target="#carouselProject2" data-slide-to="3"></li>
+                <li data-target="#carouselProject2" data-slide-to="4"></li>
+                <li data-target="#carouselProject2" data-slide-to="5"></li>
+                <li data-target="#carouselProject2" data-slide-to="6"></li>
+                <li data-target="#carouselProject2" data-slide-to="7"></li>
+                <li data-target="#carouselProject2" data-slide-to="8"></li>
+                <li data-target="#carouselProject2" data-slide-to="9"></li>
+              </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{% static 'img/001.png' %}" class="project-image">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 1">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Inventarios</h5>
+                  </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'img/002.jpg' %}" class="project-image">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Ventas</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 3">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">RRHH</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 4">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Contabilidad</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 5">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">CRM</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 6">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Reportes</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 7">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Facturación</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 8">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Proveedores</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 9">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Producción</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 10">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Administración</h5>
+                  </div>
                 </div>
               </div>
-              <a class="carousel-control-prev" href="#carouselProject2" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+              <a class="carousel-control-prev" href="#carouselProject2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
               </a>
-              <a class="carousel-control-next" href="#carouselProject2" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
+              <a class="carousel-control-next" href="#carouselProject2" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
               </a>
             </div>
 
-            <div class="card-body text-center">
-
-              <div class="mb-3">
-                <span class="badge badge-success mr-2 mb-2">Python</span>
-                <span class="badge badge-success mr-2 mb-2">Django</span>
-                <span class="badge badge-primary mr-2 mb-2">PostgreSQL</span>
-                <span class="badge badge-dark mr-2 mb-2">Bootstrap</span>
+            <!-- CONTENIDO INFERIOR -->
+            <div class="card-body py-3 px-4">
+              <div class="row align-items-center">
+                <div class="col-lg-8">
+                  <h2 class="h3 font-weight-bold mb-2">
+                    Sistema ERP <span class="text-success">Empresarial(DEMO)</span>
+                  </h2>
+                  <p class="text-muted mb-3">
+                    Solución integral para la gestión de recursos empresariales, cuenta con 3 modulos Inventario, ventas, RRHH.
+                  </p>
+                  <div class="mb-0">
+                    <span class="badge badge-success badge-custom mr-1 mb-1">Python</span>
+                    <span class="badge badge-success badge-custom mr-1 mb-1">Django</span>
+                    <span class="badge badge-primary badge-custom mr-1 mb-1">PostgreSQL</span>
+                  </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-right mt-3 mt-lg-0">
+                  <a href="https://demo2026.duckdns.org/" target="_blank"
+                     class="btn btn-success btn-md px-4 font-weight-bold shadow-sm rounded-pill transition-all">
+                    VER DEMO
+                  </a>
+                </div>
               </div>
-
-              <a href="https://demo2026.duckdns.org/" target="_blank"
-                 class="btn btn-success font-weight-bold">
-                Ver Demo
-              </a>
-
             </div>
+
           </div>
         </div>
 
         <!-- PROYECTO 3 -->
-        <div class="col-12 mb-4">
-         <div class="card project-card border border-primary ">
-
-            <!-- TITULO ARRIBA -->
-            <div class="card-header text-center bg-white border-0">
-              <h2 class="h5 font-weight-bold text-uppercase">
-                SISTEMA ECOMMERCE
-              </h2>
-            </div>
-
-            <!-- CARRUSEL -->
+        <div class="col-12 mb-5">
+          <div class="card project-card border-0 shadow-lg" style="border-left: 5px solid #f59e0b !important;">
             <div id="carouselProject3" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselProject3" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselProject3" data-slide-to="1"></li>
+                <li data-target="#carouselProject3" data-slide-to="2"></li>
+                <li data-target="#carouselProject3" data-slide-to="3"></li>
+                <li data-target="#carouselProject3" data-slide-to="4"></li>
+                <li data-target="#carouselProject3" data-slide-to="5"></li>
+                <li data-target="#carouselProject3" data-slide-to="6"></li>
+                <li data-target="#carouselProject3" data-slide-to="7"></li>
+                <li data-target="#carouselProject3" data-slide-to="8"></li>
+                <li data-target="#carouselProject3" data-slide-to="9"></li>
+              </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{% static 'img/001.png' %}" class="project-image">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 1">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Catálogo</h5>
+                  </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'img/002.jpg' %}" class="project-image">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Pagos</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 3">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Carrito</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 4">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Detalle Producto</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 5">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Checkout</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 6">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Admin Productos</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 7">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Pedidos</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 8">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Usuarios</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/001.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 9">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Categorías</h5>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/002.jpg' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 10">
+                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
+                    <h5 class="mb-0">Marketing</h5>
+                  </div>
                 </div>
               </div>
-              <a class="carousel-control-prev" href="#carouselProject3" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+              <a class="carousel-control-prev" href="#carouselProject3" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
               </a>
-              <a class="carousel-control-next" href="#carouselProject3" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
+              <a class="carousel-control-next" href="#carouselProject3" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
               </a>
             </div>
-
-            <div class="card-body text-center">
-
-              <div class="mb-3">
-                <span class="badge badge-success mr-2 mb-2">Python</span>
-                <span class="badge badge-success mr-2 mb-2">Django</span>
-                <span class="badge badge-primary mr-2 mb-2">PostgreSQL</span>
-                <span class="badge badge-dark mr-2 mb-2">Bootstrap</span>
+            <div class="card-body py-3 px-4">
+              <div class="row align-items-center">
+                <div class="col-lg-8">
+                  <h2 class="h3 font-weight-bold mb-2">
+                    Plataforma <span style="color: #f59e0b;">E-Commerce</span>
+                  </h2>
+                  <p class="text-muted mb-3">
+                    Tienda virtual escalable con carrito, gestión de pedidos, panel administrativo y pasarela de pago MERCADOPAGO.
+                  </p>
+                  <div class="mb-0">
+                    <span class="badge badge-success badge-custom mr-1 mb-1">Python</span>
+                    <span class="badge badge-success badge-custom mr-1 mb-1">Django</span>
+                    <span class="badge badge-primary badge-custom mr-1 mb-1">PostgreSQL</span>
+                  </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-right mt-3 mt-lg-0">
+                  <a href="https://carrito.duckdns.org/" target="_blank"
+                     class="btn btn-warning btn-md px-4 font-weight-bold shadow-sm rounded-pill transition-all text-white" style="background-color: #f59e0b; border: none;">
+                    VISITAR TIENDA
+                  </a>
+                </div>
               </div>
-
-              <a href="https://carrito.duckdns.org/" target="_blank"
-                 class="btn btn-success font-weight-bold">
-                Ver Demo
-              </a>
-
             </div>
           </div>
         </div>

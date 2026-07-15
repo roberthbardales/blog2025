@@ -191,7 +191,7 @@ class PerfilRedView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user
-        queryset = Entry.objects.filter(user=user).select_related('category').order_by('-created')
+        queryset = Entry.objects.filter(user=user, public=True).select_related('category').order_by('-created')
 
         # Solo uno de los dos filtros actúa a la vez
         categoria = self.request.GET.get('categoria', '').strip()

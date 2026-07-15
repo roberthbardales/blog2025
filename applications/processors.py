@@ -1,4 +1,4 @@
-# applications/home/processors.py
+# applications/processors.py
 import requests
 from applications.home.models import Home
 

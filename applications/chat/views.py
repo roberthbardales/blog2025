@@ -77,14 +77,21 @@ class ChatRoomView(LoginRequiredMixin, TemplateView):
         except UserStatus.DoesNotExist:
             other_user.is_online = False
 
-        # Obtener mensajes del chat
+        # Obtener mensajes del chat (últimos 50)
         messages = Message.objects.filter(
             sender__in=[self.request.user, other_user],
             recipient__in=[self.request.user, other_user]
-        ).select_related('sender', 'recipient').order_by('created')
+        ).select_related('sender', 'recipient').order_by('-created')[:50]
+
+        # Marcar mensajes recibidos como leídos
+        Message.objects.filter(
+            sender=other_user,
+            recipient=self.request.user,
+            is_read=False
+        ).update(is_read=True)
 
         messages_with_time = []
-        for msg in messages:
+        for msg in reversed(messages):
             messages_with_time.append({
                 'sender': msg.sender,
                 'content': msg.content,
@@ -103,13 +110,17 @@ class ChatRoomView(LoginRequiredMixin, TemplateView):
 def ping(request):
     """
     Endpoint que el frontend llama cada 2 segundos para mantener al usuario 'online'
+    Rate limiting: solo escribe si pasaron >=5 segundos desde el último ping
     """
     if request.user.is_authenticated:
         status, created = UserStatus.objects.get_or_create(user=request.user)
+        elapsed = (timezone.now() - status.last_seen).total_seconds()
+        if elapsed < 5:
+            return JsonResponse({"ok": True, "cached": True, "timestamp": status.last_seen.isoformat()})
         status.last_seen = timezone.now()
         status.is_online = True
         status.save(update_fields=['last_seen', 'is_online'])
-        return JsonResponse({"ok": True, "timestamp": status.last_seen.isoformat()})
+        return JsonResponse({"ok": True, "cached": False, "timestamp": status.last_seen.isoformat()})
     return JsonResponse({"ok": False, "error": "Not authenticated"}, status=401)
 
 

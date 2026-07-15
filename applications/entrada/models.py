@@ -78,17 +78,16 @@ class Entry(TimeStampedModel):
         )
 
     def save(self, *args, **kwargs):
-        # calculamos el total de segundos de la hora actual
-        now = datetime.now()
-        total_time = timedelta(
-            hours=now.hour,
-            minutes=now.minute,
-            seconds=now.second
-        )
-        seconds = int(total_time.total_seconds())
-        slug_unique = '%s %s' % (self.title, str(seconds))
-
-        self.slug = slugify(slug_unique)
+        if not self.slug:
+            now = datetime.now()
+            total_time = timedelta(
+                hours=now.hour,
+                minutes=now.minute,
+                seconds=now.second
+            )
+            seconds = int(total_time.total_seconds())
+            slug_unique = '%s %s' % (self.title, str(seconds))
+            self.slug = slugify(slug_unique)
 
         super(Entry, self).save(*args, **kwargs)
 

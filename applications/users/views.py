@@ -86,10 +86,10 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
         usuario = self.request.user
         user = authenticate(
             email=usuario.email,
-            password=form.cleaned_data['password1']
+            password=form.cleaned_data['current_password']
         )
         if user:
-            new_password = form.cleaned_data['password2']
+            new_password = form.cleaned_data['new_password']
             usuario.set_password(new_password)
             usuario.save()
         logout(self.request)

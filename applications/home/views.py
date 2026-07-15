@@ -16,7 +16,7 @@ from django.views.generic import TemplateView, CreateView
 from datetime import timedelta
 
 from .models import Home, VisitorLog, IPLocation
-from .forms import SuscribersForm, ContactForm, ContactForm2
+from .forms import SuscribersForm, ContactForm
 from applications.entrada.models import Entry
 from applications.users.mixins import AdministradorPermisoMixin
 
@@ -31,11 +31,17 @@ class HomePageView(TemplateView):
         context['entradas_home'] = Entry.objects.entradas_en_home()
         context['entradas_recientes'] = Entry.objects.entradas_recientes()
         context['form'] = SuscribersForm
+        context['simple_header'] = True
         return context
 
 
 class AboutMe(TemplateView):
     template_name = "home/about_me.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['simple_header'] = True
+        return context
 
 
 class SuscriberCreateView(CreateView):
@@ -58,11 +64,6 @@ class SuscriberCreateView(CreateView):
 
 class ContactCreateView(CreateView):
     form_class = ContactForm
-    success_url = '.'
-
-
-class ContactCreateView2(CreateView):
-    form_class = ContactForm2
     success_url = '.'
 
     def form_valid(self, form):
@@ -154,6 +155,15 @@ class VisitorCreateView(View):
 class PortafolioView(TemplateView):
     template_name = "home/portafolio.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['simple_header'] = True
+        return context
+
 
 class InicioView(TemplateView):
     template_name = "home/inicio2.html"
+
+
+class ServiciosView(TemplateView):
+    template_name = "home/index2.html"

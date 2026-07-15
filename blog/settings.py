@@ -50,6 +50,7 @@ LOCAL_APPS = (
     'applications.notas',
     'applications.amigos',
     # 'applications.rag',         #rag
+    # 'applications.chatbot',
 )
 
 THIRD_PARTY_APPS = (
@@ -78,15 +79,6 @@ REST_FRAMEWORK = {
 # Simple JWT
 # -------------------------------
 from datetime import timedelta
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
-
-
-# from datetime import timedelta
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
@@ -124,9 +116,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'applications.procesors.home_contact',
-                'applications.procesors.obtener_ip',
-                'applications.procesors.obtener_clima',
+                'applications.processors.home_contact',
+                'applications.processors.obtener_ip',
+                'applications.processors.obtener_clima',
             ],
         },
     },
@@ -270,6 +262,12 @@ FIREBASE_AUTH_DOMAIN = env('FIREBASE_AUTH_DOMAIN')
 FIREBASE_PROJECT_ID = env('FIREBASE_PROJECT_ID')
 FIREBASE_MESSAGING_SENDER_ID = env('FIREBASE_MESSAGING_SENDER_ID')
 FIREBASE_APP_ID = env('FIREBASE_APP_ID')
+
+# -------------------------------
+# Gemini
+# -------------------------------
+GEMINI_API_KEY = env('GEMINI_API_KEY', default='')
+GEMINI_MODEL = env('GEMINI_MODEL', default='gemini-2.5-flash')
 # -------------------------------
 # Authentication Backends
 # -------------------------------

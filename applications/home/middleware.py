@@ -9,7 +9,8 @@ class VisitorLogMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.path != '/':
+        skip_prefixes = ('/static/', '/media/', '/admin/', '/api/')
+        if request.path.startswith(skip_prefixes):
             return self.get_response(request)
 
         ip = self.get_client_ip(request)

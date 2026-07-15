@@ -93,13 +93,13 @@
           <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:index' %}">Inicio</a>
         </li>
         <li class="nav-item mx-1 my-1 my-lg-0">
-          <a class="nav-link btn btn-outline-light text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
-        </li>
-        <li class="nav-item mx-1 my-1 my-lg-0">
           <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:portafolio' %}">Proyectos</a>
         </li>
         <li class="nav-item mx-1 my-1 my-lg-0">
           <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:sobre_mi' %}">Sobre mí</a>
+        </li>
+        <li class="nav-item mx-1 my-1 my-lg-0">
+          <a class="nav-link btn btn-outline-light text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
         </li>
 
         {% if not user.is_anonymous %}
@@ -124,9 +124,11 @@
         <li class="nav-item mx-1 my-1 my-lg-0">
           <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">Iniciar sesión</a>
         </li>
+        {% if not simple_header %}
         <li class="nav-item mx-1 my-1 my-lg-0">
           <a class="nav-link text-white" href="{% url 'users_app:user-login' %}">Usuario anónimo</a>
         </li>
+        {% endif %}
         {% endif %}
       </ul>
 

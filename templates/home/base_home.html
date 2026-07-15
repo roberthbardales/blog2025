@@ -95,7 +95,58 @@
 	  document.querySelector(this.getAttribute('href')).scrollIntoView({
 		behavior: 'smooth'
 	  });
+	  });
 	});
-  });
   </script>
+<script>
+(() => {
+  const toggle = document.getElementById('blog-chatbot-toggle');
+  const closeBtn = document.getElementById('blog-chatbot-close');
+  const panel = document.getElementById('blog-chatbot-panel');
+  const form = document.getElementById('blog-chatbot-form');
+  const input = document.getElementById('blog-chatbot-input');
+  const messages = document.getElementById('blog-chatbot-messages');
+  if (!toggle || !panel || !form || !input || !messages) return;
+
+  const addMessage = (text, who) => {
+    const bubble = document.createElement('div');
+    bubble.className = `blog-chatbot-message ${who}`;
+    bubble.textContent = text;
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+  };
+
+  toggle.addEventListener('click', () => panel.classList.toggle('d-none'));
+  closeBtn && closeBtn.addEventListener('click', () => panel.classList.add('d-none'));
+
+  addMessage('Hola, pregúntame sobre el contenido del blog.', 'bot');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+    addMessage(question, 'user');
+    input.value = '';
+    addMessage('Pensando...', 'bot typing');
+
+    try {
+      const res = await fetch('/chatbot/ask/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question }),
+      });
+      const data = await res.json();
+      const typing = messages.querySelector('.blog-chatbot-message.typing');
+      if (typing) typing.remove();
+      addMessage(data.answer || data.error || 'No hubo respuesta.', 'bot');
+    } catch (err) {
+      const typing = messages.querySelector('.blog-chatbot-message.typing');
+      if (typing) typing.remove();
+      addMessage('Error de conexión con el chatbot.', 'bot');
+    }
+  });
+})();
+</script>
 {% endblock js %}

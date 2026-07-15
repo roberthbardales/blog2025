@@ -1,14 +1,12 @@
-﻿<!-- head para PC -->
-{% extends "home/base_home.html" %}
-
+﻿{% extends "home/base_home.html" %}
 {% load  static %}
 
 {% block title %}
-{{ home.title }}
+Russell Bardales | Desarrollo Web Django & Soporte Técnico
 {% endblock title %}
 
 {% block description %}
-<meta name="description" content="{{ home.description }}">
+<meta name="description" content="Servicios de desarrollo de sistemas web con Django y Bootstrap. Sistemas de ventas, inventario, reservas, escolares, pedidos, CRM, e-commerce y soporte técnico online.">
 {% endblock description %}
 
 {% block content %}
@@ -16,800 +14,750 @@
 {% include "includes/header.html" %}
 
 <style>
-  .portfolio-hero {
-    border: 0;
-    border-radius: 1.1rem;
-    overflow: hidden;
-    color: #fff;
-    background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
-    box-shadow: 0 18px 36px rgba(15, 23, 42, .16);
-    position: relative;
+  :root {
+    --navy: #1e3a8a;
+    --ocean: #3b82f6;
+    --cyan: #06b6d4;
+    --light-blue: #93c5fd;
   }
 
-  .portfolio-hero .card-body {
+  html { scroll-behavior: smooth; }
+
+  .text-ocean { color: var(--ocean) !important; }
+  .bg-navy { background-color: var(--navy) !important; }
+  .border-ocean { border-color: var(--ocean) !important; }
+
+  /* ===== HERO ===== */
+  .hero-section {
+    background: linear-gradient(135deg, #1e3a8a, #1e3a8a, #3b82f6);
+    border-radius: 1.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: auto -10% -30% auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.05);
+    pointer-events: none;
+  }
+
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    inset: -15% auto auto -8%;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.03);
+    pointer-events: none;
+  }
+
+  .hero-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,.2);
+    box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  }
+
+  .hero-gradient-text {
+    background: linear-gradient(to right, var(--light-blue), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-pill {
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,.15);
+  }
+
+  .btn-outline-light-custom {
+    border: 1px solid rgba(255,255,255,.35);
+    color: #fff;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-weight: 500;
+    transition: background-color .25s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .btn-outline-light-custom:hover {
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .btn-navy {
+    background-color: var(--navy);
+    color: #fff;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-weight: 600;
+    border: none;
+    transition: background-color .25s ease, box-shadow .25s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .btn-navy:hover {
+    background-color: #1e3a8a;
+    color: #fff;
+    box-shadow: 0 10px 25px -5px rgba(30,58,138,.4);
+    text-decoration: none;
+  }
+
+  .hero-float-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: rgba(255,255,255,.7);
+    font-size: .85rem;
+  }
+
+  /* ===== SECCIÓN TÍTULO ===== */
+  .section-label {
+    color: var(--ocean);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .8rem;
+    letter-spacing: .05em;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .section-sub {
+    color: #64748b;
+    max-width: 500px;
+  }
+
+  /* ===== ICON BOX ===== */
+  .icon-box {
+    width: 56px;
+    height: 56px;
+    background: rgba(59,130,246,.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-box i {
+    font-size: 1.4rem;
+    color: var(--ocean);
+  }
+
+  /* ===== SERVICE CARDS ===== */
+  .service-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    transition: transform .3s ease, box-shadow .3s ease;
+    height: 100%;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.1);
+  }
+
+  .service-card .card-body {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .service-card .card-title {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 1rem;
+  }
+
+  .service-card .card-text {
+    font-size: .85rem;
+    color: #64748b;
+  }
+
+  .service-card ul {
+    font-size: .82rem;
+  }
+
+  .service-card ul li {
+    color: #475569;
+  }
+
+  /* ===== STEP CARDS ===== */
+  .step-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    transition: transform .3s ease, box-shadow .3s ease;
+    height: 100%;
+  }
+
+  .step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.1);
+  }
+
+  .step-card .card-body {
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+  }
+
+  .step-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--ocean);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin: 0 auto .8rem;
+  }
+
+  .step-card h5 {
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .3rem;
+  }
+
+  .step-card p {
+    font-size: .85rem;
+    color: #64748b;
+    margin-bottom: 0;
+  }
+
+  /* ===== TECH BADGES ===== */
+  .tech-badge-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    padding: .5rem 1.1rem;
+    font-weight: 500;
+    font-size: .85rem;
+    color: var(--navy);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+
+  .tech-badge-custom:hover {
+    transform: translateY(-2px);
+    border-color: var(--ocean);
+    box-shadow: 0 4px 12px rgba(59,130,246,.15);
+  }
+
+  .tech-badge-custom i {
+    font-size: 1.3rem;
+  }
+
+  /* ===== STATS ===== */
+  .stats-bar {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-bar::before {
+    content: '';
+    position: absolute;
+    inset: -50% -20%;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .stats-item {
+    text-align: center;
+    padding: .5rem;
     position: relative;
     z-index: 1;
-    padding: 0.5rem;
   }
 
-  .subscribe-hero .card-body {
-    padding: 1.5rem 2rem;
+  .stats-item i {
+    font-size: 1.3rem;
+    margin-bottom: .25rem;
+    opacity: .8;
+    display: block;
   }
 
-		.skill-card {
-			border: 2px solid #0d6efd !important;
-			border-radius: 14px;
-			background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-			box-shadow: 0 10px 22px rgba(15, 23, 42, .10);
-			transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-			overflow: hidden;
-			height: 170px;
-			display: flex;
-			flex-direction: column;
-		}
+  .stats-number {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: .15rem;
+  }
 
-		.skill-card:hover {
-			transform: translateY(-6px);
-			border-color: #0b5ed7 !important;
-			box-shadow: 0 18px 36px rgba(15, 23, 42, .16);
-		}
+  .stats-label {
+    font-size: .85rem;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 0;
+  }
 
-		.skill-card .card-body {
-			padding: .8rem !important;
-			flex: 1 1 auto;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-		}
+  .stats-divider {
+    width: 1px;
+    background: rgba(255,255,255,.15);
+  }
 
-		@media (min-width: 768px) {
-			.col-stack {
-				flex: 0 0 16.6667%;
-				max-width: 16.6667%;
-			}
-		}
+  /* ===== SUPPORT CARDS ===== */
+  .support-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    transition: transform .3s ease, box-shadow .3s ease;
+    height: 100%;
+  }
 
-		@media (max-width: 767.98px) {
-			.col-stack {
-				flex: 0 0 33.3333%;
-				max-width: 33.3333%;
-			}
+  .support-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.1);
+  }
 
-			.skill-card .card-body {
-				padding: .7rem .5rem;
-			}
+  .support-card .card-body {
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
 
-			.skill-icon {
-				width: 44px;
-				height: 44px;
-				margin: 0 auto .45rem;
-			}
+  .support-card .card-title {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: .92rem;
+  }
 
-			.skill-icon i {
-				font-size: 24px !important;
-			}
+  .support-card .card-text {
+    font-size: .8rem;
+    color: #64748b;
+    margin-bottom: 0;
+  }
 
-			.skill-card .h5 {
-				font-size: .85rem;
-				margin-bottom: .15rem !important;
-			}
-		}
+  /* ===== CTA BANNER ===== */
+  .cta-banner {
+    padding: 2.5rem 1.5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
 
-		.skill-icon {
-			width: 50px;
-			height: 50px;
-			border-radius: 14px;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			margin: 0 auto .1rem;
-			background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, .12), rgba(15, 23, 42, .06));
-			box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
-		}
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    inset: auto -15% -35% auto;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.05);
+    pointer-events: none;
+  }
 
-		.skill-icon i {
-			margin: 0 !important;
-			font-size: 28px !important;
-			line-height: 1 !important;
-		}
+  .cta-banner h2 {
+    font-weight: 800;
+    color: #fff;
+  }
 
-		.skill-card p {
-			font-size: .92rem;
-		}
+  .cta-banner p {
+    color: rgba(255,255,255,.8);
+  }
 
-		.skill-card .h5 {
-			margin-bottom: 0 !important;
-			line-height: 1;
-			padding-bottom: 0 !important;
-		}
-
-		.projects-section {
-			padding-top: 1rem;
-		}
-
-		.projects-grid {
-			margin-top: .5rem;
-		}
-
-		.project-card {
-			position: relative;
-			border: 1px solid rgba(13, 110, 253, .12) !important;
-			border-radius: 18px;
-			background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-			box-shadow: 0 14px 30px rgba(15, 23, 42, .08);
-			overflow: hidden;
-			transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-			height: 100%;
-		}
-
-		.project-card::before {
-			content: "";
-			position: absolute;
-			inset: 0 auto 0 0;
-			width: 4px;
-			background: linear-gradient(180deg, #0d6efd 0%, #20c997 100%);
-		}
-
-		.project-card:hover {
-			transform: translateY(-8px);
-			border-color: rgba(13, 110, 253, .28) !important;
-			box-shadow: 0 20px 40px rgba(15, 23, 42, .14);
-		}
-
-		.project-card .card-body {
-			padding: 1.35rem 1.25rem 1.25rem 1.4rem;
-		}
-
-		.project-kicker {
-			display: inline-flex;
-			align-items: center;
-			gap: .45rem;
-			font-size: .78rem;
-			font-weight: 700;
-			letter-spacing: .08em;
-			text-transform: uppercase;
-			color: #0d6efd;
-			margin-bottom: .9rem;
-		}
-
-		.project-kicker::before {
-			content: "";
-			width: 28px;
-			height: 2px;
-			background: currentColor;
-			border-radius: 999px;
-		}
-
-		.project-title {
-			font-size: 1.02rem;
-			font-weight: 800;
-			line-height: 1.25;
-			margin-bottom: .9rem;
-			color: #0f172a;
-		}
-
-		.project-tags {
-			display: flex;
-			flex-wrap: wrap;
-			gap: .45rem;
-		}
-
-		.project-tag {
-			padding: .42rem .7rem;
-			border-radius: 999px;
-			background: rgba(13, 110, 253, .08);
-			color: #0b5ed7;
-			font-size: .78rem;
-			font-weight: 700;
-			line-height: 1;
-			border: 1px solid rgba(13, 110, 253, .10);
-		}
-
-		.case-study-section {
-			margin-top: 1.35rem;
-			padding: 2.1rem 1.4rem;
-			border-radius: 24px;
-			background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
-			color: #fff;
-			box-shadow: 0 18px 40px rgba(15, 23, 42, .18);
-			position: relative;
-			overflow: hidden;
-		}
-
-		.case-study-section::after {
-			content: none;
-		}
-
-		.case-study-heading {
-			position: relative;
-			z-index: 1;
-			margin-bottom: 1.4rem;
-		}
-
-		.case-study-heading h2 {
-			color: #fff;
-			font-weight: 800;
-		}
-
-		.case-study-heading p {
-			color: rgba(255, 255, 255, .82);
-		}
-
-		.case-stat {
-			background: rgba(255, 255, 255, .12);
-			border: 1px solid rgba(255, 255, 255, .14);
-			border-radius: 18px;
-			padding: 1rem 1.05rem;
-			backdrop-filter: blur(6px);
-			height: 100%;
-		}
-
-		.case-stat .label {
-			display: block;
-			font-size: .72rem;
-			letter-spacing: .08em;
-			text-transform: uppercase;
-			color: rgba(255, 255, 255, .75);
-			margin-bottom: .35rem;
-		}
-
-		.case-stat .value {
-			display: block;
-			font-size: 1.55rem;
-			font-weight: 800;
-			color: #fff;
-			line-height: 1.05;
-		}
-
-		.case-card {
-			position: relative;
-			background: rgba(255, 255, 255, .14);
-			border: 1px solid rgba(255, 255, 255, .14) !important;
-			border-radius: 20px;
-			overflow: hidden;
-			backdrop-filter: blur(8px);
-			box-shadow: 0 12px 30px rgba(15, 23, 42, .20);
-			height: 100%;
-			transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-		}
-
-		.case-card:hover {
-			transform: translateY(-7px);
-			box-shadow: 0 20px 40px rgba(15, 23, 42, .30);
-			border-color: rgba(255, 255, 255, .24) !important;
-		}
-
-		.case-card .card-body {
-			padding: 1.25rem 1.25rem 1.2rem;
-		}
-
-		.case-card .case-line {
-			width: 54px;
-			height: 4px;
-			border-radius: 999px;
-			background: linear-gradient(90deg, #38bdf8 0%, #22c55e 100%);
-			margin-bottom: 1rem;
-		}
-
-		.case-card .case-title {
-			font-size: 1.05rem;
-			font-weight: 800;
-			color: #fff;
-			margin-bottom: .9rem;
-		}
-
-		.case-card .case-title.case-title-light {
-			font-weight: 400;
-			letter-spacing: 0;
-			line-height: 1.28;
-			font-size: .98rem;
-			color: rgba(255, 255, 255, .94);
-		}
-
-		.case-card .case-meta {
-			display: flex;
-			flex-wrap: wrap;
-			gap: .5rem;
-		}
-
-		.case-chip {
-			display: inline-flex;
-			align-items: center;
-			padding: .38rem .68rem;
-			border-radius: 999px;
-			background: rgba(255, 255, 255, .16);
-			border: 1px solid rgba(255, 255, 255, .18);
-			color: #fff;
-			font-size: .76rem;
-			font-weight: 700;
-			line-height: 1;
-		}
-
-		.case-cta {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			padding: .95rem 2rem;
-			border-radius: 999px;
-			min-width: 220px;
-			box-shadow: 0 12px 24px rgba(25, 135, 84, .22);
-			text-decoration: none;
-			transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-		}
-
-		.case-cta:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 18px 34px rgba(25, 135, 84, .28);
-			filter: brightness(1.03);
-			text-decoration: none;
-		}
-
-		.card img {
-			height: 200px;
-			object-fit: cover;
-		}
-
-		.card-title a {
-			color: #333;
-			text-decoration: none;
-		}
-
-		.card-title a:hover {
-			color: #007bff;
-		}
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 767.98px) {
+    .section-title { font-size: 1.5rem; }
+    .hero-avatar { width: 76px; height: 76px; }
+    .stats-divider {
+      width: 60%;
+      height: 1px;
+      margin: .8rem auto;
+    }
+    .stats-number { font-size: 1.5rem; }
+    .btn-outline-light-custom,
+    .btn-navy { padding: 12px 24px; font-size: .9rem; }
+  }
 </style>
 
+<div class="container">
 
-
-<div class="container" >
-	<div class="row justify-content-center">
-
-
-		<div id="demoBox" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #0d6efd;
-    color: #fff;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-">
-<p class="text-center">Inicia Sesion con:</p>
-    <strong>Usuario: </strong>demo1@gmail.com<br>
-    <strong>Contraseña: </strong>123456
-	<p class="text-center">
-		<button class="btn btn-danger mt-2" onclick="document.getElementById('demoBox').style.display='none'">Cerrar</button>
-
-	</p>
-</div>
-		<div class="col-12 col-xs-12 aprende">
-			<div class="row justify-content-center mb-1 mt-3">
-				<div class="col-lg-10 text-center">
-					<div class="card portfolio-hero">
-						<div class="card-body">
-							<h1 class="display-5 font-weight-bold mb-0">Red Social y Blog de Programación</h1>
-							<!-- <h1 class="display-5 font-weight-bold mb-0">Aprende Python, Django y más</h1> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	<div class="row justify-content-center mt-4">
-    <div class="col-lg-10">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="mb-4 mt-0 portada">
-						<div class="card h-100">
-							<a href="{% url 'entrada_app:entry-detail' portada.slug %}">
-								<img src="{{ portada.image.url }}" class="card-img-top mt-0" alt="{{ portada.title }}">
-							</a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a class="h5" href="{% url 'entrada_app:entry-detail' portada.slug %}">{{ portada.title }}</a>
-								</h4>
-								<p>{{ portada.resume|truncatechars:150 }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="row row-cols-1 row-cols-md-2 mt-0 justify-content-center entrada">
-						{% for entrada in entradas_home %}
-						<div class="col mb-4">
-							<div class="card h-100">
-								<a href="{% url 'entrada_app:entry-detail' entrada.slug %}">
-									<img class="img-fluid" src="{{entrada.image.url}}">
-								</a>
-							<div class="card-body">
-								<h5 class="card-title">
-								<a href="{% url 'entrada_app:entry-detail' entrada.slug %}">{{ entrada.title | truncatechars:30}}</a>
-								</h5>
-							</div>
-						</div>
-						</div>
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-    </div>
-
-	</div>
- 	<div class="row mb-4 justify-content-center  align-items-center">
- 				<div class="col-md-10">
-						<div class="card portfolio-hero subscribe-hero h-100 bienvenido">
-						<div class="card-body text-center">
-							<h5 class="card-title text-white mb-2">{{ home.about_title }}</h5>
-							<p class="card-text text-white-50 mb-3">{{ home.about_text }}</p>
-				<!-- Button trigger modal -->
-							<button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-								Suscribete
-							</button>
-
-						</div>
-					</div>
-				</div>
-					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered " role="document">
-						<div class="modal-content text-center">
-							<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel"> Ingresa tu Correo</h5>
-						<form method="post" action="{% url 'home_app:add-suscription' %}">{% csrf_token %}
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</div>
-							<div class="modal-body">
-								<br>
-							{{form.email}}
-							</div>
-							<div class="modal-footer">
-								<button type="submit" class="btn btn-success ml-auto">Suscribirme</button>
-								<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Salir</button>
-							</div>
-						</form>
-						</div>
-						</div>
-					</div>
-	</div>
-
-<div class="row justify-content-center mb-1 py-0">
-  <div class="col-lg-10">
-    <div id="habilidades" class="row">
-      <div class="col-12 mb-4" data-sr-id="6">
-          <h2 class="h3 font-weight-bold text-center">Mi Stack Tecnológico</h2>
+  <!-- ===== HERO ===== -->
+  <div class="hero-section px-4 py-5 mb-5">
+    <div class="text-center py-lg-4">
+      <div class="d-inline-flex align-items-center gap-2 hero-pill rounded-pill px-4 py-2 text-white-50 small mb-4">
+        <i class="fas fa-rocket" style="color:var(--ocean);"></i>
+        <span>Fullstack Django &amp; Soporte Técnico</span>
       </div>
-      <div class="col-6 col-stack mb-3" data-sr-id="7">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fab fa-python fa-3x mb-3 text-primary"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">Python</h3>
-            </div>
-        </div>
-    </div>
 
-      <div class="col-6 col-stack mb-3" data-sr-id="8">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="devicon-django-plain colored display-3 mb-3"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">Django & DRF</h3>
-            </div>
-        </div>
-    </div>
+      <img src="{% static 'img/logo2.jpg' %}" alt="Russell Bardales" class="hero-avatar mb-3" loading="lazy">
 
-      <div class="col-6 col-stack mb-3">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fas fa-bolt fa-3x mb-3 text-info"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">FastAPI</h3>
-            </div>
-        </div>
-    </div>
+      <h1 class="display-5 fw-bold text-white lh-sm mb-2">
+        Russell <span class="hero-gradient-text">Bardales</span>
+      </h1>
 
-      <div class="col-6 col-stack mb-3">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fab fa-js fa-3x mb-3 text-warning"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">JavaScript</h3>
-            </div>
-        </div>
-    </div>
+      <p class="lead mx-auto mb-4" style="color:rgba(255,255,255,.8); max-width:580px; font-size:1.05rem;">
+        Desarrollo de sistemas web a medida y soporte técnico online. Transformo tus ideas en soluciones digitales.
+      </p>
 
-      <div class="col-6 col-stack mb-3">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fab fa-php fa-3x mb-3" style="color: #777bb4;"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">PHP</h3>
-            </div>
-        </div>
-    </div>
-
-      <div class="col-6 col-stack mb-3" data-sr-id="9">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fas fa-database fa-3x mb-3 text-info"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">SQL DBs</h3>
-            </div>
-        </div>
-    </div>
-
-      <div class="col-6 col-stack mb-3">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fab fa-bootstrap fa-3x mb-3" style="color: #7952b3;"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">Bootstrap</h3>
-            </div>
-        </div>
-    </div>
-
-      <div class="col-6 col-stack mb-3">
-		<div class="card border-0 shadow-sm h-100 skill-card">
-			<div class="card-body text-center">
-				<div class="skill-icon">
-					<i class="fab fa-react fa-3x mb-3 text-info"></i>
-				</div>
-				<h3 class="h5 font-weight-bold mb-2">React JS</h3>
-			</div>
-		</div>
-    </div>
-
-      <div class="col-6 col-stack mb-3">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fas fa-credit-card fa-3x mb-3 text-primary"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">Mercado Pago</h3>
-            </div>
-        </div>
-    </div>
-
-      <div class="col-6 col-stack mb-3" data-sr-id="10">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fab fa-linux fa-3x mb-3 text-dark"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">Linux</h3>
-            </div>
-        </div>
-    </div>
-
-      <div class="col-6 col-stack mb-3">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fab fa-windows fa-3x mb-3 text-primary"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">Windows Server</h3>
-            </div>
-        </div>
-    </div>
-
-      <div class="col-6 col-stack mb-3">
-        <div class="card border-0 shadow-sm h-100 skill-card">
-            <div class="card-body text-center">
-                <div class="skill-icon">
-                    <i class="fas fa-file-excel fa-3x mb-3 text-success"></i>
-                </div>
-                <h3 class="h5 font-weight-bold mb-2">Excel</h3>
-            </div>
-        </div>
-    </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="row justify-content-center">
-  <div class="col-lg-10">
-    <div id="proyectos2" class="case-study-section">
-        <div class="case-study-heading text-center">
-            <h2 class="h3 mb-2">Mis Proyectos</h2>
-            <p class="mb-0">Experiencia aplicada en desarrollo backend, plataformas web e implementación en producción.</p>
-        </div>
-
-    <div class="text-center mb-4">
-        <a href="{% url 'home_app:portafolio' %}" class="btn btn-success btn-lg case-cta">
-            Ver Proyectos
+      <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">
+        <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="btn btn-light text-navy fw-semibold px-4 py-3" style="border-radius:12px;" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp me-2" style="color:#25d366;"></i>Cotizar proyecto
         </a>
-    </div>
+        <a href="{% url 'home_app:portafolio' %}" class="btn-outline-light-custom">
+          <i class="fas fa-briefcase me-2"></i>Ver proyectos
+        </a>
+      </div>
 
-        <div class="row">
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card case-card">
-                <div class="card-body">
-                    <h3 class="case-title case-title-light">Arquitectura de APIs y sistemas backend escalables</h3>
-                    <div class="case-meta">
-                        <span class="case-chip">Django REST</span>
-                        <span class="case-chip">JWT</span>
-                        <span class="case-chip">PostgreSQL</span>
-                        <span class="case-chip">WebSockets</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card case-card">
-                <div class="card-body">
-                    <h3 class="case-title case-title-light">Desarrollo de plataformas web orientadas a negocio</h3>
-                    <div class="case-meta">
-                        <span class="case-chip">Django</span>
-                        <span class="case-chip">JavaScript</span>
-                        <span class="case-chip">Bootstrap</span>
-                        <span class="case-chip">Firebase Auth</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card case-card">
-                <div class="card-body">
-                    <h3 class="case-title case-title-light">Integraciones de pago y despliegue en producción</h3>
-                    <div class="case-meta">
-                        <span class="case-chip">Mercado Pago</span>
-                        <span class="case-chip">Culqi</span>
-                        <span class="case-chip">Nginx</span>
-                        <span class="case-chip">DigitalOcean</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+      <div class="mt-4 d-flex align-items-center justify-content-center gap-3 gap-sm-4 flex-wrap">
+        <span class="hero-float-icon"><i class="fas fa-code" style="color:var(--ocean);"></i> Django</span>
+        <span class="hero-float-icon"><i class="fas fa-database" style="color:var(--ocean);"></i> PostgreSQL</span>
+        <span class="hero-float-icon"><i class="fas fa-headset" style="color:var(--ocean);"></i> Soporte online</span>
+      </div>
     </div>
   </div>
-</div>
 
+  <!-- ===== SISTEMAS QUE DESARROLLO ===== -->
+  <div class="text-center mb-4" data-sr="fade-up">
+    <p class="section-label mb-1"><i class="fas fa-code me-1"></i>Servicios</p>
+    <h2 class="section-title">Sistemas que Desarrollo</h2>
+    <p class="section-sub mx-auto">Soluciones web a medida con Django y Bootstrap</p>
+  </div>
 
-	<div class="row justify-content-center align-items-center  py-4">
-   <div class="col-lg-10">
-	   <div class="d-flex flex-column flex-lg-row align-items-center bg-white shadow p-1 rounded"
-			style="border-left: 5px solid #007bff;">
+  <div class="row g-3 justify-content-center mb-5" data-sr="fade-up" data-sr-delay="100">
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(16,185,129,.1);">
+            <i class="fas fa-cash-register" style="color:#10b981;"></i>
+          </div>
+          <h5 class="card-title">Sistemas de Ventas</h5>
+          <p class="card-text">Punto de venta, facturación, reportes</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(59,130,246,.1);">
+            <i class="fas fa-boxes" style="color:#3b82f6;"></i>
+          </div>
+          <h5 class="card-title">Sistemas de Inventario</h5>
+          <p class="card-text">Stock, almacenes, alertas de reposición</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(245,158,11,.1);">
+            <i class="fas fa-calendar-check" style="color:#f59e0b;"></i>
+          </div>
+          <h5 class="card-title">Reservas y Citas</h5>
+          <p class="card-text">Agenda online, recordatorios, disponibilidad</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(234,179,8,.1);">
+            <i class="fas fa-school" style="color:#eab308;"></i>
+          </div>
+          <h5 class="card-title">Sistemas Escolares</h5>
+          <p class="card-text">Matrículas, notas, horarios, asistencia</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(236,72,153,.1);">
+            <i class="fas fa-shopping-cart" style="color:#ec4899;"></i>
+          </div>
+          <h5 class="card-title">Pedidos Web + WhatsApp</h5>
+          <p class="card-text">Catálogo, carrito, notificación WhatsApp</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(20,184,166,.1);">
+            <i class="fas fa-wallet" style="color:#14b8a6;"></i>
+          </div>
+          <h5 class="card-title">Control de Gastos</h5>
+          <p class="card-text">Ingresos, egresos, categorías, balances</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(100,116,139,.1);">
+            <i class="fas fa-users-cog" style="color:#64748b;"></i>
+          </div>
+          <h5 class="card-title">CRM Básico</h5>
+          <p class="card-text">Clientes, seguimiento, historial, tareas</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card service-card">
+        <div class="card-body">
+          <div class="icon-box mb-3" style="background:rgba(99,102,241,.1);">
+            <i class="fas fa-store" style="color:#6366f1;"></i>
+          </div>
+          <h5 class="card-title">Tiendas Online</h5>
+          <p class="card-text">Catálogo + carrito + pagos</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-		   <!-- Texto -->
-		   <div class="text-center text-lg-left flex-grow-1 pr-lg-4">
-			   <blockquote class="blockquote mb-0">
-				   <p class="text-primary font-italic mb-2" style="font-size: 1.6rem; line-height: 1.3;">
-					   “No lo sé, procuro no cargar mi memoria con datos que puedo encontrar en cualquier manual”
-				   </p>
-				   <footer class="blockquote-footer mt-2" style="font-size: 1rem;">
-					   Albert Einstein
-				   </footer>
-				   <small class="text-muted d-block mt-1">
-					   [Cuando Thomas Alva Edison le preguntó la velocidad del sonido]
-				   </small>
-			   </blockquote>
-		   </div>
+  <!-- ===== CÓMO TRABAJO ===== -->
+  <div class="text-center mb-4" data-sr="fade-up">
+    <p class="section-label mb-1"><i class="fas fa-cogs me-1" style="color:#14b8a6;"></i>Proceso</p>
+    <h2 class="section-title">¿Cómo Trabajo?</h2>
+    <p class="section-sub mx-auto">De la idea a tu solución digital en 3 pasos</p>
+  </div>
 
-		   <!-- Imagen -->
-		   <div class="mt-4 mt-lg-0 text-center">
-			   <img src="static/img/1.jpg"
-					alt="Albert Einstein"
-					class="img rounded shadow-lg"
-					style="
-						width: 350px;
-						height: 215px;
-						object-fit: cover;
-					">
-		   </div>
+  <div class="row g-3 justify-content-center mb-5" data-sr="fade-up" data-sr-delay="100">
+    <div class="col-md-4">
+      <div class="card step-card">
+        <div class="card-body">
+          <div class="step-number">1</div>
+          <h5>Cuéntame tu idea</h5>
+          <p>Me explicas qué necesitas, sin compromiso. Te escucho y te aconsejo la mejor solución.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card step-card">
+        <div class="card-body">
+          <div class="step-number">2</div>
+          <h5>Recibe tu cotización</h5>
+          <p>Te envío un presupuesto claro con alcance, tiempos y costo. Sin sorpresas.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card step-card">
+        <div class="card-body">
+          <div class="step-number">3</div>
+          <h5>Pongo manos a la obra</h5>
+          <p>Una vez aprobado, desarrollo tu sistema con entregas parciales y soporte continuo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-	   </div>
-   </div>
+  <!-- ===== TECNOLOGÍAS ===== -->
+  <div class="text-center mb-4" data-sr="fade-up">
+    <p class="section-label mb-1"><i class="fas fa-microchip me-1"></i>Stack</p>
+    <h2 class="section-title">Tecnologías que Uso</h2>
+    <p class="section-sub mx-auto">Herramientas modernas para resultados profesionales</p>
+  </div>
 
-</div>
+  <div class="text-center mb-5" data-sr="fade-up" data-sr-delay="100">
+    <div class="d-flex flex-wrap justify-content-center gap-2">
+      <span class="tech-badge-custom"><i class="devicon-django-plain" style="color:#092e20;"></i>Django</span>
+      <span class="tech-badge-custom"><i class="devicon-python-plain" style="color:#3776AB;"></i>Python</span>
+      <span class="tech-badge-custom"><i class="devicon-postgresql-plain" style="color:#336791;"></i>PostgreSQL</span>
+      <span class="tech-badge-custom"><i class="devicon-bootstrap-plain" style="color:#7952b3;"></i>Bootstrap</span>
+      <span class="tech-badge-custom"><i class="devicon-git-plain" style="color:#f05032;"></i>Git</span>
+      <span class="tech-badge-custom"><i class="devicon-docker-plain" style="color:#2496ed;"></i>Docker</span>
+      <span class="tech-badge-custom"><i class="devicon-javascript-plain" style="color:#f7df1e;"></i>JavaScript</span>
+      <span class="tech-badge-custom"><i class="devicon-heroku-original" style="color:#7952b3;"></i>Heroku</span>
+    </div>
+  </div>
+
+  <!-- ===== ESTADÍSTICAS ===== -->
+  <div class="row justify-content-center mb-5" data-sr="fade-up">
+    <div class="col-lg-10">
+      <div class="stats-bar">
+        <div class="row align-items-center">
+          <div class="col-md-4 stats-item">
+            <i class="fas fa-briefcase"></i>
+            <div class="stats-number" data-count="15">0</div>
+            <p class="stats-label">Proyectos entregados</p>
+          </div>
+          <div class="stats-divider d-none d-md-block"></div>
+          <div class="col-md-4 stats-item">
+            <i class="fas fa-clock"></i>
+            <div class="stats-number" data-count="5">0</div>
+            <p class="stats-label">Años de experiencia</p>
+          </div>
+          <div class="stats-divider d-none d-md-block"></div>
+          <div class="col-md-4 stats-item">
+            <i class="fas fa-heart"></i>
+            <div class="stats-number">100%</div>
+            <p class="stats-label">Clientes satisfechos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SOPORTE TÉCNICO ===== -->
+  <div class="text-center mb-4" data-sr="fade-up">
+    <p class="section-label mb-1"><i class="fas fa-headset me-1" style="color:#14b8a6;"></i>Soporte</p>
+    <h2 class="section-title">Soporte Técnico Online</h2>
+    <p class="section-sub mx-auto">Asistencia remota rápida y confiable</p>
+  </div>
+
+  <div class="row g-3 justify-content-center mb-5" data-sr="fade-up" data-sr-delay="100">
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card support-card">
+        <div class="card-body">
+          <div class="icon-box mx-auto mb-3" style="background:rgba(239,68,68,.1);">
+            <i class="fas fa-shield-alt" style="color:#ef4444;"></i>
+          </div>
+          <h5 class="card-title">Eliminación de Virus</h5>
+          <p class="card-text">Malware, spyware, ransomware</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card support-card">
+        <div class="card-body">
+          <div class="icon-box mx-auto mb-3" style="background:rgba(34,197,94,.1);">
+            <i class="fas fa-rocket" style="color:#22c55e;"></i>
+          </div>
+          <h5 class="card-title">Optimización de PC</h5>
+          <p class="card-text">Aceleración, limpieza, rendimiento</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card support-card">
+        <div class="card-body">
+          <div class="icon-box mx-auto mb-3" style="background:rgba(168,85,247,.1);">
+            <i class="fas fa-download" style="color:#a855f7;"></i>
+          </div>
+          <h5 class="card-title">Instalación de Programas</h5>
+          <p class="card-text">Office, Zoom, Chrome, antivirus</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card support-card">
+        <div class="card-body">
+          <div class="icon-box mx-auto mb-3" style="background:rgba(59,130,246,.1);">
+            <i class="fas fa-wifi" style="color:#3b82f6;"></i>
+          </div>
+          <h5 class="card-title">Problemas de Internet</h5>
+          <p class="card-text">WiFi, red, DNS, conectividad</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card support-card">
+        <div class="card-body">
+          <div class="icon-box mx-auto mb-3" style="background:rgba(245,158,11,.1);">
+            <i class="fas fa-envelope" style="color:#f59e0b;"></i>
+          </div>
+          <h5 class="card-title">Configuración de Email</h5>
+          <p class="card-text">Gmail, Outlook, correo corporativo</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card support-card">
+        <div class="card-body">
+          <div class="icon-box mx-auto mb-3" style="background:rgba(6,182,212,.1);">
+            <i class="fab fa-windows" style="color:#06b6d4;"></i>
+          </div>
+          <h5 class="card-title">Reparación de Windows</h5>
+          <p class="card-text">Errores de software, pantallazos azules</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card support-card">
+        <div class="card-body">
+          <div class="icon-box mx-auto mb-3" style="background:rgba(249,115,22,.1);">
+            <i class="fas fa-plug" style="color:#f97316;"></i>
+          </div>
+          <h5 class="card-title">Instalación de Drivers</h5>
+          <p class="card-text">Video, sonido, red, impresoras</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA FINAL ===== -->
+  <div class="row justify-content-center mt-4 mb-3" data-sr="fade-up">
+    <div class="col-lg-10">
+      <div class="cta-banner text-center">
+        <h2 class="h3 mb-2">¿Necesitas un Sistema o Soporte Técnico?</h2>
+        <p class="mb-4">Contáctame y conversemos sobre tu proyecto o la reparación que necesitas.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="btn btn-light text-navy fw-semibold px-4 py-3" style="border-radius:12px;" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp me-2" style="color:#25d366;"></i>Escríbeme a WhatsApp
+          </a>
+          <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20soporte%20t%C3%A9cnico" class="btn-outline-light-custom" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-headset me-2"></i>Soporte técnico
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 {% include "includes/footer.html" %}
 
 <script>
-	(function () {
-		async function enviarDatosPC() {
-			try {
-				const ua = navigator.userAgent;
-				let navegadorNombre = 'Desconocido';
-				let navegadorVersion = 'Desconocido';
+  (function() {
+    if (typeof ScrollReveal !== 'undefined') {
+      ScrollReveal({ distance: '30px', duration: 700, easing: 'ease-out', origin: 'bottom', reset: false });
+      ScrollReveal().reveal('[data-sr="fade-up"]', { interval: 120 });
+    }
 
-				if (ua.includes('Firefox')) {
-					navegadorNombre = 'Firefox';
-					navegadorVersion = ua.match(/Firefox\/([\d.]+)/)?.[1] || 'N/A';
-				} else if (ua.includes('Edg')) {
-					navegadorNombre = 'Edge';
-					navegadorVersion = ua.match(/Edg\/([\d.]+)/)?.[1] || 'N/A';
-				} else if (ua.includes('Chrome')) {
-					navegadorNombre = 'Chrome';
-					navegadorVersion = ua.match(/Chrome\/([\d.]+)/)?.[1] || 'N/A';
-				} else if (ua.includes('Safari')) {
-					navegadorNombre = 'Safari';
-					navegadorVersion = ua.match(/Version\/([\d.]+)/)?.[1] || 'N/A';
-				}
-
-				let gpu = 'No disponible';
-				try {
-					const canvas = document.createElement('canvas');
-					const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-					if (gl) {
-						const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-						if (debugInfo) {
-							gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-						}
-					}
-				} catch (e) {}
-
-				let bateria = { nivel: 'N/A', cargando: 'N/A' };
-				try {
-					if ('getBattery' in navigator) {
-						const battery = await navigator.getBattery();
-						bateria = {
-							nivel: Math.round(battery.level * 100) + '%',
-							cargando: battery.charging ? 'Sí' : 'No'
-						};
-					}
-				} catch (e) {}
-
-				const datos = {
-					page: window.location.pathname,
-					referrer: document.referrer || null,
-					plataforma: navigator.platform,
-					navegador: {
-						nombre: navegadorNombre,
-						version: navegadorVersion
-					},
-					pantalla: {
-						resolucion: `${screen.width}x${screen.height}`,
-						pixel_ratio: window.devicePixelRatio
-					},
-					hardware: {
-						cpu_nucleos: navigator.hardwareConcurrency || 'N/A',
-						memoria: navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'N/A',
-						gpu: gpu
-					},
-					idioma: navigator.language,
-					zona_horaria: Intl.DateTimeFormat().resolvedOptions().timeZone,
-					bateria: bateria
-				};
-
-				await fetch("{% url 'home_app:visit_create' %}", {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(datos)
-				});
-
-			} catch (error) {
-				console.log('Registro de visita no disponible');
-			}
-		}
-
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', enviarDatosPC);
-		} else {
-			enviarDatosPC();
-		}
-	})();
-	</script>
-
+    var stats = document.querySelectorAll('[data-count]');
+    if (stats.length) {
+      function animateCount(el) {
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        if (isNaN(target)) return;
+        var current = 0;
+        var step = Math.ceil(target / 40);
+        var timer = setInterval(function() {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 40);
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      stats.forEach(function(s) { observer.observe(s); });
+    }
+  })();
+</script>
 
 {% endblock content %}

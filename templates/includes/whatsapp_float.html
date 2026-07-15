@@ -1,0 +1,165 @@
+<style>
+  .wa-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .wa-menu {
+    margin-bottom: 12px;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .wa-menu.open {
+    display: flex;
+    animation: wa-slide-up .25s ease-out;
+  }
+
+  .wa-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #0f172a;
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,.12);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+
+  .wa-menu-item:hover {
+    transform: translateX(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.18);
+    color: #0f172a;
+    text-decoration: none;
+  }
+
+  .wa-menu-item i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  .wa-float {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 6px 22px rgba(37, 211, 102, .4);
+    transition: transform .2s ease, box-shadow .2s ease;
+    cursor: pointer;
+    border: none;
+    position: relative;
+  }
+
+  .wa-float::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2.5px solid #fff;
+    animation: wa-badge-pulse 1.5s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .wa-float::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid #25d366;
+    animation: wa-ripple 2s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .wa-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, .5);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .wa-float i {
+    font-size: 30px;
+    pointer-events: none;
+  }
+
+  @keyframes wa-ripple {
+    0% { transform: scale(1); opacity: .6; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+
+  @keyframes wa-badge-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .7; transform: scale(1.15); }
+  }
+
+  @keyframes wa-slide-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 576px) {
+    .wa-container { bottom: 18px; right: 18px; }
+    .wa-float { width: 52px; height: 52px; }
+    .wa-float i { font-size: 26px; }
+    .wa-menu-item { font-size: .82rem; padding: 8px 14px; }
+  }
+</style>
+
+<div class="wa-container" id="waContainer">
+  <div class="wa-menu" id="waMenu">
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="wa-menu-item" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-code" style="color:#2563eb;"></i>Cotizar proyecto
+    </a>
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20soporte%20t%C3%A9cnico" class="wa-menu-item" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-headset" style="color:#20c997;"></i>Soporte técnico
+    </a>
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20tengo%20una%20consulta" class="wa-menu-item" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-comment-dots" style="color:#f59e0b;"></i>Consulta rápida
+    </a>
+  </div>
+
+  <button class="wa-float" id="waToggle" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </button>
+</div>
+
+<script>
+  (function() {
+    var container = document.getElementById('waContainer');
+    var toggle = document.getElementById('waToggle');
+    var menu = document.getElementById('waMenu');
+
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!container.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+  })();
+</script>

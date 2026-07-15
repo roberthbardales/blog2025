@@ -23,11 +23,6 @@ urlpatterns = [
         name='add-contact',
     ),
     path(
-        'rcontact2',
-        views.ContactCreateView2.as_view(),
-        name='add-contact2',
-    ),
-    path(
         'sobre_mi/',
         views.AboutMe.as_view(),
         name='sobre_mi',
@@ -49,6 +44,7 @@ urlpatterns = [
     # .py — agrega
     path('portafolio/', views.PortafolioView.as_view(), name='portafolio'),
     path('inicio/', views.InicioView.as_view(), name='index2'),
+    path('servicios/', views.ServiciosView.as_view(), name='servicios'),
 
 
 ]

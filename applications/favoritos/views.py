@@ -18,8 +18,7 @@ from django.views.generic import(
     UpdateView,
 
 )
-from .models import Favorites, Entry,FavoriteGroup
-
+from .models import Favorites, FavoriteGroup
 from applications.entrada.models import Entry
 #
 from applications.users.mixins import (
@@ -27,33 +26,6 @@ from applications.users.mixins import (
     UsuarioPermisoMixin,
 )
 
-# --------------------------------
-class EntryListView(ListView):
-    model=Entry
-    template_name = "entrada/lista.html"
-    context_object_name ='entradas'
-    paginate_by = 9
-
-    def get_context_data(self, **kwargs):
-        context = super(EntryListView, self).get_context_data(**kwargs)
-        # context['categorias']=Category.objects.all().order_by('name')
-
-        return context
-
-    #buscador input
-
-    def get_queryset(self):
-        kword= self.request.GET.get('kword_prueba','')
-        categoria= self.request.GET.get('categoria','')
-        kword_general = self.request.GET.get('kword_general', '').strip()
-        #consulta de busqueda
-        resultado= Entry.objects.buscar_entrada_categoria(kword,categoria)
-
-        if kword_general:
-
-            resultado = Entry.objects.buscar_general(kword_general)
-            # resultado = resultado.filter(title__icontains=kword_general)
-        return resultado
 # --------------------------------
 
 class ToggleFavoritoView(View):

@@ -124,11 +124,7 @@
         <li class="nav-item mx-1 my-1 my-lg-0">
           <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">Iniciar sesión</a>
         </li>
-        {% if not simple_header %}
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a class="nav-link text-white" href="{% url 'users_app:user-login' %}">Usuario anónimo</a>
-        </li>
-        {% endif %}
+
         {% endif %}
       </ul>
 

@@ -9,7 +9,6 @@ from django.views.generic import ListView, View
 from applications.entrada.models import Entry, Category
 
 from .models import Friendship
-from applications.entrada.models import Entry
 
 
 User = get_user_model()

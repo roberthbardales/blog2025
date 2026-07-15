@@ -73,6 +73,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '60/minute',
+        'user': '120/minute',
+        'firebase_login': '10/minute',
+    },
 }
 
 # -------------------------------
@@ -129,6 +138,16 @@ TEMPLATES = [
 # -------------------------------
 WSGI_APPLICATION = 'blog.wsgi.application'
 ASGI_APPLICATION = 'blog.asgi.application'
+
+# -------------------------------
+# Cache (caché para llamadas HTTP externas: clima, IP, etc.)
+# -------------------------------
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 # -------------------------------
 # Channels (desarrollo: InMemory, prod: Redis)

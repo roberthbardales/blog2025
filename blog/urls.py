@@ -19,7 +19,6 @@ urlpatterns = [
     re_path('', include('applications.amigos.urls')),
     # re_path('', include('applications.rag.urls')),          #rag
     re_path('chat/', include('applications.chat.urls')),
-    re_path('chatbot/', include('applications.chatbot.urls')),
     re_path('', include('applications.notas.urls')),
 
     # APIs

@@ -105,12 +105,13 @@ class ChatRoomView(LoginRequiredMixin, TemplateView):
 
 # === ENDPOINTS PARA ESTADO ONLINE/OFFLINE ===
 
-@csrf_exempt
+@login_required
 @require_http_methods(["POST"])
 def ping(request):
     """
-    Endpoint que el frontend llama cada 2 segundos para mantener al usuario 'online'
-    Rate limiting: solo escribe si pasaron >=5 segundos desde el último ping
+    Endpoint que el frontend llama cada 2 segundos para mantener al usuario 'online'.
+    Requiere autenticación (login_required) y CSRF token via cookie.
+    Rate limiting: solo escribe si pasaron >=5 segundos desde el último ping.
     """
     if request.user.is_authenticated:
         status, created = UserStatus.objects.get_or_create(user=request.user)

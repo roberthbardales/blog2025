@@ -106,10 +106,10 @@ class UserListView(LoginRequiredMixin, ListView):
         return User.objects.usuarios_sistema()
 
 
-@method_decorator(csrf_exempt, name='dispatch')
 class FirebaseLoginView(APIView):
-    authentication_classes = []  # ← DRF no intenta autenticar
-    permission_classes = []      # ← sin restricciones de permiso
+    authentication_classes = []  # ← DRF no intenta autenticar (token viene de Firebase SDK)
+    permission_classes = []      # ← sin restricciones de permiso (es endpoint de login)
+    throttle_scope = 'firebase_login'
 
     def post(self, request):
         id_token = request.data.get("idToken")

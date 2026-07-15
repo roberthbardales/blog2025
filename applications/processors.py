@@ -1,6 +1,9 @@
 # applications/processors.py
 import requests
+from django.core.cache import cache
+from django.conf import settings
 from applications.home.models import Home
+
 
 def home_contact(request):
     try:
@@ -16,21 +19,30 @@ def home_contact(request):
         'correo': correo,
     }
 
-# ip y clima
-
-from django.conf import settings
 
 def obtener_ip(request):
-    """Context processor para obtener la IP"""
+    """Context processor para obtener la IP del visitante.
+    
+    Caché: 24 horas por IP (para no repetir geolocalización).
+    En DEBUG retorna valores hardcodeados sin llamar a la API.
+    """
+    raw_ip = request.META.get("REMOTE_ADDR", "No disponible")
 
     context = {
-        "mi_ip": request.META.get("REMOTE_ADDR", "No disponible"),
+        "mi_ip": raw_ip,
         "ciudad": "Lima",
         "pais": "PE",
     }
 
-    # ❌ NO llamar ipapi en desarrollo
+    # En desarrollo no llamar a la API externa
     if settings.DEBUG:
+        return context
+
+    # Intentar obtener de caché primero
+    cache_key = f"ip_location_{raw_ip}"
+    cached = cache.get(cache_key)
+    if cached:
+        context.update(cached)
         return context
 
     try:
@@ -39,25 +51,39 @@ def obtener_ip(request):
         response_ip.raise_for_status()
         data_ip = response_ip.json()
 
-        context["mi_ip"] = data_ip.get("ip", context["mi_ip"])
-        context["ciudad"] = data_ip.get("city", "Lima")
-        context["pais"] = data_ip.get("country_code", "PE")
+        result = {
+            "mi_ip": data_ip.get("ip", raw_ip),
+            "ciudad": data_ip.get("city", "Lima"),
+            "pais": data_ip.get("country_code", "PE"),
+        }
+        context.update(result)
+
+        # Guardar en caché por 24 horas
+        cache.set(cache_key, result, timeout=86400)
 
     except requests.RequestException:
-        pass  # no imprimir nada
+        pass  # Mantener valores por defecto
 
     return context
 
 
-
 def obtener_clima(request):
-    """Context processor para obtener el clima actual"""
-
+    """Context processor para obtener el clima actual de Lima.
+    
+    Caché: 30 minutos (el clima no cambia tan rápido).
+    """
     context = {
         "temperatura": "N/A",
         "viento": "N/A",
         "direccion_viento": "N/A",
     }
+
+    # Intentar obtener de caché primero
+    cache_key = "clima_lima"
+    cached = cache.get(cache_key)
+    if cached:
+        context.update(cached)
+        return context
 
     try:
         url_clima = (
@@ -72,9 +98,15 @@ def obtener_clima(request):
 
         clima_actual = data_clima.get("current_weather", {})
 
-        context["temperatura"] = clima_actual.get("temperature", "N/A")
-        context["viento"] = clima_actual.get("windspeed", "N/A")
-        context["direccion_viento"] = clima_actual.get("winddirection", "N/A")
+        result = {
+            "temperatura": clima_actual.get("temperature", "N/A"),
+            "viento": clima_actual.get("windspeed", "N/A"),
+            "direccion_viento": clima_actual.get("winddirection", "N/A"),
+        }
+        context.update(result)
+
+        # Guardar en caché por 30 minutos
+        cache.set(cache_key, result, timeout=1800)
 
     except requests.RequestException as e:
         print(f"Error obteniendo clima: {e}")

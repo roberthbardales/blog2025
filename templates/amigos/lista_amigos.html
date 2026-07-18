@@ -1,355 +1,171 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}Mis Amigos{% endblock %}
 
-{% block css %}
-<style>
-  .friends-page {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .friends-hero {
-    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 55%, #084298 100%);
-    color: #fff;
-    border: 0;
-    border-radius: 1rem;
-    box-shadow: 0 16px 35px rgba(13, 110, 253, 0.22);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .friends-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto -80px -90px auto;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.09);
-    pointer-events: none;
-  }
-
-  .friends-hero .card-body {
-    padding: 1.4rem 1.5rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .friends-hero .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: .45rem;
-    padding: .35rem .7rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.16);
-    font-size: .85rem;
-    margin-bottom: .75rem;
-  }
-
-  .stat-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: .45rem;
-    padding: .45rem .8rem;
-    border-radius: 999px;
-    background: rgba(255,255,255,.14);
-    color: #fff;
-    font-size: .85rem;
-    margin: .15rem .35rem .15rem 0;
-  }
-
-  .section-card {
-    border: 0;
-    border-radius: 1rem;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-  }
-
-  .section-card .card-header {
-    border-bottom: 1px solid rgba(0,0,0,.06);
-    background: #fff;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    font-weight: 600;
-  }
-
-  .request-card,
-  .friend-card {
-    border: 0;
-    border-radius: .95rem;
-    overflow: hidden;
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-
-  .request-card:hover,
-  .friend-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
-  }
-
-  .avatar-72 {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-  }
-
-  .friend-name,
-  .request-name {
-    display: block;
-    color: #0d6efd;
-    font-weight: 600;
-    line-height: 1.2;
-    word-break: break-word;
-  }
-
-  .friend-meta,
-  .request-meta {
-    color: #6c757d;
-    font-size: .9rem;
-  }
-
-  .empty-state {
-    border: 1px dashed rgba(13, 110, 253, 0.25);
-    background: linear-gradient(180deg, rgba(13,110,253,.04), rgba(13,110,253,.01));
-    border-radius: 1rem;
-    padding: 3rem 1.5rem;
-  }
-
-  .action-stack {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: .5rem;
-  }
-
-  .action-stack form {
-    margin: 0;
-  }
-
-  @media (max-width: 576px) {
-    .friends-hero .card-body {
-      padding: 1.15rem;
-    }
-  }
-</style>
-{% endblock %}
-
 {% block content %}
 {% include "includes/header.html" %}
-{% include "includes/barra_lateral.html" %}
 
-<div class="col-lg-9">
-  <div class="friends-page">
-    <div class="card friends-hero">
-      <div class="card-body">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-          <div class="mb-3 mb-md-0">
-            <div class="eyebrow">
-              <i class="fas fa-user-friends"></i>
-              Red social
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
+  {% include "includes/barra_lateral.html" %}
+
+  <div class="w-full lg:flex-1">
+    <div class="space-y-4">
+      <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)]">
+        <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-white/10"></div>
+        <div class="relative z-10 p-5 sm:p-6">
+          <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm font-medium text-white/95">
+                <i class="fas fa-user-friends"></i>Red social
+              </span>
+              <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">Mis amigos</h1>
+              <p class="mt-2 max-w-3xl text-sm text-white/75">Revisa tus solicitudes, gestiona tus contactos y descubre nuevas personas para conectar.</p>
             </div>
-            <h2 class="mb-2 font-weight-bold">Mis amigos</h2>
-            <p class="mb-0" style="max-width: 720px; opacity: .92;">
-              Revisa tus solicitudes, gestiona tus contactos y descubre nuevas personas para conectar.
-            </p>
-          </div>
-          <div>
-            <a href="{% url 'amigos_app:buscar' %}" class="btn btn-light btn-lg text-primary font-weight-bold">
-              <i class="fas fa-search mr-1"></i> Buscar personas
+            <a href="{% url 'amigos_app:buscar' %}" class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">
+              <i class="fas fa-search mr-2"></i>Buscar personas
             </a>
           </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-users"></i>{{ amigos|length }} amigos</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-bell"></i>{{ solicitudes_recibidas.count }} recibidas</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-paper-plane"></i>{{ solicitudes_enviadas.count }} enviadas</span>
+          </div>
         </div>
+      </section>
 
-        <div class="mt-3">
-          <span class="stat-pill">
-            <i class="fas fa-users"></i> {{ amigos|length }} amigos
-          </span>
-          <span class="stat-pill">
-            <i class="fas fa-bell"></i> {{ solicitudes_recibidas.count }} recibidas
-          </span>
-          <span class="stat-pill">
-            <i class="fas fa-paper-plane"></i> {{ solicitudes_enviadas.count }} enviadas
-          </span>
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="rounded-2xl border px-4 py-3 shadow-sm {% if 'error' in msg.tags %}border-rose-200 bg-rose-50 text-rose-700{% elif 'success' in msg.tags %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-blue-200 bg-blue-50 text-blue-700{% endif %}">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if solicitudes_recibidas %}
+      <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div class="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-5 py-3">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-600"><i class="fas fa-bell mr-2 text-amber-500"></i>Solicitudes recibidas</h2>
+          <span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-700">{{ solicitudes_recibidas.count }}</span>
         </div>
-      </div>
-    </div>
-
-    {% if messages %}
-      {% for msg in messages %}
-        <div class="alert alert-{{ msg.tags }} alert-dismissible fade show shadow-sm" role="alert">
-          {{ msg }}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      {% endfor %}
-    {% endif %}
-
-    {% if solicitudes_recibidas %}
-    <div class="card section-card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <span><i class="fas fa-bell text-warning mr-2"></i>Solicitudes recibidas</span>
-        <span class="badge badge-warning badge-pill">{{ solicitudes_recibidas.count }}</span>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          {% for sol in solicitudes_recibidas %}
-          <div class="col-md-6 col-xl-4 mb-3">
-            <div class="card request-card h-100">
-              <div class="card-body text-center py-4">
+        <div class="p-5">
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {% for sol in solicitudes_recibidas %}
+            <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div class="p-5 text-center">
                 {% if sol.sender.avatar %}
-                  <img src="{{ sol.sender.avatar.url }}" class="rounded-circle avatar-72 mb-3" alt="{{ sol.sender.full_name }}">
+                  <img src="{{ sol.sender.avatar.url }}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="{{ sol.sender.full_name }}">
                 {% else %}
-                  <img src="{% static 'img/unknown.png' %}" class="rounded-circle avatar-72 mb-3" alt="Usuario">
+                  <img src="{% static 'img/unknown.png' %}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="Usuario">
                 {% endif %}
 
-                <a href="{% url 'entrada_app:view_profile' sol.sender.pk %}" class="request-name text-decoration-none">
-                  {{ sol.sender.full_name }}
-                </a>
+                <a href="{% url 'entrada_app:view_profile' sol.sender.pk %}" class="block font-semibold text-blue-700 hover:underline">{{ sol.sender.full_name }}</a>
                 {% if sol.sender.full_name != sol.sender.email %}
-                  <div class="request-meta text-truncate" title="{{ sol.sender.email }}">
-                    {{ sol.sender.email }}
-                  </div>
+                  <div class="mt-1 truncate text-sm text-slate-500" title="{{ sol.sender.email }}">{{ sol.sender.email }}</div>
                 {% endif %}
 
-                <div class="action-stack mt-3">
-                  <form method="post" action="{% url 'amigos_app:aceptar' sol.pk %}">
-                    {% csrf_token %}
-                    <button class="btn btn-sm btn-success px-3">
-                      <i class="fas fa-check mr-1"></i>Aceptar
-                    </button>
+                <div class="mt-4 flex flex-wrap justify-center gap-2">
+                  <form method="post" action="{% url 'amigos_app:aceptar' sol.pk %}">{% csrf_token %}
+                    <button class="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"><i class="fas fa-check mr-1"></i>Aceptar</button>
                   </form>
-                  <form method="post" action="{% url 'amigos_app:rechazar' sol.pk %}">
-                    {% csrf_token %}
-                    <button class="btn btn-sm btn-outline-danger px-3">
-                      <i class="fas fa-times mr-1"></i>Rechazar
-                    </button>
+                  <form method="post" action="{% url 'amigos_app:rechazar' sol.pk %}">{% csrf_token %}
+                    <button class="rounded-xl border border-rose-600 px-4 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-600 hover:text-white"><i class="fas fa-times mr-1"></i>Rechazar</button>
                   </form>
                 </div>
               </div>
-            </div>
+            </article>
+            {% endfor %}
           </div>
-          {% endfor %}
         </div>
-      </div>
-    </div>
-    {% endif %}
+      </section>
+      {% endif %}
 
-    {% if solicitudes_enviadas %}
-    <div class="card section-card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <span><i class="fas fa-paper-plane text-info mr-2"></i>Solicitudes enviadas</span>
-        <span class="badge badge-info badge-pill">{{ solicitudes_enviadas.count }}</span>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          {% for sol in solicitudes_enviadas %}
-          <div class="col-md-6 col-xl-4 mb-3">
-            <div class="card request-card h-100">
-              <div class="card-body text-center py-4">
+      {% if solicitudes_enviadas %}
+      <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div class="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-5 py-3">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-600"><i class="fas fa-paper-plane mr-2 text-sky-500"></i>Solicitudes enviadas</h2>
+          <span class="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-bold text-sky-700">{{ solicitudes_enviadas.count }}</span>
+        </div>
+        <div class="p-5">
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {% for sol in solicitudes_enviadas %}
+            <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div class="p-5 text-center">
                 {% if sol.receiver.avatar %}
-                  <img src="{{ sol.receiver.avatar.url }}" class="rounded-circle avatar-72 mb-3" alt="{{ sol.receiver.full_name }}">
+                  <img src="{{ sol.receiver.avatar.url }}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="{{ sol.receiver.full_name }}">
                 {% else %}
-                  <img src="{% static 'img/unknown.png' %}" class="rounded-circle avatar-72 mb-3" alt="Usuario">
+                  <img src="{% static 'img/unknown.png' %}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="Usuario">
                 {% endif %}
 
-                <a href="{% url 'entrada_app:view_profile' sol.receiver.pk %}" class="request-name text-decoration-none">
-                  {{ sol.receiver.full_name }}
-                </a>
+                <a href="{% url 'entrada_app:view_profile' sol.receiver.pk %}" class="block font-semibold text-blue-700 hover:underline">{{ sol.receiver.full_name }}</a>
                 {% if sol.receiver.full_name != sol.receiver.email %}
-                  <div class="request-meta text-truncate" title="{{ sol.receiver.email }}">
-                    {{ sol.receiver.email }}
-                  </div>
+                  <div class="mt-1 truncate text-sm text-slate-500" title="{{ sol.receiver.email }}">{{ sol.receiver.email }}</div>
                 {% endif %}
 
-                <span class="badge badge-warning text-dark mt-3 px-3 py-2">
-                  <i class="fas fa-clock mr-1"></i>Pendiente
-                </span>
+                <span class="mt-4 inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700"><i class="fas fa-clock mr-1"></i>Pendiente</span>
 
-                <div class="mt-3">
-                  <form method="post" action="{% url 'amigos_app:cancelar' sol.pk %}">
-                    {% csrf_token %}
-                    <button class="btn btn-sm btn-outline-secondary px-3">
-                      <i class="fas fa-ban mr-1"></i>Cancelar
-                    </button>
+                <div class="mt-4">
+                  <form method="post" action="{% url 'amigos_app:cancelar' sol.pk %}">{% csrf_token %}
+                    <button class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"><i class="fas fa-ban mr-1"></i>Cancelar</button>
                   </form>
                 </div>
               </div>
-            </div>
+            </article>
+            {% endfor %}
           </div>
-          {% endfor %}
         </div>
-      </div>
-    </div>
-    {% endif %}
+      </section>
+      {% endif %}
 
-    <div class="card section-card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <span><i class="fas fa-user-check text-success mr-2"></i>Amigos confirmados</span>
-        <span class="badge badge-success badge-pill">{{ amigos|length }}</span>
-      </div>
-      <div class="card-body">
-        {% if amigos %}
-        <div class="row">
-          {% for item in amigos %}
-          <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card friend-card h-100 text-center">
-              <div class="card-body py-4 d-flex flex-column align-items-center">
+      <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div class="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-5 py-3">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-600"><i class="fas fa-user-check mr-2 text-emerald-500"></i>Amigos confirmados</h2>
+          <span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">{{ amigos|length }}</span>
+        </div>
+        <div class="p-5">
+          {% if amigos %}
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {% for item in amigos %}
+            <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div class="p-5 text-center">
                 {% if item.user.avatar %}
-                  <img src="{{ item.user.avatar.url }}" class="rounded-circle avatar-72 mb-3" alt="{{ item.user.full_name }}">
+                  <img src="{{ item.user.avatar.url }}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="{{ item.user.full_name }}">
                 {% else %}
-                  <img src="{% static 'img/unknown.png' %}" class="rounded-circle avatar-72 mb-3" alt="Usuario">
+                  <img src="{% static 'img/unknown.png' %}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="Usuario">
                 {% endif %}
 
-                <a href="{% url 'entrada_app:view_profile' item.user.pk %}" class="friend-name text-decoration-none mb-1">
-                  {{ item.user.full_name }}
-                </a>
-
+                <a href="{% url 'entrada_app:view_profile' item.user.pk %}" class="block font-semibold text-blue-700 hover:underline">{{ item.user.full_name }}</a>
                 {% if item.user.full_name != item.user.email %}
-                  <small class="friend-meta text-truncate d-block w-100" title="{{ item.user.email }}">
-                    {{ item.user.email }}
-                  </small>
+                  <small class="mt-1 block truncate text-sm text-slate-500" title="{{ item.user.email }}">{{ item.user.email }}</small>
                 {% endif %}
 
-                <div class="mt-3">
-                  <span class="badge badge-light text-success border border-success">
-                    <i class="fas fa-heart mr-1"></i>Amigo
-                  </span>
+                <div class="mt-3 inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                  <i class="fas fa-heart mr-1"></i>Amigo
                 </div>
               </div>
-
-              <div class="card-footer bg-white border-0 pb-3 pt-0">
-                <form method="post" action="{% url 'amigos_app:eliminar' item.user.pk %}"
-                      onsubmit="return confirm('Eliminar a {{ item.user.full_name }} de tus amigos?')">
+              <div class="border-t border-slate-200 p-4">
+                <form method="post" action="{% url 'amigos_app:eliminar' item.user.pk %}" onsubmit="return confirm('Eliminar a {{ item.user.full_name }} de tus amigos?')">
                   {% csrf_token %}
-                  <button class="btn btn-sm btn-outline-danger w-100">
-                    <i class="fas fa-user-minus mr-1"></i>Eliminar
-                  </button>
+                  <button class="w-full rounded-xl border border-rose-600 px-4 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-600 hover:text-white"><i class="fas fa-user-minus mr-1"></i>Eliminar</button>
                 </form>
               </div>
-            </div>
+            </article>
+            {% endfor %}
           </div>
-          {% endfor %}
+          {% else %}
+          <div class="rounded-3xl border border-dashed border-blue-300 bg-gradient-to-b from-blue-50/40 to-transparent px-6 py-12 text-center text-slate-500">
+            <i class="fas fa-user-friends mb-3 block text-5xl text-blue-600"></i>
+            <h3 class="text-lg font-semibold text-slate-900">Aún no tienes amigos agregados</h3>
+            <p class="mt-2 mb-4">Empieza buscando personas para enviar una solicitud y construir tu red.</p>
+            <a href="{% url 'amigos_app:buscar' %}" class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
+              <i class="fas fa-search mr-2"></i>Buscar personas
+            </a>
+          </div>
+          {% endif %}
         </div>
-        {% else %}
-        <div class="empty-state text-center">
-          <i class="fas fa-user-friends fa-3x text-primary mb-3"></i>
-          <h5 class="mb-2">Aun no tienes amigos agregados</h5>
-          <p class="text-muted mb-4">
-            Empieza buscando personas para enviar una solicitud y construir tu red.
-          </p>
-          <a href="{% url 'amigos_app:buscar' %}" class="btn btn-primary btn-lg">
-            <i class="fas fa-search mr-1"></i>Buscar personas
-          </a>
-        </div>
-        {% endif %}
-      </div>
+      </section>
     </div>
   </div>
 </div>
-</div>
-</div>
+
 {% endblock content %}

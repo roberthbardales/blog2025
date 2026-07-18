@@ -1,43 +1,14 @@
 ﻿{% extends "favoritos/base_favoritos.html" %}
 {% load static %}
 
-{% block css %}
-<style>
-  .note-form-shell {
-    background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 45%, #f8fafc 100%);
-    border-radius: 1rem;
-    box-shadow: 0 14px 30px rgba(15, 23, 42, .10);
-    overflow: hidden;
-  }
-
-  .note-form-shell .card-header {
-    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 55%, #0f172a 100%);
-    color: #fff;
-    border: 0;
-  }
-
-  .note-form-shell .form-control {
-    border-radius: .8rem;
-    border: 1px solid #cbd5e1;
-    box-shadow: none;
-  }
-
-  .note-form-shell .form-control:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 .2rem rgba(59,130,246,.16);
-  }
-
-  .note-form-shell textarea.form-control {
-    min-height: 180px;
-  }
-</style>
-{% endblock %}
+{% block css %}{% endblock %}
 
 {% block content %}
 {% include "includes/header.html" %}
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
 {% include "includes/barra_lateral.html" %}
 
-<div class="col-lg-9 py-4">
+<div class="w-full lg:flex-1 py-4">
   <div class="card note-form-shell border-0">
     <div class="card-header d-flex justify-content-between align-items-center">
       <div>

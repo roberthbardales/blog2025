@@ -1,149 +1,46 @@
+<div class="fixed bottom-6 right-6 z-[9999] flex flex-col items-end" id="waContainer">
+  <div class="hidden flex-col gap-1.5 mb-3 wa-menu" id="waMenu">
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="flex items-center gap-2.5 bg-white text-gray-900 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap shadow-[0_4px_16px_rgba(0,0,0,.12)] transition-all duration-150 hover:-translate-x-1 hover:shadow-[0_6px_20px_rgba(0,0,0,.18)] hover:text-gray-900 hover:no-underline" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-code text-lg w-5 text-center" style="color:#0b5ed7;"></i>Cotizar proyecto
+    </a>
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20soporte%20t%C3%A9cnico" class="flex items-center gap-2.5 bg-white text-gray-900 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap shadow-[0_4px_16px_rgba(0,0,0,.12)] transition-all duration-150 hover:-translate-x-1 hover:shadow-[0_6px_20px_rgba(0,0,0,.18)] hover:text-gray-900 hover:no-underline" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-headset text-lg w-5 text-center" style="color:#20c997;"></i>Soporte técnico
+    </a>
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20tengo%20una%20consulta" class="flex items-center gap-2.5 bg-white text-gray-900 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap shadow-[0_4px_16px_rgba(0,0,0,.12)] transition-all duration-150 hover:-translate-x-1 hover:shadow-[0_6px_20px_rgba(0,0,0,.18)] hover:text-gray-900 hover:no-underline" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-comment-dots text-lg w-5 text-center" style="color:#f59e0b;"></i>Consulta rápida
+    </a>
+  </div>
+
+  <button class="w-[60px] h-[60px] rounded-full bg-[#25d366] text-white flex items-center justify-center border-none shadow-[0_6px_22px_rgba(37,211,102,.4)] transition-all duration-200 hover:scale-110 hover:shadow-[0_10px_30px_rgba(37,211,102,.5)] cursor-pointer relative" id="waToggle" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp text-[30px] pointer-events-none"></i>
+    <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#22c55e] border-[2.5px] border-white pointer-events-none wa-pulse"></span>
+    <span class="absolute inset-0 rounded-full border-[3px] border-[#25d366] pointer-events-none wa-ripple"></span>
+  </button>
+</div>
+
 <style>
-  .wa-container {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .wa-menu {
-    margin-bottom: 12px;
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .wa-menu.open {
-    display: flex;
-    animation: wa-slide-up .25s ease-out;
-  }
-
-  .wa-menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #fff;
-    color: #0f172a;
-    padding: 10px 16px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: .9rem;
-    font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 4px 16px rgba(0,0,0,.12);
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-
-  .wa-menu-item:hover {
-    transform: translateX(-4px);
-    box-shadow: 0 6px 20px rgba(0,0,0,.18);
-    color: #0f172a;
-    text-decoration: none;
-  }
-
-  .wa-menu-item i {
-    font-size: 1.2rem;
-    width: 20px;
-    text-align: center;
-  }
-
-  .wa-float {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #25d366;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 6px 22px rgba(37, 211, 102, .4);
-    transition: transform .2s ease, box-shadow .2s ease;
-    cursor: pointer;
-    border: none;
-    position: relative;
-  }
-
-  .wa-float::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #22c55e;
-    border: 2.5px solid #fff;
-    animation: wa-badge-pulse 1.5s ease-in-out infinite;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .wa-float::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 3px solid #25d366;
-    animation: wa-ripple 2s ease-out infinite;
-    pointer-events: none;
-  }
-
-  .wa-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 30px rgba(37, 211, 102, .5);
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .wa-float i {
-    font-size: 30px;
-    pointer-events: none;
-  }
-
   @keyframes wa-ripple {
     0% { transform: scale(1); opacity: .6; }
     100% { transform: scale(1.8); opacity: 0; }
   }
-
   @keyframes wa-badge-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: .7; transform: scale(1.15); }
   }
-
+  .wa-ripple { animation: wa-ripple 2s ease-out infinite; }
+  .wa-pulse { animation: wa-badge-pulse 1.5s ease-in-out infinite; }
+  .wa-menu.show { display: flex; animation: wa-slide-up .25s ease-out; }
   @keyframes wa-slide-up {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   @media (max-width: 576px) {
-    .wa-container { bottom: 18px; right: 18px; }
-    .wa-float { width: 52px; height: 52px; }
-    .wa-float i { font-size: 26px; }
-    .wa-menu-item { font-size: .82rem; padding: 8px 14px; }
+    #waContainer { bottom: 18px; right: 18px; }
+    #waToggle { width: 52px; height: 52px; }
+    #waToggle i { font-size: 26px; }
+    .wa-menu a { font-size: .82rem; padding: 8px 14px; }
   }
 </style>
-
-<div class="wa-container" id="waContainer">
-  <div class="wa-menu" id="waMenu">
-    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="wa-menu-item" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-code" style="color:#2563eb;"></i>Cotizar proyecto
-    </a>
-    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20soporte%20t%C3%A9cnico" class="wa-menu-item" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-headset" style="color:#20c997;"></i>Soporte técnico
-    </a>
-    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20tengo%20una%20consulta" class="wa-menu-item" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-comment-dots" style="color:#f59e0b;"></i>Consulta rápida
-    </a>
-  </div>
-
-  <button class="wa-float" id="waToggle" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </button>
-</div>
 
 <script>
   (function() {
@@ -153,12 +50,15 @@
 
     toggle.addEventListener('click', function(e) {
       e.stopPropagation();
-      menu.classList.toggle('open');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      menu.classList.toggle('show');
     });
 
     document.addEventListener('click', function(e) {
       if (!container.contains(e.target)) {
-        menu.classList.remove('open');
+        menu.classList.add('hidden');
+        menu.classList.remove('flex', 'show');
       }
     });
   })();

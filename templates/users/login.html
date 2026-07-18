@@ -5,171 +5,65 @@
 
 {% include "includes/header.html" %}
 
-<style>
-  body {
-    background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
-  }
+<div class="min-h-[calc(100vh-90px)] py-6 flex items-center justify-center px-4">
+  <div class="w-full max-w-md">
+    <div class="bg-white rounded-2xl overflow-hidden shadow-[0_16px_32px_rgba(15,23,42,.14)] bg-gradient-to-b from-white to-blue-50">
 
-  .login-shell {
-    min-height: calc(100vh - 90px);
-    padding: 1.5rem 0 2.25rem;
-  }
+      <div class="bg-gradient-to-br from-slate-900 via-blue-600 to-blue-700 text-white relative px-5 py-4 text-center">
+        <img src="{% static 'img/unknown.png' %}" class="w-[72px] h-[72px] object-cover border-[3px] border-white/55 shadow-[0_8px_18px_rgba(15,23,42,.16)] rounded-full mb-3">
+        <h2 class="text-xl font-bold mb-1 text-white">Iniciar sesión</h2>
+        <p class="mb-0 text-white/60 text-sm">Usa tu correo y contraseña o accede con Google.</p>
+      </div>
 
-  .login-card {
-    border: 0;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 16px 32px rgba(15, 23, 42, .14);
-    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-  }
+      <div class="px-5 py-4">
 
-  .login-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
-    color: #fff;
-    position: relative;
-  }
-
-  .login-hero::after {
-    content: "";
-    position: absolute;
-    right: -65px;
-    top: -65px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.10);
-    pointer-events: none;
-  }
-
-  .login-avatar {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border: 3px solid rgba(255,255,255,.55);
-    box-shadow: 0 8px 18px rgba(15, 23, 42, .16);
-  }
-
-  .login-form .form-control {
-    border-radius: .75rem;
-    border: 1px solid #d6deea;
-    min-height: 42px;
-    box-shadow: inset 0 1px 2px rgba(15, 23, 42, .04);
-  }
-
-  .login-form .form-control:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 .2rem rgba(37, 99, 235, .12);
-  }
-
-  .login-btn {
-    border-radius: .75rem;
-    min-height: 42px;
-    font-weight: 600;
-    box-shadow: 0 8px 16px rgba(25, 135, 84, .16);
-  }
-
-  .login-google {
-    border-radius: .75rem;
-    min-height: 42px;
-    font-weight: 600;
-  }
-
-  .login-divider {
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-    color: #94a3b8;
-    font-size: .85rem;
-  }
-
-  .login-divider::before,
-  .login-divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #d6deea;
-  }
-
-  .login-divider span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 24px;
-    font-weight: 600;
-    color: #64748b;
-    background: #f8fbff;
-    padding: 0 .25rem;
-  }
-
-  .login-note {
-    font-size: .9rem;
-  }
-</style>
-
-<div class="container">
-
-  <div class="row justify-content-center align-items-center login-shell">
-    <div class="col-md-10 col-lg-5">
-      <div class="card login-card">
-        <div class="card-body p-0">
-
-          <div class="login-hero px-4 px-lg-5 py-2 text-center">
-            <img src="{% static 'img/unknown.png' %}" class="login-avatar rounded-circle mb-3">
-            <h2 class="h4 font-weight-bold mb-2 text-white">Iniciar sesión</h2>
-            <p class="mb-0 text-white-50">Usa tu correo y contraseña o accede con Google.</p>
-          </div>
-
-          <div class="px-4 px-lg-5 py-3 login-form">
-
-            {% if form.non_field_errors %}
-            <div class="alert alert-warning border-0 shadow-sm">
-              {{ form.non_field_errors }}
-            </div>
-            {% endif %}
-
-            <form method="post">
-              {% csrf_token %}
-
-              <div class="form-group mb-2">
-                <label class="font-weight-bold">Correo electrónico</label>
-                {{ form.email }}
-              </div>
-
-              <div class="form-group mb-2">
-                <label class="font-weight-bold">Contraseña</label>
-                {{ form.password }}
-              </div>
-
-              <button type="submit" class="btn btn-success btn-block login-btn mt-3 mb-2">
-                Ingresar
-              </button>
-
-              <a class="btn btn-outline-primary btn-block login-btn mb-2" href="{% url 'users_app:user-register' %}">
-                Crear cuenta
-              </a>
-
-              <div class="login-divider mb-2">
-                <span>o</span>
-              </div>
-
-              <button type="button"
-                class="btn btn-danger btn-block login-google"
-                onclick="loginWithGoogle()">
-                <i class="fab fa-google"></i> Acceder con Google
-              </button>
-
-            </form>
-          </div>
+        {% if form.non_field_errors %}
+        <div class="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded-lg shadow-sm mb-3 text-sm">
+          {{ form.non_field_errors }}
         </div>
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-2">
+            <label class="font-bold text-sm block mb-1">Correo electrónico</label>
+            {{ form.email }}
+          </div>
+
+          <div class="mb-2">
+            <label class="font-bold text-sm block mb-1">Contraseña</label>
+            {{ form.password }}
+          </div>
+
+          <button type="submit" class="w-full rounded-xl py-2.5 font-semibold shadow-[0_8px_16px_rgba(25,135,84,.16)] bg-green-600 text-white hover:bg-green-700 transition-colors mt-3 mb-2">
+            Ingresar
+          </button>
+
+          <a class="block w-full rounded-xl py-2.5 font-semibold text-center border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors mb-2 no-underline" href="{% url 'users_app:user-register' %}">
+            Crear cuenta
+          </a>
+
+          <div class="flex items-center gap-3 text-gray-400 text-sm mb-2">
+            <span class="flex-1 h-px bg-gray-300"></span>
+            <span class="inline-flex items-center justify-center min-w-[24px] font-semibold text-gray-500 bg-blue-50 px-1">o</span>
+            <span class="flex-1 h-px bg-gray-300"></span>
+          </div>
+
+          <button type="button"
+            class="w-full rounded-xl py-2.5 font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
+            onclick="loginWithGoogle()">
+            <i class="fab fa-google"></i> Acceder con Google
+          </button>
+
+        </form>
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- 🔥 CAJA FLOTANTE -->
-
-		<div id="demoBox" style="
+<!-- Demo Box -->
+<div id="demoBox" style="
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -183,10 +77,9 @@
 <p class="text-center">Inicia Sesion con:</p>
     <strong>Usuario: </strong>demo1@gmail.com<br>
     <strong>Contraseña: </strong>123456
-	<p class="text-center">
-		<button class="btn btn-danger mt-2" onclick="document.getElementById('demoBox').style.display='none'">Cerrar</button>
-
-	</p>
+  <p class="text-center">
+    <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors mt-2" onclick="document.getElementById('demoBox').style.display='none'">Cerrar</button>
+  </p>
 </div>
 
 <script type="module">
@@ -226,7 +119,6 @@ window.loginWithGoogle = async () => {
     });
 
     if (response.ok) {
-        // Redirige al home del chat (name='chat_home' en applications/chat/urls.py)
         window.location.href = "{% url 'chat_home' %}";
     }
 };

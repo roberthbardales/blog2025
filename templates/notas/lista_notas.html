@@ -1,143 +1,69 @@
-﻿{% extends "favoritos/base_favoritos.html" %}
+{% extends "favoritos/base_favoritos.html" %}
 {% load static %}
 
-{% block css %}
-<style>
-  .notes-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #2563eb 100%);
-    color: #fff;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 18px 36px rgba(15, 23, 42, .18);
-    position: relative;
-  }
-
-  .notes-hero::after {
-    content: "";
-    position: absolute;
-    right: -70px;
-    top: -70px;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.12);
-  }
-
-  .notes-hero .card-body {
-    position: relative;
-    z-index: 1;
-  }
-
-  .notes-card {
-    border: 0;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
-    transition: transform .18s ease, box-shadow .18s ease;
-    border-left: 5px solid #2563eb;
-  }
-
-  .notes-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 30px rgba(15, 23, 42, .14);
-  }
-
-  .notes-card.yellow { background: linear-gradient(180deg, #fff9db 0%, #ffeaa7 100%); border-left-color: #eab308; }
-  .notes-card.blue { background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%); border-left-color: #0284c7; }
-  .notes-card.green { background: linear-gradient(180deg, #dcfce7 0%, #bbf7d0 100%); border-left-color: #16a34a; }
-  .notes-card.pink { background: linear-gradient(180deg, #fce7f3 0%, #f9a8d4 100%); border-left-color: #db2777; }
-  .notes-card.orange { background: linear-gradient(180deg, #ffedd5 0%, #fdba74 100%); border-left-color: #ea580c; }
-  .notes-card.purple { background: linear-gradient(180deg, #ede9fe 0%, #c4b5fd 100%); border-left-color: #7c3aed; }
-
-  .notes-card .card-header {
-    background: rgba(255,255,255,.55);
-    backdrop-filter: blur(6px);
-  }
-
-  .notes-card .card-title {
-    color: #111827;
-    font-weight: 700;
-  }
-
-  .notes-card .card-text {
-    color: #4b5563;
-  }
-
-  .notes-card .badge {
-    letter-spacing: .2px;
-  }
-
-  .empty-notes {
-    border: 1px dashed rgba(13, 110, 253, .25);
-    border-radius: 1rem;
-    background: linear-gradient(180deg, rgba(13,110,253,.04), rgba(13,110,253,.01));
-  }
-</style>
-{% endblock %}
+{% block css %}{% endblock %}
 
 {% block content %}
 {% include "includes/header.html" %}
-{% include "includes/barra_lateral.html" %}
 
-<div class="col-lg-9 py-4">
-  <div class="card notes-hero border-0 mb-4">
-    <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-      <div>
-        <span class="badge badge-primary mb-2">
-          <i class="fas fa-sticky-note mr-1"></i>Notas personales
-        </span>
-        <h2 class="mb-1">Mis notas</h2>
-        <p class="text-white-50 mb-0">Crea, revisa y organiza tus ideas desde un solo lugar.</p>
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
+  {% include "includes/barra_lateral.html" %}
+
+  <div class="w-full lg:flex-1 py-4">
+    <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)] mb-4">
+      <div class="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/95">
+            <i class="fas fa-sticky-note mr-1"></i>Notas personales
+          </span>
+          <h2 class="mt-3 text-2xl font-bold">Mis notas</h2>
+          <p class="mt-2 text-sm text-white/70">Crea, revisa y organiza tus ideas desde un solo lugar.</p>
+        </div>
+        <a href="{% url 'notas_app:crear-nota' %}" class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">
+          <i class="fas fa-plus mr-2"></i>Nueva nota
+        </a>
       </div>
-      <a href="{% url 'notas_app:crear-nota' %}" class="btn btn-light mt-3 mt-md-0">
-        <i class="fas fa-plus mr-1"></i>Nueva nota
-      </a>
     </div>
-  </div>
 
-  {% if notas %}
-  <div class="row">
-    {% for nota in notas %}
-    <div class="col-md-6 col-xl-4 mb-4">
-      <div class="card h-100 notes-card {{ nota.color }} {% if nota.es_importante %}border border-warning{% endif %}">
+    {% if notas %}
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {% for nota in notas %}
+      <article class="h-full overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm {{ nota.color }} {% if nota.es_importante %}ring-2 ring-amber-400{% endif %}">
+        <div class="flex h-full flex-col p-5">
+          <div class="mb-2 flex items-start justify-between gap-2">
+            <h3 class="text-lg font-bold text-slate-900">{{ nota.titulo }}</h3>
+            {% if nota.es_importante %}
+              <span class="inline-flex items-center rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-600">
+                <i class="fas fa-star mr-1"></i>Importante
+              </span>
+            {% endif %}
+          </div>
 
-        <div class="card-body d-flex flex-column">
+          <p class="flex-1 text-sm leading-6 text-slate-600">{{ nota.contenido|truncatewords:24 }}</p>
 
-
-
-          <h5 class="card-title mb-2">{{ nota.titulo }}</h5>
-                    {% if nota.es_importante %}
-            <i class="fas fa-star mr-1 text-danger "></i>
-          {% endif %}
-          <p class="card-text flex-grow-1">{{ nota.contenido|truncatewords:24 }}</p>
-          <small class="text-muted d-block mb-3">
+          <small class="mt-4 block text-slate-500">
             <i class="far fa-clock mr-1"></i>{{ nota.modified|date:"d/m/Y" }}
           </small>
-          <div class="d-flex" style="gap: .5rem;">
-            <a href="{% url 'notas_app:detalle-nota' nota.pk %}" class="btn btn-outline-primary btn-sm flex-fill">Ver</a>
-            <a href="{% url 'notas_app:editar-nota' nota.pk %}" class="btn btn-primary btn-sm flex-fill">Editar</a>
+
+          <div class="mt-4 flex gap-2">
+            <a href="{% url 'notas_app:detalle-nota' nota.pk %}" class="flex-1 rounded-xl border border-blue-600 px-3 py-2 text-center text-sm font-semibold text-blue-600 transition hover:bg-blue-50">Ver</a>
+            <a href="{% url 'notas_app:editar-nota' nota.pk %}" class="flex-1 rounded-xl bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white transition hover:bg-blue-700">Editar</a>
           </div>
         </div>
-      </div>
+      </article>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-  {% else %}
-  <div class="card empty-notes border-0">
-    <div class="card-body text-center py-5 text-muted">
-      <i class="far fa-sticky-note fa-3x mb-3 d-block"></i>
-      <h4 class="mb-2">Aún no tienes notas</h4>
+    {% else %}
+    <div class="rounded-3xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center text-slate-500 shadow-sm">
+      <i class="far fa-sticky-note mb-3 block text-5xl text-slate-300"></i>
+      <h4 class="mb-2 text-xl font-bold text-slate-900">Aún no tienes notas</h4>
       <p class="mb-4">Crea tu primera nota para empezar a organizarte.</p>
-      <a href="{% url 'notas_app:crear-nota' %}" class="btn btn-primary">
-        <i class="fas fa-plus mr-1"></i>Crear nota
+      <a href="{% url 'notas_app:crear-nota' %}" class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700">
+        <i class="fas fa-plus mr-2"></i>Crear nota
       </a>
     </div>
+    {% endif %}
   </div>
-  {% endif %}
-</div>
-
-  </div>
-</div>
 </div>
 
 {% endblock content %}

@@ -1,6 +1,5 @@
 {% extends "entrada/base_entrada.html" %}
-
-{% load  static %}
+{% load static %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/myblog.css' %}">
@@ -8,155 +7,112 @@
 
 {% block content %}
 {% include "includes/header.html" %}
-<style>
-    /* Hacer el CKEditor más ancho */
-    .django-ckeditor-widget,
-    .cke {
-        width: 100% !important;
-    }
 
-    /* Ajustar el área de contenido */
-    .cke_contents {
-        width: 100% !important;
-    }
-</style>
-
-<div class="container text-light" style="min-height: 500px">
-    <div class="col-lg-10 offset-lg-1 bg-primary">
-        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-
-            <div class="col-12 mt-3 mb-1">
-                <div class="py-1">
-                    <p class="h3 text-center">Modificar Post</p>
-                </div>
-            </div>
-
-            <!-- Fila 1: Usuario, Título, Switches -->
-            <div class="form-row mb-2">
-                <div class="col-3">
-                    <p class="mb-1">Usuario</p>
-                    <input type="text" value="{{ user.email }}" class="form-control form-control-sm" readonly>
-                </div>
-
-                <div class="col-md-6 mb-2">
-                    <p class="mb-1">Título</p>
-                    {{form.title}}
-                </div>
-                <div class="col-auto text-center px-2">
-                    <p class="mb-1 small">Home</p>
-                    {{form.in_home}}
-                </div>
-                <div class="col-auto text-center px-2">
-                    <p class="mb-1 small">Público</p>
-                    {{form.public}}
-                </div>
-                <div class="col-auto text-center px-2">
-                    <p class="mb-1 small">Portada</p>
-                    {{form.portada}}
-                </div>
-            </div>
-
-            <!-- Fila 2: Categoría, Tags, Resumen -->
-            <div class="form-row mb-2">
-                <div class="col-4">
-                    <p class="mb-1">Categoría</p>
-                    {{ form.category }}
-                </div>
-                <div class="col-3">
-                    <p class="mb-1">Tags</p>
-                    {{form.tag}}
-                </div>
-                <div class="col-5 mb-2">
-                    <p class="mb-1">Resumen</p>
-                    {{form.resume}}
-                </div>
-            </div>
-
-            <!-- Editor de contenido -->
-            <div class="form-row mb-2">
-                <div class="col-12">
-                    <button type="button" id="quick-code-btn" class="btn btn-sm btn-warning mb-2" title="Selecciona texto y haz clic aquí (o usa Ctrl+K)">
-                        <i class="fa fa-code"></i> Convertir a Código
-                    </button>
-                    {{form.media}}
-                    {{form.content}}
-                </div>
-            </div>
-
-            <!-- Imagen -->
-            <div class="form-row mb-2">
-                <div class="col-12">
-                    <p class="mb-1">Imagen</p>
-                    {{form.image}}
-                </div>
-            </div>
-
-            <!-- Botón de guardar -->
-            <div class="form-row">
-                <div class="col-12 mt-2 mb-3">
-                    <button type="submit" class="text-white btn btn-success btn-block">Guardar</button>
-                </div>
-            </div>
-        </form>
+<div class="mx-auto max-w-6xl px-4 py-6">
+  <section class="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)] mb-4">
+    <div class="p-5 sm:p-6">
+      <h1 class="text-2xl font-bold">Modificar Post</h1>
     </div>
+  </section>
+
+  <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+    <div class="p-5 sm:p-6">
+      <form method="POST" enctype="multipart/form-data" class="space-y-5">
+        {% csrf_token %}
+
+        <div class="grid gap-4 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Usuario</label>
+            <input type="text" value="{{ user.email }}" readonly class="w-full rounded-xl border border-slate-300 bg-slate-100 px-3 py-2.5 text-sm text-slate-600">
+          </div>
+          <div class="md:col-span-6">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Título</label>
+            {{ form.title }}
+          </div>
+          <div class="md:col-span-1 flex flex-col items-center">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Home</label>
+            {{ form.in_home }}
+          </div>
+          <div class="md:col-span-1 flex flex-col items-center">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Público</label>
+            {{ form.public }}
+          </div>
+          <div class="md:col-span-1 flex flex-col items-center">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Portada</label>
+            {{ form.portada }}
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-12">
+          <div class="md:col-span-4">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Categoría</label>
+            {{ form.category }}
+          </div>
+          <div class="md:col-span-3">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Tags</label>
+            {{ form.tag }}
+          </div>
+          <div class="md:col-span-5">
+            <label class="mb-1 block text-sm font-medium text-slate-700">Resumen</label>
+            {{ form.resume }}
+          </div>
+        </div>
+
+        <div>
+          <button type="button" id="quick-code-btn" class="mb-2 inline-flex items-center rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-600">
+            <i class="fa fa-code mr-2"></i>Convertir a Código
+          </button>
+          {{ form.media }}
+          {{ form.content }}
+        </div>
+
+        <div>
+          <label class="mb-1 block text-sm font-medium text-slate-700">Imagen</label>
+          {{ form.image }}
+        </div>
+
+        <div class="flex justify-end">
+          <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
 </div>
 
 <script>
-    // Script para convertir texto seleccionado en code snippet con Ctrl+K
-    document.addEventListener('DOMContentLoaded', function() {
-        // Esperar a que CKEditor esté completamente cargado
-        if (typeof CKEDITOR !== 'undefined') {
-            CKEDITOR.on('instanceReady', function(evt) {
-                var editor = evt.editor;
-
-                // Verificar si el editor tiene el plugin codesnippet
-                if (editor.plugins.codesnippet) {
-
-                    // Función para convertir texto a code snippet
-                    function convertToCodeSnippet() {
-                        var selection = editor.getSelection();
-                        var selectedText = selection.getSelectedText();
-
-                        if (selectedText && selectedText.trim() !== '') {
-                            // Escapar caracteres especiales HTML
-                            var escapedText = selectedText
-                                .replace(/&/g, '&amp;')
-                                .replace(/</g, '&lt;')
-                                .replace(/>/g, '&gt;')
-                                .replace(/"/g, '&quot;')
-                                .replace(/'/g, '&#39;');
-
-                            // Crear el code snippet
-                            var codeSnippet = '<pre><code class="language-python">' + escapedText + '</code></pre>';
-
-                            // Eliminar la selección actual e insertar el code snippet
-                            editor.insertHtml(codeSnippet);
-
-                            console.log('✅ Code snippet insertado');
-                        } else {
-                            // Si no hay texto seleccionado, abrir el diálogo normal
-                            editor.execCommand('codesnippet');
-                        }
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.on('instanceReady', function(evt) {
+            var editor = evt.editor;
+            if (editor.plugins.codesnippet) {
+                function convertToCodeSnippet() {
+                    var selection = editor.getSelection();
+                    var selectedText = selection.getSelectedText();
+                    if (selectedText && selectedText.trim() !== '') {
+                        var escapedText = selectedText
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&#39;');
+                        var codeSnippet = '<pre><code class="language-python">' + escapedText + '</code></pre>';
+                        editor.insertHtml(codeSnippet);
+                    } else {
+                        editor.execCommand('codesnippet');
                     }
-
-                    // Agregar comando personalizado
-                    editor.addCommand('quickCodeSnippet', {
-                        exec: convertToCodeSnippet
-                    });
-
-                    // Asignar atajo de teclado: Ctrl+K
-                    editor.setKeystroke(CKEDITOR.CTRL + 75, 'quickCodeSnippet');
-
-                    // Conectar el botón HTML con la función
-                    document.getElementById('quick-code-btn').addEventListener('click', function(e) {
-                        e.preventDefault();
-                        convertToCodeSnippet();
-                    });
-
-                    console.log('✅ Atajo Ctrl+K y botón HTML configurado');
                 }
-            });
-        }
-    });
+                editor.addCommand('quickCodeSnippet', { exec: convertToCodeSnippet });
+                editor.setKeystroke(CKEDITOR.CTRL + 75, 'quickCodeSnippet');
+                document.getElementById('quick-code-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    convertToCodeSnippet();
+                });
+            }
+        });
+    }
+});
 </script>
+
 {% endblock content %}

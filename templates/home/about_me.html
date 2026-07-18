@@ -1,446 +1,532 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+<style>
+  .glass-card {
+    background: rgba(239, 246, 255, 0.7) !important;
+    border-color: #dbeafe !important;
+  }
+</style>
+{% endblock css %}
 
 {% block content %}
 
 {% include "includes/header.html" %}
 
-<style>
+<div class="max-w-7xl mx-auto px-4 py-6">
 
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background-color: #f8f9fa;
-        padding: 10px 0 0 0;
-    }
-
-    .card-body {
-        padding: 0.7rem;
-
-    }
-
-
-    .card-header {
-        border-radius: 0 !important;
-        background-color: #007bff !important;
-        color: white !important;
-        border-bottom: none;
-        padding: 0.25rem 1rem;
-    }
-    .card:hover {
-    box-shadow: inherit !important; /* mantiene la sombra original, pero sin aumentar */
-    transform: none !important;
-}
-    .text-primary {
-        color: #007bff !important;
-    }
-
-    .info-group p {
-        line-height: 1.8;
-        margin-bottom: 0.2rem;
-    }
-
-    .badge {
-        padding: 1px 1px;
-        font-size: 14px;
-    }
-
-    .status-badges {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 15px;
-    }
-
-    .skill-badge {
-        background-color: #007bff;
-        color: white;
-        padding: 6px 12px;
-        border-radius: 4px;
-        display: inline-block;
-        margin: 5px 5px 5px 0;
-        font-size: 14px;
-    }
-
-    .profile-img {
-        width: 40%;
-        height: auto;
-        margin-bottom: 15px;
-        background-color: #006ce0;
-    }
-
-    .progress {
-        height: 25px;
-        border-radius: 4px;
-    }
-
-    .progress-bar {
-        line-height: 25px;
-        font-size: 12px;
-    }
-    /* Estilo para las imágenes dentro de info-group */
-    .info-group img {
-        width: 110px;        /* ancho fijo */
-        margin-right: 10px; /* espacio a la derecha */
-        object-fit: contain; /* mantiene proporción sin deformar */
-    }
-
-</style>
-
-<div class="container">
-    <div class="row g-2">
-        <div class="col-md-10 offset-md-1">
-            <!-- Encabezado del perfil -->
-            <div class="card ">
-                <div class="card-header bg-primary text-white text-center">
-                    <h2 class="mb-0 fs-5">Russell Roberth Bardales</h2>
-                </div>
-                <div class="card-body p-2 m-0">
-                    <div class="row align-items-center g-0 m-2">
-                        <div class="col-md-4 text-center m-0 p-0">
-                            <img src="/static/img/foto4.png"
-                                 class="profile-img rounded img-fluid m-0 p-0"
-                                 width="200">
-                        </div>
-
-                        <div class="col-md-8 m-0 p-0">
-                            <h4 class="text m-1 p-1">
-                                Desarrollador Backend Python | Django
-                            </h4>
-
-                            <p class="m-0 p-1">📧 roberthbardales@gmail.com</p>
-                            <p class="m-0 p-1">📱 +51 960 174 778</p>
-                            <p class="m-0 p-1">📍 Lima, Perú</p>
-
-                            <a href="https://github.com/roberthbardales"
-                               class="btn btn-success  m-1">
-                                GitHub
-                            </a>
-                            <a href="{% url 'home_app:portafolio' %}"
-                               class="btn btn-warning m-1">
-                                Proyectos
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Sobre Mí -->
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-user mr-2"></i>Sobre Mí</h5>
-                </div>
-                <div class="card-body">
-                    <p class="text">
-Desarrollador Backend Junior en Python y Django, con formación y experiencia en Ingeniería de Sistemas. He
-trabajado en el desarrollo de módulos y sistemas web; soy autodidacta, curioso, proactivo, perfeccionista y
-muy apasionado por la tecnología, y busco aportar mis conocimientos y crecer.
-                    </p>
-
-                </div>
-            </div>
-
-            <!-- Experiencia Laboral -->
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-briefcase mr-2"></i>Experiencia Laboral</h5>
-                </div>
-                <div class="card-body">
-
-                    <div class="timeline-item">
-                        <h5 class="text-primary mb-2">Desarrollador Python/Django</h5>
-                        <p class="mb-2">
-                            <strong>Freelance</strong> |
-                            <span class="text">Mayo 2025 - Actualmente</span>
-                        </p>
-                            <ul class="text">
-    <li>Arquitectura de proyectos en las carpetas y desarrollo usando Vistas Basadas en Clases (CBV).</li>
-    <li>Creación de Modelos, Vistas, Managers, Mixins, Serializers, API Views, ViewSets, Permissions, etc.</li>
-    <li>Desarrollo de módulos de inventario, ventas y recursos humanos (RRHH).</li>
-    <li>Autenticación local JWT y mediante Google (Firebase).</li>
-    <li>Gestión de permisos y roles utilizando mixins en Django.</li>
-    <li>CHAT en tiempo real utilizando WebSockets y Daphne.</li>
-    <li>Filtros y consultas avanzadas con Django ORM y PostgreSQL.</li>
-    <li>Integración de CKEditor para edición de contenido enriquecido.</li>
-    <li>Resaltado de código fuente (syntax highlighting).</li>
-    <li>Despliegue en VPS de Digital Ocean con Linux, Nginx y Gunicorn.</li>
-    <li>Refactorización e-commerce pasando de Vistas Basadas en Funciones a CBV.</li>
-    <li>Integración de pasarela de pagos con Mercado Pago (Checkout Bricks).</li>
-    <li>Implementación de cifrado SSL/TLS (HTTPS) para navegación segura.</li>
-</ul>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h5 class="text-primary mb-2">Administrador de TI y Programador Python</h5>
-                        <p class="mb-2">
-                            <strong>JYW Repuestos S.A.C.</strong> |
-                            <span class="text">Abril 2020 – Febrero 2021</span>
-                        </p>
-                    <ul class="text">
-                        <li>Desarrollé el módulo de Inventario (CRUD, filtros, paginación, etc.) con Python/Django y SQL Server.</li>
-                        <li>Implementé consultas solicitadas por el área de Almacén para el módulo de inventarios.</li>
-                        <li>Realicé consultas por fechas, por código y listados de repuestos más vendidos.</li>
-                        <li>Exporté datos desde SQL Server hacia Excel.</li>
-                        <li>Gestioné Active Directory en Windows Server 2012, optimizando la administración de usuarios y datos compartidos, reduciendo en 30% los incidentes por errores de acceso.</li>
-                        <li>Administré el firewall mediante iptables, fortaleciendo la seguridad y reduciendo intentos de intrusión.</li>
-                        <li>Administré correos corporativos con Zimbra, garantizando la continuidad operativa.</li>
-                        <li>Generé reportes en SQL Server 2012 R2, agilizando procesos internos.</li>
-                        <li>Implementé backups automáticos de bases de datos y servidores, disminuyendo el riesgo de pérdidas.</li>
-                        <li>Configuré un servidor VPN, permitiendo conexiones seguras desde cualquier parte del mundo.</li>
-                    </ul>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h5 class="text-primary mb-2">Desarrollador PHP/MySQL</h5>
-                        <p class="mb-2">
-                            <strong>Universidad Nacional Federico Villarreal</strong> |
-                            <span class="text">Abril 2019 – Setiembre 2019</span>
-                        </p>
-                        <ul class="text">
-                            <li>Desarrollé un sistema web para el registro de estudiantes de inglés, utilizado por varias facultades.</li>
-                            <li>Desarrollé un pequeño sistema de encuestas para calificar profesores.</li>
-                            <li>Utilicé PHP y MySQL, y fue desplegado en un hosting institucional.</li>
-                            <li>Implementé la generación y descarga de reportes en Excel y PDF.</li>
-                            <li>Desarrollé una interfaz web responsive utilizando Bootstrap.</li>
-                        </ul>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h5 class="text-primary mb-2">Practicante de Sistemas</h5>
-                        <p class="mb-2">
-                            <strong>Inversiones Granos del Paraíso S.A.C.</strong> |
-                            <span class="text">Enero 2018 – Setiembre 2018</span>
-                        </p>
-                        <ul class="text">
-                            <li>Operación y soporte del sistema de ventas FlexBusiness ERP.</li>
-                            <li>Facturación electrónica e impresión de facturas y boletas.</li>
-                            <li>Soporte técnico a usuarios finales.</li>
-                            <li>Instalación y configuración de impresoras locales y en red.</li>
-                            <li>Ensamblaje de equipos, formateo e instalación de sistemas operativos Windows.</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-            <!-- PORTAFOLIO -->
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-briefcase mr-2"></i>Proyectos</h5>
-                </div>
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="timeline-item">
-                                <h5 class="text-primary mb-2">Red Social/Blog completo con Chat en tiempo real</h5>
-                                <p class="mb-2">
-                                    <small class="text">Python | Django | PostgreSQL | Bootstrap | Daphne | Django REST</small>
-                                </p>
-                                <ul class="text">
-                                    <li>Registro de usuarios y autenticación: local y mediante Firebase usando cuenta de Gmail.</li>
-                                    <li>Roles y permisos, Chat en tiempo real, amigos, comentario, likes, perfil, posts, CKEditor.</li>
-                                    <li>Consultas y gestión de datos usando PostgreSQL con la ORM de Django.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 d-flex align-items-center">
-                            <div class="w-75 mx-auto d-flex flex-column justify-content-center">
-                                <a href="{% url 'users_app:user-login' %}" target="_blank" class="btn btn-success btn mb-2">
-                                    <i class="fas fa-external-link-alt mr-1"></i> Ver Proyecto
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="row">
-                            <div class="col-md-9">
-                                <h5 class="text-primary mb-2">Sistema ERP DEMO (Inventario, ventas, RRHH)</h5>
-                                <p class="mb-2">
-                                    <small class="text">Python | Django | PostgreSQL | Bootstrap</small>
-                                </p>
-                                <ul class="text">
-                                    <li>Registro de usuarios y autenticación también roles y permisos</li>
-                                    <li>Filtros Variados por fechas, clientes, código, etc.</li>
-                                    <li>Consultas y gestión de datos usando PostgreSQL con la ORM de Django.</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-3 d-flex align-items-center">
-                                <div class="w-75 mx-auto d-flex flex-column justify-content-center">
-                                    <a href="https://demo2026.duckdns.org/" target="_blank" class="btn btn-success btn mb-2">
-                                        <i class="fas fa-external-link-alt mr-1"></i> Ver Proyecto
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="row">
-                            <div class="col-md-9">
-                                <h5 class="text-primary mb-2">Sistema ECOMMERCE con pasarela de pago</h5>
-                                <p class="mb-2">
-                                    <small class="text">Python | Django | PostgreSQL | Bootstrap</small>
-                                </p>
-                                <ul class="text">
-                                    <li>Refactorización pasando de PayPal a MERCADO PAGO (Checkout Bricks).</li>
-                                    <li>Registro de usuarios por confirmación de email, autenticación.</li>
-                                    <li>Filtros Variados por categoría, productos, precios, etc.</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-3 d-flex align-items-center">
-                                <div class="w-75 mx-auto d-flex flex-column justify-content-center">
-                                    <a href="https://carrito.duckdns.org/" target="_blank" class="btn btn-success btn mb-2">
-                                        <i class="fas fa-external-link-alt mr-1"></i> Ver Proyecto
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-graduation-cap mr-2"></i>Educación</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <!-- Columna 1 -->
-                        <div class="col-md-6">
-                            <!-- Universidad -->
-                            <div class="info-group mb-3 d-flex align-items-center">
-                                <img src="/static/img/unfv.png" alt="UNFV">
-                                <div>
-                                    <p class="mb-0"><strong>Ingeniería de Sistemas</strong></p>
-                                    <p class="text mb-0">Universidad Nacional Federico Villarreal</p>
-                                    <p class="text mb-0"><small class="text">2012 - 2017</small></p>
-                                </div>
-                            </div>
-
-                            <!-- Udemy -->
-                            <div class="info-group mb-3 d-flex align-items-center">
-                                <img src="/static/img/udemy.png" alt="Udemy">
-                                <div>
-                                    <p class="mb-0"><strong>Django REST Framework y React</strong></p>
-                                    <p class="text mb-0">Udemy</p>
-                                    <p class="text mb-0"><small class="text">2024</small></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Columna 2 -->
-                        <div class="col-md-6">
-                            <div class="info-group mb-3 d-flex align-items-center">
-                                <img src="/static/img/uni.png" alt="Sistemas UNI">
-                                <div>
-                                    <p class="mb-0"><strong>PHP, Linux, SQL Server, Windows Server, Excel</strong></p>
-                                    <p class="text mb-0">SISTEMAS UNI</p>
-                                    <p class="text mb-0"><small class="text">2015 - 2016</small></p>
-                                </div>
-                            </div>
-
-                            <div class="info-group mb-3 d-flex align-items-center">
-                                <img src="/static/img/cibertec.png" alt="CIBERTEC">
-                                <div>
-                                    <p class="mb-0"><strong>CCNA Routing and Switching V.5</strong></p>
-                                    <p class="text mb-0">CIBERTEC</p>
-                                    <p class="text mb-0"><small class="text">2017</small></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ICPNA centrado -->
-                        <div class="col-12 d-flex justify-content-center">
-                            <div class="info-group mb-3 d-flex align-items-center">
-                                <img src="/static/img/icpna.png" alt="ICPNA">
-                                <div>
-                                    <p class="mb-0"><strong>Inglés Intermedio 3</strong></p>
-                                    <p class="text mb-0">ICPNA</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Habilidades Técnicas -->
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-code mr-2"></i>Habilidades Técnicas</h5>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <p class="mb-2"><strong>Backend & Desarrollo Web:</strong></p>
-                        <span class="skill-badge">Python</span>
-                        <span class="skill-badge">Django</span>
-                        <span class="skill-badge">Django REST Framework</span>
-                        <span class="skill-badge">PHP</span>
-                        <span class="skill-badge">HTML/CSS</span>
-                        <span class="skill-badge">Bootstrap</span>
-                        <span class="skill-badge">Javascript</span>
-                        <span class="skill-badge">FastAPI</span>
-                        <span class="skill-badge">React js</span>
-                    </div>
-
-                    <div class="mb-3">
-                        <p class="mb-2"><strong>Bases de Datos:</strong></p>
-                        <span class="skill-badge">SQL Server 2012</span>
-                        <span class="skill-badge">PostgreSQL</span>
-                        <span class="skill-badge">MySQL</span>
-                        <span class="skill-badge">Excel</span>
-                    </div>
-                    <div class="mb-3">
-                        <p class="mb-2"><strong>Sistemas Operativos & Servidores:</strong></p>
-                        <span class="skill-badge">Linux</span>
-                        <span class="skill-badge">Ubuntu</span>
-                        <span class="skill-badge">Kali</span>
-                        <span class="skill-badge">NGINX</span>
-                        <span class="skill-badge">Gunicorn</span>
-                        <span class="skill-badge">Windows Server 2012</span>
-                        <span class="skill-badge">Windows 7/8/10</span>
-                        <span class="skill-badge">Odoo</span>
-                        <span class="skill-badge">MercadoPago</span>
-
-                    </div>
-
-
-                </div>
-            </div>
-
-            <!-- Idiomas -->
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-language mr-2"></i>Idiomas</h5>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <p class="mb-2"><strong>Español</strong></p>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" style="width: 100%">Nativo</div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="mb-2"><strong>Inglés</strong></p>
-                        <div class="progress">
-                            <div class="progress-bar bg-primary" style="width: 50%">Básico - Intermedio</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- HERO -->
+  <div class="flex justify-center mb-6" data-sr="fade-up">
+    <div class="w-full lg:w-10/12 text-center">
+      <div class="glass-card rounded-2xl">
+        <div class="px-6 py-5">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-4 py-1.5 mb-2">
+            <i class="fas fa-user mr-1"></i>Curriculum
+          </span>
+          <h1 class="text-4xl md:text-5xl font-bold text-primary-900">Sobre Mí</h1>
 
         </div>
+      </div>
     </div>
+  </div>
+
+
+
+  <div class="flex justify-center">
+    <div class="w-full lg:w-10/12 space-y-3">
+
+      <!-- PERFIL -->
+      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-6 py-4 border-b border-blue-100">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+            <i class="fas fa-id-card mr-1"></i>Perfil
+          </span>
+        </div>
+        <div class="px-6 py-4">
+          <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+            <img src="{% static 'img/foto4.png' %}" alt="Russell Bardales" class="w-32 h-32 rounded-2xl object-cover border-4 border-primary-600 shadow-xl shrink-0">
+            <div>
+              <h3 class="font-bold text-2xl text-primary-700">Russell Roberth Bardales</h3>
+              <p class="text-primary-500/80 mb-1">
+                <i class="fas fa-terminal mr-1 text-primary-600"></i>Desarrollador Backend Python | Django
+              </p>
+              <div class="text-sm text-blue-400 mb-2">
+                <span class="mr-3"><i class="fas fa-envelope text-primary-500 mr-1"></i>roberthbardales@gmail.com</span>
+                <span class="mr-3"><i class="fas fa-phone text-primary-500 mr-1"></i>+51 960 174 778</span>
+                <span><i class="fas fa-map-marker-alt text-primary-500 mr-1"></i>Lima, Perú</span>
+              </div>
+              <div class="flex justify-center md:justify-start flex-wrap gap-2">
+                <a href="https://github.com/roberthbardales" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 bg-gray-900 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg">
+                  <i class="fab fa-github"></i>GitHub
+                </a>
+                <a href="{% url 'home_app:portafolio' %}"
+                   class="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg">
+                  <i class="fas fa-briefcase"></i>Proyectos
+                </a>
+                <a href="https://wa.me/51960174778" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg">
+                  <i class="fab fa-whatsapp"></i>WhatsApp
+                </a>
+                <a href="{% static 'docs/cv.pdf' %}" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 bg-amber-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-amber-700 hover:-translate-y-0.5 hover:shadow-lg">
+                  <i class="fas fa-download"></i>CV
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOBRE MÍ -->
+      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-6 py-4 border-b border-blue-100">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+            <i class="fas fa-user mr-1"></i>Sobre Mí
+          </span>
+        </div>
+        <div class="px-6 py-4">
+          <p class="text-slate-600 leading-relaxed">
+            Desarrollador Backend Junior en Python y Django, con formación y experiencia en Ingeniería de Sistemas. He
+            trabajado en el desarrollo de módulos y sistemas web; soy autodidacta, curioso, proactivo, perfeccionista y
+            muy apasionado por la tecnología, y busco aportar mis conocimientos y crecer.
+          </p>
+        </div>
+      </div>
+
+      <!-- EXPERIENCIA LABORAL -->
+      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-6 py-4 border-b border-blue-100">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+            <i class="fas fa-briefcase mr-1"></i>Experiencia Laboral
+          </span>
+        </div>
+        <div class="px-6 py-4">
+          <div class="space-y-0">
+
+            <!-- Item 1 -->
+            <div class="relative pl-10 pb-6 border-l-2 border-primary-200 last:border-transparent last:pb-0">
+              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-primary-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <div class="ml-2">
+                <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-1">
+                  <div>
+                    <h5 class="font-bold text-primary-600">Desarrollador Python/Django</h5>
+                    <p class="text-blue-400 text-xs">
+                      <strong class="text-slate-600">Freelance</strong> &middot; Mayo 2025 - Actualmente
+                    </p>
+                  </div>
+                  <i class="fas fa-chevron-down text-blue-400 text-xs transition-transform duration-200" data-icon="exp-1"></i>
+                </div>
+                <div class="accordion-body hidden mt-2" data-body="exp-1">
+                  <ul class="text-slate-600 text-sm space-y-1 pl-4 list-disc">
+                    <li>Arquitectura de proyectos y desarrollo usando Vistas Basadas en Clases (CBV).</li>
+                    <li>Creación de Modelos, Vistas, Managers, Mixins, Serializers, API Views, ViewSets, Permissions, etc.</li>
+                    <li>Desarrollo de módulos de inventario, ventas y recursos humanos (RRHH).</li>
+                    <li>Autenticación local JWT y mediante Google (Firebase).</li>
+                    <li>Gestión de permisos y roles utilizando mixins en Django.</li>
+                    <li>CHAT en tiempo real utilizando WebSockets y Daphne.</li>
+                    <li>Filtros y consultas avanzadas con Django ORM y PostgreSQL.</li>
+                    <li>Integración de CKEditor para edición de contenido enriquecido.</li>
+                    <li>Despliegue en VPS de Digital Ocean con Linux, Nginx y Gunicorn.</li>
+                    <li>Refactorización e-commerce pasando de Vistas Basadas en Funciones a CBV.</li>
+                    <li>Integración de pasarela de pagos con Mercado Pago (Checkout Bricks).</li>
+                    <li>Implementación de cifrado SSL/TLS (HTTPS) para navegación segura.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="relative pl-10 pb-6 border-l-2 border-primary-200 last:border-transparent last:pb-0">
+              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-green-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+                <i class="fas fa-server"></i>
+              </div>
+              <div class="ml-2">
+                <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-2">
+                  <div>
+                    <h5 class="font-bold text-primary-600">Administrador de TI y Programador Python</h5>
+                    <p class="text-blue-400 text-xs">
+                      <strong class="text-slate-600">JYW Repuestos S.A.C.</strong> &middot; Abril 2020 – Febrero 2021
+                    </p>
+                  </div>
+                  <i class="fas fa-chevron-down text-blue-400 text-xs transition-transform duration-200" data-icon="exp-2"></i>
+                </div>
+                <div class="accordion-body hidden mt-2" data-body="exp-2">
+                  <ul class="text-slate-600 text-sm space-y-1 pl-4 list-disc">
+                    <li>Desarrollé el módulo de Inventario (CRUD, filtros, paginación, etc.) con Python/Django y SQL Server.</li>
+                    <li>Implementé consultas solicitadas por el área de Almacén para el módulo de inventarios.</li>
+                    <li>Exporté datos desde SQL Server hacia Excel.</li>
+                    <li>Gestioné Active Directory en Windows Server 2012, optimizando la administración de usuarios y datos compartidos.</li>
+                    <li>Administré el firewall mediante iptables, fortaleciendo la seguridad.</li>
+                    <li>Administré correos corporativos con Zimbra.</li>
+                    <li>Generé reportes en SQL Server 2012 R2.</li>
+                    <li>Implementé backups automáticos de bases de datos y servidores.</li>
+                    <li>Configuré un servidor VPN, permitiendo conexiones seguras.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="relative pl-10 pb-6 border-l-2 border-primary-200 last:border-transparent last:pb-0">
+              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-amber-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+                <i class="fas fa-globe"></i>
+              </div>
+              <div class="ml-2">
+                <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-3">
+                  <div>
+                    <h5 class="font-bold text-primary-600">Desarrollador PHP/MySQL</h5>
+                    <p class="text-blue-400 text-xs">
+                      <strong class="text-slate-600">Universidad Nacional Federico Villarreal</strong> &middot; Abril 2019 – Setiembre 2019
+                    </p>
+                  </div>
+                  <i class="fas fa-chevron-down text-blue-400 text-xs transition-transform duration-200" data-icon="exp-3"></i>
+                </div>
+                <div class="accordion-body hidden mt-2" data-body="exp-3">
+                  <ul class="text-slate-600 text-sm space-y-1 pl-4 list-disc">
+                    <li>Desarrollé un sistema web para el registro de estudiantes de inglés, utilizado por varias facultades.</li>
+                    <li>Desarrollé un pequeño sistema de encuestas para calificar profesores.</li>
+                    <li>Utilicé PHP y MySQL, y fue desplegado en un hosting institucional.</li>
+                    <li>Implementé la generación y descarga de reportes en Excel y PDF.</li>
+                    <li>Desarrollé una interfaz web responsive utilizando Bootstrap.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="relative pl-10 border-l-2 border-transparent">
+              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="ml-2">
+                <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-4">
+                  <div>
+                    <h5 class="font-bold text-primary-600">Practicante de Sistemas</h5>
+                    <p class="text-blue-400 text-xs">
+                      <strong class="text-slate-600">Inversiones Granos del Paraíso S.A.C.</strong> &middot; Enero 2018 – Setiembre 2018
+                    </p>
+                  </div>
+                  <i class="fas fa-chevron-down text-blue-400 text-xs transition-transform duration-200" data-icon="exp-4"></i>
+                </div>
+                <div class="accordion-body hidden mt-2" data-body="exp-4">
+                  <ul class="text-slate-600 text-sm space-y-1 pl-4 list-disc">
+                    <li>Operación y soporte del sistema de ventas FlexBusiness ERP.</li>
+                    <li>Facturación electrónica e impresión de facturas y boletas.</li>
+                    <li>Soporte técnico a usuarios finales.</li>
+                    <li>Instalación y configuración de impresoras locales y en red.</li>
+                    <li>Ensamblaje de equipos, formateo e instalación de sistemas operativos Windows.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTOS -->
+      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-6 py-4 border-b border-blue-100">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+            <i class="fas fa-laptop-code mr-1"></i>Proyectos
+          </span>
+        </div>
+        <div class="px-6 py-4 space-y-4">
+
+          <div class="flex flex-col md:flex-row md:items-start gap-4 pb-4 border-b border-blue-100 last:border-0 last:pb-0">
+            <div class="flex-1">
+              <h5 class="font-bold text-primary-600">Red Social/Blog completo con Chat en tiempo real</h5>
+              <div class="flex flex-wrap gap-1.5 my-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">WebSockets</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">DRF</span>
+              </div>
+              <ul class="text-slate-600 text-sm space-y-1 pl-4 list-disc">
+                <li>Registro de usuarios y autenticación: local y mediante Firebase usando cuenta de Gmail.</li>
+                <li>Roles y permisos, Chat en tiempo real, amigos, comentario, likes, perfil, posts, CKEditor.</li>
+                <li>Consultas y gestión de datos usando PostgreSQL con la ORM de Django.</li>
+              </ul>
+            </div>
+            <div class="shrink-0 text-center md:text-right">
+              <a href="{% url 'users_app:user-login' %}" target="_blank"
+                 class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-4 py-2 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg">
+                <i class="fas fa-external-link-alt"></i>Ver Proyecto
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row md:items-start gap-4 pb-6 border-b border-blue-100 last:border-0 last:pb-0">
+            <div class="flex-1">
+              <h5 class="font-bold text-primary-600">Sistema ERP DEMO (Inventario, ventas, RRHH)</h5>
+              <div class="flex flex-wrap gap-1.5 my-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+              </div>
+              <ul class="text-slate-600 text-sm space-y-1 pl-4 list-disc">
+                <li>Registro de usuarios y autenticación también roles y permisos.</li>
+                <li>Filtros variados por fechas, clientes, código, etc.</li>
+                <li>Consultas y gestión de datos usando PostgreSQL con la ORM de Django.</li>
+              </ul>
+            </div>
+            <div class="shrink-0 text-center md:text-right">
+              <a href="https://demo2026.duckdns.org/" target="_blank"
+                 class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-4 py-2 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg">
+                <i class="fas fa-external-link-alt"></i>Ver Proyecto
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex-1">
+              <h5 class="font-bold text-primary-600">Sistema ECOMMERCE con pasarela de pago</h5>
+              <div class="flex flex-wrap gap-1.5 my-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">MercadoPago</span>
+              </div>
+              <ul class="text-slate-600 text-sm space-y-1 pl-4 list-disc">
+                <li>Refactorización pasando de PayPal a MERCADO PAGO (Checkout Bricks).</li>
+                <li>Registro de usuarios por confirmación de email, autenticación.</li>
+                <li>Filtros variados por categoría, productos, precios, etc.</li>
+              </ul>
+            </div>
+            <div class="shrink-0 text-center md:text-right">
+              <a href="https://carrito.duckdns.org/" target="_blank"
+                 class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-4 py-2 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg">
+                <i class="fas fa-external-link-alt"></i>Ver Proyecto
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- EDUCACIÓN -->
+      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-6 py-4 border-b border-blue-100">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+            <i class="fas fa-graduation-cap mr-1"></i>Educación
+          </span>
+        </div>
+        <div class="px-6 py-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div class="flex items-center gap-4">
+              <img src="{% static 'img/unfv.png' %}" alt="UNFV" class="w-16 h-16 object-contain shrink-0">
+              <div>
+                <p class="font-bold text-slate-800">Ingeniería de Sistemas</p>
+                <p class="text-slate-500 text-sm">Universidad Nacional Federico Villarreal</p>
+                <span class="text-slate-400 text-xs">2012 - 2017</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <img src="{% static 'img/udemy.png' %}" alt="Udemy" class="w-16 h-16 object-contain shrink-0">
+              <div>
+                <p class="font-bold text-slate-800">Django REST Framework y React</p>
+                <p class="text-slate-500 text-sm">Udemy</p>
+                <span class="text-slate-400 text-xs">2024</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <img src="{% static 'img/uni.png' %}" alt="Sistemas UNI" class="w-16 h-16 object-contain shrink-0">
+              <div>
+                <p class="font-bold text-slate-800">PHP, Linux, SQL Server, Windows Server, Excel</p>
+                <p class="text-slate-500 text-sm">SISTEMAS UNI</p>
+                <span class="text-slate-400 text-xs">2015 - 2016</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <img src="{% static 'img/cibertec.png' %}" alt="CIBERTEC" class="w-16 h-16 object-contain shrink-0">
+              <div>
+                <p class="font-bold text-slate-800">CCNA Routing and Switching V.5</p>
+                <p class="text-slate-500 text-sm">CIBERTEC</p>
+                <span class="text-slate-400 text-xs">2017</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 md:col-span-2 justify-center">
+              <img src="{% static 'img/icpna.png' %}" alt="ICPNA" class="w-16 h-16 object-contain shrink-0">
+              <div>
+                <p class="font-bold text-slate-800">Inglés Intermedio 3</p>
+                <p class="text-slate-500 text-sm">ICPNA</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- HABILIDADES TÉCNICAS -->
+      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-6 py-4 border-b border-blue-100">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+            <i class="fas fa-code mr-1"></i>Habilidades Técnicas
+          </span>
+        </div>
+        <div class="px-6 py-4 space-y-3">
+
+          <div data-sr="fade-up" data-sr-delay="0">
+            <p class="font-semibold text-primary-700 text-sm mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-green-500"></span>Backend & Desarrollo Web
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django REST Framework</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">FastAPI</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">PHP</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">HTML/CSS</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">JavaScript</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Bootstrap</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">React js</span>
+            </div>
+          </div>
+
+          <div data-sr="fade-up" data-sr-delay="50">
+            <p class="font-semibold text-primary-700 text-sm mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-indigo-500"></span>Bases de Datos
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">SQL Server 2012</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">PostgreSQL</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">MySQL</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">Excel</span>
+            </div>
+          </div>
+
+          <div data-sr="fade-up" data-sr-delay="100">
+            <p class="font-semibold text-primary-700 text-sm mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>Sistemas Operativos & Servidores
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Linux</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Ubuntu</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Kali</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">NGINX</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Gunicorn</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Windows Server 2012</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Windows 7/8/10</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">Odoo</span>
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">MercadoPago</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- IDIOMAS -->
+      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-6 py-4 border-b border-blue-100">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+            <i class="fas fa-language mr-1"></i>Idiomas
+          </span>
+        </div>
+        <div class="px-6 py-4 space-y-3">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <p class="font-semibold text-primary-700 text-sm">Español</p>
+              <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-0.5 rounded-full">Nativo</span>
+            </div>
+            <div class="w-full bg-blue-100 rounded-full h-2.5 overflow-hidden">
+              <div class="bg-green-500 h-2.5 rounded-full" data-width="100" style="width: 0"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <p class="font-semibold text-primary-700 text-sm">Inglés</p>
+              <span class="text-xs font-medium text-primary-600 bg-primary-100 px-2 py-0.5 rounded-full">Básico - Intermedio</span>
+            </div>
+            <div class="w-full bg-blue-100 rounded-full h-2.5 overflow-hidden">
+              <div class="bg-primary-500 h-2.5 rounded-full" data-width="50" style="width: 0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
+{% endblock %}
 
+{% block js %}
+<script>
+(function() {
+  // ScrollReveal
+  if (typeof ScrollReveal !== 'undefined') {
+    ScrollReveal({ distance: '30px', duration: 400, easing: 'ease-out', origin: 'bottom', reset: false });
+    ScrollReveal().reveal('[data-sr="fade-up"]', { interval: 80 });
+  }
 
-{% endblock content %}
+  // Counters
+  var stats = document.querySelectorAll('[data-count]');
+  if (stats.length) {
+    function animateCount(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      if (isNaN(target)) return;
+      var current = 0;
+      var step = Math.ceil(target / 30);
+      var timer = setInterval(function() {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = current;
+      }, 30);
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    stats.forEach(function(s) { observer.observe(s); });
+  }
+
+  // Accordion toggle
+  var toggles = document.querySelectorAll('[data-toggle]');
+  toggles.forEach(function(el) {
+    el.addEventListener('click', function() {
+      var id = el.getAttribute('data-toggle');
+      var body = document.querySelector('[data-body="' + id + '"]');
+      var icon = document.querySelector('[data-icon="' + id + '"]');
+      if (body) {
+        body.classList.toggle('hidden');
+        if (icon) icon.style.transform = body.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    });
+  });
+
+  // Progress bars animation
+  var bars = document.querySelectorAll('[data-width]');
+  if (bars.length) {
+    var barObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var bar = entry.target;
+          var width = bar.getAttribute('data-width');
+          bar.style.width = width + '%';
+          barObserver.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(function(b) { barObserver.observe(b); });
+  }
+})();
+</script>
+{% endblock js %}

@@ -5,335 +5,145 @@
 
 {% include "includes/header.html" %}
 
-<style>
-    .card {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        border: none;
-    }
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
+  {% include "includes/barra_lateral.html" %}
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="w-full lg:flex-1">
+      <div class="min-h-[650px] py-8">
 
-    .card-header {
-        background-color: #007bff !important;
-        color: white !important;
-        border-bottom: none;
-    }
-
-    .profile-card {
-        background-color: #007bff;
-        border-radius: 10px;
-        color: white;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .profile-info {
-        padding: 20px;
-    }
-
-    .profile-info h5 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 15px;
-    }
-
-    .profile-info p {
-        margin-bottom: 8px;
-        font-size: 0.95rem;
-    }
-
-    .profile-info i {
-        margin-right: 8px;
-        width: 20px;
-    }
-
-    .saved-posts-hero {
-        background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
-        color: #fff;
-        border: 0;
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 18px 36px rgba(15, 23, 42, .16);
-        position: relative;
-    }
-
-    .saved-posts-hero::after {
-        content: "";
-        position: absolute;
-        right: -90px;
-        top: -90px;
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
-        background: rgba(255,255,255,.10);
-        pointer-events: none;
-    }
-
-    .saved-posts-hero .card-body,
-    .saved-posts-panel .card-body {
-        position: relative;
-        z-index: 1;
-    }
-
-    .saved-posts-panel {
-        border: 0;
-        border-radius: 1rem;
-        box-shadow: 0 12px 26px rgba(15, 23, 42, .10);
-    }
-
-    .saved-posts-panel .form-control,
-    .saved-posts-panel .custom-select {
-        border-radius: .8rem;
-        border: 1px solid #cbd5e1;
-    }
-
-    .saved-posts-panel .form-control:focus,
-    .saved-posts-panel .custom-select:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 .2rem rgba(37,99,235,.12);
-    }
-
-    .favorite-card {
-        border: 0;
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
-        transition: transform .18s ease, box-shadow .18s ease;
-        border-left: 5px solid #2563eb;
-    }
-
-    .favorite-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 30px rgba(15, 23, 42, .14);
-    }
-
-    .favorite-thumb {
-        width: 100%;
-        height: 190px;
-        object-fit: cover;
-        border-radius: .85rem;
-    }
-
-    .favorite-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: .5rem;
-        align-items: center;
-        margin-bottom: .85rem;
-    }
-
-    .empty-favorites {
-        border: 1px dashed rgba(37,99,235,.25);
-        border-radius: 1rem;
-        background: linear-gradient(180deg, rgba(37,99,235,.04), rgba(37,99,235,.01));
-    }
-
-    .saved-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: .4rem;
-        padding: .45rem .75rem;
-        border-radius: 999px;
-        background: rgba(255,255,255,.14);
-        color: #fff;
-        margin-right: .35rem;
-        margin-top: .35rem;
-        font-size: .85rem;
-    }
-
-    .btn-grupo {
-        transition: all 0.3s;
-        border-radius: 5px;
-    }
-
-    .btn-grupo:hover {
-        transform: translateX(5px);
-    }
-
-    .search-box {
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        border-radius: 8px;
-    }
-
-    .form-select {
-        border: 2px solid #e9ecef;
-        border-radius: 5px;
-        transition: border-color 0.3s;
-    }
-
-    .form-select:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-    }
-
-    .avatar-initials {
-        width: 60px;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.4);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        font-weight: 700;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        backdrop-filter: blur(10px);
-    }
-</style>
-
-{% include "includes/barra_lateral.html" %}
-<!-- CONTENIDO PRINCIPAL -->
-<div class="col-lg-9">
-    <div class="container" style="min-height: 650px; padding: 30px 0;">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card saved-posts-hero mb-4">
-                    <div class="card-body">
-                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-                            <div class="mb-3 mb-md-0">
-                                <span class="badge badge-light text-primary mb-2">
-                                    <i class="fas fa-bookmark mr-1"></i>Favoritos
-                                </span>
-                                <h4 class="mb-2 font-weight-bold">Mis Posts Guardados</h4>
-                                <p class="mb-0 text-white-50">
-                                    Organiza, filtra y cambia el grupo de cada favorito sin perder el foco.
-                                </p>
-                            </div>
-                            <div>
-                                <span class="saved-pill">
-                                    <i class="fas fa-layer-group"></i>{{ contexto_grupos|length }} grupos
-                                </span>
-                                <span class="saved-pill">
-                                    <i class="fas fa-heart"></i>{{ entradas_user|length }} guardados
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card saved-posts-panel mb-4">
-                    <div class="card-body">
-                        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-3" style="gap: .75rem;">
-                            <div class="btn-group" role="group" aria-label="Orden">
-                                <a href="?orden=fecha" class="btn btn-outline-primary {% if orden_seleccionado == 'fecha' %}active{% endif %}">
-                                    <i class="fas fa-calendar-alt mr-1"></i>Por fecha
-                                </a>
-                                <a href="?orden=grupo" class="btn btn-outline-primary {% if orden_seleccionado == 'grupo' %}active{% endif %}">
-                                    <i class="fas fa-folder mr-1"></i>Por grupo
-                                </a>
-                            </div>
-                            <form method="get" action="" class="w-50">
-                                <div class="input-group">
-                                    <input type="text"
-                                           class="form-control"
-                                           placeholder="Buscar en favoritos..."
-                                           id="kword_favorito"
-                                           name="kword_favorito"
-                                           value="{{ request.GET.kword_favorito }}">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="fas fa-search mr-1"></i>Buscar
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                {% for entrada in entradas_user %}
-                <div class="card favorite-card mb-4">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-md-3 mb-3 mb-md-0">
-                                <img class="favorite-thumb" src="{{ entrada.entry.image.url }}" alt="{{ entrada.entry.title }}">
-                            </div>
-                            <div class="col-md-9">
-                                <div class="favorite-meta">
-                                    <h5 class="card-title mb-0 mr-auto">{{ entrada.entry.title|truncatechars:80 }}</h5>
-                                    <span class="badge badge-info badge-grupo">{{ entrada.entry.category }}</span>
-                                </div>
-
-                                <p class="text-muted mb-3">
-                                    <i class="fas fa-folder text-primary mr-1"></i>
-                                    <strong>{{ entrada.group.name }}</strong>
-                                </p>
-
-                                <div class="form-group mb-3">
-                                    <label class="small text-muted mb-1">
-                                        <i class="fas fa-exchange-alt mr-1"></i>Cambiar grupo
-                                    </label>
-                                    <select class="custom-select" onchange="window.location.href=this.value;">
-                                        {% for g in contexto_grupos %}
-                                        <option value="{% url 'favoritos_app:cambiar-grupo' entrada.id %}?group_id={{ g.id }}"
-                                                {% if entrada.group and entrada.group.id == g.id %}selected{% endif %}>
-                                            {{ g.name }}
-                                        </option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-
-                                <div class="d-flex flex-column flex-sm-row" style="gap: .5rem;">
-                                    <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}" class="btn btn-primary flex-fill">
-                                        <i class="fas fa-eye mr-1"></i>Ver post
-                                    </a>
-                                    <form method="post" action="{% url 'favoritos_app:delete-favoritos' entrada.id %}" class="flex-fill">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-outline-danger btn-block" onclick="return confirm('¿Eliminar este favorito?');">
-                                            <i class="fas fa-trash mr-1"></i>Eliminar
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="card empty-favorites border-0">
-                    <div class="card-body text-center py-5">
-                        <i class="fas fa-inbox text-primary" style="font-size: 60px;"></i>
-                        <h5 class="mt-3 text-dark">No hay favoritos guardados</h5>
-                        <p class="text-muted mb-0">Comienza a guardar tus posts favoritos.</p>
-                    </div>
-                </div>
-                {% endfor %}
-
-                {% if is_paginated %}
-                <div class="row justify-content-center mt-4">
-                    <nav aria-label="Paginación">
-                        <ul class="pagination">
-                            {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
-                                    <i class="fas fa-chevron-left"></i> Atrás
-                                </a>
-                            </li>
-                            {% endif %}
-
-                            {% for pagina in paginator.page_range %}
-                            <li class="page-item {% if pagina == page_obj.number %}active{% endif %}">
-                                <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
-                            </li>
-                            {% endfor %}
-
-                            {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
-                                    Siguiente <i class="fas fa-chevron-right"></i>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div>
-                {% endif %}
+        <div class="bg-gradient-to-r from-slate-900 via-blue-600 to-blue-700 text-white rounded-2xl shadow-[0_18px_36px_rgba(15,23,42,.16)] overflow-hidden mb-4 relative">
+          <div class="p-4 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between md:items-center">
+              <div class="mb-3 md:mb-0">
+                <span class="inline-block bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">
+                  <i class="fas fa-bookmark mr-1"></i>Favoritos
+                </span>
+                <h4 class="mb-2 font-bold text-lg">Mis Posts Guardados</h4>
+                <p class="mb-0 text-white/60 text-sm">
+                  Organiza, filtra y cambia el grupo de cada favorito sin perder el foco.
+                </p>
+              </div>
+              <div>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-sm">
+                  <i class="fas fa-layer-group"></i>{{ contexto_grupos|length }} grupos
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-sm">
+                  <i class="fas fa-heart"></i>{{ entradas_user|length }} guardados
+                </span>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
 
+        <div class="bg-white rounded-2xl shadow-[0_12px_26px_rgba(15,23,42,.10)] overflow-hidden mb-4">
+          <div class="p-4">
+            <div class="flex flex-col lg:flex-row justify-between lg:items-center mb-3" style="gap: .75rem;">
+              <div class="flex rounded-lg overflow-hidden border border-gray-300">
+                <a href="?orden=fecha" class="px-4 py-2 text-sm border-r border-gray-300 {% if orden_seleccionado == 'fecha' %}bg-blue-600 text-white{% else %}bg-white text-gray-700 hover:bg-gray-100{% endif %} transition-colors no-underline">
+                  <i class="fas fa-calendar-alt mr-1"></i>Por fecha
+                </a>
+                <a href="?orden=grupo" class="px-4 py-2 text-sm {% if orden_seleccionado == 'grupo' %}bg-blue-600 text-white{% else %}bg-white text-gray-700 hover:bg-gray-100{% endif %} transition-colors no-underline">
+                  <i class="fas fa-folder mr-1"></i>Por grupo
+                </a>
+              </div>
+              <form method="get" action="" class="w-full lg:w-1/2">
+                <div class="flex rounded-lg overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500">
+                  <input type="text"
+                         class="flex-1 px-3 py-2 outline-none border-0 text-sm"
+                         placeholder="Buscar en favoritos..."
+                         id="kword_favorito"
+                         name="kword_favorito"
+                         value="{{ request.GET.kword_favorito }}">
+                  <button class="bg-blue-600 text-white px-4 py-2 text-sm hover:bg-blue-700 transition-colors" type="submit">
+                    <i class="fas fa-search mr-1"></i>Buscar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {% for entrada in entradas_user %}
+        <div class="bg-white rounded-2xl shadow-[0_12px_26px_rgba(15,23,42,.10)] overflow-hidden mb-4 border-l-4 border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(15,23,42,.14)] transition-all duration-200">
+          <div class="p-4">
+            <div class="flex flex-col md:flex-row md:items-center">
+              <div class="w-full md:w-1/4 mb-3 md:mb-0 md:pr-4">
+                <img class="w-full h-48 object-cover rounded-xl" src="{{ entrada.entry.image.url }}" alt="{{ entrada.entry.title }}">
+              </div>
+              <div class="w-full md:w-3/4">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                  <h5 class="mb-0 font-semibold text-gray-900 flex-1">{{ entrada.entry.title|truncatechars:80 }}</h5>
+                  <span class="inline-block bg-cyan-100 text-cyan-700 text-xs font-semibold px-2 py-1 rounded-full">{{ entrada.entry.category }}</span>
+                </div>
+
+                <p class="text-gray-500 mb-3 text-sm">
+                  <i class="fas fa-folder text-blue-600 mr-1"></i>
+                  <strong>{{ entrada.group.name }}</strong>
+                </p>
+
+                <div class="mb-3">
+                  <label class="block text-xs text-gray-500 mb-1">
+                    <i class="fas fa-exchange-alt mr-1"></i>Cambiar grupo
+                  </label>
+                  <select class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm bg-white" onchange="window.location.href=this.value;">
+                    {% for g in contexto_grupos %}
+                    <option value="{% url 'favoritos_app:cambiar-grupo' entrada.id %}?group_id={{ g.id }}"
+                            {% if entrada.group and entrada.group.id == g.id %}selected{% endif %}>
+                      {{ g.name }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-2">
+                  <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}" class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-xl text-center text-sm hover:bg-blue-700 transition-colors no-underline">
+                    <i class="fas fa-eye mr-1"></i>Ver post
+                  </a>
+                  <form method="post" action="{% url 'favoritos_app:delete-favoritos' entrada.id %}" class="flex-1">
+                    {% csrf_token %}
+                    <button type="submit" class="w-full border border-red-600 text-red-600 px-4 py-2 rounded-xl text-sm hover:bg-red-600 hover:text-white transition-colors" onclick="return confirm('¿Eliminar este favorito?');">
+                      <i class="fas fa-trash mr-1"></i>Eliminar
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="border border-dashed border-blue-300 rounded-2xl bg-gradient-to-b from-blue-50/40 to-transparent">
+          <div class="text-center py-8">
+            <i class="fas fa-inbox text-blue-600" style="font-size: 60px;"></i>
+            <h5 class="mt-3 text-gray-900">No hay favoritos guardados</h5>
+            <p class="text-gray-500 mb-0">Comienza a guardar tus posts favoritos.</p>
+          </div>
+        </div>
+        {% endfor %}
+
+        {% if is_paginated %}
+        <div class="flex justify-center mt-4">
+          <nav class="flex items-center gap-1">
+            {% if page_obj.has_previous %}
+            <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 no-underline" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
+              <i class="fas fa-chevron-left"></i> Atrás
+            </a>
+            {% endif %}
+
+            {% for pagina in paginator.page_range %}
+            <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm {% if pagina == page_obj.number %}bg-blue-600 text-white border-blue-600{% else %}text-gray-700 hover:bg-gray-100{% endif %} no-underline" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 no-underline" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+              Siguiente <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+          </nav>
+        </div>
+        {% endif %}
+
+      </div>
   </div>
-</div>
 </div>
 
 {% endblock content %}

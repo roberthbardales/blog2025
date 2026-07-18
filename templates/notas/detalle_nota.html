@@ -43,9 +43,10 @@
 
 {% block content %}
 {% include "includes/header.html" %}
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
 {% include "includes/barra_lateral.html" %}
 
-<div class="col-lg-9 py-4">
+<div class="w-full lg:flex-1 py-4">
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
     <div>
       <span class="badge badge-primary mb-2">
@@ -63,7 +64,7 @@
   </div>
 
   <div class="card border-0 note-detail-shell mb-4">
-    <div class="note-hero {% if nota.color == 'yellow' %}bg-warning{% elif nota.color == 'blue' %}bg-primary{% elif nota.color == 'green' %}bg-success{% elif nota.color == 'pink' %}bg-danger{% elif nota.color == 'orange' %}bg-warning{% else %}bg-secondary{% endif %}" style="{% if nota.color == 'yellow' %}background:linear-gradient(135deg,#b45309 0%,#f59e0b 60%,#facc15 100%);{% elif nota.color == 'blue' %}background:linear-gradient(135deg,#1d4ed8 0%,#2563eb 60%,#38bdf8 100%);{% elif nota.color == 'green' %}background:linear-gradient(135deg,#166534 0%,#16a34a 60%,#4ade80 100%);{% elif nota.color == 'pink' %}background:linear-gradient(135deg,#be185d 0%,#db2777 60%,#f472b6 100%);{% elif nota.color == 'orange' %}background:linear-gradient(135deg,#c2410c 0%,#ea580c 60%,#fb923c 100%);{% elif nota.color == 'purple' %}background:linear-gradient(135deg,#6d28d9 0%,#7c3aed 60%,#a78bfa 100%);{% endif %}">
+    <div class="note-hero {% if nota.color == 'yellow' %}bg-warning{% elif nota.color == 'blue' %}bg-primary{% elif nota.color == 'green' %}bg-success{% elif nota.color == 'pink' %}bg-danger{% elif nota.color == 'orange' %}bg-warning{% else %}bg-secondary{% endif %}" style="{% if nota.color == 'yellow' %}background:linear-gradient(135deg,#b45309 0%,#f59e0b 60%,#facc15 100%);{% elif nota.color == 'blue' %}background:linear-gradient(135deg,#1d4ed8 0%,#0b5ed7 60%,#38bdf8 100%);{% elif nota.color == 'green' %}background:linear-gradient(135deg,#166534 0%,#16a34a 60%,#4ade80 100%);{% elif nota.color == 'pink' %}background:linear-gradient(135deg,#be185d 0%,#db2777 60%,#f472b6 100%);{% elif nota.color == 'orange' %}background:linear-gradient(135deg,#c2410c 0%,#ea580c 60%,#fb923c 100%);{% elif nota.color == 'purple' %}background:linear-gradient(135deg,#6d28d9 0%,#7c3aed 60%,#a78bfa 100%);{% endif %}">
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
         <div class="mb-3 mb-md-0">
           <span class="badge badge-light text-dark mb-2">{{ nota.get_color_display }}</span>

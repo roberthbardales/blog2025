@@ -1,110 +1,84 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Chat</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-        }
-        h2 {
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: 500;
-        }
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border 0.3s;
-        }
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #5568d3;
-        }
-        .link-text {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-        }
-        .link-text a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .errorlist {
-            list-style: none;
-            color: #e74c3c;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-        .helptext {
-            font-size: 12px;
-            color: #777;
-            display: block;
-            margin-top: 5px;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ['Inter', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
 </head>
-<body>
-    <div class="container">
-        <h2>📝 Crear Cuenta</h2>
-        <form method="post">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    <label>{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.help_text %}
-                        <span class="helptext">{{ field.help_text }}</span>
-                    {% endif %}
-                    {{ field.errors }}
+<body class="min-h-screen bg-[radial-gradient(circle_at_top,_#dbeafe_0%,_#f8fafc_42%,_#e2e8f0_100%)] font-inter text-slate-900">
+    <main class="flex min-h-screen items-center justify-center px-4 py-10">
+        <section class="w-full max-w-md overflow-hidden rounded-3xl border border-white/70 bg-white/90 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.12)] backdrop-blur">
+            <div class="mb-8 text-center">
+                <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-lg shadow-emerald-600/30">
+                    <i class="fas fa-user-plus text-xl"></i>
                 </div>
-            {% endfor %}
-            <button type="submit">Registrarse</button>
-        </form>
-        <p class="link-text">¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
-    </div>
+                <h1 class="text-3xl font-bold tracking-tight">Crear cuenta</h1>
+                <p class="mt-2 text-sm text-slate-500">Regístrate para empezar a chatear</p>
+            </div>
+
+            <form method="post" class="space-y-5">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div>
+                        <label class="mb-2 block text-sm font-semibold text-slate-700">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <p class="mt-2 text-xs text-slate-500">{{ field.help_text }}</p>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="mt-2 text-sm text-red-600">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="flex w-full items-center justify-center rounded-2xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-200">
+                    Registrarse
+                </button>
+            </form>
+
+            <p class="mt-6 text-center text-sm text-slate-500">
+                ¿Ya tienes cuenta?
+                <a href="{% url 'login' %}" class="font-semibold text-emerald-600 hover:text-emerald-700">Inicia sesión</a>
+            </p>
+        </section>
+    </main>
+
+    <script>
+      document.querySelectorAll('input').forEach((input) => {
+        input.classList.add(
+          'w-full',
+          'rounded-2xl',
+          'border',
+          'border-slate-200',
+          'bg-white',
+          'px-4',
+          'py-3',
+          'text-sm',
+          'text-slate-900',
+          'outline-none',
+          'transition',
+          'placeholder:text-slate-400',
+          'focus:border-emerald-500',
+          'focus:ring-4',
+          'focus:ring-emerald-100'
+        );
+      });
+    </script>
 </body>
 </html>

@@ -6,156 +6,106 @@
 {% include "includes/header.html" %}
 
 <style>
-    /* Tarjetas */
-    .card {
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        border: none;
-        margin-bottom: 1px;
+    .badge-status {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
     }
-
-    .card-header {
-        background-color: #007bff !important;
-        color: white !important;
-    }
-
-    /* Badge de usuario */
-    .user-badge {
+    .badge-staff {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        font-size: 1rem;
     }
-
-    /* Tabla */
-    .table-custom {
-        width: 100%;
-        background-color: white;
-        border-radius: 6px;
-        overflow: hidden;
-        font-size: 1rem;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    .badge-user {
+        background: #e2e8f0;
+        color: #475569;
     }
-
-    .table-custom thead th {
-        background-color: #007bff;
+    .badge-active {
+        background: #22c55e;
         color: white;
-        padding: 5px 5px;
-        font-weight: 600;
-        text-transform: uppercase;
     }
-
-    .table-custom tbody td {
-        padding: 5px 5px;
-        vertical-align: middle;
-    }
-
-    .table-custom tbody tr:hover {
-        background-color: #f8f9fa;
-    }
-
-    /* Badges de estado */
-    .badge-status {
-        padding: 4px 10px;
-        border-radius: 15px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    .badge-active { background-color: #28a745; color: white; }
-    .badge-inactive { background-color: #dc3545; color: white; }
-    .badge-staff { background-color: #ffc107; color: #212529; }
-    .badge-user { background-color: #6c757d; color: white; }
-
-    /* Tarjetas estadísticas */
-    .stats-card {
-        border-left: 4px solid #007bff;
-        padding: 1px 1px;
+    .badge-inactive {
+        background: #ef4444;
+        color: white;
     }
 </style>
 
-
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
   {% include "includes/barra_lateral.html" %}
   <!-- CONTENIDO PRINCIPAL -->
-<div class="col-lg-9">
+  <div class="w-full lg:flex-1">
 
-<div class="container" style="min-height: 637px; padding: 10px 0;">
-    <div class="row">
-        <div class="col-12">
-            <!-- Header Principal -->
-            <div class="card mb-2">
-                <div class="card-header">
-                    <h3 class="mb-2"><i class="fas fa-users mr-2"></i>Gestión de Usuarios</h3>
-                </div>
-            </div>
-
-            <!-- Tabla de Usuarios -->
-            <div class="card">
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-custom mb-0">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Email</th>
-                                    <th>Ocupación</th>
-                                    <th>Staff</th>
-                                    <th>Estado</th>
-                                    <th>Última</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for usuario in usuarios %}
-                                <tr>
-                                    <td><strong class="text-primary">#{{ usuario.id }}</strong></td>
-                                    <td>{{ usuario.full_name }}</td>
-                                    <td><i class="fas fa-envelope text-muted mr-1"></i>{{ usuario.email }}</td>
-                                    <td>{{ usuario.get_ocupation_display }}</td>
-
-                                    <td>
-                                        {% if usuario.is_staff %}
-                                            <span class="badge-status badge-staff"><i class="fas fa-check mr-1"></i>Staff</span>
-                                        {% else %}
-                                            <span class="badge-status badge-user"><i class="fas fa-user mr-1"></i>Usuario</span>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if usuario.is_active %}
-                                            <span class="badge-status badge-active"><i class="fas fa-check-circle mr-1"></i></span>
-                                        {% else %}
-                                            <span class="badge-status badge-inactive"><i class="fas fa-times-circle mr-1"></i></span>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if usuario.last_login %}
-                                            {{ usuario.last_login|date:"d/m/Y H:i" }}
-                                        {% else %}
-                                            Nunca
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="9" class="text-center py-5">
-                                        <i class="fas fa-users text-muted" style="font-size: 60px;"></i>
-                                        <h5 class="mt-3 text-muted">No hay usuarios registrados</h5>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
+    <div class="min-h-[637px] py-4">
+      <div class="w-full">
+        <!-- Header Principal -->
+        <div class="bg-white rounded-xl shadow-sm mb-2 overflow-hidden">
+          <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-3">
+            <h3 class="mb-0 text-lg font-semibold"><i class="fas fa-users mr-2"></i>Gestión de Usuarios</h3>
+          </div>
         </div>
-    </div>
-</div>
 
-</div>
-</div>
+        <!-- Tabla de Usuarios -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200">
+                  <th class="px-4 py-3 text-xs font-bold text-gray-600 uppercase tracking-wider">ID</th>
+                  <th class="px-4 py-3 text-xs font-bold text-gray-600 uppercase tracking-wider">Nombre</th>
+                  <th class="px-4 py-3 text-xs font-bold text-gray-600 uppercase tracking-wider">Email</th>
+                  <th class="px-4 py-3 text-xs font-bold text-gray-600 uppercase tracking-wider">Ocupación</th>
+                  <th class="px-4 py-3 text-xs font-bold text-gray-600 uppercase tracking-wider">Staff</th>
+                  <th class="px-4 py-3 text-xs font-bold text-gray-600 uppercase tracking-wider">Estado</th>
+                  <th class="px-4 py-3 text-xs font-bold text-gray-600 uppercase tracking-wider">Última</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for usuario in usuarios %}
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td class="px-4 py-3"><strong class="text-blue-600">#{{ usuario.id }}</strong></td>
+                  <td class="px-4 py-3">{{ usuario.full_name }}</td>
+                  <td class="px-4 py-3"><i class="fas fa-envelope text-gray-500 mr-1"></i>{{ usuario.email }}</td>
+                  <td class="px-4 py-3">{{ usuario.get_ocupation_display }}</td>
+                  <td class="px-4 py-3">
+                    {% if usuario.is_staff %}
+                      <span class="badge-status badge-staff"><i class="fas fa-check mr-1"></i>Staff</span>
+                    {% else %}
+                      <span class="badge-status badge-user"><i class="fas fa-user mr-1"></i>Usuario</span>
+                    {% endif %}
+                  </td>
+                  <td class="px-4 py-3">
+                    {% if usuario.is_active %}
+                      <span class="badge-status badge-active"><i class="fas fa-check-circle mr-1"></i>Activo</span>
+                    {% else %}
+                      <span class="badge-status badge-inactive"><i class="fas fa-times-circle mr-1"></i>Inactivo</span>
+                    {% endif %}
+                  </td>
+                  <td class="px-4 py-3 text-sm text-gray-500">
+                    {% if usuario.last_login %}
+                      {{ usuario.last_login|date:"d/m/Y H:i" }}
+                    {% else %}
+                      Nunca
+                    {% endif %}
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="9" class="text-center px-4 py-8">
+                    <i class="fas fa-users text-gray-400" style="font-size: 60px;"></i>
+                    <h5 class="mt-3 text-gray-500">No hay usuarios registrados</h5>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>
 
 {% endblock content %}

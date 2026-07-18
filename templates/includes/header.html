@@ -1,142 +1,61 @@
 {% load static %}
 
-<style>
-  .site-navbar {
-    background: linear-gradient(90deg, #0d6efd 0%, #0b5ed7 55%, #084298 100%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  }
-
-  .site-navbar .navbar-brand img {
-    max-height: 3rem;
-    width: auto;
-    display: block;
-  }
-
-  .site-navbar .nav-link.btn {
-    border-radius: 0.35rem;
-    padding: 0.45rem 0.95rem;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
-  }
-
-  .site-navbar .nav-link.btn-outline-light {
-    border-color: #28a745;
-    color: #ffffff;
-  }
-
-  .site-navbar .nav-link.btn:hover,
-  .site-navbar .nav-link.btn:focus {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
-  }
-
-  .site-navbar .nav-link.btn-outline-light:hover,
-  .site-navbar .nav-link.btn-outline-light:focus {
-    background-color: #28a745;
-    border-color: #28a745;
-    color: #ffffff;
-  }
-
-  .site-navbar .weather-badge {
-    background: rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    padding: 0.45rem 0.75rem;
-    font-size: 0.95rem;
-    white-space: nowrap;
-  }
-
-  .site-navbar .search-form .form-control {
-    border-radius: 0.35rem;
-    min-width: 170px;
-  }
-
-  .site-navbar .search-form .btn {
-    border-radius: 0.35rem;
-  }
-
-  .site-navbar .profile-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #28a745;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  }
-
-  .site-navbar .profile-avatar:hover,
-  .site-navbar .profile-avatar:focus {
-    transform: scale(1.08);
-    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-    border-color: #28a745;
-  }
-
-  @media (min-width: 992px) {
-    .site-navbar .navbar-toggler {
-      display: none;
-    }
-  }
-</style>
-
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top site-navbar">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="{% url 'home_app:index' %}">
-      <img class="img-fluid" src="{% static 'img/logo2.jpg' %}" alt="Logo del sitio">
-    </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary-600 via-primary-500 to-primary-900 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+  <div class="flex lg:hidden items-center justify-end px-4 py-2">
+    <button id="navToggle" class="text-white text-2xl focus:outline-none" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
     </button>
+  </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto align-items-lg-center">
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:index' %}">Inicio</a>
+  <div id="navMenu" class="hidden lg:flex lg:items-center lg:justify-center flex-col lg:flex-row px-4 pb-4 lg:px-8 lg:py-2">
+    <div class="flex items-center gap-2 flex-col lg:flex-row">
+      <a class="flex items-center" href="{% url 'home_app:index' %}">
+        <img class="h-7 w-10 rounded-lg object-cover" src="{% static 'img/logo2.jpg' %}" alt="Logo del sitio">
+      </a>
+      <ul class="flex flex-col lg:flex-row lg:items-center gap-1">
+        <li>
+          <a class="inline-block border border-white/20 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#198754] hover:border-[#198754]" href="{% url 'home_app:index' %}">Inicio</a>
         </li>
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:portafolio' %}">Proyectos</a>
+        <li>
+          <a class="inline-block border border-white/20 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#198754] hover:border-[#198754]" href="{% url 'home_app:portafolio' %}">Proyectos</a>
         </li>
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a class="nav-link btn btn-outline-light text-white" href="{% url 'home_app:sobre_mi' %}">Sobre mí</a>
+        <li>
+          <a class="inline-block border border-white/20 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#198754] hover:border-[#198754]" href="{% url 'home_app:sobre_mi' %}">Sobre mí</a>
         </li>
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a class="nav-link btn btn-outline-light text-white" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
+        <li>
+          <a class="inline-block border border-white/20 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#198754] hover:border-[#198754]" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
         </li>
-
-        {% if not user.is_anonymous %}
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a href="{% url 'amigos_app:perfil' %}" class="nav-link p-0 d-flex align-items-center">
-            {% if user.avatar %}
-              <img src="{{ user.avatar.url }}" alt="Avatar de {{ user.name }}" class="profile-avatar">
-            {% elif user.avatar_url %}
-              <img src="{{ user.avatar_url }}" alt="Avatar de {{ user.name }}" class="profile-avatar">
-            {% else %}
-              <span class="btn btn-warning text-dark">Perfil</span>
-            {% endif %}
-          </a>
-        </li>
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a href="{% url 'users_app:user-logout' %}" class="nav-link btn btn-danger text-white">Salir</a>
-        </li>
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a class="nav-link text-white font-weight-bold" href="{% url 'favoritos_app:perfil' %}">{{ user.name }}</a>
-        </li>
-        {% else %}
-        <li class="nav-item mx-1 my-1 my-lg-0">
-          <a href="{% url 'users_app:user-login' %}" class="nav-link btn btn-success text-white">Iniciar sesión</a>
-        </li>
-
-        {% endif %}
       </ul>
-
-      <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="form-inline my-2 my-lg-0 search-form">
+      <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="flex items-center gap-2">
         {% csrf_token %}
-        <input class="form-control mr-sm-2" id="kword_general" name="kword_general" type="search" placeholder="Buscar..." aria-label="Buscar" value="{{ request.GET.kword_general }}">
-        <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+        <input class="rounded-lg border-none px-3 py-1.5 min-w-[170px] focus:outline-none focus:ring-2 focus:ring-white/30" id="kword_general" name="kword_general" type="search" placeholder="Buscar..." aria-label="Buscar" value="{{ request.GET.kword_general }}">
+        <button class="bg-gray-900 text-white rounded-lg px-3 py-1.5 hover:bg-gray-800 transition-colors" type="submit">Buscar</button>
       </form>
-
-      <div class="ml-lg-3 mt-3 mt-lg-0 text-white d-flex align-items-center">
-        <span class="weather-badge">🌡️ {{ temperatura }}°C</span>
-      </div>
+      {% if not user.is_anonymous %}
+      <a href="{% url 'amigos_app:perfil' %}" class="flex items-center p-0">
+        {% if user.avatar %}
+          <img src="{{ user.avatar.url }}" alt="Avatar de {{ user.name }}" class="w-11 h-11 rounded-full object-cover border-2 border-white/30 transition-all duration-200 hover:scale-110 hover:shadow-[0_0_0_0.2rem_rgba(255,255,255,0.25)]">
+        {% elif user.avatar_url %}
+          <img src="{{ user.avatar_url }}" alt="Avatar de {{ user.name }}" class="w-11 h-11 rounded-full object-cover border-2 border-white/30 transition-all duration-200 hover:scale-110 hover:shadow-[0_0_0_0.2rem_rgba(255,255,255,0.25)]">
+        {% else %}
+          <span class="bg-yellow-400 text-dark rounded-lg px-4 py-2">Perfil</span>
+        {% endif %}
+      </a>
+      <a href="{% url 'users_app:user-logout' %}" class="inline-block bg-red-600 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">Salir</a>
+      <a class="text-white font-bold" href="{% url 'favoritos_app:perfil' %}">{{ user.name }}</a>
+      {% else %}
+      <a href="{% url 'users_app:user-login' %}" class="inline-block bg-white/10 border border-white/30 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#198754] hover:border-[#198754]">Iniciar sesión</a>
+      {% endif %}
     </div>
   </div>
 </nav>
+
+<script>
+  (function() {
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', function() {
+      menu.classList.toggle('hidden');
+    });
+  })();
+</script>

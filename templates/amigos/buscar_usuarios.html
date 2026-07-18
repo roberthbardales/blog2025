@@ -1,177 +1,151 @@
-﻿{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}Buscar Personas{% endblock %}
 
 {% block content %}
 {% include "includes/header.html" %}
-{% include "includes/barra_lateral.html" %}
 
-<div class="col-lg-9">
-  <div class="card border-0 shadow-sm mb-4">
-    <div class="card-body bg-primary text-white rounded">
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-        <div class="mb-3 mb-md-0">
-          <span class="badge badge-light text-primary mb-2">
-            <i class="fas fa-search mr-1"></i>Descubrir personas
-          </span>
-          <h2 class="mb-2 font-weight-bold">Buscar personas</h2>
-          <p class="mb-0" style="max-width: 720px; opacity: .92;">
-            Encuentra usuarios por nombre o email y conecta con nuevas personas desde tu red.
-          </p>
-        </div>
-        <div>
-          <a href="{% url 'amigos_app:lista' %}" class="btn btn-light btn-lg text-primary font-weight-bold">
-            <i class="fas fa-arrow-left mr-1"></i> Mis amigos
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
+  {% include "includes/barra_lateral.html" %}
+
+  <div class="w-full lg:flex-1">
+    <div class="space-y-4">
+      <section class="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)]">
+        <div class="p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm font-medium text-white/95">
+              <i class="fas fa-search"></i>Descubrir personas
+            </span>
+            <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">Buscar personas</h1>
+            <p class="mt-2 max-w-3xl text-sm text-white/75">Encuentra usuarios por nombre o email y conecta con nuevas personas desde tu red.</p>
+          </div>
+          <a href="{% url 'amigos_app:lista' %}" class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">
+            <i class="fas fa-arrow-left mr-2"></i>Mis amigos
           </a>
         </div>
-      </div>
-    </div>
-  </div>
+      </section>
 
-  {% if messages %}
-    {% for msg in messages %}
-      <div class="alert alert-{{ msg.tags }} alert-dismissible fade show shadow-sm" role="alert">
-        {{ msg }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    {% endfor %}
-  {% endif %}
-
-  <div class="card border-0 shadow-sm mb-4">
-    <div class="card-body">
-      <form method="get">
-        <label class="small text-muted mb-1">
-          <i class="fas fa-keyboard mr-1"></i>Escribe un nombre o email
-        </label>
-        <div class="input-group input-group-lg">
-          <input type="text" name="kword" value="{{ kword }}" class="form-control" placeholder="Buscar por nombre o email...">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
-              <i class="fas fa-search mr-1"></i> Buscar
-            </button>
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="rounded-2xl border px-4 py-3 shadow-sm {% if 'error' in msg.tags %}border-rose-200 bg-rose-50 text-rose-700{% elif 'success' in msg.tags %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-blue-200 bg-blue-50 text-blue-700{% endif %}">
+            {{ msg }}
           </div>
-        </div>
-      </form>
-    </div>
-  </div>
+        {% endfor %}
+      {% endif %}
 
-  {% if kword %}
-    {% if usuarios %}
-    <div class="row">
-      {% for item in usuarios %}
-      <div class="col-md-6 col-xl-4 mb-4">
-        <div class="card border-0 shadow-sm h-100 text-center">
-          <div class="card-body d-flex flex-column align-items-center py-4">
-            {% if item.user.avatar %}
-              <img src="{{ item.user.avatar.url }}" class="rounded-circle mb-3" width="80" height="80" style="object-fit: cover;" alt="{{ item.user.full_name }}">
-            {% else %}
-              <img src="{% static 'img/unknown.png' %}" class="rounded-circle mb-3" width="80" height="80" style="object-fit: cover;" alt="Usuario">
-            {% endif %}
-
-            <a href="{% url 'entrada_app:view_profile' item.user.id %}" class="h5 mb-1 text-primary text-decoration-none">
-              {{ item.user.full_name }}
-            </a>
-
-            {% if item.user.full_name != item.user.email %}
-              <small class="text-muted text-truncate w-100" title="{{ item.user.email }}">{{ item.user.email }}</small>
-            {% endif %}
-
-            <div class="w-100 mt-3">
-              {% if item.status == None %}
-                <form method="post" action="{% url 'amigos_app:enviar' item.user.pk %}">
-                  {% csrf_token %}
-                  <button class="btn btn-primary btn-block">
-                    <i class="fas fa-user-plus mr-1"></i>Agregar
-                  </button>
-                </form>
-              {% elif item.status == 'accepted' %}
-                <span class="btn btn-success btn-block disabled">
-                  <i class="fas fa-user-check mr-1"></i>Amigos
-                </span>
-              {% elif item.status == 'pending' and item.soy_sender %}
-                <span class="badge badge-warning text-dark mb-2 px-3 py-2">
-                  <i class="fas fa-clock mr-1"></i>Solicitud enviada
-                </span>
-                <form method="post" action="{% url 'amigos_app:cancelar' item.friendship.pk %}">
-                  {% csrf_token %}
-                  <button class="btn btn-outline-secondary btn-block">
-                    <i class="fas fa-ban mr-1"></i>Cancelar
-                  </button>
-                </form>
-              {% elif item.status == 'pending' and not item.soy_sender %}
-                <span class="badge badge-info mb-2 px-3 py-2">
-                  <i class="fas fa-user mr-1"></i>Te envió solicitud
-                </span>
-                <div class="d-flex" style="gap: .5rem;">
-                  <form method="post" action="{% url 'amigos_app:aceptar' item.friendship.pk %}" class="flex-fill">
-                    {% csrf_token %}
-                    <button class="btn btn-success btn-block">
-                      <i class="fas fa-check mr-1"></i>Aceptar
-                    </button>
-                  </form>
-                  <form method="post" action="{% url 'amigos_app:rechazar' item.friendship.pk %}" class="flex-fill">
-                    {% csrf_token %}
-                    <button class="btn btn-outline-danger btn-block">
-                      <i class="fas fa-times mr-1"></i>Rechazar
-                    </button>
-                  </form>
-                </div>
-              {% elif item.status == 'blocked' %}
-                <span class="btn btn-danger btn-block disabled">
-                  <i class="fas fa-ban mr-1"></i>Bloqueado
-                </span>
-              {% endif %}
+      <section class="rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div class="p-5 sm:p-6">
+          <form method="get" class="space-y-2">
+            <label class="block text-sm font-medium text-slate-600">
+              <i class="fas fa-keyboard mr-1"></i>Escribe un nombre o email
+            </label>
+            <div class="flex gap-2">
+              <input type="text" name="kword" value="{{ kword }}" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Buscar por nombre o email...">
+              <button class="inline-flex items-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700" type="submit">
+                <i class="fas fa-search mr-2"></i>Buscar
+              </button>
             </div>
-          </div>
+          </form>
         </div>
-      </div>
-      {% endfor %}
-    </div>
+      </section>
 
-    {% if is_paginated %}
-    <nav class="mt-4">
-      <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-          <li class="page-item">
-            <a class="page-link" href="?kword={{ kword }}&page={{ page_obj.previous_page_number }}">
-              <i class="fas fa-chevron-left"></i>
-            </a>
-          </li>
-        {% endif %}
-        <li class="page-item disabled">
-          <span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
-        </li>
-        {% if page_obj.has_next %}
-          <li class="page-item">
-            <a class="page-link" href="?kword={{ kword }}&page={{ page_obj.next_page_number }}">
-              <i class="fas fa-chevron-right"></i>
-            </a>
-          </li>
-        {% endif %}
-      </ul>
-    </nav>
-    {% endif %}
+      {% if kword %}
+        {% if usuarios %}
+        <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {% for item in usuarios %}
+          <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="p-5 text-center">
+              {% if item.user.avatar %}
+                <img src="{{ item.user.avatar.url }}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="{{ item.user.full_name }}">
+              {% else %}
+                <img src="{% static 'img/unknown.png' %}" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" alt="Usuario">
+              {% endif %}
 
-    {% else %}
-    <div class="card border-0 shadow-sm">
-      <div class="card-body text-center py-5 text-muted">
-        <i class="fas fa-user-slash fa-3x text-success mb-3 d-block"></i>
-        <h5 class="mb-2">No se encontraron resultados</h5>
-        <p class="mb-0">No encontramos usuarios para <strong>"{{ kword }}"</strong>.</p>
-      </div>
+              <a href="{% url 'entrada_app:view_profile' item.user.id %}" class="block text-lg font-semibold text-blue-700 hover:underline">{{ item.user.full_name }}</a>
+              {% if item.user.full_name != item.user.email %}
+                <small class="mt-1 block truncate text-sm text-slate-500" title="{{ item.user.email }}">{{ item.user.email }}</small>
+              {% endif %}
+
+              <div class="mt-4">
+                {% if item.status == None %}
+                  <form method="post" action="{% url 'amigos_app:enviar' item.user.pk %}">{% csrf_token %}
+                    <button class="w-full rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
+                      <i class="fas fa-user-plus mr-1"></i>Agregar
+                    </button>
+                  </form>
+                {% elif item.status == 'accepted' %}
+                  <span class="inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white">
+                    <i class="fas fa-user-check mr-1"></i>Amigos
+                  </span>
+                {% elif item.status == 'pending' and item.soy_sender %}
+                  <div class="space-y-2">
+                    <span class="inline-flex w-full items-center justify-center rounded-xl bg-amber-100 px-4 py-2.5 text-sm font-semibold text-amber-700">
+                      <i class="fas fa-clock mr-1"></i>Solicitud enviada
+                    </span>
+                    <form method="post" action="{% url 'amigos_app:cancelar' item.friendship.pk %}">{% csrf_token %}
+                      <button class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                        <i class="fas fa-ban mr-1"></i>Cancelar
+                      </button>
+                    </form>
+                  </div>
+                {% elif item.status == 'pending' and not item.soy_sender %}
+                  <div class="space-y-2">
+                    <span class="inline-flex w-full items-center justify-center rounded-xl bg-sky-100 px-4 py-2.5 text-sm font-semibold text-sky-700">
+                      <i class="fas fa-user mr-1"></i>Te envió solicitud
+                    </span>
+                    <div class="flex gap-2">
+                      <form method="post" action="{% url 'amigos_app:aceptar' item.friendship.pk %}" class="flex-1">{% csrf_token %}
+                        <button class="w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700">
+                          <i class="fas fa-check mr-1"></i>Aceptar
+                        </button>
+                      </form>
+                      <form method="post" action="{% url 'amigos_app:rechazar' item.friendship.pk %}" class="flex-1">{% csrf_token %}
+                        <button class="w-full rounded-xl border border-rose-600 px-4 py-2.5 text-sm font-semibold text-rose-600 hover:bg-rose-600 hover:text-white">
+                          <i class="fas fa-times mr-1"></i>Rechazar
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                {% elif item.status == 'blocked' %}
+                  <span class="inline-flex w-full items-center justify-center rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white">
+                    <i class="fas fa-ban mr-1"></i>Bloqueado
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+        </section>
+
+        {% if is_paginated %}
+        <nav class="mt-4 flex justify-center">
+          <ul class="flex items-center gap-2">
+            {% if page_obj.has_previous %}
+            <li><a class="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50" href="?kword={{ kword }}&page={{ page_obj.previous_page_number }}"><i class="fas fa-chevron-left"></i></a></li>
+            {% endif %}
+            <li class="rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-700">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</li>
+            {% if page_obj.has_next %}
+            <li><a class="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50" href="?kword={{ kword }}&page={{ page_obj.next_page_number }}"><i class="fas fa-chevron-right"></i></a></li>
+            {% endif %}
+          </ul>
+        </nav>
+        {% endif %}
+        {% else %}
+        <section class="rounded-3xl border border-slate-200 bg-white px-6 py-12 text-center text-slate-500 shadow-sm">
+          <i class="fas fa-user-slash mb-3 block text-5xl text-slate-300"></i>
+          <h2 class="text-lg font-semibold text-slate-900">No se encontraron resultados</h2>
+          <p class="mt-2">No encontramos usuarios para <strong>"{{ kword }}"</strong>.</p>
+        </section>
+        {% endif %}
+      {% else %}
+        <section class="rounded-3xl border border-slate-200 bg-white px-6 py-12 text-center text-slate-500 shadow-sm">
+          <i class="fas fa-search mb-3 block text-5xl text-slate-300"></i>
+          <h2 class="text-lg font-semibold text-slate-900">Empieza una búsqueda</h2>
+          <p class="mt-2">Escribe un nombre o email para encontrar personas.</p>
+        </section>
+      {% endif %}
     </div>
-    {% endif %}
-  {% else %}
-    <div class="card border-0 shadow-sm">
-      <div class="card-body text-center py-5 text-muted">
-        <i class="fas fa-search fa-3x text-success mb-3 d-block"></i>
-        <h5 class="mb-2">Empieza una búsqueda</h5>
-        <p class="mb-0">Escribe un nombre o email para encontrar personas.</p>
-      </div>
-    </div>
-  {% endif %}
+  </div>
 </div>
 {% endblock %}

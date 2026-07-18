@@ -6,452 +6,380 @@
 {% include "includes/header.html" %}
 
 <style>
-  body {
-    background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
-  }
-
-  .portfolio-hero {
-    border: 0;
-    border-radius: 1.1rem;
-    overflow: hidden;
-    color: #fff;
-    background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #1d4ed8 100%);
-    box-shadow: 0 18px 36px rgba(15, 23, 42, .16);
-  }
-
-  .project-card {
-    border: 0;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
-    border-left: 5px solid #2563eb;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(15, 23, 42, .15);
-  }
-
-  .project-image {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-  }
-
-  .badge-custom {
-    padding: 0.5rem 0.8rem;
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 0.85rem;
-  }
-  .carousel-control-prev-icon, .carousel-control-next-icon {
-    filter: invert(30%) sepia(90%) saturate(2000%) hue-rotate(210deg) brightness(95%) contrast(100%);
-  }
-
-  .repo-btn {
-    display: inline-flex;
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
     align-items: center;
-    gap: 0.45rem;
-    margin-top: 0.75rem;
-    padding: 0.38rem 0.85rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    border-radius: 999px;
-    line-height: 1;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 9999px;
+    color: white;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
   }
-
-  .repo-btn i {
-    font-size: 0.95rem;
+  .carousel-btn:hover { background: rgba(0,0,0,0.5); }
+  .carousel-dot {
+    width: 8px; height: 8px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: all 0.25s;
+    border: none; padding: 0;
+  }
+  .carousel-dot.active {
+    background: white;
+    width: 24px;
+    border-radius: 4px;
   }
 </style>
 
-<div class="container py-3">
+<div class="max-w-7xl mx-auto px-4 py-3">
 
   <!-- HERO -->
-  <div class="row justify-content-center mb-5">
-    <div class="col-lg-10 text-center">
-      <div class="card portfolio-hero">
-        <div class="card-body py-4">
-          <h1 class="display-5 font-weight-bold mb-0">Proyectos Full Stack con Python</h1>
-          <!-- <p class="lead mt-2 opacity-75">Soluciones escalables con Python & Django</p> -->
+  <div class="flex justify-center mb-6">
+    <div class="w-full lg:w-10/12 text-center">
+      <div class="bg-white rounded-xl shadow-lg border border-gray-100">
+        <div class="px-6 py-5">
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Proyectos Full Stack con Python</h1>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="row">
+  <div class="flex justify-center">
+    <div class="w-full lg:w-10/12 space-y-5">
 
-        <!-- PROYECTO 1 -->
-        <div class="col-12 mb-5">
-          <div class="card project-card border-0 shadow-lg" style="border-left: 5px solid #2563eb !important;">
-            <div id="carouselProject1" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselProject1" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselProject1" data-slide-to="1"></li>
-                <li data-target="#carouselProject1" data-slide-to="2"></li>
-                <li data-target="#carouselProject1" data-slide-to="3"></li>
-                <li data-target="#carouselProject1" data-slide-to="4"></li>
-                <li data-target="#carouselProject1" data-slide-to="5"></li>
-                <li data-target="#carouselProject1" data-slide-to="6"></li>
-                <li data-target="#carouselProject1" data-slide-to="7"></li>
-                <li data-target="#carouselProject1" data-slide-to="8"></li>
-                <li data-target="#carouselProject1" data-slide-to="9"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="{% static 'img/b1.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 1">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Dashboard</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b2.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b3.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b4.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b5.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b6.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b7.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b8.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b9.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b10.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b11.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b12.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b13.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/b14.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Red Social Preview 2">
-                </div>
-
-              </div>
-              <a class="carousel-control-prev" href="#carouselProject1" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
-              </a>
-              <a class="carousel-control-next" href="#carouselProject1" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
-              </a>
+      <!-- PROYECTO 1 -->
+      <div class="bg-white rounded-xl shadow-lg border-t-[5px] border-[#0b5ed7] overflow-hidden">
+        <div class="relative overflow-hidden" data-carousel>
+          <div class="flex overflow-hidden relative" data-carousel-inner>
+            <div class="min-w-full block" data-slide>
+              <img src="{% static 'img/b1.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 1">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
             </div>
-            <div class="card-body py-3 px-4">
-              <div class="row align-items-center">
-                <div class="col-lg-8">
-                  <h2 class="h3 font-weight-bold mb-2">
-                    Red Social & Blog <span class="text-primary">Profesional</span>
-                  </h2>
-                  <p class="text-muted mb-3">
-                    Plataforma completa con autenticación, CHAT en tiempo real, gestión de perfiles, likes, comentarios, etc.
-                  </p>
-                  <div class="mb-0">
-                    <span class="badge badge-success badge-custom mr-1 mb-1">Django</span>
-                    <span class="badge badge-primary badge-custom mr-1 mb-1">PostgreSQL</span>
-                    <span class="badge badge-warning badge-custom mr-1 mb-1">DRF</span>
-                    <span class="badge badge-info badge-custom mr-1 mb-1">Boostrap</span>
-                    <span class="badge badge-danger badge-custom mr-1 mb-1">WebSockets</span>
-                    <span class="badge badge-dark badge-custom mr-1 mb-1">Channels</span>
-                  </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-right mt-3 mt-lg-0">
-                  <a href="https://codigobase.duckdns.org/" target="_blank"
-                     class="btn btn-primary btn-md px-4 font-weight-bold shadow-sm rounded-pill transition-all">
-                    IR AL BLOG
-                  </a>
-                  <div>
-                    <a href="https://github.com/roberthbardales/blog2025" target="_blank" rel="noopener noreferrer"
-                       class="btn btn-outline-dark repo-btn">
-                      <i class="fab fa-github"></i>
-                      Ver Repositorio
-                    </a>
-                  </div>
-                </div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b2.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 2"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b3.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 3"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b4.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 4"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b5.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 5"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b6.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 6"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b7.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 7"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b8.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 8"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b9.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 9"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b10.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 10"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b11.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 11"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b12.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 12"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b13.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 13"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b14.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 14"></div>
+          </div>
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            <button class="carousel-dot active" data-index="0"></button>
+            <button class="carousel-dot" data-index="1"></button>
+            <button class="carousel-dot" data-index="2"></button>
+            <button class="carousel-dot" data-index="3"></button>
+            <button class="carousel-dot" data-index="4"></button>
+            <button class="carousel-dot" data-index="5"></button>
+            <button class="carousel-dot" data-index="6"></button>
+            <button class="carousel-dot" data-index="7"></button>
+            <button class="carousel-dot" data-index="8"></button>
+            <button class="carousel-dot" data-index="9"></button>
+            <button class="carousel-dot" data-index="10"></button>
+            <button class="carousel-dot" data-index="11"></button>
+            <button class="carousel-dot" data-index="12"></button>
+            <button class="carousel-dot" data-index="13"></button>
+          </div>
+          <button class="carousel-btn left-3" data-prev aria-label="Anterior">
+            <i class="fas fa-chevron-left text-sm"></i>
+          </button>
+          <button class="carousel-btn right-3" data-next aria-label="Siguiente">
+            <i class="fas fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+        <div class="px-4 py-3">
+          <div class="flex flex-wrap items-center">
+            <div class="w-full lg:w-8/12">
+              <h2 class="text-2xl font-bold mb-2 text-gray-900">
+                Red Social & Blog <span class="text-primary-500">Profesional</span>
+              </h2>
+              <p class="text-gray-500 mb-3">
+                Plataforma completa con autenticación, CHAT en tiempo real, perfiles, likes, etc.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-0">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">DRF</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-red-100 text-red-700">WebSockets</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">Channels</span>
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 text-center lg:text-right mt-3 lg:mt-0 space-y-2">
+              <a href="https://codigobase.duckdns.org/" target="_blank"
+                 class="inline-flex items-center gap-2 bg-primary-600 text-white font-bold px-5 py-2.5 rounded-full shadow-sm hover:bg-primary-700 transition-all text-sm">
+                IR AL BLOG
+              </a>
+              <div>
+                <a href="https://github.com/roberthbardales/blog2025" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 border border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-800 rounded-full px-3 py-1.5 text-xs font-semibold transition-all">
+                  <i class="fab fa-github"></i>
+                  Ver Repositorio
+                </a>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- PROYECTO 2 -->
-        <div class="col-12 mb-5">
-          <div class="card project-card border-0 shadow-lg" style="border-left: 5px solid #10b981 !important;">
-
-            <!-- CARRUSEL GRANDE -->
-            <div id="carouselProject2" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselProject2" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselProject2" data-slide-to="1"></li>
-                <li data-target="#carouselProject2" data-slide-to="2"></li>
-                <li data-target="#carouselProject2" data-slide-to="3"></li>
-                <li data-target="#carouselProject2" data-slide-to="4"></li>
-                <li data-target="#carouselProject2" data-slide-to="5"></li>
-                <li data-target="#carouselProject2" data-slide-to="6"></li>
-                <li data-target="#carouselProject2" data-slide-to="7"></li>
-                <li data-target="#carouselProject2" data-slide-to="8"></li>
-                <li data-target="#carouselProject2" data-slide-to="9"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="{% static 'img/d1.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 1">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Inventarios</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d2.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d3.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d4.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d5.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d6.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d7.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d8.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d9.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d10.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d11.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d12.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d13.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d14.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d15.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d16.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d17.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/d18.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="ERP Preview 2">
-                </div>
-
-              </div>
-              <a class="carousel-control-prev" href="#carouselProject2" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
-              </a>
-              <a class="carousel-control-next" href="#carouselProject2" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
-              </a>
-            </div>
-
-            <!-- CONTENIDO INFERIOR -->
-            <div class="card-body py-3 px-4">
-              <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h2 class="h3 font-weight-bold mb-2">
-                      Sistema ERP <span class="text-success">Empresarial(DEMO)</span>
-                    </h2>
-                    <p class="text-muted mb-3">
-                      Solución integral para la gestión de recursos empresariales, cuenta con 3 modulos Inventario, ventas, RRHH.
-                    </p>
-                    <div class="mb-0">
-                      <span class="badge badge-success badge-custom mr-1 mb-1">Python</span>
-                      <span class="badge badge-success badge-custom mr-1 mb-1">Django</span>
-                      <span class="badge badge-primary badge-custom mr-1 mb-1">PostgreSQL</span>
-                      <span class="badge badge-info badge-custom mr-1 mb-1">Boostrap</span>
-                      <span class="badge badge-dark badge-custom mr-1 mb-1">Linux</span>
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-right mt-3 mt-lg-0">
-                  <a href="https://demo2026.duckdns.org/" target="_blank"
-                     class="btn btn-success btn-md px-4 font-weight-bold shadow-sm rounded-pill transition-all">
-                    VER DEMO
-                  </a>
-                  <div>
-                    <a href="https://github.com/roberthbardales/demo2026" target="_blank" rel="noopener noreferrer"
-                       class="btn btn-outline-dark repo-btn">
-                      <i class="fab fa-github"></i>
-                      Ver Repositorio
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- PROYECTO 3 -->
-        <div class="col-12 mb-5">
-          <div class="card project-card border-0 shadow-lg" style="border-left: 5px solid #f59e0b !important;">
-            <div id="carouselProject3" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselProject3" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselProject3" data-slide-to="1"></li>
-                <li data-target="#carouselProject3" data-slide-to="2"></li>
-                <li data-target="#carouselProject3" data-slide-to="3"></li>
-                <li data-target="#carouselProject3" data-slide-to="4"></li>
-                <li data-target="#carouselProject3" data-slide-to="5"></li>
-                <li data-target="#carouselProject3" data-slide-to="6"></li>
-                <li data-target="#carouselProject3" data-slide-to="7"></li>
-                <li data-target="#carouselProject3" data-slide-to="8"></li>
-                <li data-target="#carouselProject3" data-slide-to="9"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="{% static 'img/c1.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 1">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Catálogo</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c2.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c3.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c4.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c5.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c6.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c7.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c8.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c9.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c10.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c11.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{% static 'img/c12.png' %}" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Ecommerce Preview 2">
-                  <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 8px; padding: 5px;">
-                    <!-- <h5 class="mb-0">Pagos</h5> -->
-                  </div>
-                </div>
-
-
-              </div>
-              <a class="carousel-control-prev" href="#carouselProject3" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
-              </a>
-              <a class="carousel-control-next" href="#carouselProject3" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 2rem; height: 2rem;"></span>
-              </a>
-            </div>
-            <div class="card-body py-3 px-4">
-              <div class="row align-items-center">
-                <div class="col-lg-8">
-                  <h2 class="h3 font-weight-bold mb-2">
-                    Plataforma <span style="color: #f59e0b;">E-Commerce</span>
-                  </h2>
-                  <p class="text-muted mb-3">
-                    Tienda virtual escalable con carrito, gestión de pedidos, panel administrativo y pasarela de pago MERCADOPAGO.
-                  </p>
-                  <div class="mb-0">
-                    <span class="badge badge-success badge-custom mr-1 mb-1">Python</span>
-                    <span class="badge badge-success badge-custom mr-1 mb-1">Django</span>
-                    <span class="badge badge-primary badge-custom mr-1 mb-1">PostgreSQL</span>
-                    <span class="badge badge-info badge-custom mr-1 mb-1">Boostrap</span>
-                    <span class="badge badge-danger badge-custom mr-1 mb-1">MercadoPago</span>
-                    <span class="badge badge-dark badge-custom mr-1 mb-1">Linux</span>
-                  </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-right mt-3 mt-lg-0">
-                  <a href="https://carrito.duckdns.org/" target="_blank"
-                     class="btn btn-warning btn-md px-4 font-weight-bold shadow-sm rounded-pill transition-all text-white" style="background-color: #f59e0b; border: none;">
-                    VISITAR TIENDA
-                  </a>
-                  <div>
-                    <a href="https://github.com/roberthbardales/ecommerce2026" target="_blank" rel="noopener noreferrer"
-                       class="btn btn-outline-dark repo-btn">
-                      <i class="fab fa-github"></i>
-                      Ver Repositorio
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      <!-- PROYECTO 2 -->
+      <div class="bg-white rounded-xl shadow-lg border-t-[5px] border-[#10b981] overflow-hidden">
+        <div class="relative overflow-hidden" data-carousel>
+          <div class="flex overflow-hidden relative" data-carousel-inner>
+            <div class="min-w-full block" data-slide>
+              <img src="{% static 'img/d1.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 1">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d2.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 2"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d3.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 3"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d4.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 4"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d5.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 5"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d6.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 6"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d7.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 7"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d8.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 8"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d9.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 9"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d10.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 10"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d11.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 11"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d12.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 12"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d13.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 13"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d14.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 14"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d15.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 15"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d16.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 16"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d17.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 17"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d18.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 18"></div>
+          </div>
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            <button class="carousel-dot active" data-index="0"></button>
+            <button class="carousel-dot" data-index="1"></button>
+            <button class="carousel-dot" data-index="2"></button>
+            <button class="carousel-dot" data-index="3"></button>
+            <button class="carousel-dot" data-index="4"></button>
+            <button class="carousel-dot" data-index="5"></button>
+            <button class="carousel-dot" data-index="6"></button>
+            <button class="carousel-dot" data-index="7"></button>
+            <button class="carousel-dot" data-index="8"></button>
+            <button class="carousel-dot" data-index="9"></button>
+            <button class="carousel-dot" data-index="10"></button>
+            <button class="carousel-dot" data-index="11"></button>
+            <button class="carousel-dot" data-index="12"></button>
+            <button class="carousel-dot" data-index="13"></button>
+            <button class="carousel-dot" data-index="14"></button>
+            <button class="carousel-dot" data-index="15"></button>
+            <button class="carousel-dot" data-index="16"></button>
+            <button class="carousel-dot" data-index="17"></button>
+          </div>
+          <button class="carousel-btn left-3" data-prev aria-label="Anterior">
+            <i class="fas fa-chevron-left text-sm"></i>
+          </button>
+          <button class="carousel-btn right-3" data-next aria-label="Siguiente">
+            <i class="fas fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+        <div class="px-4 py-3">
+          <div class="flex flex-wrap items-center">
+            <div class="w-full lg:w-8/12">
+              <h2 class="text-2xl font-bold mb-2 text-gray-900">
+                Sistema ERP <span class="text-green-600">Empresarial(DEMO)</span>
+              </h2>
+              <p class="text-gray-500 mb-3">
+                Gestión de recursos empresariales, cuenta con 3 modulos Inventario, ventas, RRHH.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-0">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">Linux</span>
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 text-center lg:text-right mt-3 lg:mt-0 space-y-2">
+              <a href="https://demo2026.duckdns.org/" target="_blank"
+                 class="inline-flex items-center gap-2 bg-green-600 text-white font-bold px-5 py-2.5 rounded-full shadow-sm hover:bg-green-700 transition-all text-sm">
+                VER DEMO
+              </a>
+              <div>
+                <a href="https://github.com/roberthbardales/demo2026" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 border border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-800 rounded-full px-3 py-1.5 text-xs font-semibold transition-all">
+                  <i class="fab fa-github"></i>
+                  Ver Repositorio
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 3 -->
+      <div class="bg-white rounded-xl shadow-lg border-t-[5px] border-[#f59e0b] overflow-hidden">
+        <div class="relative overflow-hidden" data-carousel>
+          <div class="flex overflow-hidden relative" data-carousel-inner>
+            <div class="min-w-full block" data-slide>
+              <img src="{% static 'img/c1.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 1">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c2.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 2">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c3.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 3">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c4.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 4">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c5.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 5">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c6.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 6">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c7.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 7">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c8.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 8">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c9.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 9">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c10.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 10">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c11.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 11">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+            <div class="min-w-full hidden" data-slide>
+              <img src="{% static 'img/c12.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 12">
+              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+            </div>
+          </div>
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            <button class="carousel-dot active" data-index="0"></button>
+            <button class="carousel-dot" data-index="1"></button>
+            <button class="carousel-dot" data-index="2"></button>
+            <button class="carousel-dot" data-index="3"></button>
+            <button class="carousel-dot" data-index="4"></button>
+            <button class="carousel-dot" data-index="5"></button>
+            <button class="carousel-dot" data-index="6"></button>
+            <button class="carousel-dot" data-index="7"></button>
+            <button class="carousel-dot" data-index="8"></button>
+            <button class="carousel-dot" data-index="9"></button>
+            <button class="carousel-dot" data-index="10"></button>
+            <button class="carousel-dot" data-index="11"></button>
+          </div>
+          <button class="carousel-btn left-3" data-prev aria-label="Anterior">
+            <i class="fas fa-chevron-left text-sm"></i>
+          </button>
+          <button class="carousel-btn right-3" data-next aria-label="Siguiente">
+            <i class="fas fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+        <div class="px-4 py-3">
+          <div class="flex flex-wrap items-center">
+            <div class="w-full lg:w-8/12">
+              <h2 class="text-2xl font-bold mb-2 text-gray-900">
+                Plataforma <span style="color: #f59e0b;">E-Commerce</span>
+              </h2>
+              <p class="text-gray-500 mb-3">
+                Tienda virtual con carrito, panel administrativo y pasarela de pago MERCADOPAGO.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-0">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-red-100 text-red-700">MercadoPago</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">Linux</span>
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 text-center lg:text-right mt-3 lg:mt-0 space-y-2">
+              <a href="https://carrito.duckdns.org/" target="_blank"
+                 class="inline-flex items-center gap-2 bg-[#f59e0b] text-white font-bold px-5 py-2.5 rounded-full shadow-sm hover:bg-[#d97706] transition-all text-sm">
+                VISITAR TIENDA
+              </a>
+              <div>
+                <a href="https://github.com/roberthbardales/ecommerce2026" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 border border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-800 rounded-full px-3 py-1.5 text-xs font-semibold transition-all">
+                  <i class="fab fa-github"></i>
+                  Ver Repositorio
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
+{% endblock %}
+
+{% block js %}
+<script>
+(function() {
+  document.querySelectorAll('[data-carousel]').forEach(function(el) {
+    var slides = el.querySelectorAll('[data-slide]');
+    var dots = el.querySelectorAll('[data-index]');
+    var prev = el.querySelector('[data-prev]');
+    var next = el.querySelector('[data-next]');
+    var current = 0;
+    var interval;
+
+    function show(index) {
+      slides.forEach(function(s, i) {
+        s.classList.toggle('hidden', i !== index);
+      });
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === index);
+      });
+      current = index;
+    }
+
+    function goNext() { show((current + 1) % slides.length); }
+    function goPrev() { show((current - 1 + slides.length) % slides.length); }
+
+    if (next) next.addEventListener('click', goNext);
+    if (prev) prev.addEventListener('click', goPrev);
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        show(parseInt(dot.getAttribute('data-index')));
+      });
+    });
+
+    function startAuto() { interval = setInterval(goNext, 5000); }
+    function stopAuto() { clearInterval(interval); }
+
+    startAuto();
+    el.addEventListener('mouseenter', stopAuto);
+    el.addEventListener('mouseleave', startAuto);
+  });
+})();
+</script>
+
+{% include "includes/footer.html" %}
 {% endblock %}

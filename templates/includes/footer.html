@@ -1,141 +1,86 @@
-<style>
-  .contact-section {
-    width: min(1100px, calc(100% - 2rem));
-    margin: 2rem auto 0;
-  }
+{% load static %}
 
-  .contact-card {
-    border: none;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  }
 
-  .contact-card .card-header {
-    background: linear-gradient(90deg, #0d6efd 0%, #0b5ed7 100%) !important;
-    border-bottom: 0;
-    padding: 1rem 1.25rem;
-  }
+<footer class="relative overflow-hidden mt-16 pt-12 pb-5 text-white bg-gradient-to-br from-primary-600 via-primary-500 to-primary-900 shadow-[0_-12px_30px_rgba(0,0,0,0.14)]">
+  <div class="footer-before"></div>
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-  .contact-card .card-body {
-    background: #ffffff;
-  }
+      <div class="mb-7">
+        <h5 class="font-bold mb-4 relative pb-2.5 text-white">Sobre el Blog
+          <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-white rounded"></span>
+        </h5>
+        <p class="text-white/50 leading-7">
+          Un espacio dedicado a compartir conocimiento sobre Python, Django, web y tecnologías modernas.
+          Aprende, practica y crece como desarrollador.
+        </p>
+      </div>
 
-  .contact-icon {
-    color: #0d6efd;
-    width: 22px;
-    margin-right: 0.5rem;
-  }
+      <div class="mb-7">
+        <h5 class="font-bold mb-4 relative pb-2.5 text-white">Enlaces
+          <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-white rounded"></span>
+        </h5>
+        <ul class="list-none p-0">
+          <li class="mb-2.5">
+            <a href="{% url 'home_app:index' %}" class="text-white/80 no-underline transition-all duration-300 inline-flex items-center gap-2 hover:text-white hover:translate-x-1">
+              <i class="fas fa-home"></i>Inicio
+            </a>
+          </li>
+          <li class="mb-2.5">
+            <a href="{% url 'entrada_app:entry-lista' %}" class="text-white/80 no-underline transition-all duration-300 inline-flex items-center gap-2 hover:text-white hover:translate-x-1">
+              <i class="fas fa-blog"></i>Blog
+            </a>
+          </li>
+          <li class="mb-2.5">
+            <a href="{% url 'home_app:sobre_mi' %}" class="text-white/80 no-underline transition-all duration-300 inline-flex items-center gap-2 hover:text-white hover:translate-x-1">
+              <i class="fas fa-user"></i>Sobre mí
+            </a>
+          </li>
+        </ul>
+      </div>
 
-  .contact-card .form-control {
-    border-radius: 0.85rem;
-  }
-
-  .contact-card .form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
-  }
-
-  .info-item {
-    padding: 1rem;
-    border-left: 4px solid #0d6efd;
-    border-radius: 0.75rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .info-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
-  }
-
-  .contact-card .btn-primary {
-    border-radius: 999px;
-    padding: 0.8rem 1.2rem;
-  }
-</style>
-
-<section class="contact-section">
-  <div class="row">
-    <div class="col-md-11 offset-md-1">
-      <div class="row">
-        <div class="col-lg-7 mb-4">
-          <div class="card contact-card">
-            <div class="card-header text-white">
-              <h4 class="mb-0">Envía un mensaje</h4>
-            </div>
-            <div class="card-body">
-              <form method="post" action="{% url 'home_app:add-contact' %}">
-                {% csrf_token %}
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="id_full_name" class="font-weight-bold">
-                        <i class="fas fa-user contact-icon"></i>Nombres
-                      </label>
-                      <input type="text" name="full_name" id="id_full_name" class="form-control" placeholder="Escribe tu nombre" required>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="id_email" class="font-weight-bold">
-                        <i class="fas fa-envelope contact-icon"></i>Correo electrónico
-                      </label>
-                      <input type="email" name="email" id="id_email" class="form-control" placeholder="correo@ejemplo.com" required>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="id_messagge" class="font-weight-bold">
-                    <i class="fas fa-comment-dots contact-icon"></i>Mensaje
-                  </label>
-                  <textarea class="form-control" name="messagge" id="id_messagge" rows="4" placeholder="Escribe aquí..." required></textarea>
-                </div>
-
-                <div class="form-group mb-0">
-                  <button type="submit" class="btn btn-primary btn-lg btn-block">
-                    <i class="fas fa-paper-plane mr-2"></i>Enviar mensaje
-                  </button>
-                </div>
-              </form>
-            </div>
+      <div class="mb-7">
+        <h5 class="font-bold mb-4 relative pb-2.5 text-white">Contacto
+          <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-white rounded"></span>
+        </h5>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-2.5 text-white/90">
+            <i class="fas fa-envelope w-5 text-center"></i>
+            <span>roberthbardales@gmail.com</span>
           </div>
-        </div>
-
-        <div class="col-lg-4 mb-4">
-          <div class="card contact-card">
-            <div class="card-header text-white">
-              <h4 class="mb-0">Información de contacto</h4>
-            </div>
-            <div class="card-body">
-              <div class="info-item">
-                <h5 class="text-primary mb-2">
-                  <i class="fas fa-envelope contact-icon"></i>Email
-                </h5>
-                <p class="text-secondary mb-0">{{ correo }}</p>
-              </div>
-
-              <div class="info-item">
-                <h5 class="text-primary mb-2">
-                  <i class="fas fa-phone contact-icon"></i>Teléfono
-                </h5>
-                <p class="text-secondary mb-0">{{ phone }}</p>
-              </div>
-
-              <div class="info-item mb-0">
-                <h5 class="text-primary mb-2">
-                  <i class="fas fa-map-marker-alt contact-icon"></i>Ubicación
-                </h5>
-                <p class="text-secondary mb-0">Lima, Perú</p>
-              </div>
-            </div>
+          <div class="flex items-center gap-2.5 text-white/90">
+            <i class="fas fa-phone w-5 text-center"></i>
+            <span>+51 960 174778</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-white/90">
+            <i class="fas fa-map-marker-alt w-5 text-center"></i>
+            <span>Lima, Perú</span>
           </div>
         </div>
       </div>
+
+      <div class="mb-7">
+        <h5 class="font-bold mb-4 relative pb-2.5 text-white">Sígueme
+          <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-white rounded"></span>
+        </h5>
+        <p class="text-white/50 mb-3">
+          Conéctate conmigo en redes sociales
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.facebook.com/russell.bardales7/" class="bg-white text-blue-600 rounded-full px-4 py-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+            Facebook
+          </a>
+          <a href="https://wa.me/51960174778" class="bg-green-500 text-white rounded-full px-4 py-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg" target="_blank" rel="noopener noreferrer">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/15 pt-1 mt-1 text-center">
+      <p class="text-white/50 text-sm my-1">Django & Tailwind</p>
+      <p><strong>&copy; 2025</strong></p>
     </div>
   </div>
-</section>
+</footer>

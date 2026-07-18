@@ -2,139 +2,53 @@
 {% load static %}
 
 {% block content %}
-
 {% include "includes/header.html" %}
 
-<style>
-    .card-header {
-        background-color: #dc3545 !important;
-        color: white !important;
-    }
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4 py-4">
+  {% include "includes/barra_lateral.html" %}
 
-    .form-card {
-        border-radius: 8px;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-    }
-
-    .confirm-icon {
-        font-size: 40px;
-        color: #dc3545;
-    }
-
-    .info-row {
-        background-color: #f8f9fa;
-        border-radius: 6px;
-        padding: px 16px;
-        margin-bottom: 8px;
-        border-left: 4px solid #007bff;
-    }
-
-    .info-label {
-        font-weight: 600;
-        color: #495057;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-    }
-
-    .info-value {
-        font-size: 1rem;
-        color: #212529;
-    }
-
-    .btn-eliminar {
-        background-color: #dc3545;
-        border-color: #dc3545;
-        color: white;
-        font-weight: 600;
-        padding: 8px 24px;
-    }
-
-    .btn-eliminar:hover {
-        background-color: #c82333;
-        border-color: #bd2130;
-    }
-
-    .btn-cancelar {
-        font-weight: 600;
-        padding: 8px 24px;
-    }
-
-    .warning-text {
-        font-size: 0.9rem;
-        color: #856404;
-        background-color: #fff3cd;
-        border: 1px solid #ffc107;
-        border-radius: 6px;
-        padding: 10px 14px;
-    }
-</style>
-
-<div class="container" style="min-height: 637px; padding: 10px 0;">
-    <div class="row">
-        <div class="col-12">
-
-            <!-- Card Header Principal -->
-
-
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card form-card">
-                        <div class="card-body text-center py-4">
-
-                            <!-- Ícono de advertencia -->
-                            <i class="fas fa-exclamation-triangle confirm-icon mb-3"></i>
-                            <h5 class="mb-1">¿Estás seguro de que deseas eliminar esta Entrada?</h5>
-
-                        <!-- Datos de la Entrada -->
-                        <div class="table-responsive mb-3">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th>ID</th>
-                                        <td>{{ object.id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Título</th>
-                                        <td>{{ object.title }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <td>{{ object.user }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Categoría</th>
-                                        <td>{{ object.category }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <td>
-                                            <img src="{{ object.image.url }}" alt="Imagen" width="200">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                            <!-- Advertencia -->
-                            <!-- Botones de confirmación -->
-                            <form method="POST" action="">
-                                {% csrf_token %}
-                                <div class="d-flex justify-content-center gap-2">
-                                    <a href="{% url 'entrada_app:entry-lista2' %}" class="btn btn-secondary btn-cancelar mr-2">
-                                        <i class="fas fa-times mr-1"></i> Cancelar
-                                    </a>
-                                    <button type="submit" class="btn btn-eliminar">
-                                        <i class="fas fa-trash mr-1"></i> Sí, eliminar
-                                    </button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+  <div class="w-full lg:flex-1">
+    <section class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-rose-200 bg-white shadow-sm">
+      <div class="bg-rose-600 px-6 py-4 text-white">
+        <h1 class="text-xl font-bold">Eliminar Entrada</h1>
+      </div>
+      <div class="p-6 text-center">
+        <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+          <i class="fas fa-exclamation-triangle text-4xl"></i>
         </div>
-    </div>
+        <h2 class="text-lg font-semibold text-slate-900">¿Estás seguro de que deseas eliminar esta Entrada?</h2>
+
+        <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
+          <table class="min-w-full text-sm">
+            <tbody class="divide-y divide-slate-200">
+              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">ID</th><td class="px-4 py-3">{{ object.id }}</td></tr>
+              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Título</th><td class="px-4 py-3">{{ object.title }}</td></tr>
+              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Usuario</th><td class="px-4 py-3">{{ object.user }}</td></tr>
+              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Categoría</th><td class="px-4 py-3">{{ object.category }}</td></tr>
+              <tr>
+                <th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Imagen</th>
+                <td class="px-4 py-3">
+                  <img src="{{ object.image.url }}" alt="Imagen" class="mx-auto max-w-full rounded-xl">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <form method="POST" action="" class="mt-6">
+          {% csrf_token %}
+          <div class="flex justify-center gap-2">
+            <a href="{% url 'entrada_app:entry-lista2' %}" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+              <i class="fas fa-times mr-2"></i>Cancelar
+            </a>
+            <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700">
+              <i class="fas fa-trash mr-2"></i>Sí, eliminar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
 </div>
 
 {% endblock content %}

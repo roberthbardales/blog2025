@@ -49,7 +49,6 @@ LOCAL_APPS = (
     'applications.chat',
     'applications.notas',
     'applications.amigos',
-    # 'applications.rag',         #rag
     # 'applications.chatbot',
 )
 

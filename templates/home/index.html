@@ -1,736 +1,586 @@
-﻿{% extends "home/base_home.html" %}
-{% load  static %}
+{% extends "home/base_home.html" %}
+{% load static %}
 
 {% block title %}
 Russell Bardales | Desarrollo Web Django & Soporte Técnico
 {% endblock title %}
 
 {% block description %}
-<meta name="description" content="Servicios de desarrollo de sistemas web con Django y Bootstrap. Sistemas de ventas, inventario, reservas, escolares, pedidos, CRM, e-commerce y soporte técnico online.">
+<meta name="description" content="Servicios de desarrollo de sistemas web con Django. Sistemas de ventas, inventario, reservas, escolares, pedidos, CRM, e-commerce y soporte técnico online.">
 {% endblock description %}
 
 {% block content %}
 
 {% include "includes/header.html" %}
 
-<style>
-  :root {
-    --navy: #1e3a8a;
-    --ocean: #3b82f6;
-    --cyan: #06b6d4;
-    --light-blue: #93c5fd;
-  }
 
-  html { scroll-behavior: smooth; }
 
-  .text-ocean { color: var(--ocean) !important; }
-  .bg-navy { background-color: var(--navy) !important; }
-  .border-ocean { border-color: var(--ocean) !important; }
+<!-- ===== HERO ===== -->
+<section class="relative min-h-[85vh] flex items-center justify-center bg-primary-700 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:24px_24px] overflow-hidden scroll-mt-20">
+  <!-- Decorative blobs -->
+  <div class="absolute top-20 -left-32 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-20 -right-32 w-96 h-96 bg-primary-600/5 rounded-full blur-3xl pointer-events-none"></div>
 
-  /* ===== HERO ===== */
-  .hero-section {
-    background: linear-gradient(135deg, #1e3a8a, #1e3a8a, #3b82f6);
-    border-radius: 1.4rem;
-    position: relative;
-    overflow: hidden;
-  }
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto py-4">
 
-  .hero-section::before {
-    content: '';
-    position: absolute;
-    inset: auto -10% -30% auto;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.05);
-    pointer-events: none;
-  }
+    <!-- Status badge -->
+    <div class="inline-flex items-center gap-2 mb-6 glass rounded-full px-5 py-2">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+      </span>
+      <span class="text-sm font-medium text-white/70">Disponible para proyectos</span>
+    </div>
 
-  .hero-section::after {
-    content: '';
-    position: absolute;
-    inset: -15% auto auto -8%;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.03);
-    pointer-events: none;
-  }
-
-  .hero-avatar {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid rgba(255,255,255,.2);
-    box-shadow: 0 8px 24px rgba(0,0,0,.15);
-  }
-
-  .hero-gradient-text {
-    background: linear-gradient(to right, var(--light-blue), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-pill {
-    background: rgba(255,255,255,.1);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,.15);
-  }
-
-  .btn-outline-light-custom {
-    border: 1px solid rgba(255,255,255,.35);
-    color: #fff;
-    border-radius: 12px;
-    padding: 14px 32px;
-    font-weight: 500;
-    transition: background-color .25s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-  }
-
-  .btn-outline-light-custom:hover {
-    background: rgba(255,255,255,.1);
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .btn-navy {
-    background-color: var(--navy);
-    color: #fff;
-    border-radius: 12px;
-    padding: 14px 32px;
-    font-weight: 600;
-    border: none;
-    transition: background-color .25s ease, box-shadow .25s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-  }
-
-  .btn-navy:hover {
-    background-color: #1e3a8a;
-    color: #fff;
-    box-shadow: 0 10px 25px -5px rgba(30,58,138,.4);
-    text-decoration: none;
-  }
-
-  .hero-float-icon {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    color: rgba(255,255,255,.7);
-    font-size: .85rem;
-  }
-
-  /* ===== SECCIÓN TÍTULO ===== */
-  .section-label {
-    color: var(--ocean);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: .8rem;
-    letter-spacing: .05em;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--navy);
-  }
-
-  .section-sub {
-    color: #64748b;
-    max-width: 500px;
-  }
-
-  /* ===== ICON BOX ===== */
-  .icon-box {
-    width: 56px;
-    height: 56px;
-    background: rgba(59,130,246,.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .icon-box i {
-    font-size: 1.4rem;
-    color: var(--ocean);
-  }
-
-  /* ===== SERVICE CARDS ===== */
-  .service-card {
-    border: none;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0,0,0,.06);
-    transition: transform .3s ease, box-shadow .3s ease;
-    height: 100%;
-  }
-
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0,0,0,.1);
-  }
-
-  .service-card .card-body {
-    padding: 1.5rem 1.2rem;
-  }
-
-  .service-card .card-title {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: 1rem;
-  }
-
-  .service-card .card-text {
-    font-size: .85rem;
-    color: #64748b;
-  }
-
-  .service-card ul {
-    font-size: .82rem;
-  }
-
-  .service-card ul li {
-    color: #475569;
-  }
-
-  /* ===== STEP CARDS ===== */
-  .step-card {
-    border: none;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0,0,0,.06);
-    transition: transform .3s ease, box-shadow .3s ease;
-    height: 100%;
-  }
-
-  .step-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0,0,0,.1);
-  }
-
-  .step-card .card-body {
-    padding: 1.5rem 1.2rem;
-    text-align: center;
-  }
-
-  .step-number {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: var(--ocean);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.2rem;
-    margin: 0 auto .8rem;
-  }
-
-  .step-card h5 {
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: .3rem;
-  }
-
-  .step-card p {
-    font-size: .85rem;
-    color: #64748b;
-    margin-bottom: 0;
-  }
-
-  /* ===== TECH BADGES ===== */
-  .tech-badge-custom {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 999px;
-    padding: .5rem 1.1rem;
-    font-weight: 500;
-    font-size: .85rem;
-    color: var(--navy);
-    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-  }
-
-  .tech-badge-custom:hover {
-    transform: translateY(-2px);
-    border-color: var(--ocean);
-    box-shadow: 0 4px 12px rgba(59,130,246,.15);
-  }
-
-  .tech-badge-custom i {
-    font-size: 1.3rem;
-  }
-
-  /* ===== STATS ===== */
-  .stats-bar {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stats-bar::before {
-    content: '';
-    position: absolute;
-    inset: -50% -20%;
-    background:
-      radial-gradient(circle at 20% 80%, rgba(255,255,255,.04) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(255,255,255,.03) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .stats-item {
-    text-align: center;
-    padding: .5rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .stats-item i {
-    font-size: 1.3rem;
-    margin-bottom: .25rem;
-    opacity: .8;
-    display: block;
-  }
-
-  .stats-number {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: .15rem;
-  }
-
-  .stats-label {
-    font-size: .85rem;
-    color: rgba(255,255,255,.75);
-    margin-bottom: 0;
-  }
-
-  .stats-divider {
-    width: 1px;
-    background: rgba(255,255,255,.15);
-  }
-
-  /* ===== SUPPORT CARDS ===== */
-  .support-card {
-    border: none;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0,0,0,.06);
-    transition: transform .3s ease, box-shadow .3s ease;
-    height: 100%;
-  }
-
-  .support-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0,0,0,.1);
-  }
-
-  .support-card .card-body {
-    padding: 1.2rem 1rem;
-    text-align: center;
-  }
-
-  .support-card .card-title {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: .92rem;
-  }
-
-  .support-card .card-text {
-    font-size: .8rem;
-    color: #64748b;
-    margin-bottom: 0;
-  }
-
-  /* ===== CTA BANNER ===== */
-  .cta-banner {
-    padding: 2.5rem 1.5rem;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-banner::before {
-    content: '';
-    position: absolute;
-    inset: auto -15% -35% auto;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.05);
-    pointer-events: none;
-  }
-
-  .cta-banner h2 {
-    font-weight: 800;
-    color: #fff;
-  }
-
-  .cta-banner p {
-    color: rgba(255,255,255,.8);
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 767.98px) {
-    .section-title { font-size: 1.5rem; }
-    .hero-avatar { width: 76px; height: 76px; }
-    .stats-divider {
-      width: 60%;
-      height: 1px;
-      margin: .8rem auto;
-    }
-    .stats-number { font-size: 1.5rem; }
-    .btn-outline-light-custom,
-    .btn-navy { padding: 12px 24px; font-size: .9rem; }
-  }
-</style>
-
-<div class="container">
-
-  <!-- ===== HERO ===== -->
-  <div class="hero-section px-4 py-5 mb-5">
-    <div class="text-center py-lg-4">
-      <div class="d-inline-flex align-items-center gap-2 hero-pill rounded-pill px-4 py-2 text-white-50 small mb-4">
-        <i class="fas fa-rocket" style="color:var(--ocean);"></i>
-        <span>Fullstack Django &amp; Soporte Técnico</span>
+    <!-- Avatar -->
+    <div class="relative inline-block mb-4">
+      <img src="{% static 'img/logo2.jpg' %}" alt="Russell Bardales"
+           class="w-28 h-28 rounded-2xl object-cover border-2 border-white/10 shadow-2xl">
+      <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center border-4 border-[#0f172a]">
+        <i class="fas fa-check text-white text-xs"></i>
       </div>
+    </div>
 
-      <img src="{% static 'img/logo2.jpg' %}" alt="Russell Bardales" class="hero-avatar mb-3" loading="lazy">
+    <!-- Name -->
+    <h1 class="text-5xl lg:text-7xl font-extrabold text-white mb-2 tracking-tight">
+      Russell <span class="gradient-text">Bardales</span>
+    </h1>
 
-      <h1 class="display-5 fw-bold text-white lh-sm mb-2">
-        Russell <span class="hero-gradient-text">Bardales</span>
-      </h1>
+    <!-- Role -->
+    <p class="text-xl lg:text-2xl font-medium text-primary-500 mb-3">
+      <i class="fas fa-terminal mr-2 text-sm"></i><span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+    </p>
 
-      <p class="lead mx-auto mb-4" style="color:rgba(255,255,255,.8); max-width:580px; font-size:1.05rem;">
-        Desarrollo de sistemas web a medida y soporte técnico online. Transformo tus ideas en soluciones digitales.
-      </p>
+    <!-- Description -->
+    <p class="text-lg text-white/50 max-w-xl mx-auto mb-5 leading-relaxed">
+      Creo sistemas web a medida — ventas, inventarios, APIs, CRMs, reservas y más.
+      Soluciones escalables con <strong class="text-white/80">Python, Django y PostgreSQL</strong>.
+    </p>
 
-      <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">
-        <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="btn btn-light text-navy fw-semibold px-4 py-3" style="border-radius:12px;" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp me-2" style="color:#25d366;"></i>Cotizar proyecto
-        </a>
-        <a href="{% url 'home_app:portafolio' %}" class="btn-outline-light-custom">
-          <i class="fas fa-briefcase me-2"></i>Ver proyectos
-        </a>
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-5">
+      <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto"
+         class="group bg-green-500 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-green-500/20 hover:bg-green-600 hover:shadow-green-500/30 transition-all duration-300"
+         target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp mr-2"></i>Cotizar proyecto
+        <i class="fas fa-arrow-right ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"></i>
+      </a>
+      <a href="{% url 'home_app:portafolio' %}"
+         class="group border-2 border-white/30 text-white/70 font-medium px-8 py-3.5 rounded-xl hover:border-white/60 hover:text-white transition-all duration-300">
+        <i class="fas fa-briefcase mr-2"></i>Ver proyectos
+        <i class="fas fa-arrow-right ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"></i>
+      </a>
+    </div>
+
+    <!-- Tech tags -->
+    <div class="flex items-center justify-center gap-2 flex-wrap">
+      <span class="inline-flex items-center gap-1.5 text-xs font-medium text-white/40 glass rounded-full px-6 py-3  tech-pill transition-all duration-300 cursor-default">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span> Python
+      </span>
+      <span class="inline-flex items-center gap-1.5 text-xs font-medium text-white/40 glass rounded-full text-base px-6 py-3   tech-pill transition-all duration-300 cursor-default">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span> Django
+      </span>
+      <span class="inline-flex items-center gap-1.5 text-xs font-medium text-white/40 glass rounded-full px-5 py-2.5 tech-pill transition-all duration-300 cursor-default">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span> PostgreSQL
+      </span>
+      <span class="inline-flex items-center gap-1.5 text-xs font-medium text-white/40 glass rounded-full px-5 py-2.5 tech-pill transition-all duration-300 cursor-default">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span> APIs REST
+      </span>
+      <span class="inline-flex items-center gap-1.5 text-xs font-medium text-white/40 glass rounded-full px-5 py-2.5 tech-pill transition-all duration-300 cursor-default">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span> Docker
+      </span>
+    </div>
+
+    <!-- Terminal -->
+    <div class="mx-auto mt-6 max-w-lg bg-[#252526] border border-white/10 rounded-2xl overflow-hidden text-left font-mono">
+      <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+        <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+        <span class="ml-auto text-xs text-white/20">bash</span>
       </div>
-
-      <div class="mt-4 d-flex align-items-center justify-content-center gap-3 gap-sm-4 flex-wrap">
-        <span class="hero-float-icon"><i class="fas fa-code" style="color:var(--ocean);"></i> Django</span>
-        <span class="hero-float-icon"><i class="fas fa-database" style="color:var(--ocean);"></i> PostgreSQL</span>
-        <span class="hero-float-icon"><i class="fas fa-headset" style="color:var(--ocean);"></i> Soporte online</span>
+      <div class="px-5 py-4 space-y-1">
+        <p class="text-sm text-white/40 glitch-line" style="--i:0">
+          <span class="text-white/20">$</span> <span class="text-primary-500">python</span> manage.py <span class="text-green-400">create_system</span> --name <span class="text-amber-400">"tu_proyecto"</span>
+        </p>
+        <p class="text-sm text-white/30 glitch-line" style="--i:1">
+          <span class="text-green-400/50">&#10003;</span> Analizando requerimientos...
+        </p>
+        <p class="text-sm text-white/30 glitch-line" style="--i:2">
+          <span class="text-green-400/50">&#10003;</span> Configurando Django + PostgreSQL
+        </p>
+        <p class="text-sm text-green-400 glitch-line" style="--i:3">
+          <span class="text-green-400/50">&#10003;</span> <strong>Sistema listo.</strong> <span class="text-white/30">¿Empezamos?</span>
+        </p>
       </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-8 animate-bounce">
+      <i class="fas fa-chevron-down text-white/20 text-lg"></i>
     </div>
   </div>
+</section>
 
-  <!-- ===== SISTEMAS QUE DESARROLLO ===== -->
-  <div class="text-center mb-4" data-sr="fade-up">
-    <p class="section-label mb-1"><i class="fas fa-code me-1"></i>Servicios</p>
-    <h2 class="section-title">Sistemas que Desarrollo</h2>
-    <p class="section-sub mx-auto">Soluciones web a medida con Django y Bootstrap</p>
-  </div>
+<hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto" data-sr="fade-up">
 
-  <div class="row g-3 justify-content-center mb-5" data-sr="fade-up" data-sr-delay="100">
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(16,185,129,.1);">
-            <i class="fas fa-cash-register" style="color:#10b981;"></i>
+<!-- ===== SOBRE MÍ ===== -->
+<section class="py-6 px-4 scroll-mt-20 bg-slate-50" data-sr="fade-up">
+  <div class="max-w-5xl mx-auto">
+    <div class="glass-card rounded-3xl p-8 lg:p-12">
+      <div class="flex flex-col lg:flex-row items-center gap-8">
+        <div class="shrink-0">
+          <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary-500 flex items-center justify-center glow-primary-500">
+            <i class="fas fa-user-tie text-white text-3xl"></i>
           </div>
-          <h5 class="card-title">Sistemas de Ventas</h5>
-          <p class="card-text">Punto de venta, facturación, reportes</p>
         </div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(59,130,246,.1);">
-            <i class="fas fa-boxes" style="color:#3b82f6;"></i>
+        <div class="text-center lg:text-left">
+          <div class="flex items-center justify-center lg:justify-start gap-3 mb-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+              <i class="fas fa-code mr-1"></i>Sobre mí
+            </span>
+            <span class="text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
+              <i class="fas fa-calendar-alt mr-1"></i>+4 años
+            </span>
           </div>
-          <h5 class="card-title">Sistemas de Inventario</h5>
-          <p class="card-text">Stock, almacenes, alertas de reposición</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(245,158,11,.1);">
-            <i class="fas fa-calendar-check" style="color:#f59e0b;"></i>
-          </div>
-          <h5 class="card-title">Reservas y Citas</h5>
-          <p class="card-text">Agenda online, recordatorios, disponibilidad</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(234,179,8,.1);">
-            <i class="fas fa-school" style="color:#eab308;"></i>
-          </div>
-          <h5 class="card-title">Sistemas Escolares</h5>
-          <p class="card-text">Matrículas, notas, horarios, asistencia</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(236,72,153,.1);">
-            <i class="fas fa-shopping-cart" style="color:#ec4899;"></i>
-          </div>
-          <h5 class="card-title">Pedidos Web + WhatsApp</h5>
-          <p class="card-text">Catálogo, carrito, notificación WhatsApp</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(20,184,166,.1);">
-            <i class="fas fa-wallet" style="color:#14b8a6;"></i>
-          </div>
-          <h5 class="card-title">Control de Gastos</h5>
-          <p class="card-text">Ingresos, egresos, categorías, balances</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(100,116,139,.1);">
-            <i class="fas fa-users-cog" style="color:#64748b;"></i>
-          </div>
-          <h5 class="card-title">CRM Básico</h5>
-          <p class="card-text">Clientes, seguimiento, historial, tareas</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="card service-card">
-        <div class="card-body">
-          <div class="icon-box mb-3" style="background:rgba(99,102,241,.1);">
-            <i class="fas fa-store" style="color:#6366f1;"></i>
-          </div>
-          <h5 class="card-title">Tiendas Online</h5>
-          <p class="card-text">Catálogo + carrito + pagos</p>
+          <h3 class="text-primary-700 font-bold text-2xl mb-3">Ing. Russell Bardales</h3>
+          <p class="text-sm leading-relaxed text-gray-600 max-w-xl">
+            Ingeniero de Sistemas con <strong class="text-primary-700">más de 4 años</strong> en el sector tecnológico y
+            <strong class="text-primary-700">2 años como Desarrollador Full Stack</strong>. Especializado en Python, Django,
+            PostgreSQL y tecnologías web modernas. Creo soluciones seguras, escalables y adaptadas a cada cliente.
+          </p>
+
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ===== CÓMO TRABAJO ===== -->
-  <div class="text-center mb-4" data-sr="fade-up">
-    <p class="section-label mb-1"><i class="fas fa-cogs me-1" style="color:#14b8a6;"></i>Proceso</p>
-    <h2 class="section-title">¿Cómo Trabajo?</h2>
-    <p class="section-sub mx-auto">De la idea a tu solución digital en 3 pasos</p>
-  </div>
+<hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto" data-sr="fade-up">
 
-  <div class="row g-3 justify-content-center mb-5" data-sr="fade-up" data-sr-delay="100">
-    <div class="col-md-4">
-      <div class="card step-card">
-        <div class="card-body">
-          <div class="step-number">1</div>
-          <h5>Cuéntame tu idea</h5>
-          <p>Me explicas qué necesitas, sin compromiso. Te escucho y te aconsejo la mejor solución.</p>
-        </div>
-      </div>
+<section class="py-6 px-4 scroll-mt-20 bg-primary-700" data-sr="fade-up">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-4">
+        <i class="fas fa-code mr-1"></i>Servicios
+      </span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-white">Sistemas que Desarrollo</h2>
     </div>
-    <div class="col-md-4">
-      <div class="card step-card">
-        <div class="card-body">
-          <div class="step-number">2</div>
-          <h5>Recibe tu cotización</h5>
-          <p>Te envío un presupuesto claro con alcance, tiempos y costo. Sin sorpresas.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card step-card">
-        <div class="card-body">
-          <div class="step-number">3</div>
-          <h5>Pongo manos a la obra</h5>
-          <p>Una vez aprobado, desarrollo tu sistema con entregas parciales y soporte continuo.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ===== TECNOLOGÍAS ===== -->
-  <div class="text-center mb-4" data-sr="fade-up">
-    <p class="section-label mb-1"><i class="fas fa-microchip me-1"></i>Stack</p>
-    <h2 class="section-title">Tecnologías que Uso</h2>
-    <p class="section-sub mx-auto">Herramientas modernas para resultados profesionales</p>
-  </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Ventas -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 group" data-sr="fade-up" data-sr-delay="0">
+        <div class="service-icon w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-cash-register text-emerald-400 text-xl"></i>
+        </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">Sistemas de Ventas</h5>
+        <p class="text-xs text-gray-500">Punto de venta, facturación</p>
+      </div>
 
-  <div class="text-center mb-5" data-sr="fade-up" data-sr-delay="100">
-    <div class="d-flex flex-wrap justify-content-center gap-2">
-      <span class="tech-badge-custom"><i class="devicon-django-plain" style="color:#092e20;"></i>Django</span>
-      <span class="tech-badge-custom"><i class="devicon-python-plain" style="color:#3776AB;"></i>Python</span>
-      <span class="tech-badge-custom"><i class="devicon-postgresql-plain" style="color:#336791;"></i>PostgreSQL</span>
-      <span class="tech-badge-custom"><i class="devicon-bootstrap-plain" style="color:#7952b3;"></i>Bootstrap</span>
-      <span class="tech-badge-custom"><i class="devicon-git-plain" style="color:#f05032;"></i>Git</span>
-      <span class="tech-badge-custom"><i class="devicon-docker-plain" style="color:#2496ed;"></i>Docker</span>
-      <span class="tech-badge-custom"><i class="devicon-javascript-plain" style="color:#f7df1e;"></i>JavaScript</span>
-    </div>
-  </div>
+      <!-- Inventario -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 group" data-sr="fade-up" data-sr-delay="50">
+        <div class="service-icon w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-boxes text-blue-400 text-xl"></i>
+        </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">Sistemas de Inventario</h5>
+        <p class="text-xs text-gray-500">Stock, almacenes, alertas</p>
+      </div>
 
+      <!-- Reservas -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/30 group" data-sr="fade-up" data-sr-delay="100">
+        <div class="service-icon w-14 h-14 rounded-xl bg-amber-500/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-calendar-check text-amber-400 text-xl"></i>
+        </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">Reservas y Citas</h5>
+        <p class="text-xs text-gray-500">Agenda online, disponibilidad</p>
+      </div>
 
-  <!-- ===== SOPORTE TÉCNICO ===== -->
-  <div class="text-center mb-4" data-sr="fade-up">
-    <p class="section-label mb-1"><i class="fas fa-headset me-1" style="color:#14b8a6;"></i>Soporte</p>
-    <h2 class="section-title">Soporte Técnico Online</h2>
-    <p class="section-sub mx-auto">Asistencia remota rápida y confiable</p>
-  </div>
+      <!-- Escolares -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-yellow-500/30 group" data-sr="fade-up" data-sr-delay="150">
+        <div class="service-icon w-14 h-14 rounded-xl bg-yellow-500/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-school text-yellow-400 text-xl"></i>
+        </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">Sistemas Escolares</h5>
+        <p class="text-xs text-gray-500">Notas, horarios, asistencia</p>
+      </div>
 
-  <div class="row g-3 justify-content-center mb-5" data-sr="fade-up" data-sr-delay="100">
-    <div class="col-6 col-md-4 col-lg-3">
-      <div class="card support-card">
-        <div class="card-body">
-          <div class="icon-box mx-auto mb-3" style="background:rgba(239,68,68,.1);">
-            <i class="fas fa-shield-alt" style="color:#ef4444;"></i>
-          </div>
-          <h5 class="card-title">Eliminación de Virus</h5>
-          <p class="card-text">Malware, spyware, ransomware</p>
+      <!-- Pedidos -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-pink-500/30 group" data-sr="fade-up" data-sr-delay="200">
+        <div class="service-icon w-14 h-14 rounded-xl bg-pink-500/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-shopping-cart text-pink-400 text-xl"></i>
         </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">Pedidos Web + WhatsApp</h5>
+        <p class="text-xs text-gray-500">Catálogo, carrito</p>
       </div>
-    </div>
-    <div class="col-6 col-md-4 col-lg-3">
-      <div class="card support-card">
-        <div class="card-body">
-          <div class="icon-box mx-auto mb-3" style="background:rgba(34,197,94,.1);">
-            <i class="fas fa-rocket" style="color:#22c55e;"></i>
-          </div>
-          <h5 class="card-title">Optimización de PC</h5>
-          <p class="card-text">Aceleración, limpieza, rendimiento</p>
+
+      <!-- Gastos -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-teal-500/30 group" data-sr="fade-up" data-sr-delay="250">
+        <div class="service-icon w-14 h-14 rounded-xl bg-teal-500/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-wallet text-teal-400 text-xl"></i>
         </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">Control de Gastos</h5>
+        <p class="text-xs text-gray-500">Ingresos, egresos, categorías</p>
       </div>
-    </div>
-    <div class="col-6 col-md-4 col-lg-3">
-      <div class="card support-card">
-        <div class="card-body">
-          <div class="icon-box mx-auto mb-3" style="background:rgba(168,85,247,.1);">
-            <i class="fas fa-download" style="color:#a855f7;"></i>
-          </div>
-          <h5 class="card-title">Instalación de Programas</h5>
-          <p class="card-text">Office, Zoom, Chrome, antivirus</p>
+
+      <!-- CRM -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-slate-400/30 group" data-sr="fade-up" data-sr-delay="300">
+        <div class="service-icon w-14 h-14 rounded-xl bg-slate-400/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-users-cog text-slate-400 text-xl"></i>
         </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">CRM Básico</h5>
+        <p class="text-xs text-gray-500">Clientes, seguimiento, historial</p>
       </div>
-    </div>
-    <div class="col-6 col-md-4 col-lg-3">
-      <div class="card support-card">
-        <div class="card-body">
-          <div class="icon-box mx-auto mb-3" style="background:rgba(59,130,246,.1);">
-            <i class="fas fa-wifi" style="color:#3b82f6;"></i>
-          </div>
-          <h5 class="card-title">Problemas de Internet</h5>
-          <p class="card-text">WiFi, red, DNS, conectividad</p>
+
+      <!-- Tiendas -->
+      <div class="service-card glass-card rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/30 group" data-sr="fade-up" data-sr-delay="350">
+        <div class="service-icon w-14 h-14 rounded-xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300">
+          <i class="fas fa-store text-indigo-400 text-xl"></i>
         </div>
-      </div>
-    </div>
-    <div class="col-6 col-md-4 col-lg-3">
-      <div class="card support-card">
-        <div class="card-body">
-          <div class="icon-box mx-auto mb-3" style="background:rgba(245,158,11,.1);">
-            <i class="fas fa-envelope" style="color:#f59e0b;"></i>
-          </div>
-          <h5 class="card-title">Configuración de Email</h5>
-          <p class="card-text">Gmail, Outlook, correo corporativo</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-md-4 col-lg-3">
-      <div class="card support-card">
-        <div class="card-body">
-          <div class="icon-box mx-auto mb-3" style="background:rgba(6,182,212,.1);">
-            <i class="fab fa-windows" style="color:#06b6d4;"></i>
-          </div>
-          <h5 class="card-title">Reparación de Windows</h5>
-          <p class="card-text">Errores de software, pantallazos azules</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-md-4 col-lg-3">
-      <div class="card support-card">
-        <div class="card-body">
-          <div class="icon-box mx-auto mb-3" style="background:rgba(249,115,22,.1);">
-            <i class="fas fa-plug" style="color:#f97316;"></i>
-          </div>
-          <h5 class="card-title">Instalación de Drivers</h5>
-          <p class="card-text">Video, sonido, red, impresoras</p>
-        </div>
+        <h5 class="font-bold text-primary-700 text-sm mb-1">Tiendas Online</h5>
+        <p class="text-xs text-gray-500">Catálogo + carrito + pagos</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ===== CTA FINAL ===== -->
-  <div class="row justify-content-center mt-4 mb-3" data-sr="fade-up">
-    <div class="col-lg-10">
-      <div class="cta-banner text-center">
-        <h2 class="h3 mb-2">¿Necesitas un Sistema o Soporte Técnico?</h2>
-        <p class="mb-4">Contáctame y conversemos sobre tu proyecto o la reparación que necesitas.</p>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="btn btn-light text-navy fw-semibold px-4 py-3" style="border-radius:12px;" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp me-2" style="color:#25d366;"></i>Escríbeme a WhatsApp
+<hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto" data-sr="fade-up">
+
+<!-- ===== PROCESO ===== -->
+<section class="py-6 px-4 scroll-mt-20 bg-slate-50" data-sr="fade-up">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-teal-400 bg-teal-400/10 border border-teal-400/20 rounded-full px-4 py-1.5 mb-4">
+        <i class="fas fa-cogs mr-1"></i>Proceso
+      </span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-primary-700">¿Cómo Trabajo?</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card rounded-2xl p-8 text-center transition-all duration-300 hover:-translate-y-1" data-sr="fade-up" data-sr-delay="0">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 text-white flex items-center justify-center font-extrabold text-xl mx-auto mb-5 glow-primary-500">1</div>
+        <h5 class="font-bold text-primary-700 mb-2">Cuéntame tu idea</h5>
+        <p class="text-sm text-gray-600 leading-relaxed">Me explicas qué necesitas, sin compromiso. Te escucho y te aconsejo la mejor solución.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-8 text-center transition-all duration-300 hover:-translate-y-1" data-sr="fade-up" data-sr-delay="100">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center font-extrabold text-xl mx-auto mb-5 glow-primary-500">2</div>
+        <h5 class="font-bold text-primary-700 mb-2">Recibe tu cotización</h5>
+        <p class="text-sm text-gray-600 leading-relaxed">Te envío un presupuesto claro con alcance, tiempos y costo. Sin sorpresas.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-8 text-center transition-all duration-300 hover:-translate-y-1" data-sr="fade-up" data-sr-delay="200">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 text-white flex items-center justify-center font-extrabold text-xl mx-auto mb-5 glow-primary-500">3</div>
+        <h5 class="font-bold text-primary-700 mb-2">Pongo manos a la obra</h5>
+        <p class="text-sm text-gray-600 leading-relaxed">Una vez aprobado, desarrollo tu sistema con entregas parciales y soporte continuo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto" data-sr="fade-up">
+
+<!-- ===== TECH STACK ===== -->
+<section class="py-6 px-4 scroll-mt-20 bg-primary-700" data-sr="fade-up">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-4">
+        <i class="fas fa-microchip mr-1"></i>Stack
+      </span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-white">Tecnologías que Uso</h2>
+    </div>
+
+    <!-- Backend -->
+    <div class="mb-8" data-sr="fade-up" data-sr-delay="0">
+      <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4 text-center">Backend</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#092e20;">
+          <i class="devicon-django-plain text-xl" style="color:#092e20;"></i>Django
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#3776AB;">
+          <i class="devicon-python-plain text-xl" style="color:#3776AB;"></i>Python
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#336791;">
+          <i class="devicon-postgresql-plain text-xl" style="color:#336791;"></i>PostgreSQL
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#777BB4;">
+          <i class="devicon-php-plain text-xl" style="color:#777BB4;"></i>PHP
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#009688;">
+          <i class="devicon-fastapi-plain text-xl" style="color:#009688;"></i>FastAPI
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#4479A1;">
+          <i class="devicon-mysql-plain text-xl" style="color:#4479A1;"></i>MySQL
+        </span>
+      </div>
+    </div>
+
+    <!-- Frontend -->
+    <div class="mb-8" data-sr="fade-up" data-sr-delay="100">
+      <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4 text-center">Frontend</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#7952b3;">
+          <i class="devicon-bootstrap-plain text-xl" style="color:#7952b3;"></i>Bootstrap
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#f7df1e;">
+          <i class="devicon-javascript-plain text-xl" style="color:#f7df1e;"></i>JavaScript
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#06B6D4;">
+          <i class="devicon-tailwindcss-plain text-xl" style="color:#06B6D4;"></i>Tailwind
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#61DAFB;">
+          <i class="devicon-react-plain text-xl" style="color:#61DAFB;"></i>React
+        </span>
+      </div>
+    </div>
+
+    <!-- DevOps -->
+    <div data-sr="fade-up" data-sr-delay="200">
+      <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4 text-center">DevOps</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#f05032;">
+          <i class="devicon-git-plain text-xl" style="color:#f05032;"></i>Git
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#2496ed;">
+          <i class="devicon-docker-plain text-xl" style="color:#2496ed;"></i>Docker
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#333333;">
+          <i class="devicon-linux-plain text-xl" style="color:#fcc624;"></i>Linux
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#E95420;">
+          <i class="devicon-ubuntu-plain text-xl" style="color:#E95420;"></i>Ubuntu
+        </span>
+        <span class="inline-flex items-center gap-2.5 glass-card rounded-xl px-5 py-3 font-semibold text-sm text-gray-700 tech-pill transition-all duration-300 cursor-default border-2" style="border-color:#009639;">
+          <i class="devicon-nginx-plain text-xl" style="color:#009639;"></i>NGINX
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto" data-sr="fade-up">
+
+<!-- ===== SOPORTE TÉCNICO ===== -->
+<section class="py-6 px-4 scroll-mt-20 bg-slate-50" data-sr="fade-up">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-teal-400 bg-teal-400/10 border border-teal-400/20 rounded-full px-4 py-1.5 mb-4">
+        <i class="fas fa-headset mr-1"></i>Soporte
+      </span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-primary-700">Soporte Técnico Online</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="glass-card rounded-xl p-4 flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5" data-sr="fade-up" data-sr-delay="0">
+        <div class="w-11 h-11 rounded-xl bg-red-500/10 flex items-center justify-center shrink-0">
+          <i class="fas fa-shield-alt text-red-400"></i>
+        </div>
+        <div>
+          <h5 class="font-bold text-primary-700 text-sm">Eliminación de Virus</h5>
+          <p class="text-xs text-gray-500">Malware, spyware, ransomware</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-4 flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5" data-sr="fade-up" data-sr-delay="50">
+        <div class="w-11 h-11 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
+          <i class="fas fa-rocket text-green-400"></i>
+        </div>
+        <div>
+          <h5 class="font-bold text-primary-700 text-sm">Optimización de PC</h5>
+          <p class="text-xs text-gray-500">Aceleración, limpieza, rendimiento</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-4 flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5" data-sr="fade-up" data-sr-delay="100">
+        <div class="w-11 h-11 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
+          <i class="fas fa-download text-purple-400"></i>
+        </div>
+        <div>
+          <h5 class="font-bold text-primary-700 text-sm">Instalación de Programas</h5>
+          <p class="text-xs text-gray-500">Office, Zoom, Chrome, drivers</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-4 flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5" data-sr="fade-up" data-sr-delay="150">
+        <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+          <i class="fas fa-wifi text-blue-400"></i>
+        </div>
+        <div>
+          <h5 class="font-bold text-primary-700 text-sm">Problemas de Internet</h5>
+          <p class="text-xs text-gray-500">WiFi, red, DNS, conectividad</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-4 flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5" data-sr="fade-up" data-sr-delay="200">
+        <div class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0">
+          <i class="fas fa-envelope text-amber-400"></i>
+        </div>
+        <div>
+          <h5 class="font-bold text-primary-700 text-sm">Configuración de Email</h5>
+          <p class="text-xs text-gray-500">Gmail, Outlook, correo corporativo</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-4 flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5" data-sr="fade-up" data-sr-delay="250">
+        <div class="w-11 h-11 rounded-xl bg-primary-500/10 flex items-center justify-center shrink-0">
+          <i class="fab fa-windows text-primary-500"></i>
+        </div>
+        <div>
+          <h5 class="font-bold text-primary-700 text-sm">Reparación de Windows</h5>
+          <p class="text-xs text-gray-500">Errores de software, BSOD</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto" data-sr="fade-up">
+
+<!-- ===== CONTACTO ===== -->
+<section class="py-6 px-4 scroll-mt-20 bg-primary-700" data-sr="fade-up">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-4">
+        <i class="fas fa-address-card mr-1"></i>Contacto
+      </span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-white">Estoy a un mensaje de distancia</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <!-- Formulario -->
+      <div class="lg:col-span-3 glass-card rounded-2xl overflow-hidden" data-sr="fade-up" data-sr-delay="0">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h5 class="font-bold text-primary-700"><i class="fas fa-paper-plane mr-2 text-primary-500"></i>Envíame un mensaje</h5>
+        </div>
+        <div class="p-6">
+          <form method="post" action="{% url 'home_app:add-contact' %}">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-500 mb-1.5">Nombre</label>
+                <div class="relative">
+                  <i class="fas fa-user absolute left-3 top-1/2 -translate-y-1/2 text-primary-500/50 text-xs pointer-events-none"></i>
+                  <input type="text" name="full_name"
+                         class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-sm text-primary-700 placeholder-gray-300 outline-none transition-all focus:border-primary-500 focus:shadow-[0_0_0_3px_rgba(13,110,253,0.1)]"
+                         placeholder="Tu nombre" required>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-500 mb-1.5">Correo</label>
+                <div class="relative">
+                  <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-primary-500/50 text-xs pointer-events-none"></i>
+                  <input type="email" name="email"
+                         class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-sm text-primary-700 placeholder-gray-300 outline-none transition-all focus:border-primary-500 focus:shadow-[0_0_0_3px_rgba(13,110,253,0.1)]"
+                         placeholder="correo@ejemplo.com" required>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-xs font-semibold text-gray-500 mb-1.5">Mensaje</label>
+              <div class="relative">
+                <i class="fas fa-comment-dots absolute left-3 top-3 text-primary-500/50 text-xs pointer-events-none"></i>
+                <textarea name="messagge" rows="4"
+                          class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-sm text-primary-700 placeholder-gray-300 outline-none transition-all resize-none focus:border-primary-500 focus:shadow-[0_0_0_3px_rgba(13,110,253,0.1)]"
+                          placeholder="Escribe tu mensaje..." required></textarea>
+              </div>
+            </div>
+            <button type="submit"
+                    class="w-full bg-primary-500 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5">
+              <i class="fas fa-paper-plane mr-2"></i>Enviar mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="lg:col-span-2 glass-card rounded-2xl overflow-hidden" data-sr="fade-up" data-sr-delay="100">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h5 class="font-bold text-primary-700"><i class="fas fa-address-card mr-2 text-primary-500"></i>Información</h5>
+        </div>
+        <div class="p-5 space-y-1">
+          <a href="https://wa.me/51960174778" target="_blank" rel="noopener noreferrer" class="no-underline">
+            <div class="flex items-center gap-4 py-3 border-b border-gray-200 hover:bg-gray-50 rounded-lg px-2 transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
+                <i class="fab fa-whatsapp text-green-400"></i>
+              </div>
+              <div>
+                <p class="font-bold text-sm text-primary-700 mb-0">WhatsApp</p>
+                <p class="text-xs text-gray-500 mb-0">+51 960 174 778</p>
+              </div>
+            </div>
           </a>
-          <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20soporte%20t%C3%A9cnico" class="btn-outline-light-custom" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-headset me-2"></i>Soporte técnico
+          <a href="mailto:roberthbardales@gmail.com" class="no-underline">
+            <div class="flex items-center gap-4 py-3 border-b border-gray-200 hover:bg-gray-50 rounded-lg px-2 transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-primary-500/10 flex items-center justify-center shrink-0">
+                <i class="fas fa-envelope text-primary-500"></i>
+              </div>
+              <div>
+                <p class="font-bold text-sm text-primary-700 mb-0">Email</p>
+                <p class="text-xs text-gray-500 mb-0">roberthbardales@gmail.com</p>
+              </div>
+            </div>
           </a>
+          <div class="flex items-center gap-4 py-3 px-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0">
+              <i class="fas fa-map-marker-alt text-amber-400"></i>
+            </div>
+            <div>
+              <p class="font-bold text-sm text-primary-700 mb-0">Ubicación</p>
+              <p class="text-xs text-gray-500 mb-0">Lima, Perú</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-</div>
-
-{% include "includes/footer.html" %}
-
-<script>
-  (function() {
-    if (typeof ScrollReveal !== 'undefined') {
-      ScrollReveal({ distance: '30px', duration: 700, easing: 'ease-out', origin: 'bottom', reset: false });
-      ScrollReveal().reveal('[data-sr="fade-up"]', { interval: 120 });
-    }
-
-    var stats = document.querySelectorAll('[data-count]');
-    if (stats.length) {
-      function animateCount(el) {
-        var target = parseInt(el.getAttribute('data-count'), 10);
-        if (isNaN(target)) return;
-        var current = 0;
-        var step = Math.ceil(target / 40);
-        var timer = setInterval(function() {
-          current += step;
-          if (current >= target) { current = target; clearInterval(timer); }
-          el.textContent = current;
-        }, 40);
+  <script>
+    (function() {
+      if (typeof ScrollReveal !== 'undefined') {
+        ScrollReveal({ distance: '30px', duration: 400, easing: 'ease-out', origin: 'bottom', reset: false });
+        ScrollReveal().reveal('[data-sr="fade-up"]', { interval: 60 });
       }
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            animateCount(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      stats.forEach(function(s) { observer.observe(s); });
-    }
-  })();
-</script>
 
+      var stats = document.querySelectorAll('[data-count]');
+      if (stats.length) {
+        function animateCount(el) {
+          var target = parseInt(el.getAttribute('data-count'), 10);
+          if (isNaN(target)) return;
+          var current = 0;
+          var step = Math.ceil(target / 40);
+          var timer = setInterval(function() {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current;
+          }, 40);
+        }
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              animateCount(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        stats.forEach(function(s) { observer.observe(s); });
+      }
+    })();
+
+    // Typewriter
+    (function() {
+      var text = "Desarrollador Backend & Full Stack Django";
+      var target = document.getElementById('typewriter-text');
+      if (!target) return;
+      var i = 0;
+      function type() {
+        if (i < text.length) {
+          target.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 35 + Math.random() * 25);
+        }
+      }
+      type();
+    })();
+  </script>
+</section>
+{% include "includes/footer.html" %}
 {% endblock content %}

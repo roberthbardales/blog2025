@@ -5,174 +5,55 @@
 
 {% include "includes/header.html" %}
 
-<style>
-    .chat-shell {
-        min-height: calc(100vh - 180px);
-    }
-
-    .chat-container {
-        max-width: 550px;
-        margin: 0 auto;
-    }
-
-    .users-card {
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
-        border: 0;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .users-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(15, 23, 42, .15);
-    }
-
-    .users-card .card-header {
-        background: linear-gradient(135deg, #1e40af, #0b5ed7) !important;
-        padding: 0.6rem 1rem;
-    }
-
-    .users-list {
-        max-height: calc(100vh - 260px);
-        overflow-y: auto;
-        min-height: 300px;
-        background: #fff;
-    }
-
-    .users-list::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .users-list::-webkit-scrollbar-track {
-        background: #eef2f7;
-    }
-
-    .users-list::-webkit-scrollbar-thumb {
-        background: #b8c5d6;
-        border-radius: 999px;
-    }
-
-    .user-item {
-        transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease, padding-left .2s ease;
-    }
-
-    .user-item:hover {
-        background: #f8f9fa;
-        transform: translateX(4px);
-        box-shadow: inset 3px 0 0 rgba(37, 99, 235, .25);
-        padding-left: 1.1rem;
-    }
-
-    .status-badge {
-        border-radius: 999px;
-        white-space: nowrap;
-        box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        display: inline-block;
-        animation: pulse 2s infinite;
-    }
-
-    .status-dot.online { background-color: #22c55e; }
-    .status-dot.offline { background-color: #dc3545; animation: none; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-
-    .empty-users {
-        background: linear-gradient(180deg, #ffffff 0%, #f9fbfe 100%);
-    }
-
-    .users-toolbar {
-        border: 0;
-        border-radius: 1rem;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, .08);
-        overflow: hidden;
-    }
-
-    .users-toolbar .card-body {
-        padding: 0.8rem 1rem;
-    }
-
-    .toolbar-search .form-control {
-        border-radius: 999px 0 0 999px;
-        border: 1px solid #cbd5e1;
-    }
-
-    .toolbar-search .btn {
-        border-radius: 0 999px 999px 0;
-    }
-
-    .toolbar-chip {
-        border-radius: 999px;
-        padding: .45rem .85rem;
-    }
-</style>
-
-<!-- Barra lateral -->
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4 pt-4">
 {% include "includes/barra_lateral.html" %}
 
-<!-- Contenido principal del chat -->
-<div class="col-lg-9 col-md-12 chat-shell">
-    <div class="chat-container">
-        <div class="card users-toolbar mb-3">
-            <div class="card-body">
-                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center" style="gap: .75rem;">
-                    <div class="btn-group" role="group" aria-label="Filtros de usuarios">
-                        <!-- <button type="button" class="btn btn-outline-primary active toolbar-chip" data-filter="all">
-                            <i class="fas fa-users mr-1"></i>Todos
-                        </button> -->
-                        <button type="button" class="btn btn-outline-success toolbar-chip" data-filter="online">
-                            <i class="fas fa-circle mr-1"></i>En línea
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary toolbar-chip" data-filter="offline">
-                            <i class="fas fa-user-clock mr-1"></i>Offline
+<div class="w-full lg:flex-1 min-h-[calc(100vh-140px)]">
+    <div class="mx-auto max-w-[550px] py-6">
+        <div class="mb-4 overflow-hidden rounded-2xl bg-white shadow-[0_10px_24px_rgba(15,23,42,.08)]">
+            <div class="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex gap-2">
+                    <button type="button" class="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100" data-filter="online">
+                        <i class="fas fa-circle text-[8px]"></i>En línea
+                    </button>
+                    <button type="button" class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-100" data-filter="offline">
+                        <i class="fas fa-user-clock text-[10px]"></i>Offline
+                    </button>
+                </div>
+
+                <form class="w-full max-w-[200px]" onsubmit="return false;">
+                    <div class="flex">
+                        <input type="text"
+                               class="w-full rounded-l-full border border-r-0 border-slate-300 bg-white px-4 py-2 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                               placeholder="Buscar..."
+                               id="userSearchInput"
+                               autocomplete="off">
+                        <button class="rounded-r-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700" type="button" id="clearSearchBtn">
+                            <i class="fas fa-times"></i>
                         </button>
                     </div>
-
-                    <form class="w-100" style="max-width: 200px;" onsubmit="return false;">
-                        <div class="input-group toolbar-search">
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Buscar..."
-                                   id="userSearchInput"
-                                   autocomplete="off">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" id="clearSearchBtn">
-                                    <i class="fas fa-times mr-1"></i>Limpiar
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
 
-        <div class="card users-card">
-            <div class="card-header bg-primary text-white px-3 py-3 border-0 d-flex justify-content-between align-items-center">
+        <div class="overflow-hidden rounded-2xl shadow-[0_10px_24px_rgba(15,23,42,.10)] transition hover:-translate-y-0.5 hover:shadow-[0_15px_30px_rgba(15,23,42,.15)]">
+            <div class="flex items-center justify-between bg-gradient-to-r from-blue-800 to-blue-600 px-4 py-3 text-white">
                 <div>
-                    <h3 class="h5 mb-0"><i class="fas fa-users mr-2"></i>Usuarios</h3>
-                    <small class="text-white-50">Selecciona con quién quieres conversar</small>
+                    <h3 class="text-sm font-bold"><i class="fas fa-users mr-2"></i>Usuarios</h3>
+                    <p class="text-xs text-white/70">Selecciona con quién quieres conversar</p>
                 </div>
-                <span class="badge badge-light text-primary px-3 py-2">Chat activo</span>
+                <span class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white">Chat activo</span>
             </div>
-            <div class="users-list">
-                <ul class="list-group list-group-flush" id="usersList">
-                    <!-- Los usuarios se cargarán aquí con JavaScript -->
+            <div class="max-h-[calc(100vh-260px)] min-h-[300px] overflow-y-auto bg-white" id="usersListWrapper">
+                <ul class="divide-y divide-slate-100" id="usersList">
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
-</div>
 </div>
 
 <script>
-    // Datos iniciales de usuarios desde el backend
     const usersData = {
         {% for u in users %}
         {% if u.id != user.id %}
@@ -195,16 +76,14 @@
         if (!userItem || !statusBadge) return;
 
         if (isOnline) {
-            userItem.classList.remove('offline');
-            userItem.classList.add('online');
+            userItem.dataset.status = 'online';
         } else {
-            userItem.classList.remove('online');
-            userItem.classList.add('offline');
+            userItem.dataset.status = 'offline';
         }
 
-        statusBadge.className = `status-badge badge ${isOnline ? 'badge-success' : 'badge-danger'} d-inline-flex align-items-center px-3 py-2`;
+        statusBadge.className = `inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${isOnline ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-500'}`;
         statusBadge.innerHTML = `
-            <span class="status-dot ${isOnline ? 'online' : 'offline'} mr-2"></span>
+            <span class="h-2 w-2 rounded-full ${isOnline ? 'bg-emerald-500' : 'bg-slate-400'}"></span>
             ${isOnline ? 'En línea' : 'Desconectado'}
         `;
 
@@ -215,24 +94,25 @@
 
     function createUserItem(user, isOnline) {
         const li = document.createElement('li');
-        li.className = `list-group-item user-item d-flex justify-content-between align-items-center ${isOnline ? '' : 'text-muted'}`;
+        li.className = `flex items-center justify-between px-4 py-3 transition hover:bg-slate-50 hover:pl-5 hover:shadow-[inset_3px_0_0_rgba(37,99,235,.25)] ${isOnline ? '' : 'text-slate-400'}`;
         li.id = `user-item-${user.id}`;
+        li.dataset.status = isOnline ? 'online' : 'offline';
 
         const chatUrl = "{% url 'chat_room' 999999 %}".replace('999999', user.id);
 
         const avatarHtml = user.avatarUrl
-            ? `<img src="${user.avatarUrl}" alt="Avatar de ${user.name}" style="width:100%; height:100%; object-fit:cover;">`
-            : `<i class="fas fa-user" aria-hidden="true"></i><span class="sr-only">Usuario</span>`;
+            ? `<img src="${user.avatarUrl}" alt="Avatar de ${user.name}" class="h-full w-full object-cover">`
+            : `<i class="fas fa-user text-sm text-white/80"></i>`;
 
         li.innerHTML = `
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mr-3 shadow-sm overflow-hidden flex-shrink-0" style="width: 42px; height: 42px; font-weight: 600;">
+            <div class="flex items-center gap-3">
+                <div class="flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-blue-600 text-sm font-semibold text-white shadow-sm">
                     ${avatarHtml}
                 </div>
-                <a href="${chatUrl}" class="font-weight-bold text-dark">${user.name}</a>
+                <a href="${chatUrl}" class="text-sm font-semibold text-slate-900 hover:text-blue-600">${user.name}</a>
             </div>
-            <span class="status-badge badge ${isOnline ? 'badge-success' : 'badge-danger'} d-inline-flex align-items-center px-3 py-2" id="status-${user.id}">
-                <span class="status-dot ${isOnline ? 'online' : 'offline'} mr-2"></span>
+            <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${isOnline ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-500'}" id="status-${user.id}">
+                <span class="h-2 w-2 rounded-full ${isOnline ? 'bg-emerald-500' : 'bg-slate-400'}"></span>
                 ${isOnline ? 'En línea' : 'Desconectado'}
             </span>
         `;
@@ -250,9 +130,7 @@
                 || (currentFilter === 'online' && user.isOnline)
                 || (currentFilter === 'offline' && !user.isOnline);
 
-            if (!matchesSearch || !matchesFilter) {
-                return;
-            }
+            if (!matchesSearch || !matchesFilter) return;
 
             if (user.isOnline) onlineUsers.push(user);
             else offlineUsers.push(user);
@@ -265,27 +143,29 @@
 
         if (onlineUsers.length > 0) {
             const onlineHeader = document.createElement('li');
-            onlineHeader.className = 'list-group-item bg-light font-weight-bold text-success';
-            onlineHeader.innerHTML = `<i class="fas fa-circle mr-2"></i>En línea (${onlineUsers.length})`;
+            onlineHeader.className = 'bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-700';
+            onlineHeader.innerHTML = `<i class="fas fa-circle mr-2 text-[8px] text-emerald-500"></i>En línea (${onlineUsers.length})`;
             usersList.appendChild(onlineHeader);
             onlineUsers.forEach(user => usersList.appendChild(createUserItem(user, true)));
         }
 
         if (offlineUsers.length > 0) {
             const offlineHeader = document.createElement('li');
-            offlineHeader.className = 'list-group-item bg-light font-weight-bold text-danger';
-            offlineHeader.innerHTML = `<i class="fas fa-circle mr-2"></i>Desconectados (${offlineUsers.length})`;
+            offlineHeader.className = 'bg-slate-50 px-4 py-2 text-xs font-bold text-slate-500';
+            offlineHeader.innerHTML = `<i class="fas fa-circle mr-2 text-[8px] text-slate-400"></i>Desconectados (${offlineUsers.length})`;
             usersList.appendChild(offlineHeader);
             offlineUsers.forEach(user => usersList.appendChild(createUserItem(user, false)));
         }
 
         if (onlineUsers.length === 0 && offlineUsers.length === 0) {
             const emptyState = document.createElement('li');
-            emptyState.className = 'list-group-item text-center py-5 text-muted empty-users';
+            emptyState.className = 'py-12 text-center';
             emptyState.innerHTML = `
-                <i class="fas fa-user-slash fa-3x mb-3 text-secondary"></i>
-                <h5>No hay usuarios disponibles</h5>
-                <p class="mb-0">No se encontraron usuarios para chatear</p>
+                <div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
+                    <i class="fas fa-user-slash text-xl text-slate-400"></i>
+                </div>
+                <h5 class="text-sm font-semibold text-slate-900">No hay usuarios disponibles</h5>
+                <p class="mt-1 text-xs text-slate-500">No se encontraron usuarios para chatear</p>
             `;
             usersList.appendChild(emptyState);
         }
@@ -294,7 +174,11 @@
     function setFilter(filter) {
         currentFilter = filter;
         document.querySelectorAll('[data-filter]').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.filter === filter);
+            if (btn.dataset.filter === filter) {
+                btn.classList.add('ring-2', 'ring-blue-400');
+            } else {
+                btn.classList.remove('ring-2', 'ring-blue-400');
+            }
         });
         renderUsersList();
     }

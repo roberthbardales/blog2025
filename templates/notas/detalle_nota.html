@@ -1,107 +1,76 @@
 ﻿{% extends "favoritos/base_favoritos.html" %}
 {% load static %}
 
-{% block css %}
-<style>
-  .note-detail-shell {
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 18px 34px rgba(15, 23, 42, .14);
-  }
-
-  .note-detail-shell .note-hero {
-    padding: 1.5rem;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .note-detail-shell .note-hero::after {
-    content: "";
-    position: absolute;
-    right: -50px;
-    top: -50px;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.14);
-  }
-
-  .note-detail-shell .note-body {
-    background: #fff;
-    padding: 1.5rem;
-  }
-
-  .note-detail-shell .note-content {
-    white-space: pre-wrap;
-    line-height: 1.8;
-    color: #374151;
-    font-size: 1.05rem;
-  }
-</style>
-{% endblock %}
-
 {% block content %}
 {% include "includes/header.html" %}
 <div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
 {% include "includes/barra_lateral.html" %}
 
 <div class="w-full lg:flex-1 py-4">
-  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
-    <div>
-      <span class="badge badge-primary mb-2">
-        <i class="fas fa-sticky-note mr-1"></i>Detalle de nota
-      </span>
-      <h2 class="mb-1">{{ nota.titulo }}</h2>
-      <div class="text-muted">
-        <small class="mr-3"><i class="far fa-calendar mr-1"></i>{{ nota.created|date:"d/m/Y H:i" }}</small>
-        <small><i class="far fa-clock mr-1"></i>Actualizada {{ nota.modified|date:"d/m/Y H:i" }}</small>
+
+  <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)] mb-4">
+    <div class="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/95">
+          <i class="fas fa-sticky-note mr-1"></i>Detalle de nota
+        </span>
+        <h2 class="mt-3 text-2xl font-bold">{{ nota.titulo }}</h2>
+        <div class="mt-2 flex flex-wrap items-center gap-3 text-sm text-white/70">
+          <span><i class="far fa-calendar mr-1"></i>{{ nota.created|date:"d/m/Y H:i" }}</span>
+          <span><i class="far fa-clock mr-1"></i>Actualizada {{ nota.modified|date:"d/m/Y H:i" }}</span>
+        </div>
       </div>
+      <a href="{% url 'notas_app:lista-notas' %}" class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">
+        <i class="fas fa-arrow-left mr-2"></i>Volver
+      </a>
     </div>
-    <a href="{% url 'notas_app:lista-notas' %}" class="btn btn-outline-secondary mt-3 mt-md-0">
-      <i class="fas fa-arrow-left mr-1"></i>Volver a notas
-    </a>
   </div>
 
-  <div class="card border-0 note-detail-shell mb-4">
-    <div class="note-hero {% if nota.color == 'yellow' %}bg-warning{% elif nota.color == 'blue' %}bg-primary{% elif nota.color == 'green' %}bg-success{% elif nota.color == 'pink' %}bg-danger{% elif nota.color == 'orange' %}bg-warning{% else %}bg-secondary{% endif %}" style="{% if nota.color == 'yellow' %}background:linear-gradient(135deg,#b45309 0%,#f59e0b 60%,#facc15 100%);{% elif nota.color == 'blue' %}background:linear-gradient(135deg,#1d4ed8 0%,#0b5ed7 60%,#38bdf8 100%);{% elif nota.color == 'green' %}background:linear-gradient(135deg,#166534 0%,#16a34a 60%,#4ade80 100%);{% elif nota.color == 'pink' %}background:linear-gradient(135deg,#be185d 0%,#db2777 60%,#f472b6 100%);{% elif nota.color == 'orange' %}background:linear-gradient(135deg,#c2410c 0%,#ea580c 60%,#fb923c 100%);{% elif nota.color == 'purple' %}background:linear-gradient(135deg,#6d28d9 0%,#7c3aed 60%,#a78bfa 100%);{% endif %}">
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-        <div class="mb-3 mb-md-0">
-          <span class="badge badge-light text-dark mb-2">{{ nota.get_color_display }}</span>
-          <h3 class="mb-2 font-weight-bold">{{ nota.titulo }}</h3>
+  <div class="mb-4 overflow-hidden rounded-3xl shadow-[0_18px_34px_rgba(15,23,42,.14)]">
+    <div class="relative overflow-hidden p-6 text-white
+      {% if nota.color == 'yellow' %}bg-gradient-to-br from-amber-700 via-amber-500 to-yellow-400
+      {% elif nota.color == 'blue' %}bg-gradient-to-br from-blue-800 via-blue-600 to-sky-400
+      {% elif nota.color == 'green' %}bg-gradient-to-br from-green-800 via-green-600 to-emerald-400
+      {% elif nota.color == 'pink' %}bg-gradient-to-br from-pink-800 via-pink-600 to-pink-400
+      {% elif nota.color == 'orange' %}bg-gradient-to-br from-orange-800 via-orange-600 to-orange-400
+      {% elif nota.color == 'purple' %}bg-gradient-to-br from-purple-800 via-purple-600 to-purple-400
+      {% else %}bg-gradient-to-br from-slate-700 via-slate-600 to-slate-400{% endif %}">
+      <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/14"></div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
+          <span class="mb-2 inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white">{{ nota.get_color_display }}</span>
+          <h3 class="mb-2 text-xl font-bold">{{ nota.titulo }}</h3>
           {% if nota.es_importante %}
-          <span class="badge badge-dark">
-            <i class="fas fa-star mr-1"></i>Importante
+          <span class="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white">
+            <i class="fas fa-star"></i>Importante
           </span>
           {% endif %}
         </div>
-        <div class="text-md-right">
-          <small class="d-block text-white-50"><i class="far fa-calendar mr-1"></i>{{ nota.created|date:"d/m/Y H:i" }}</small>
-          <small class="d-block text-white-50"><i class="far fa-clock mr-1"></i>{{ nota.modified|date:"d/m/Y H:i" }}</small>
+        <div class="text-right">
+          <small class="mb-1 block text-white/70"><i class="far fa-calendar mr-1"></i>{{ nota.created|date:"d/m/Y H:i" }}</small>
+          <small class="block text-white/70"><i class="far fa-clock mr-1"></i>{{ nota.modified|date:"d/m/Y H:i" }}</small>
         </div>
       </div>
     </div>
-    <div class="note-body">
-      <div class="note-content">{{ nota.contenido|linebreaksbr }}</div>
+    <div class="bg-white p-6">
+      <div class="whitespace-pre-wrap leading-[1.8] text-gray-600 text-[1.05rem]">{{ nota.contenido|linebreaksbr }}</div>
     </div>
   </div>
 
-  <div class="card border-0 shadow-sm">
-    <div class="card-body d-flex flex-column flex-sm-row justify-content-end" style="gap: .5rem;">
-      <a href="{% url 'notas_app:editar-nota' nota.pk %}" class="btn btn-primary">
-        <i class="fas fa-edit mr-1"></i>Editar
+  <div class="rounded-3xl bg-white/70 backdrop-blur-lg border border-white/20 p-4 shadow-sm">
+    <div class="flex flex-col sm:flex-row justify-end gap-2">
+      <a href="{% url 'notas_app:editar-nota' nota.pk %}" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 hover:shadow-lg">
+        <i class="fas fa-edit"></i>Editar
       </a>
-      <form method="post" action="{% url 'notas_app:eliminar-nota' nota.pk %}" onsubmit="return confirm('¿Eliminar esta nota?');">
+      <form method="post" action="{% url 'notas_app:eliminar-nota' nota.pk %}" onsubmit="return confirm('¿Eliminar esta nota?');" class="inline">
         {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger">
-          <i class="fas fa-trash-alt mr-1"></i>Eliminar
+        <button type="submit" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-red-300 px-4 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50 hover:shadow-lg">
+          <i class="fas fa-trash-alt"></i>Eliminar
         </button>
       </form>
     </div>
   </div>
-</div>
 
-  </div>
 </div>
 </div>
 

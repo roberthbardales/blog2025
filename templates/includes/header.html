@@ -10,7 +10,7 @@
   <div id="navMenu" class="hidden lg:flex lg:items-center lg:justify-center flex-col lg:flex-row px-4 pb-4 lg:px-8 lg:py-2">
     <div class="flex items-center gap-2 flex-col lg:flex-row">
       <a class="flex items-center" href="{% url 'home_app:index' %}">
-        <img class="h-7 w-10 rounded-lg object-cover" src="{% static 'img/logo2.jpg' %}" alt="Logo del sitio">
+        <img class="h-auto max-h-10 rounded-lg object-contain max-w-none" src="{% static 'img/logo2.jpg' %}" alt="Logo del sitio">
       </a>
       <ul class="flex flex-col lg:flex-row lg:items-center gap-1">
         <li>

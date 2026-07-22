@@ -13,7 +13,7 @@
   --header-gradient: linear-gradient(135deg, #1e40af, #0b5ed7);
 }
 
-img { max-width: 100%; height: auto !important; }
+img { max-width: 100%; }
 html { font-size: 15px; scroll-behavior: smooth; }
 body { background-color: #f8fafc; }
 

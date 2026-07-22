@@ -5,279 +5,71 @@
 
 {% include "includes/header.html" %}
 
-<style>
-    :root {
-        --chat-bg-1: #f6f9ff;
-        --chat-bg-2: #eef3ff;
-        --chat-surface: rgba(255, 255, 255, 0.92);
-        --chat-border: rgba(15, 23, 42, 0.08);
-        --chat-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
-        --chat-muted: #64748b;
-        --chat-primary-1: #0d6efd;
-        --chat-primary-2: #0b5ed7;
-        --chat-radius: 18px;
-    }
-
-    body {
-        background-color: var(--primary-700, #1e40af);
-    }
-
-    /* Reduce motion for users who prefer it */
-    @media (prefers-reduced-motion: reduce) {
-        * { scroll-behavior: auto !important; }
-    }
-
-    .status-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        display: inline-block;
-        background: #22c55e;
-        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
-        vertical-align: middle;
-    }
-
-    .status-dot.offline {
-        background: #94a3b8;
-        box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.18);
-    }
-
-    .chat-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        max-width: 720px;
-        width: 100%;
-        margin: 0 auto;
-        background: var(--chat-surface);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: var(--chat-shadow);
-        overflow: hidden;
-        height: calc((100vh - 92px) * 0.92);
-        border-radius: calc(var(--chat-radius) + 4px);
-        min-width: 0;
-        border: 1px solid var(--chat-border);
-    }
-
-    .chat-header {
-        flex-shrink: 0;
-        background: linear-gradient(135deg, var(--chat-primary-1) 0%, var(--chat-primary-2) 100%);
-        border-bottom: 1px solid rgba(255,255,255,0.14);
-    }
-
-    #chat-log {
-        flex: 1;
-        overflow-y: auto;
-        padding: 18px 18px 10px 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        min-height: 0;
-        max-height: calc((100vh - 240px) * 0.92);
-        scroll-behavior: smooth;
-        background:
-            radial-gradient(800px 400px at 10% 10%, rgba(13, 110, 253, 0.06), transparent 55%),
-            linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248, 251, 255, 0.96) 100%);
-    }
-
-    #chat-log::-webkit-scrollbar {
-        width: 9px;
-    }
-
-    #chat-log::-webkit-scrollbar-track {
-        background: #eef2f7;
-    }
-
-    #chat-log::-webkit-scrollbar-thumb {
-        background: #b8c5d6;
-        border-radius: 999px;
-    }
-
-    .message {
-        padding: 4px 4px;
-        border-radius: var(--chat-radius);
-        max-width: min(78%, 560px);
-        word-wrap: break-word;
-        box-shadow: 0 10px 26px rgba(15, 23, 42, 0.10);
-        line-height: 1.45;
-        font-size: 0.95rem;
-        transform: translateY(0);
-        transition: transform .15s ease, box-shadow .15s ease;
-    }
-
-    .message:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
-    }
-
-    .message strong {
-        display: block;
-        font-weight: 600;
-        font-size: 0.86rem;
-        opacity: 0.95;
-        margin-bottom: 1px;
-        letter-spacing: 0.2px;
-    }
-
-    .message p {
-        margin-bottom: 2px !important;
-        white-space: pre-wrap;
-    }
-
-    .message .small {
-        display: block;
-        font-size: 0.78rem;
-        opacity: 0.9;
-    }
-
-    .sent {
-        background: linear-gradient(135deg, var(--chat-primary-1), var(--chat-primary-2));
-        color: white;
-        margin-left: auto;
-        border-bottom-right-radius: 6px;
-        border-top-right-radius: 8px;
-    }
-
-    .received {
-        background: rgba(255,255,255,0.98);
-        color: #0f172a;
-        border: 1px solid rgba(15,23,42,.08);
-        border-bottom-left-radius: 6px;
-        border-top-left-radius: 8px;
-    }
-
-    .input-container {
-        display: flex;
-        gap: 12px;
-        padding: 16px;
-        border-top: 1px solid rgba(15,23,42,.08);
-        background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(251,252,254,0.98) 100%);
-        flex-shrink: 0;
-    }
-
-    #chat-input {
-        flex: 1;
-        border-radius: 999px;
-        border: 1px solid rgba(15,23,42,.14);
-        box-shadow: inset 0 1px 2px rgba(15,23,42,.05);
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    #chat-input:focus {
-        border-color: rgba(13, 110, 253, 0.55);
-        box-shadow: 0 0 0 .2rem rgba(13,110,253,.18), inset 0 1px 2px rgba(15,23,42,.05);
-    }
-
-    #send-button {
-        border-radius: 999px;
-        box-shadow: 0 10px 26px rgba(13, 110, 253, 0.26);
-        transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-    }
-
-    #send-button:disabled {
-        opacity: 0.65;
-        box-shadow: none;
-        transform: none;
-    }
-
-    #send-button:not(:disabled):hover {
-        transform: translateY(-1px);
-        box-shadow: 0 14px 34px rgba(13, 110, 253, 0.30);
-    }
-
-    .empty-chat {
-        text-align: center;
-        padding: 60px 20px;
-        color: var(--chat-muted);
-        background: radial-gradient(circle at top, rgba(13,110,253,.10), transparent 55%);
-    }
-
-    .chat-header .btn {
-        border-radius: 999px;
-        font-weight: 600;
-    }
-
-    @media (max-width: 991.98px) {
-        .chat-container {
-            height: calc((100vh - 92px) * 0.90);
-            max-width: 100%;
-        }
-        .message {
-            max-width: 92%;
-        }
-    }
-</style>
-
-<!-- Barra lateral -->
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4 pt-8">
 {% include "includes/barra_lateral.html" %}
 
-<div class="col-lg-9 d-flex">
-  <div class="chat-container card border-0">
-    <div class="d-flex justify-content-between align-items-center text-white px-3 px-md-4 py-3 chat-header">
-        <div class="d-flex align-items-center" style="min-width:0;">
-            <div class="rounded-circle bg-white text-primary d-inline-flex align-items-center justify-content-center mr-3 shadow-sm flex-shrink-0 overflow-hidden" style="width: 44px; height: 44px; font-weight: 700; border: 2px solid rgba(255,255,255,.55);">
+<div class="flex w-full lg:flex-1">
+  <div class="flex flex-1 flex-col overflow-hidden rounded-[22px] border border-slate-200/80 bg-white/95 shadow-[0_18px_50px_rgba(15,23,42,.14)] backdrop-blur-[10px] lg:max-w-[560px] lg:mx-auto lg:w-full lg:min-w-0" style="height: calc(100vh - 120px);">
+
+    <div class="flex shrink-0 items-center justify-between bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-3 text-white" style="border-bottom: 1px solid rgba(255,255,255,.14);">
+        <div class="flex min-w-0 items-center gap-3">
+            <div class="flex h-[44px] w-[44px] shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-white/55 bg-white text-blue-600 font-bold shadow-sm">
                 {% if other_user.avatar %}
-                    <img src="{{ other_user.avatar.url }}" alt="Avatar de {{ other_user.get_full_name }}" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="{{ other_user.avatar.url }}" alt="Avatar de {{ other_user.get_full_name }}" class="h-full w-full object-cover">
                 {% elif other_user.avatar_url %}
-                    <img src="{{ other_user.avatar_url }}" alt="Avatar de {{ other_user.get_full_name }}" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="{{ other_user.avatar_url }}" alt="Avatar de {{ other_user.get_full_name }}" class="h-full w-full object-cover">
                 {% else %}
-                    <i class="fas fa-user" aria-hidden="true"></i>
-                    <span class="sr-only">Usuario</span>
+                    <i class="fas fa-user"></i>
                 {% endif %}
             </div>
-            <div style="min-width:0;">
-                <h2 class="h5 mb-0 text-truncate">{{ other_user.get_full_name }}</h2>
-                <div class="small d-flex align-items-center" id="user-status">
-                    <span class="status-dot {% if not other_user.is_online %}offline{% endif %}" id="status-dot"></span>
-                    <span id="status-text" class="ml-2">{% if other_user.is_online %}En línea{% else %}Desconectado{% endif %}</span>
+            <div class="min-w-0">
+                <h2 class="mb-0 truncate text-sm font-bold">{{ other_user.get_full_name }}</h2>
+                <div class="flex items-center gap-2 text-xs" id="user-status">
+                    <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(34,197,94,.18)] {% if not other_user.is_online %}!bg-slate-400 !shadow-[0_0_0_3px_rgba(148,163,184,.18)]{% endif %}" id="status-dot"></span>
+                    <span id="status-text" class="text-white/80">{% if other_user.is_online %}En línea{% else %}Desconectado{% endif %}</span>
                 </div>
             </div>
         </div>
-        <a href="{% url 'chat_home' %}" class="btn btn-light btn-sm px-3">
-            <i class="fas fa-arrow-left mr-1"></i>
-            Volver
+        <a href="{% url 'chat_home' %}" class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-white/30">
+            <i class="fas fa-arrow-left"></i>Volver
         </a>
     </div>
 
-    <div id="chat-log" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Mensajes del chat">
+    <div id="chat-log" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Mensajes del chat" class="flex flex-1 flex-col gap-0.5 overflow-y-auto px-4 pb-2.5 pt-4 min-h-0 scroll-smooth" style="max-height: calc((100vh - 240px) * 0.92); background: radial-gradient(800px 400px at 10% 10%, rgba(13,110,253,.06), transparent 55%), linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(248,251,255,.96) 100%);">
         {% if messages %}
             {% for message in messages %}
-                <div class="message {% if message.sender.id == user.id %}sent{% else %}received{% endif %}">
-                    <strong>{{ message.sender.get_full_name }}</strong>
-                    <p class="mb-1">{{ message.content }}</p>
-                    <span class="small text-muted">{{ message.formatted_time }}</span>
+                <div class="message max-w-[min(78%,560px)] break-words rounded-[18px] px-1 py-1 leading-[1.45] text-[0.95rem] shadow-[0_10px_26px_rgba(15,23,42,.10)] transition hover:-translate-y-px hover:shadow-[0_14px_34px_rgba(15,23,42,.14)] {% if message.sender.id == user.id %}ml-auto rounded-br-[6px] rounded-tr-[8px] bg-gradient-to-r from-blue-600 to-blue-700 text-white{% else %}rounded-bl-[6px] rounded-tl-[8px] border border-slate-200/80 bg-white text-slate-900{% endif %}">
+                    <strong class="mb-px block text-[0.86rem] font-semibold tracking-[0.2px] opacity-95">{{ message.sender.get_full_name }}</strong>
+                    <p class="mb-0.5 whitespace-pre-wrap">{{ message.content }}</p>
+                    <span class="block text-[0.78rem] opacity-90 {% if message.sender.id == user.id %}text-white/70{% else %}text-slate-400{% endif %}">{{ message.formatted_time }}</span>
                 </div>
             {% endfor %}
         {% else %}
-            <div class="empty-chat">
-                <i class="far fa-comment-dots fa-3x mb-3"></i>
-                <h4>No hay mensajes aún</h4>
-                <p class="mb-0">Sé el primero en enviar un mensaje</p>
+            <div class="py-[60px] text-center text-slate-500" style="background: radial-gradient(circle at top, rgba(13,110,253,.10), transparent 55%);">
+                <i class="far fa-comment-dots mb-3 text-4xl text-slate-300"></i>
+                <h4 class="text-sm font-semibold text-slate-700">No hay mensajes aún</h4>
+                <p class="mt-1 text-xs text-slate-500">Sé el primero en enviar un mensaje</p>
             </div>
         {% endif %}
     </div>
 
-    <form class="input-container" id="chat-form" autocomplete="off" aria-label="Enviar mensaje">
+    <form class="flex shrink-0 items-center gap-3 border-t border-slate-200/80 px-4 py-4" id="chat-form" autocomplete="off" aria-label="Enviar mensaje" style="background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(251,252,254,.98) 100%);">
         <label for="chat-input" class="sr-only">Escribe tu mensaje</label>
         <input id="chat-input"
                name="message"
                type="text"
-               class="form-control"
+               class="flex-1 rounded-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none shadow-[inset_0_1px_2px_rgba(15,23,42,.05)] transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                placeholder="Escribe tu mensaje..."
                autocomplete="off"
                maxlength="500"
                aria-label="Mensaje"
                inputmode="text">
-        <button id="send-button" class="btn btn-primary px-4" type="submit" disabled aria-disabled="true">
-            <i class="fas fa-paper-plane mr-1"></i>
+        <button id="send-button" class="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_26px_rgba(13,110,253,.26)] transition hover:-translate-y-px hover:shadow-[0_14px_34px_rgba(13,110,253,.30)] disabled:opacity-65 disabled:shadow-none disabled:translate-y-0" type="submit" disabled aria-disabled="true">
+            <i class="fas fa-paper-plane"></i>
             <span>Enviar</span>
         </button>
     </form>
   </div>
-</div>
-
 </div>
 </div>
 
@@ -319,22 +111,24 @@
         if (emptyChat) emptyChat.remove();
 
         const msgDiv = document.createElement('div');
-        const messageClass = data.sender_id === currentUserId ? 'sent' : 'received';
-        msgDiv.className = 'message ' + messageClass;
+        const isSent = data.sender_id === currentUserId;
+        msgDiv.className = 'message max-w-[min(78%,560px)] break-words rounded-[18px] px-1 py-1 leading-[1.45] text-[0.95rem] shadow-[0_10px_26px_rgba(15,23,42,.10)] transition hover:-translate-y-px hover:shadow-[0_14px_34px_rgba(15,23,42,.14)] ' +
+            (isSent ? 'ml-auto rounded-br-[6px] rounded-tr-[8px] bg-gradient-to-r from-blue-600 to-blue-700 text-white' : 'rounded-bl-[6px] rounded-tl-[8px] border border-slate-200/80 bg-white text-slate-900');
 
         const now = new Date();
         const timestamp = now.getHours().toString().padStart(2,'0') + ':' +
                           now.getMinutes().toString().padStart(2,'0');
 
         const strong = document.createElement('strong');
+        strong.className = 'mb-px block text-[0.86rem] font-semibold tracking-[0.2px] opacity-95';
         strong.textContent = data.sender_name ?? '';
 
         const p = document.createElement('p');
-        p.className = 'mb-1';
+        p.className = 'mb-0.5 whitespace-pre-wrap';
         p.textContent = data.message ?? '';
 
         const time = document.createElement('span');
-        time.className = 'small text-muted';
+        time.className = 'block text-[0.78rem] opacity-90 ' + (isSent ? 'text-white/70' : 'text-slate-400');
         time.textContent = timestamp;
 
         msgDiv.appendChild(strong);
@@ -381,10 +175,10 @@
             .then(data => {
                 const isOnline = data.is_online;
                 if (isOnline) {
-                    statusDot.classList.remove('offline');
+                    statusDot.classList.remove('!bg-slate-400', '!shadow-[0_0_0_3px_rgba(148,163,184,.18)]');
                     statusText.textContent = 'En línea';
                 } else {
-                    statusDot.classList.add('offline');
+                    statusDot.classList.add('!bg-slate-400', '!shadow-[0_0_0_3px_rgba(148,163,184,.18)]');
                     statusText.textContent = 'Desconectado';
                 }
             })

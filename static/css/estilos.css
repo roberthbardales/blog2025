@@ -14,7 +14,7 @@
 }
 
 img { max-width: 100%; }
-html { font-size: 15px; scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 body { background-color: #f8fafc; }
 
 .h8 { font-size: 1rem; }

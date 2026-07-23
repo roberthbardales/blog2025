@@ -20,6 +20,17 @@ def home_contact(request):
     }
 
 
+def solicitudes_pendientes(request):
+    if not request.user.is_authenticated:
+        return {}
+    from applications.amigos.models import Friendship
+    count = Friendship.objects.filter(
+        receiver=request.user,
+        status='pending'
+    ).count()
+    return {'solicitudes_pendientes': count}
+
+
 def obtener_ip(request):
     """Context processor para obtener la IP del visitante.
     

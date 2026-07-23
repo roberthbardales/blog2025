@@ -127,6 +127,7 @@ TEMPLATES = [
                 'applications.processors.home_contact',
                 'applications.processors.obtener_ip',
                 'applications.processors.obtener_clima',
+                'applications.processors.solicitudes_pendientes',
             ],
         },
     },

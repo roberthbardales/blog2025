@@ -1,197 +1,188 @@
-{% extends "users/base_users.html" %}
+{% extends "layout_sidebar.html" %}
 {% load static %}
 
 {% block title %}Mis Amigos{% endblock %}
 
-{% block content %}
-{% include "includes/header.html" %}
-
-<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
-  {% include "includes/barra_lateral.html" %}
-
-  <div class="w-full lg:flex-1 py-4">
-    <div class="space-y-4">
-      <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)]">
-        <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-white/10"></div>
-        <div class="absolute -left-16 -bottom-16 h-40 w-40 rounded-full bg-white/5"></div>
-        <div class="relative z-10 p-5 sm:p-6">
-          <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm font-medium text-white/95">
-                <i class="fas fa-user-friends"></i>Red social
-              </span>
-              <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">Mis amigos</h1>
-              <p class="mt-2 max-w-3xl text-sm text-white/75">Revisa tus solicitudes, gestiona tus contactos y descubre nuevas personas para conectar.</p>
-            </div>
-            <a href="{% url 'amigos_app:buscar' %}" class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">
-              <i class="fas fa-search mr-2"></i>Buscar personas
-            </a>
-          </div>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-users"></i>{{ amigos|length }} amigos</span>
-            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-bell"></i>{{ solicitudes_recibidas.count }} recibidas</span>
-            <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-paper-plane"></i>{{ solicitudes_enviadas.count }} enviadas</span>
-          </div>
+{% block sidebar_content %}
+<div class="space-y-4">
+  <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)]">
+    <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-white/10"></div>
+    <div class="absolute -left-16 -bottom-16 h-40 w-40 rounded-full bg-white/5"></div>
+    <div class="relative z-10 p-5 sm:p-6">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm font-medium text-white/95">
+            <i class="fas fa-user-friends"></i>Red social
+          </span>
+          <h1 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">Mis amigos</h1>
+          <p class="mt-2 max-w-3xl text-sm text-white/75">Revisa tus solicitudes, gestiona tus contactos y descubre nuevas personas para conectar.</p>
         </div>
-      </section>
-
-      {% if messages %}
-        {% for msg in messages %}
-          <div class="rounded-2xl border px-4 py-3 text-sm font-medium shadow-sm {% if 'error' in msg.tags %}border-rose-200 bg-rose-50 text-rose-700{% elif 'success' in msg.tags %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-blue-200 bg-blue-50 text-blue-700{% endif %}">
-            {{ msg }}
-          </div>
-        {% endfor %}
-      {% endif %}
-
-      {% if solicitudes_recibidas %}
-      <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-5 py-3.5">
-          <h2 class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100"><i class="fas fa-bell text-xs text-amber-600"></i></span>
-            Solicitudes recibidas
-          </h2>
-          <span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-700">{{ solicitudes_recibidas.count }}</span>
-        </div>
-        <div class="p-5">
-          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {% for sol in solicitudes_recibidas %}
-            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-              <div class="flex items-center gap-3 p-4">
-                <div class="relative shrink-0">
-                  {% if sol.sender.avatar %}
-                    <img src="{{ sol.sender.avatar.url }}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="{{ sol.sender.full_name }}">
-                  {% else %}
-                    <img src="{% static 'img/unknown.png' %}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="Usuario">
-                  {% endif %}
-                  <span class="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] text-white ring-2 ring-white"><i class="fas fa-clock"></i></span>
-                </div>
-
-                <div class="min-w-0 flex-1">
-                  <a href="{% url 'entrada_app:view_profile' sol.sender.pk %}" class="block truncate text-sm font-semibold text-slate-900 transition group-hover:text-blue-600">{{ sol.sender.full_name }}</a>
-                  {% if sol.sender.full_name != sol.sender.email %}
-                    <p class="mt-0.5 truncate text-xs text-slate-500" title="{{ sol.sender.email }}">{{ sol.sender.email }}</p>
-                  {% endif %}
-                </div>
-
-                <div class="flex shrink-0 gap-1.5">
-                  <form method="post" action="{% url 'amigos_app:aceptar' sol.pk %}">{% csrf_token %}
-                    <button class="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-emerald-700"><i class="fas fa-check mr-1"></i>Aceptar</button>
-                  </form>
-                  <form method="post" action="{% url 'amigos_app:rechazar' sol.pk %}">{% csrf_token %}
-                    <button class="rounded-lg border border-rose-300 px-3 py-1.5 text-xs font-semibold text-rose-600 transition hover:bg-rose-50"><i class="fas fa-times mr-1"></i>Rechazar</button>
-                  </form>
-                </div>
-              </div>
-            </article>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-      {% endif %}
-
-      {% if solicitudes_enviadas %}
-      <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-5 py-3.5">
-          <h2 class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-100"><i class="fas fa-paper-plane text-xs text-sky-600"></i></span>
-            Solicitudes enviadas
-          </h2>
-          <span class="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-bold text-sky-700">{{ solicitudes_enviadas.count }}</span>
-        </div>
-        <div class="p-5">
-          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {% for sol in solicitudes_enviadas %}
-            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-              <div class="flex items-center gap-3 p-4">
-                <div class="relative shrink-0">
-                  {% if sol.receiver.avatar %}
-                    <img src="{{ sol.receiver.avatar.url }}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="{{ sol.receiver.full_name }}">
-                  {% else %}
-                    <img src="{% static 'img/unknown.png' %}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="Usuario">
-                  {% endif %}
-                  <span class="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] text-white ring-2 ring-white"><i class="fas fa-clock"></i></span>
-                </div>
-
-                <div class="min-w-0 flex-1">
-                  <a href="{% url 'entrada_app:view_profile' sol.receiver.pk %}" class="block truncate text-sm font-semibold text-slate-900 transition group-hover:text-blue-600">{{ sol.receiver.full_name }}</a>
-                  {% if sol.receiver.full_name != sol.receiver.email %}
-                    <p class="mt-0.5 truncate text-xs text-slate-500" title="{{ sol.receiver.email }}">{{ sol.receiver.email }}</p>
-                  {% endif %}
-                </div>
-
-                <div class="flex shrink-0 flex-col items-center gap-1.5">
-                  <span class="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700">
-                    <i class="fas fa-clock"></i>Pendiente
-                  </span>
-                  <form method="post" action="{% url 'amigos_app:cancelar' sol.pk %}">{% csrf_token %}
-                    <button class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50"><i class="fas fa-ban mr-1"></i>Cancelar</button>
-                  </form>
-                </div>
-              </div>
-            </article>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-      {% endif %}
-
-      <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-5 py-3.5">
-          <h2 class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100"><i class="fas fa-user-check text-xs text-emerald-600"></i></span>
-            Amigos confirmados
-          </h2>
-          <span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">{{ amigos|length }}</span>
-        </div>
-        <div class="p-5">
-          {% if amigos %}
-          <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {% for item in amigos %}
-            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-              <div class="p-4 text-center">
-                <div class="relative mx-auto mb-2 h-12 w-12">
-                  {% if item.user.avatar %}
-                    <img src="{{ item.user.avatar.url }}" class="h-full w-full rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-emerald-100" alt="{{ item.user.full_name }}">
-                  {% else %}
-                    <img src="{% static 'img/unknown.png' %}" class="h-full w-full rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-emerald-100" alt="Usuario">
-                  {% endif %}
-                  <span class="absolute bottom-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-[9px] text-white ring-2 ring-white"><i class="fas fa-check"></i></span>
-                </div>
-
-                <a href="{% url 'entrada_app:view_profile' item.user.pk %}" class="block truncate text-sm font-semibold text-slate-900 transition group-hover:text-blue-600">{{ item.user.full_name }}</a>
-                {% if item.user.full_name != item.user.email %}
-                  <p class="mt-0.5 truncate text-xs text-slate-500" title="{{ item.user.email }}">{{ item.user.email }}</p>
-                {% endif %}
-
-                <div class="mt-2 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
-                  <i class="fas fa-heart text-[9px]"></i>Amigo
-                </div>
-              </div>
-              <div class="border-t border-slate-100 px-4 py-2.5">
-                <form method="post" action="{% url 'amigos_app:eliminar' item.user.pk %}" onsubmit="return confirm('Eliminar a {{ item.user.full_name }} de tus amigos?')">
-                  {% csrf_token %}
-                  <button class="w-full rounded-lg border border-rose-200 px-3 py-1.5 text-xs font-semibold text-rose-600 transition hover:border-rose-300 hover:bg-rose-50"><i class="fas fa-user-minus mr-1"></i>Eliminar</button>
-                </form>
-              </div>
-            </article>
-            {% endfor %}
-          </div>
-          {% else %}
-          <div class="rounded-2xl border border-dashed border-blue-200 bg-gradient-to-b from-blue-50/40 to-white px-6 py-12 text-center">
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
-              <i class="fas fa-user-friends text-2xl text-blue-500"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-slate-900">Aún no tienes amigos agregados</h3>
-            <p class="mt-2 mb-5 text-sm text-slate-500">Empieza buscando personas para enviar una solicitud y construir tu red.</p>
-            <a href="{% url 'amigos_app:buscar' %}" class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 hover:shadow-md">
-              <i class="fas fa-search mr-2"></i>Buscar personas
-            </a>
-          </div>
-          {% endif %}
-        </div>
-      </section>
+        <a href="{% url 'amigos_app:buscar' %}" class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">
+          <i class="fas fa-search mr-2"></i>Buscar personas
+        </a>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-users"></i>{{ amigos|length }} amigos</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-bell"></i>{{ solicitudes_recibidas.count }} recibidas</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-2 text-sm font-medium"><i class="fas fa-paper-plane"></i>{{ solicitudes_enviadas.count }} enviadas</span>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-{% endblock content %}
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="rounded-2xl border px-4 py-3 text-sm font-medium shadow-sm {% if 'error' in msg.tags %}border-rose-200 bg-rose-50 text-rose-700{% elif 'success' in msg.tags %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-blue-200 bg-blue-50 text-blue-700{% endif %}">
+        {{ msg }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if solicitudes_recibidas %}
+  <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+    <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-5 py-3.5">
+      <h2 class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100"><i class="fas fa-bell text-xs text-amber-600"></i></span>
+        Solicitudes recibidas
+      </h2>
+      <span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-700">{{ solicitudes_recibidas.count }}</span>
+    </div>
+    <div class="p-5">
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {% for sol in solicitudes_recibidas %}
+        <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex items-center gap-3 p-4">
+            <div class="relative shrink-0">
+              {% if sol.sender.avatar %}
+                <img src="{{ sol.sender.avatar.url }}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="{{ sol.sender.full_name }}">
+              {% else %}
+                <img src="{% static 'img/unknown.png' %}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="Usuario">
+              {% endif %}
+              <span class="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] text-white ring-2 ring-white"><i class="fas fa-clock"></i></span>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <a href="{% url 'entrada_app:view_profile' sol.sender.pk %}" class="block truncate text-sm font-semibold text-slate-900 transition group-hover:text-blue-600">{{ sol.sender.full_name }}</a>
+              {% if sol.sender.full_name != sol.sender.email %}
+                <p class="mt-0.5 truncate text-xs text-slate-500" title="{{ sol.sender.email }}">{{ sol.sender.email }}</p>
+              {% endif %}
+            </div>
+
+            <div class="flex shrink-0 gap-1.5">
+              <form method="post" action="{% url 'amigos_app:aceptar' sol.pk %}">{% csrf_token %}
+                <button class="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-emerald-700"><i class="fas fa-check mr-1"></i>Aceptar</button>
+              </form>
+              <form method="post" action="{% url 'amigos_app:rechazar' sol.pk %}">{% csrf_token %}
+                <button class="rounded-lg border border-rose-300 px-3 py-1.5 text-xs font-semibold text-rose-600 transition hover:bg-rose-50"><i class="fas fa-times mr-1"></i>Rechazar</button>
+              </form>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if solicitudes_enviadas %}
+  <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+    <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-5 py-3.5">
+      <h2 class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-100"><i class="fas fa-paper-plane text-xs text-sky-600"></i></span>
+        Solicitudes enviadas
+      </h2>
+      <span class="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-bold text-sky-700">{{ solicitudes_enviadas.count }}</span>
+    </div>
+    <div class="p-5">
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {% for sol in solicitudes_enviadas %}
+        <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex items-center gap-3 p-4">
+            <div class="relative shrink-0">
+              {% if sol.receiver.avatar %}
+                <img src="{{ sol.receiver.avatar.url }}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="{{ sol.receiver.full_name }}">
+              {% else %}
+                <img src="{% static 'img/unknown.png' %}" class="h-12 w-12 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-100" alt="Usuario">
+              {% endif %}
+              <span class="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] text-white ring-2 ring-white"><i class="fas fa-clock"></i></span>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <a href="{% url 'entrada_app:view_profile' sol.receiver.pk %}" class="block truncate text-sm font-semibold text-slate-900 transition group-hover:text-blue-600">{{ sol.receiver.full_name }}</a>
+              {% if sol.receiver.full_name != sol.receiver.email %}
+                <p class="mt-0.5 truncate text-xs text-slate-500" title="{{ sol.receiver.email }}">{{ sol.receiver.email }}</p>
+              {% endif %}
+            </div>
+
+            <div class="flex shrink-0 flex-col items-center gap-1.5">
+              <span class="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700">
+                <i class="fas fa-clock"></i>Pendiente
+              </span>
+              <form method="post" action="{% url 'amigos_app:cancelar' sol.pk %}">{% csrf_token %}
+                <button class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50"><i class="fas fa-ban mr-1"></i>Cancelar</button>
+              </form>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+    <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-5 py-3.5">
+      <h2 class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100"><i class="fas fa-user-check text-xs text-emerald-600"></i></span>
+        Amigos confirmados
+      </h2>
+      <span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">{{ amigos|length }}</span>
+    </div>
+    <div class="p-5">
+      {% if amigos %}
+      <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {% for item in amigos %}
+        <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+          <div class="p-4 text-center">
+            <div class="relative mx-auto mb-2 h-12 w-12">
+              {% if item.user.avatar %}
+                <img src="{{ item.user.avatar.url }}" class="h-full w-full rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-emerald-100" alt="{{ item.user.full_name }}">
+              {% else %}
+                <img src="{% static 'img/unknown.png' %}" class="h-full w-full rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-emerald-100" alt="Usuario">
+              {% endif %}
+              <span class="absolute bottom-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-[9px] text-white ring-2 ring-white"><i class="fas fa-check"></i></span>
+            </div>
+
+            <a href="{% url 'entrada_app:view_profile' item.user.pk %}" class="block truncate text-sm font-semibold text-slate-900 transition group-hover:text-blue-600">{{ item.user.full_name }}</a>
+            {% if item.user.full_name != item.user.email %}
+              <p class="mt-0.5 truncate text-xs text-slate-500" title="{{ item.user.email }}">{{ item.user.email }}</p>
+            {% endif %}
+
+            <div class="mt-2 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
+              <i class="fas fa-heart text-[9px]"></i>Amigo
+            </div>
+          </div>
+          <div class="border-t border-slate-100 px-4 py-2.5">
+            <form method="post" action="{% url 'amigos_app:eliminar' item.user.pk %}" onsubmit="return confirm('Eliminar a {{ item.user.full_name }} de tus amigos?')">
+              {% csrf_token %}
+              <button class="w-full rounded-lg border border-rose-200 px-3 py-1.5 text-xs font-semibold text-rose-600 transition hover:border-rose-300 hover:bg-rose-50"><i class="fas fa-user-minus mr-1"></i>Eliminar</button>
+            </form>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="rounded-2xl border border-dashed border-blue-200 bg-gradient-to-b from-blue-50/40 to-white px-6 py-12 text-center">
+        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+          <i class="fas fa-user-friends text-2xl text-blue-500"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-900">Aún no tienes amigos agregados</h3>
+        <p class="mt-2 mb-5 text-sm text-slate-500">Empieza buscando personas para enviar una solicitud y construir tu red.</p>
+        <a href="{% url 'amigos_app:buscar' %}" class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 hover:shadow-md">
+          <i class="fas fa-search mr-2"></i>Buscar personas
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock sidebar_content %}

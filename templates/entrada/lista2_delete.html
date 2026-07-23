@@ -1,54 +1,45 @@
-{% extends "users/base_users.html" %}
+{% extends "layout_sidebar.html" %}
 {% load static %}
 
-{% block content %}
-{% include "includes/header.html" %}
-
-<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
-  {% include "includes/barra_lateral.html" %}
-
-  <div class="w-full lg:flex-1 py-4">
-    <section class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-rose-200 bg-white shadow-sm">
-      <div class="bg-rose-600 px-6 py-4 text-white">
-        <h1 class="text-xl font-bold">Eliminar Entrada</h1>
-      </div>
-      <div class="p-6 text-center">
-        <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-rose-50 text-rose-600">
-          <i class="fas fa-exclamation-triangle text-4xl"></i>
-        </div>
-        <h2 class="text-lg font-semibold text-slate-900">¿Estás seguro de que deseas eliminar esta Entrada?</h2>
-
-        <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
-          <table class="min-w-full text-sm">
-            <tbody class="divide-y divide-slate-200">
-              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">ID</th><td class="px-4 py-3">{{ object.id }}</td></tr>
-              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Título</th><td class="px-4 py-3">{{ object.title }}</td></tr>
-              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Usuario</th><td class="px-4 py-3">{{ object.user }}</td></tr>
-              <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Categoría</th><td class="px-4 py-3">{{ object.category }}</td></tr>
-              <tr>
-                <th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Imagen</th>
-                <td class="px-4 py-3">
-                  <img src="{{ object.image.url }}" alt="Imagen" class="mx-auto max-w-full rounded-xl">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <form method="POST" action="" class="mt-6">
-          {% csrf_token %}
-          <div class="flex justify-center gap-2">
-            <a href="{% url 'entrada_app:entry-lista2' %}" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
-              <i class="fas fa-times mr-2"></i>Cancelar
-            </a>
-            <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700">
-              <i class="fas fa-trash mr-2"></i>Sí, eliminar
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
+{% block sidebar_content %}
+<section class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-rose-200 bg-white shadow-sm">
+  <div class="bg-rose-600 px-6 py-4 text-white">
+    <h1 class="text-xl font-bold">Eliminar Entrada</h1>
   </div>
-</div>
+  <div class="p-6 text-center">
+    <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+      <i class="fas fa-exclamation-triangle text-4xl"></i>
+    </div>
+    <h2 class="text-lg font-semibold text-slate-900">¿Estás seguro de que deseas eliminar esta Entrada?</h2>
 
-{% endblock content %}
+    <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
+      <table class="min-w-full text-sm">
+        <tbody class="divide-y divide-slate-200">
+          <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">ID</th><td class="px-4 py-3">{{ object.id }}</td></tr>
+          <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Título</th><td class="px-4 py-3">{{ object.title }}</td></tr>
+          <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Usuario</th><td class="px-4 py-3">{{ object.user }}</td></tr>
+          <tr><th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Categoría</th><td class="px-4 py-3">{{ object.category }}</td></tr>
+          <tr>
+            <th class="bg-slate-50 px-4 py-3 text-left font-semibold text-slate-600">Imagen</th>
+            <td class="px-4 py-3">
+              <img src="{{ object.image.url }}" alt="Imagen" class="mx-auto max-w-full rounded-xl">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form method="POST" action="" class="mt-6">
+      {% csrf_token %}
+      <div class="flex justify-center gap-2">
+        <a href="{% url 'entrada_app:entry-lista2' %}" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+          <i class="fas fa-times mr-2"></i>Cancelar
+        </a>
+        <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700">
+          <i class="fas fa-trash mr-2"></i>Sí, eliminar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock sidebar_content %}

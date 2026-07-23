@@ -1,148 +1,140 @@
-﻿{% extends "users/base_users.html" %}
+﻿{% extends "layout_sidebar.html" %}
 {% load static %}
 
-{% block content %}
-{% include "includes/header.html" %}
+{% block sidebar_content %}
+<!-- CONTENIDO PRINCIPAL -->
+    <div class="min-h-[650px]">
 
-<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
-  {% include "includes/barra_lateral.html" %}
-  <!-- CONTENIDO PRINCIPAL -->
-  <div class="w-full lg:flex-1 py-4">
-      <div class="min-h-[650px]">
-
-        <div class="bg-gradient-to-r from-slate-900 via-blue-600 to-blue-700 text-white rounded-2xl shadow-[0_18px_36px_rgba(15,23,42,.16)] overflow-hidden mb-4 relative">
-          <div class="p-4 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between md:items-center">
-              <div class="mb-3 md:mb-0">
-                <span class="inline-block bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">
-                  <i class="fas fa-bookmark mr-1"></i>Favoritos
-                </span>
-                <h4 class="mb-2 font-bold text-lg">Mis Posts Guardados</h4>
-                <p class="mb-0 text-white/60 text-sm">
-                  Organiza, filtra y cambia el grupo de cada favorito sin perder el foco.
-                </p>
-              </div>
-              <div>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-sm">
-                  <i class="fas fa-layer-group"></i>{{ contexto_grupos|length }} grupos
-                </span>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-sm">
-                  <i class="fas fa-heart"></i>{{ entradas_user|length }} guardados
-                </span>
-              </div>
+      <div class="bg-gradient-to-r from-slate-900 via-blue-600 to-blue-700 text-white rounded-2xl shadow-[0_18px_36px_rgba(15,23,42,.16)] overflow-hidden mb-4 relative">
+        <div class="p-4 relative z-10">
+          <div class="flex flex-col md:flex-row justify-between md:items-center">
+            <div class="mb-3 md:mb-0">
+              <span class="inline-block bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">
+                <i class="fas fa-bookmark mr-1"></i>Favoritos
+              </span>
+              <h4 class="mb-2 font-bold text-lg">Mis Posts Guardados</h4>
+              <p class="mb-0 text-white/60 text-sm">
+                Organiza, filtra y cambia el grupo de cada favorito sin perder el foco.
+              </p>
+            </div>
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-sm">
+                <i class="fas fa-layer-group"></i>{{ contexto_grupos|length }} grupos
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-sm">
+                <i class="fas fa-heart"></i>{{ entradas_user|length }} guardados
+              </span>
             </div>
           </div>
         </div>
-
-        <div class="bg-white rounded-2xl shadow-[0_12px_26px_rgba(15,23,42,.10)] overflow-hidden mb-4">
-          <div class="p-4">
-            <div class="flex flex-col lg:flex-row justify-between lg:items-center mb-3" style="gap: .75rem;">
-              <div class="flex rounded-lg overflow-hidden border border-gray-300">
-                <a href="?orden=fecha" class="px-4 py-2 text-sm border-r border-gray-300 {% if orden_seleccionado == 'fecha' %}bg-blue-600 text-white{% else %}bg-white text-gray-700 hover:bg-gray-100{% endif %} transition-colors no-underline">
-                  <i class="fas fa-calendar-alt mr-1"></i>Por fecha
-                </a>
-                <a href="?orden=grupo" class="px-4 py-2 text-sm {% if orden_seleccionado == 'grupo' %}bg-blue-600 text-white{% else %}bg-white text-gray-700 hover:bg-gray-100{% endif %} transition-colors no-underline">
-                  <i class="fas fa-folder mr-1"></i>Por grupo
-                </a>
-              </div>
-              <form method="get" action="" class="w-full lg:w-1/2">
-                <div class="flex rounded-lg overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500">
-                  <input type="text"
-                         class="flex-1 px-3 py-2 outline-none border-0 text-sm"
-                         placeholder="Buscar en favoritos..."
-                         id="kword_favorito"
-                         name="kword_favorito"
-                         value="{{ request.GET.kword_favorito }}">
-                  <button class="bg-blue-600 text-white px-4 py-2 text-sm hover:bg-blue-700 transition-colors" type="submit">
-                    <i class="fas fa-search mr-1"></i>Buscar
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        {% for entrada in entradas_user %}
-        <div class="bg-white rounded-2xl shadow-[0_12px_26px_rgba(15,23,42,.10)] overflow-hidden mb-4 border-l-4 border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(15,23,42,.14)] transition-all duration-200">
-          <div class="p-4">
-            <div class="flex flex-col md:flex-row md:items-center">
-              <div class="w-full md:w-1/4 mb-3 md:mb-0 md:pr-4">
-                <img class="w-full h-48 object-cover rounded-xl" src="{{ entrada.entry.image.url }}" alt="{{ entrada.entry.title }}">
-              </div>
-              <div class="w-full md:w-3/4">
-                <div class="flex flex-wrap items-center gap-2 mb-3">
-                  <h5 class="mb-0 font-semibold text-gray-900 flex-1">{{ entrada.entry.title|truncatechars:80 }}</h5>
-                  <span class="inline-block bg-cyan-100 text-cyan-700 text-xs font-semibold px-2 py-1 rounded-full">{{ entrada.entry.category }}</span>
-                </div>
-
-                <p class="text-gray-500 mb-3 text-sm">
-                  <i class="fas fa-folder text-blue-600 mr-1"></i>
-                  <strong>{{ entrada.group.name }}</strong>
-                </p>
-
-                <div class="mb-3">
-                  <label class="block text-xs text-gray-500 mb-1">
-                    <i class="fas fa-exchange-alt mr-1"></i>Cambiar grupo
-                  </label>
-                  <select class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm bg-white" onchange="window.location.href=this.value;">
-                    {% for g in contexto_grupos %}
-                    <option value="{% url 'favoritos_app:cambiar-grupo' entrada.id %}?group_id={{ g.id }}"
-                            {% if entrada.group and entrada.group.id == g.id %}selected{% endif %}>
-                      {{ g.name }}
-                    </option>
-                    {% endfor %}
-                  </select>
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-2">
-                  <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}" class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-xl text-center text-sm hover:bg-blue-700 transition-colors no-underline">
-                    <i class="fas fa-eye mr-1"></i>Ver post
-                  </a>
-                  <form method="post" action="{% url 'favoritos_app:delete-favoritos' entrada.id %}" class="flex-1">
-                    {% csrf_token %}
-                    <button type="submit" class="w-full border border-red-600 text-red-600 px-4 py-2 rounded-xl text-sm hover:bg-red-600 hover:text-white transition-colors" onclick="return confirm('¿Eliminar este favorito?');">
-                      <i class="fas fa-trash mr-1"></i>Eliminar
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% empty %}
-        <div class="border border-dashed border-blue-300 rounded-2xl bg-gradient-to-b from-blue-50/40 to-transparent">
-          <div class="text-center py-8">
-            <i class="fas fa-inbox text-blue-600" style="font-size: 60px;"></i>
-            <h5 class="mt-3 text-gray-900">No hay favoritos guardados</h5>
-            <p class="text-gray-500 mb-0">Comienza a guardar tus posts favoritos.</p>
-          </div>
-        </div>
-        {% endfor %}
-
-        {% if is_paginated %}
-        <div class="flex justify-center mt-4">
-          <nav class="flex items-center gap-1">
-            {% if page_obj.has_previous %}
-            <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 no-underline" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
-              <i class="fas fa-chevron-left"></i> Atrás
-            </a>
-            {% endif %}
-
-            {% for pagina in paginator.page_range %}
-            <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm {% if pagina == page_obj.number %}bg-blue-600 text-white border-blue-600{% else %}text-gray-700 hover:bg-gray-100{% endif %} no-underline" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-            <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 no-underline" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
-              Siguiente <i class="fas fa-chevron-right"></i>
-            </a>
-            {% endif %}
-          </nav>
-        </div>
-        {% endif %}
-
       </div>
-  </div>
-</div>
 
-{% endblock content %}
+      <div class="bg-white rounded-2xl shadow-[0_12px_26px_rgba(15,23,42,.10)] overflow-hidden mb-4">
+        <div class="p-4">
+          <div class="flex flex-col lg:flex-row justify-between lg:items-center mb-3" style="gap: .75rem;">
+            <div class="flex rounded-lg overflow-hidden border border-gray-300">
+              <a href="?orden=fecha" class="px-4 py-2 text-sm border-r border-gray-300 {% if orden_seleccionado == 'fecha' %}bg-blue-600 text-white{% else %}bg-white text-gray-700 hover:bg-gray-100{% endif %} transition-colors no-underline">
+                <i class="fas fa-calendar-alt mr-1"></i>Por fecha
+              </a>
+              <a href="?orden=grupo" class="px-4 py-2 text-sm {% if orden_seleccionado == 'grupo' %}bg-blue-600 text-white{% else %}bg-white text-gray-700 hover:bg-gray-100{% endif %} transition-colors no-underline">
+                <i class="fas fa-folder mr-1"></i>Por grupo
+              </a>
+            </div>
+            <form method="get" action="" class="w-full lg:w-1/2">
+              <div class="flex rounded-lg overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500">
+                <input type="text"
+                       class="flex-1 px-3 py-2 outline-none border-0 text-sm"
+                       placeholder="Buscar en favoritos..."
+                       id="kword_favorito"
+                       name="kword_favorito"
+                       value="{{ request.GET.kword_favorito }}">
+                <button class="bg-blue-600 text-white px-4 py-2 text-sm hover:bg-blue-700 transition-colors" type="submit">
+                  <i class="fas fa-search mr-1"></i>Buscar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {% for entrada in entradas_user %}
+      <div class="bg-white rounded-2xl shadow-[0_12px_26px_rgba(15,23,42,.10)] overflow-hidden mb-4 border-l-4 border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(15,23,42,.14)] transition-all duration-200">
+        <div class="p-4">
+          <div class="flex flex-col md:flex-row md:items-center">
+            <div class="w-full md:w-1/4 mb-3 md:mb-0 md:pr-4">
+              <img class="w-full h-48 object-cover rounded-xl" src="{{ entrada.entry.image.url }}" alt="{{ entrada.entry.title }}">
+            </div>
+            <div class="w-full md:w-3/4">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <h5 class="mb-0 font-semibold text-gray-900 flex-1">{{ entrada.entry.title|truncatechars:80 }}</h5>
+                <span class="inline-block bg-cyan-100 text-cyan-700 text-xs font-semibold px-2 py-1 rounded-full">{{ entrada.entry.category }}</span>
+              </div>
+
+              <p class="text-gray-500 mb-3 text-sm">
+                <i class="fas fa-folder text-blue-600 mr-1"></i>
+                <strong>{{ entrada.group.name }}</strong>
+              </p>
+
+              <div class="mb-3">
+                <label class="block text-xs text-gray-500 mb-1">
+                  <i class="fas fa-exchange-alt mr-1"></i>Cambiar grupo
+                </label>
+                <select class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm bg-white" onchange="window.location.href=this.value;">
+                  {% for g in contexto_grupos %}
+                  <option value="{% url 'favoritos_app:cambiar-grupo' entrada.id %}?group_id={{ g.id }}"
+                          {% if entrada.group and entrada.group.id == g.id %}selected{% endif %}>
+                    {{ g.name }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-2">
+                <a href="{% url 'entrada_app:entry-detail' entrada.entry.slug %}" class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-xl text-center text-sm hover:bg-blue-700 transition-colors no-underline">
+                  <i class="fas fa-eye mr-1"></i>Ver post
+                </a>
+                <form method="post" action="{% url 'favoritos_app:delete-favoritos' entrada.id %}" class="flex-1">
+                  {% csrf_token %}
+                  <button type="submit" class="w-full border border-red-600 text-red-600 px-4 py-2 rounded-xl text-sm hover:bg-red-600 hover:text-white transition-colors" onclick="return confirm('¿Eliminar este favorito?');">
+                    <i class="fas fa-trash mr-1"></i>Eliminar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="border border-dashed border-blue-300 rounded-2xl bg-gradient-to-b from-blue-50/40 to-transparent">
+        <div class="text-center py-8">
+          <i class="fas fa-inbox text-blue-600" style="font-size: 60px;"></i>
+          <h5 class="mt-3 text-gray-900">No hay favoritos guardados</h5>
+          <p class="text-gray-500 mb-0">Comienza a guardar tus posts favoritos.</p>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% if is_paginated %}
+      <div class="flex justify-center mt-4">
+        <nav class="flex items-center gap-1">
+          {% if page_obj.has_previous %}
+          <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 no-underline" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
+            <i class="fas fa-chevron-left"></i> Atrás
+          </a>
+          {% endif %}
+
+          {% for pagina in paginator.page_range %}
+          <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm {% if pagina == page_obj.number %}bg-blue-600 text-white border-blue-600{% else %}text-gray-700 hover:bg-gray-100{% endif %} no-underline" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+          <a class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 no-underline" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+            Siguiente <i class="fas fa-chevron-right"></i>
+          </a>
+          {% endif %}
+        </nav>
+      </div>
+      {% endif %}
+
+    </div>
+{% endblock sidebar_content %}

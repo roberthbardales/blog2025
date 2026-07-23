@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+{% endblock css %}
+
+{% block content %}
+{% include "includes/header.html" %}
+
+<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4 min-h-[calc(100vh-60px)]">
+  {% include "includes/barra_lateral.html" %}
+  <div class="w-full lg:flex-1 py-4">
+    {% block sidebar_content %}{% endblock sidebar_content %}
+  </div>
+</div>
+{% endblock content %}

@@ -1,86 +1,77 @@
-{% extends "users/base_users.html" %}
+{% extends "layout_sidebar.html" %}
 {% load static %}
 
-{% block content %}
-{% include "includes/header.html" %}
-
-<div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4">
-  {% include "includes/barra_lateral.html" %}
-
-  <div class="w-full lg:flex-1 py-4">
-    <section class="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)] mb-4">
-      <div class="p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div>
-          <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/95"><i class="fas fa-newspaper mr-1"></i>Entradas</span>
-          <h1 class="mt-3 text-2xl font-bold">Gestión de Entradas</h1>
-        </div>
-        <div class="flex gap-2">
-          <a href="?kwusuario={{ request.user.username }}" class="inline-flex items-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">Mis Posts</a>
-          <a href="{% url 'entrada_app:add-entrada' %}" class="inline-flex items-center rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700">Nueva Entrada</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-sm mb-4">
-      <form method="get" action="" class="flex gap-2 max-w-md">
-        <input type="text" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Buscar por título..." name="kword" value="{{ request.GET.kword }}">
-        <button class="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700" type="submit">Buscar</button>
-      </form>
-    </section>
-
-    <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-      <div class="overflow-x-auto">
-        <table class="min-w-full text-left text-sm">
-          <thead class="bg-slate-50 text-slate-600">
-            <tr>
-              <th class="px-4 py-3 font-semibold">ID</th>
-              <th class="px-4 py-3 font-semibold">Imagen</th>
-              <th class="px-4 py-3 font-semibold">Título</th>
-              <th class="px-4 py-3 font-semibold">Usuario</th>
-              <th class="px-4 py-3 font-semibold">Categoría</th>
-              <th class="px-4 py-3 font-semibold text-center">Público</th>
-              <th class="px-4 py-3 font-semibold text-center">Portada</th>
-              <th class="px-4 py-3 font-semibold text-center">In Home</th>
-              <th class="px-4 py-3 font-semibold text-center">Acciones</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-200">
-            {% for entry in contexto_entradas %}
-            <tr class="text-slate-700">
-              <td class="px-4 py-3 font-semibold text-blue-700">#{{ entry.id }}</td>
-              <td class="px-4 py-3">
-                {% if entry.image %}
-                <a href="{% url 'entrada_app:entry-detail' entry.slug %}"><img src="{{ entry.image.url }}" alt="{{ entry.title }}" class="h-12 w-16 rounded-lg object-cover"></a>
-                {% else %}
-                <span class="text-slate-400">Sin imagen</span>
-                {% endif %}
-              </td>
-              <td class="px-4 py-3"><a href="{% url 'entrada_app:entry-detail' entry.slug %}" class="font-semibold text-slate-900 hover:text-blue-700">{{ entry.title|truncatechars:50 }}</a></td>
-              <td class="px-4 py-3">{{ entry.user.get_full_name|default:entry.user.email }}</td>
-              <td class="px-4 py-3"><span class="inline-flex rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-700">{{ entry.category }}</span></td>
-              <td class="px-4 py-3 text-center">{% if entry.public %}<span class="inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">Sí</span>{% else %}<span class="inline-flex rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">No</span>{% endif %}</td>
-              <td class="px-4 py-3 text-center">{% if entry.portada %}<span class="inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">Sí</span>{% else %}<span class="inline-flex rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">No</span>{% endif %}</td>
-              <td class="px-4 py-3 text-center">{% if entry.in_home %}<span class="inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">Sí</span>{% else %}<span class="inline-flex rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">No</span>{% endif %}</td>
-              <td class="px-4 py-3">
-                <div class="flex justify-center gap-2">
-                  <a href="{% url 'entrada_app:entry-detail' entry.slug %}" class="inline-flex rounded-lg bg-sky-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-sky-700">Ver</a>
-                  <a href="{% url 'entrada_app:entry-delete' entry.id %}" class="inline-flex rounded-lg bg-rose-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-rose-700">Eliminar</a>
-                </div>
-              </td>
-            </tr>
-            {% empty %}
-            <tr>
-              <td colspan="9" class="px-4 py-12 text-center text-slate-500">
-                <i class="fas fa-newspaper mb-3 block text-5xl text-slate-300"></i>
-                No hay entradas registradas
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </section>
+{% block sidebar_content %}
+<section class="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,.18)] mb-4">
+  <div class="p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div>
+      <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/95"><i class="fas fa-newspaper mr-1"></i>Entradas</span>
+      <h1 class="mt-3 text-2xl font-bold">Gestión de Entradas</h1>
+    </div>
+    <div class="flex gap-2">
+      <a href="?kwusuario={{ request.user.username }}" class="inline-flex items-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">Mis Posts</a>
+      <a href="{% url 'entrada_app:add-entrada' %}" class="inline-flex items-center rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700">Nueva Entrada</a>
+    </div>
   </div>
-</div>
+</section>
 
-{% endblock content %}
+<section class="overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-sm mb-4">
+  <form method="get" action="" class="flex gap-2 max-w-md">
+    <input type="text" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Buscar por título..." name="kword" value="{{ request.GET.kword }}">
+    <button class="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700" type="submit">Buscar</button>
+  </form>
+</section>
+
+<section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-left text-sm">
+      <thead class="bg-slate-50 text-slate-600">
+        <tr>
+          <th class="px-4 py-3 font-semibold">ID</th>
+          <th class="px-4 py-3 font-semibold">Imagen</th>
+          <th class="px-4 py-3 font-semibold">Título</th>
+          <th class="px-4 py-3 font-semibold">Usuario</th>
+          <th class="px-4 py-3 font-semibold">Categoría</th>
+          <th class="px-4 py-3 font-semibold text-center">Público</th>
+          <th class="px-4 py-3 font-semibold text-center">Portada</th>
+          <th class="px-4 py-3 font-semibold text-center">In Home</th>
+          <th class="px-4 py-3 font-semibold text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200">
+        {% for entry in contexto_entradas %}
+        <tr class="text-slate-700">
+          <td class="px-4 py-3 font-semibold text-blue-700">#{{ entry.id }}</td>
+          <td class="px-4 py-3">
+            {% if entry.image %}
+            <a href="{% url 'entrada_app:entry-detail' entry.slug %}"><img src="{{ entry.image.url }}" alt="{{ entry.title }}" class="h-12 w-16 rounded-lg object-cover"></a>
+            {% else %}
+            <span class="text-slate-400">Sin imagen</span>
+            {% endif %}
+          </td>
+          <td class="px-4 py-3"><a href="{% url 'entrada_app:entry-detail' entry.slug %}" class="font-semibold text-slate-900 hover:text-blue-700">{{ entry.title|truncatechars:50 }}</a></td>
+          <td class="px-4 py-3">{{ entry.user.get_full_name|default:entry.user.email }}</td>
+          <td class="px-4 py-3"><span class="inline-flex rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-700">{{ entry.category }}</span></td>
+          <td class="px-4 py-3 text-center">{% if entry.public %}<span class="inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">Sí</span>{% else %}<span class="inline-flex rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">No</span>{% endif %}</td>
+          <td class="px-4 py-3 text-center">{% if entry.portada %}<span class="inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">Sí</span>{% else %}<span class="inline-flex rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">No</span>{% endif %}</td>
+          <td class="px-4 py-3 text-center">{% if entry.in_home %}<span class="inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">Sí</span>{% else %}<span class="inline-flex rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">No</span>{% endif %}</td>
+          <td class="px-4 py-3">
+            <div class="flex justify-center gap-2">
+              <a href="{% url 'entrada_app:entry-detail' entry.slug %}" class="inline-flex rounded-lg bg-sky-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-sky-700">Ver</a>
+              <a href="{% url 'entrada_app:entry-delete' entry.id %}" class="inline-flex rounded-lg bg-rose-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-rose-700">Eliminar</a>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="9" class="px-4 py-12 text-center text-slate-500">
+            <i class="fas fa-newspaper mb-3 block text-5xl text-slate-300"></i>
+            No hay entradas registradas
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock sidebar_content %}

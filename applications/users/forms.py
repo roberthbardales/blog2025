@@ -3,32 +3,23 @@ from django.contrib.auth import authenticate
 #
 from .models import User
 
+TW = 'w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none'
+
+
 class UserRegisterForm(forms.ModelForm):
 
     password1 = forms.CharField(
         label='Contraseña',
         required=True,
-        widget=forms.PasswordInput(
-            attrs={
-                'placeholder': 'Contraseña',
-                'class':'form-control rounded'
-            }
-        )
+        widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class': TW})
     )
     password2 = forms.CharField(
         label='Contraseña',
         required=True,
-        widget=forms.PasswordInput(
-            attrs={
-                'placeholder': 'Repetir Contraseña',
-                'class':'form-control rounded',
-            }
-        )
+        widget=forms.PasswordInput(attrs={'placeholder': 'Repetir Contraseña', 'class': TW})
     )
 
     class Meta:
-        """Meta definition for Userform."""
-
         model = User
         fields = (
             'email',
@@ -36,44 +27,15 @@ class UserRegisterForm(forms.ModelForm):
             'ocupation',
             'genero',
             'date_birth',
-            'avatar',  # ✅ Campo avatar agregado
+            'avatar',
         )
         widgets = {
-            'email': forms.EmailInput(
-                attrs={
-                    'placeholder': 'Correo Electronico ...',
-                    'class':'form-control rounded'
-                }
-            ),
-            'full_name': forms.TextInput(
-                attrs={
-                    'placeholder': 'nombres ...',
-                    'class':'form-control rounded'
-                }
-            ),
-            'ocupation': forms.Select(
-                attrs={
-                    'class':'form-control rounded',
-
-                }
-            ),
-            'genero': forms.Select(
-                attrs={
-                    'placeholder': 'Genero ...',
-                    'class':'form-control rounded',
-                }
-            ),
-            'date_birth': forms.DateInput(
-                attrs={
-                    'type': 'date',
-                    'class':'form-control rounded'
-                },
-            ),
-            'avatar': forms.FileInput(
-                attrs={
-                    'accept': 'image/*'  # Solo acepta imágenes
-                }
-            ),
+            'email': forms.EmailInput(attrs={'placeholder': 'Correo Electronico ...', 'class': TW}),
+            'full_name': forms.TextInput(attrs={'placeholder': 'nombres ...', 'class': TW}),
+            'ocupation': forms.Select(attrs={'class': TW}),
+            'genero': forms.Select(attrs={'class': TW}),
+            'date_birth': forms.DateInput(attrs={'type': 'date', 'class': TW}),
+            'avatar': forms.FileInput(attrs={'accept': 'image/*'}),
         }
 
     def clean_password2(self):
@@ -84,21 +46,11 @@ class UserRegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.CharField(
         required=True,
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': 'Correo Electronico',
-                'class':'form-control rounded',
-            }
-        )
+        widget=forms.TextInput(attrs={'placeholder': 'Correo Electronico', 'class': TW})
     )
     password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(
-            attrs={
-                'placeholder': 'contraseña',
-                'class':'form-control rounded',
-            }
-        )
+        widget=forms.PasswordInput(attrs={'placeholder': 'contraseña', 'class': TW})
     )
 
     def clean(self):
@@ -117,20 +69,10 @@ class UpdatePasswordForm(forms.Form):
     current_password = forms.CharField(
         label='Contraseña Actual',
         required=True,
-        widget=forms.PasswordInput(
-            attrs={
-                'placeholder': ' ',
-                'class':'form-control mr-sm-2',
-            }
-        )
+        widget=forms.PasswordInput(attrs={'placeholder': ' ', 'class': TW})
     )
     new_password = forms.CharField(
         label='Contraseña Nueva',
         required=True,
-        widget=forms.PasswordInput(
-            attrs={
-                'placeholder': ' ',
-                'class':'form-control mr-sm-2',
-            }
-        )
+        widget=forms.PasswordInput(attrs={'placeholder': ' ', 'class': TW})
     )

@@ -54,6 +54,6 @@
 |------------|-------------|
 | Badge de sección (claro) | `text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-4 py-1.5` |
 | Badge de sección (oscuro) | `text-xs font-bold uppercase tracking-widest text-white bg-white/10 border border-white/20 rounded-full px-4 py-1.5` |
-| Glass card | `glass-card` (fondo blanco, borde `#e2e8f0`, sombra suave) |
+| Glass card | `bg-white backdrop-blur-sm border border-slate-200 shadow-sm` |
 | Glass card (oscuro) | `glass` (fondo rgba(255,255,255,0.03), blur, borde rgba(255,255,255,0.06)) |
 | Divisor entre secciones | `<hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto">` |

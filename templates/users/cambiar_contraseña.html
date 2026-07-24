@@ -7,22 +7,46 @@
 
 <div class="min-h-[637px] flex items-center justify-center px-4 py-8">
   <div class="w-full max-w-md">
-    <div class="bg-blue-600 rounded-xl shadow-lg px-6 py-6">
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h5 class="text-2xl font-bold mb-6 text-center text-white">Cambiar Password</h5>
+    <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-        <p class="text-white/90 mb-4">Usuario: {{ user.email }}</p>
+      <div class="rounded-t-2xl bg-gradient-to-r from-slate-900 via-blue-900 to-blue-700 px-6 py-3 text-center">
+        <h1 class="text-lg font-bold text-white"><i class="fas fa-lock mr-2"></i>Cambiar Contraseña</h1>
+      </div>
 
-        {{ form.as_p }}
-
-        <div class="text-center px-2 py-3">
-          <button type="submit" class="w-full bg-yellow-500 text-white font-semibold px-4 py-2.5 rounded-lg hover:bg-yellow-600 transition-colors">
-            Cambiar Contraseña
-          </button>
+      <div class="p-5">
+        <div class="mb-4 rounded-xl bg-slate-50 px-4 py-2.5 text-sm text-slate-600">
+          <i class="fas fa-user-circle mr-1 text-blue-600"></i>{{ user.email }}
         </div>
-      </form>
-    </div>
+
+        <form method="post" class="space-y-3">
+          {% csrf_token %}
+
+          <div>
+            <label class="mb-0.5 block text-sm font-medium text-slate-700">Contraseña Actual</label>
+            <input type="password" name="current_password" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none" placeholder="Ingresa tu contraseña actual" required>
+          </div>
+
+          <div>
+            <label class="mb-0.5 block text-sm font-medium text-slate-700">Nueva Contraseña</label>
+            <input type="password" name="new_password" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none" placeholder="Ingresa la nueva contraseña" required>
+          </div>
+
+          {% if form.errors %}
+          <div class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-xs text-rose-700">
+            <i class="fas fa-exclamation-circle mr-1"></i>
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}{{ error }}{% endfor %}
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <button type="submit" class="w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 shadow-sm">
+            <i class="fas fa-save mr-1"></i>Guardar Cambios
+          </button>
+        </form>
+      </div>
+
+    </section>
   </div>
 </div>
 

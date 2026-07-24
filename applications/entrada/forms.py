@@ -3,16 +3,15 @@ from django import forms
 from .models import Entry, Comment
 from applications.users.models import User
 
+TW_INPUT = 'w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none'
+TW_CHECKBOX = 'w-4 h-4 accent-blue-500 cursor-pointer'
+
+
 class EntradaForm(forms.ModelForm):
-    # Definir category explícitamente para quitar el "-------"
     category = forms.ModelChoiceField(
-        queryset=None,  # Se establece en __init__
+        queryset=None,
         empty_label=None,
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control form-control-sm',
-            }
-        )
+        widget=forms.Select(attrs={'class': TW_INPUT})
     )
 
     class Meta:
@@ -29,64 +28,33 @@ class EntradaForm(forms.ModelForm):
             'in_home',
         )
         widgets = {
-            'user': forms.Select(
-                attrs={
-                    'class': 'form-control form-control-sm',
-                }
-            ),
-            'public': forms.CheckboxInput(
-                attrs={
-                    'checked': '',
-                }
-            ),
-            'in_home': forms.CheckboxInput(
-                attrs={
-                    'checked': '',
-                }
-            ),
-            'title': forms.TextInput(
-                attrs={
-                    'class': 'form-control form-control-sm',
-                }
-            ),
-            'tag': forms.SelectMultiple(
-                attrs={
-                    'class': 'form-control form-control-sm w-85',
-                    'size': '3',
-                }
-            ),
-            'resume': forms.Textarea(
-                attrs={
-                    'class': 'form-control form-control-md',
-                    'rows': '2',
-                }
-            ),
+            'user': forms.Select(attrs={'class': TW_INPUT}),
+            'public': forms.CheckboxInput(attrs={'class': TW_CHECKBOX, 'checked': ''}),
+            'in_home': forms.CheckboxInput(attrs={'class': TW_CHECKBOX, 'checked': ''}),
+            'title': forms.TextInput(attrs={'class': TW_INPUT}),
+            'tag': forms.SelectMultiple(attrs={'class': TW_INPUT, 'size': '3'}),
+            'resume': forms.Textarea(attrs={'class': TW_INPUT, 'rows': '2'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Establecer el queryset para category
-        from applications.entrada.models import Category  # Ajusta el import según tu estructura
+        from applications.entrada.models import Category
         self.fields['category'].queryset = Category.objects.all()
 
-        # Seleccionar el primer tag por defecto en posts nuevos
         if not self.instance.pk and self.fields['tag'].queryset.exists():
             self.initial['tag'] = [self.fields['tag'].queryset.first().pk]
 
 
 class CommentForm(forms.ModelForm):
-    # Campo oculto para saber si es respuesta a otro comentario
     parent_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Comment
         fields = ('content', 'parent_id')
         widgets = {
-            'content': forms.Textarea(
-                attrs={
-                    'class': 'form-control form-control-sm w-100',
-                    'rows': 3,
-                    'placeholder': 'Escribe tu comentario...'
-                }
-            )
+            'content': forms.Textarea(attrs={
+                'class': TW_INPUT,
+                'rows': 3,
+                'placeholder': 'Escribe tu comentario...'
+            })
         }

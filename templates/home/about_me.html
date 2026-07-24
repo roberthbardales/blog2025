@@ -3,76 +3,62 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-<style>
-  .glass-card {
-    background: rgba(239, 246, 255, 0.7) !important;
-    border-color: #dbeafe !important;
-  }
-</style>
 {% endblock css %}
 
 {% block content %}
 
 {% include "includes/header.html" %}
 
-<div class="max-w-7xl mx-auto px-4 py-6">
+<div class="max-w-6xl mx-auto px-4 py-4">
 
   <!-- HERO -->
-  <div class="flex justify-center mb-6" data-sr="fade-up">
-    <div class="w-full lg:w-10/12 text-center">
-      <div class="glass-card rounded-2xl">
-        <div class="px-6 py-5">
-          <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-4 py-1.5 mb-2">
-            <i class="fas fa-user mr-1"></i>Curriculum
-          </span>
-          <h1 class="text-4xl md:text-5xl font-bold text-primary-900">Sobre Mí</h1>
-
-        </div>
-      </div>
+  <div class="flex justify-center mb-3" data-sr="fade-up">
+    <div class="w-full lg:w-10/12 text-center py-1">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary-900 mb-1">Russell Bardales Machuca</h1>
     </div>
   </div>
 
 
 
   <div class="flex justify-center">
-    <div class="w-full lg:w-10/12 space-y-3">
+    <div class="w-full lg:w-10/12 space-y-2">
 
       <!-- PERFIL -->
-      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
-        <div class="px-6 py-4 border-b border-blue-100">
+      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl" data-sr="fade-up">
+        <div class="px-4 py-1 border-b border-blue-100">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
             <i class="fas fa-id-card mr-1"></i>Perfil
           </span>
         </div>
-        <div class="px-6 py-4">
-          <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-            <img src="{% static 'img/foto4.png' %}" alt="Russell Bardales" class="w-32 h-32 rounded-2xl object-cover border-4 border-primary-600 shadow-xl shrink-0">
-            <div>
-              <h3 class="font-bold text-2xl text-primary-700">Russell Roberth Bardales</h3>
-              <p class="text-primary-500/80 mb-1">
-                <i class="fas fa-terminal mr-1 text-primary-600"></i>Desarrollador Backend Python | Django
-              </p>
-              <div class="text-sm text-gray-700 mb-2">
-                <span class="mr-3"><i class="fas fa-envelope text-primary-500 mr-1"></i>roberthbardales@gmail.com</span>
-                <span class="mr-3"><i class="fas fa-phone text-primary-500 mr-1"></i>+51 960 174 778</span>
+        <div class="px-5 py-4">
+          <div class="flex flex-col md:flex-row items-center gap-5 text-center md:text-left">
+            <img src="{% static 'img/foto4.png' %}" alt="Russell Bardales" class="w-24 h-100 rounded-2xl object-cover border-4 border-primary-600 shadow-xl shrink-0">
+            <div class="flex-1 space-y-2">
+              <div>
+                <h3 class="font-bold text-xl text-primary-700">
+                  <i class="fas fa-graduation-cap mr-1 text-primary-600"></i>Ingeniería de Sistemas
+                </h3>
+                <p class="text-primary-500/80 text-sm">
+                  <i class="fas fa-terminal mr-1 text-xs"></i>Desarrollador Backend Python | Django | PostgreSQL | Linux
+                </p>
+              </div>
+              <div class="flex justify-center md:justify-start flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600">
+                <span><i class="fas fa-envelope text-primary-500 mr-1"></i>roberthbardales@gmail.com</span>
+                <span><i class="fas fa-phone text-primary-500 mr-1"></i>+51 960 174 778</span>
                 <span><i class="fas fa-map-marker-alt text-primary-500 mr-1"></i>Lima, Perú</span>
               </div>
-              <div class="flex justify-center md:justify-start flex-wrap gap-2">
+              <div class="flex justify-center md:justify-start flex-wrap gap-1.5 pt-1">
                 <a href="https://github.com/roberthbardales" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 bg-gray-900 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg">
+                   class="inline-flex items-center gap-1.5 bg-gray-900 text-white font-semibold px-4 py-2 rounded-full text-xs transition-all hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg">
                   <i class="fab fa-github"></i>GitHub
                 </a>
                 <a href="{% url 'home_app:portafolio' %}"
-                   class="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg">
+                   class="inline-flex items-center gap-1.5 bg-primary-600 text-white font-semibold px-4 py-2 rounded-full text-xs transition-all hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg">
                   <i class="fas fa-briefcase"></i>Proyectos
                 </a>
                 <a href="https://wa.me/51960174778" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg">
+                   class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full text-xs transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg">
                   <i class="fab fa-whatsapp"></i>WhatsApp
-                </a>
-                <a href="{% static 'docs/cv.pdf' %}" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 bg-amber-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-amber-700 hover:-translate-y-0.5 hover:shadow-lg">
-                  <i class="fas fa-download"></i>CV
                 </a>
               </div>
             </div>
@@ -81,14 +67,14 @@
       </div>
 
       <!-- SOBRE MÍ -->
-      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
-        <div class="px-6 py-4 border-b border-blue-100">
+      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-4 py-1 border-b border-blue-100">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
             <i class="fas fa-user mr-1"></i>Sobre Mí
           </span>
         </div>
-        <div class="px-6 py-4">
-          <p class="text-gray-700 leading-relaxed">
+        <div class="px-4 py-3">
+          <p class="text-gray-700 leading-relaxed text-sm">
             Desarrollador Backend Junior en Python y Django, con formación y experiencia en Ingeniería de Sistemas. He
             trabajado en el desarrollo de módulos y sistemas web; soy autodidacta, curioso, proactivo, perfeccionista y
             muy apasionado por la tecnología, y busco aportar mis conocimientos y crecer.
@@ -97,32 +83,32 @@
       </div>
 
       <!-- EXPERIENCIA LABORAL -->
-      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
-        <div class="px-6 py-4 border-b border-blue-100">
+      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-4 py-1 border-b border-blue-100">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
             <i class="fas fa-briefcase mr-1"></i>Experiencia Laboral
           </span>
         </div>
-        <div class="px-6 py-4">
+        <div class="px-4 py-3">
           <div class="space-y-0">
 
             <!-- Item 1 -->
-            <div class="relative pl-10 pb-6 border-l-2 border-primary-200 last:border-transparent last:pb-0">
-              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-primary-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+            <div class="relative pl-10 pb-4 border-l-2 border-primary-200 last:border-transparent last:pb-0">
+              <div class="absolute -left-3 top-0 w-5 h-5 rounded-full bg-primary-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.55rem;">
                 <i class="fas fa-briefcase"></i>
               </div>
               <div class="ml-2">
                 <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-1">
                   <div>
-                    <h5 class="font-bold text-gray-900">Desarrollador Python/Django</h5>
-                    <p class="text-gray-700 text-xs">
+                    <h5 class="font-bold text-gray-900 text-base">Desarrollador Python/Django</h5>
+                    <p class="text-gray-700 text-sm">
                       <strong class="text-gray-800">Freelance</strong> &middot; Mayo 2025 - Actualmente
                     </p>
                   </div>
                   <i class="fas fa-chevron-down text-gray-500 text-xs transition-transform duration-200" data-icon="exp-1"></i>
                 </div>
-                <div class="accordion-body hidden mt-2" data-body="exp-1">
-                  <ul class="text-gray-700 text-sm space-y-1 pl-4 list-disc">
+                <div class="accordion-body hidden mt-1.5" data-body="exp-1">
+                  <ul class="text-gray-700 text-sm space-y-0.5 pl-4 list-disc">
                     <li>Arquitectura de proyectos y desarrollo usando Vistas Basadas en Clases (CBV).</li>
                     <li>Creación de Modelos, Vistas, Managers, Mixins, Serializers, API Views, ViewSets, Permissions, etc.</li>
                     <li>Desarrollo de módulos de inventario, ventas y recursos humanos (RRHH).</li>
@@ -141,22 +127,22 @@
             </div>
 
             <!-- Item 2 -->
-            <div class="relative pl-10 pb-6 border-l-2 border-primary-200 last:border-transparent last:pb-0">
-              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-green-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+            <div class="relative pl-10 pb-4 border-l-2 border-primary-200 last:border-transparent last:pb-0">
+              <div class="absolute -left-3 top-0 w-5 h-5 rounded-full bg-green-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.55rem;">
                 <i class="fas fa-server"></i>
               </div>
               <div class="ml-2">
                 <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-2">
                   <div>
-                    <h5 class="font-bold text-gray-900">Administrador de TI y Programador Python</h5>
-                    <p class="text-gray-700 text-xs">
+                    <h5 class="font-bold text-gray-900 text-base">Administrador de TI y Programador Python</h5>
+                    <p class="text-gray-700 text-sm">
                       <strong class="text-gray-800">JYW Repuestos S.A.C.</strong> &middot; Abril 2020 – Febrero 2021
                     </p>
                   </div>
                   <i class="fas fa-chevron-down text-gray-500 text-xs transition-transform duration-200" data-icon="exp-2"></i>
                 </div>
-                <div class="accordion-body hidden mt-2" data-body="exp-2">
-                  <ul class="text-gray-700 text-sm space-y-1 pl-4 list-disc">
+                <div class="accordion-body hidden mt-1.5" data-body="exp-2">
+                  <ul class="text-gray-700 text-sm space-y-0.5 pl-4 list-disc">
                     <li>Desarrollé el módulo de Inventario (CRUD, filtros, paginación, etc.) con Python/Django y SQL Server.</li>
                     <li>Implementé consultas solicitadas por el área de Almacén para el módulo de inventarios.</li>
                     <li>Exporté datos desde SQL Server hacia Excel.</li>
@@ -172,22 +158,22 @@
             </div>
 
             <!-- Item 3 -->
-            <div class="relative pl-10 pb-6 border-l-2 border-primary-200 last:border-transparent last:pb-0">
-              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-amber-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+            <div class="relative pl-10 pb-4 border-l-2 border-primary-200 last:border-transparent last:pb-0">
+              <div class="absolute -left-3 top-0 w-5 h-5 rounded-full bg-amber-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.55rem;">
                 <i class="fas fa-globe"></i>
               </div>
               <div class="ml-2">
                 <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-3">
                   <div>
-                    <h5 class="font-bold text-gray-900">Desarrollador PHP/MySQL</h5>
-                    <p class="text-gray-700 text-xs">
+                    <h5 class="font-bold text-gray-900 text-base">Desarrollador PHP/MySQL</h5>
+                    <p class="text-gray-700 text-sm">
                       <strong class="text-gray-800">Universidad Nacional Federico Villarreal</strong> &middot; Abril 2019 – Setiembre 2019
                     </p>
                   </div>
                   <i class="fas fa-chevron-down text-gray-500 text-xs transition-transform duration-200" data-icon="exp-3"></i>
                 </div>
-                <div class="accordion-body hidden mt-2" data-body="exp-3">
-                  <ul class="text-gray-700 text-sm space-y-1 pl-4 list-disc">
+                <div class="accordion-body hidden mt-1.5" data-body="exp-3">
+                  <ul class="text-gray-700 text-sm space-y-0.5 pl-4 list-disc">
                     <li>Desarrollé un sistema web para el registro de estudiantes de inglés, utilizado por varias facultades.</li>
                     <li>Desarrollé un pequeño sistema de encuestas para calificar profesores.</li>
                     <li>Utilicé PHP y MySQL, y fue desplegado en un hosting institucional.</li>
@@ -200,21 +186,21 @@
 
             <!-- Item 4 -->
             <div class="relative pl-10 border-l-2 border-transparent">
-              <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.65rem;">
+              <div class="absolute -left-3 top-0 w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-white shadow-md" style="font-size: 0.55rem;">
                 <i class="fas fa-graduation-cap"></i>
               </div>
               <div class="ml-2">
                 <div class="flex items-center justify-between cursor-pointer select-none" data-toggle="exp-4">
                   <div>
-                    <h5 class="font-bold text-gray-900">Practicante de Sistemas</h5>
-                    <p class="text-gray-700 text-xs">
+                    <h5 class="font-bold text-gray-900 text-base">Practicante de Sistemas</h5>
+                    <p class="text-gray-700 text-sm">
                       <strong class="text-gray-800">Inversiones Granos del Paraíso S.A.C.</strong> &middot; Enero 2018 – Setiembre 2018
                     </p>
                   </div>
                   <i class="fas fa-chevron-down text-gray-500 text-xs transition-transform duration-200" data-icon="exp-4"></i>
                 </div>
-                <div class="accordion-body hidden mt-2" data-body="exp-4">
-                  <ul class="text-gray-700 text-sm space-y-1 pl-4 list-disc">
+                <div class="accordion-body hidden mt-1.5" data-body="exp-4">
+                  <ul class="text-gray-700 text-sm space-y-0.5 pl-4 list-disc">
                     <li>Operación y soporte del sistema de ventas FlexBusiness ERP.</li>
                     <li>Facturación electrónica e impresión de facturas y boletas.</li>
                     <li>Soporte técnico a usuarios finales.</li>
@@ -230,27 +216,27 @@
       </div>
 
       <!-- PROYECTOS -->
-      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
-        <div class="px-6 py-4 border-b border-blue-100">
+      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-4 py-1 border-b border-blue-100">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
             <i class="fas fa-laptop-code mr-1"></i>Proyectos
           </span>
         </div>
-        <div class="px-6 py-4 space-y-4">
+        <div class="px-4 py-3 space-y-3">
 
-          <div class="border-l-4 border-green-500 pl-4 py-2">
-            <div class="flex flex-col md:flex-row md:items-start gap-4">
+          <div class="border-l-4 border-green-500 pl-3 py-1.5">
+            <div class="flex flex-col md:flex-row md:items-start gap-3">
               <div class="flex-1">
-                <h5 class="font-bold text-gray-900 text-lg">Red Social/Blog completo con Chat en tiempo real</h5>
-                <div class="flex flex-wrap gap-1.5 my-2">
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">PostgreSQL</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-cyan-700 text-white shadow-sm">Bootstrap</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-700 text-white shadow-sm">WebSockets</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">DRF</span>
+                <h5 class="font-bold text-gray-900 text-base">Red Social/Blog completo con Chat en tiempo real</h5>
+                <div class="flex flex-wrap gap-1 my-1.5">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">PostgreSQL</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-cyan-700 text-white shadow-sm">Bootstrap</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-700 text-white shadow-sm">WebSockets</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">DRF</span>
                 </div>
-                <ul class="text-gray-700 text-sm space-y-1 pl-4 list-disc">
+                <ul class="text-gray-700 text-sm space-y-0.5 pl-4 list-disc">
                   <li>Registro de usuarios y autenticación: local y mediante Firebase usando cuenta de Gmail.</li>
                   <li>Roles y permisos, Chat en tiempo real, amigos, comentario, likes, perfil, posts, CKEditor.</li>
                   <li>Consultas y gestión de datos usando PostgreSQL con la ORM de Django.</li>
@@ -258,24 +244,24 @@
               </div>
               <div class="shrink-0 text-center md:text-right">
                 <a href="{% url 'users_app:user-login' %}" target="_blank"
-                   class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg shadow-green-200">
+                   class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-1.5 rounded-full text-xs transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg shadow-green-200">
                   <i class="fas fa-external-link-alt"></i>Ver Proyecto
                 </a>
               </div>
             </div>
           </div>
 
-          <div class="border-l-4 border-blue-500 pl-4 py-2">
-            <div class="flex flex-col md:flex-row md:items-start gap-4">
+          <div class="border-l-4 border-blue-500 pl-3 py-1.5">
+            <div class="flex flex-col md:flex-row md:items-start gap-3">
               <div class="flex-1">
-                <h5 class="font-bold text-gray-900 text-lg">Sistema ERP DEMO (Inventario, ventas, RRHH)</h5>
-                <div class="flex flex-wrap gap-1.5 my-2">
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">PostgreSQL</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-cyan-700 text-white shadow-sm">Bootstrap</span>
+                <h5 class="font-bold text-gray-900 text-base">Sistema ERP DEMO (Inventario, ventas, RRHH)</h5>
+                <div class="flex flex-wrap gap-1 my-1.5">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">PostgreSQL</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-cyan-700 text-white shadow-sm">Bootstrap</span>
                 </div>
-                <ul class="text-gray-700 text-sm space-y-1 pl-4 list-disc">
+                <ul class="text-gray-700 text-sm space-y-0.5 pl-4 list-disc">
                   <li>Registro de usuarios y autenticación también roles y permisos.</li>
                   <li>Filtros variados por fechas, clientes, código, etc.</li>
                   <li>Consultas y gestión de datos usando PostgreSQL con la ORM de Django.</li>
@@ -283,25 +269,25 @@
               </div>
               <div class="shrink-0 text-center md:text-right">
                 <a href="https://demo2026.duckdns.org/" target="_blank"
-                   class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg shadow-green-200">
+                   class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-1.5 rounded-full text-xs transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg shadow-green-200">
                   <i class="fas fa-external-link-alt"></i>Ver Proyecto
                 </a>
               </div>
             </div>
           </div>
 
-          <div class="border-l-4 border-amber-500 pl-4 py-2">
-            <div class="flex flex-col md:flex-row md:items-start gap-4">
+          <div class="border-l-4 border-amber-500 pl-3 py-1.5">
+            <div class="flex flex-col md:flex-row md:items-start gap-3">
               <div class="flex-1">
-                <h5 class="font-bold text-gray-900 text-lg">Sistema ECOMMERCE con pasarela de pago</h5>
-                <div class="flex flex-wrap gap-1.5 my-2">
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">PostgreSQL</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-cyan-700 text-white shadow-sm">Bootstrap</span>
-                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-700 text-white shadow-sm">MercadoPago</span>
+                <h5 class="font-bold text-gray-900 text-base">Sistema ECOMMERCE con pasarela de pago</h5>
+                <div class="flex flex-wrap gap-1 my-1.5">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">PostgreSQL</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-cyan-700 text-white shadow-sm">Bootstrap</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-700 text-white shadow-sm">MercadoPago</span>
                 </div>
-                <ul class="text-gray-700 text-sm space-y-1 pl-4 list-disc">
+                <ul class="text-gray-700 text-sm space-y-0.5 pl-4 list-disc">
                   <li>Refactorización pasando de PayPal a MERCADO PAGO (Checkout Bricks).</li>
                   <li>Registro de usuarios por confirmación de email, autenticación.</li>
                   <li>Filtros variados por categoría, productos, precios, etc.</li>
@@ -309,7 +295,7 @@
               </div>
               <div class="shrink-0 text-center md:text-right">
                 <a href="https://carrito.duckdns.org/" target="_blank"
-                   class="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg shadow-green-200">
+                   class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-1.5 rounded-full text-xs transition-all hover:bg-green-700 hover:-translate-y-0.5 hover:shadow-lg shadow-green-200">
                   <i class="fas fa-external-link-alt"></i>Ver Proyecto
                 </a>
               </div>
@@ -320,55 +306,55 @@
       </div>
 
       <!-- EDUCACIÓN -->
-      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
-        <div class="px-6 py-4 border-b border-blue-100">
+      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-4 py-1 border-b border-blue-100">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
             <i class="fas fa-graduation-cap mr-1"></i>Educación
           </span>
         </div>
-        <div class="px-6 py-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="px-4 py-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-            <div class="flex items-center gap-4">
-              <img src="{% static 'img/unfv.png' %}" alt="UNFV" class="w-16 h-16 object-contain shrink-0">
+            <div class="flex items-center gap-3">
+              <img src="{% static 'img/unfv.png' %}" alt="UNFV" class="w-64 h-64 object-contain shrink-0">
               <div>
-                <p class="font-bold text-gray-900">Ingeniería de Sistemas</p>
+                <p class="font-bold text-gray-900 text-base">Ingeniería de Sistemas</p>
                 <p class="text-gray-600 text-sm">Universidad Nacional Federico Villarreal</p>
                 <span class="text-gray-500 text-xs">2012 - 2017</span>
               </div>
             </div>
 
-            <div class="flex items-center gap-4">
-              <img src="{% static 'img/udemy.png' %}" alt="Udemy" class="w-16 h-16 object-contain shrink-0">
+            <div class="flex items-center gap-3">
+              <img src="{% static 'img/udemy.png' %}" alt="Udemy" class="w-32 h-16 object-contain shrink-0">
               <div>
-                <p class="font-bold text-gray-900">Django REST Framework y React</p>
+                <p class="font-bold text-gray-900 text-base">Django REST Framework y React</p>
                 <p class="text-gray-600 text-sm">Udemy</p>
                 <span class="text-gray-500 text-xs">2024</span>
               </div>
             </div>
 
-            <div class="flex items-center gap-4">
-              <img src="{% static 'img/uni.png' %}" alt="Sistemas UNI" class="w-16 h-16 object-contain shrink-0">
+            <div class="flex items-center gap-3">
+              <img src="{% static 'img/uni.png' %}" alt="Sistemas UNI" class="w-32 h-16 object-contain shrink-0">
               <div>
-                <p class="font-bold text-gray-900">PHP, Linux, SQL Server, Windows Server, Excel</p>
+                <p class="font-bold text-gray-900 text-base">PHP, Linux, SQL Server, Windows Server, Excel</p>
                 <p class="text-gray-600 text-sm">SISTEMAS UNI</p>
                 <span class="text-gray-500 text-xs">2015 - 2016</span>
               </div>
             </div>
 
-            <div class="flex items-center gap-4">
-              <img src="{% static 'img/cibertec.png' %}" alt="CIBERTEC" class="w-16 h-16 object-contain shrink-0">
+            <div class="flex items-center gap-3">
+              <img src="{% static 'img/cibertec.png' %}" alt="CIBERTEC" class="w-32 h-16 object-contain shrink-0">
               <div>
-                <p class="font-bold text-gray-900">CCNA Routing and Switching V.5</p>
+                <p class="font-bold text-gray-900 text-base">CCNA Routing and Switching V.5</p>
                 <p class="text-gray-600 text-sm">CIBERTEC</p>
                 <span class="text-gray-500 text-xs">2017</span>
               </div>
             </div>
 
-            <div class="flex items-center gap-4 md:col-span-2 justify-center">
-              <img src="{% static 'img/icpna.png' %}" alt="ICPNA" class="w-16 h-16 object-contain shrink-0">
+            <div class="flex items-center gap-3 md:col-span-2 justify-center">
+              <img src="{% static 'img/icpna.png' %}" alt="ICPNA" class="w-32 h-16 object-contain shrink-0">
               <div>
-                <p class="font-bold text-gray-900">Inglés Intermedio 3</p>
+                <p class="font-bold text-gray-900 text-base">Inglés Intermedio 3</p>
                 <p class="text-gray-600 text-sm">ICPNA</p>
               </div>
             </div>
@@ -378,73 +364,73 @@
       </div>
 
       <!-- HABILIDADES TÉCNICAS -->
-      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
-        <div class="px-6 py-4 border-b border-blue-100">
+      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-4 py-1 border-b border-blue-100">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
             <i class="fas fa-code mr-1"></i>Habilidades Técnicas
           </span>
         </div>
-        <div class="px-6 py-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="px-4 py-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
             <div data-sr="fade-up" data-sr-delay="0">
-              <p class="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-2">
+              <p class="font-semibold text-gray-900 text-sm mb-1 flex items-center gap-1.5">
                 <i class="fas fa-code text-green-600"></i>Backend
               </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django REST Framework</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">FastAPI</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">PHP</span>
+              <div class="flex flex-wrap gap-1">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Python</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">Django REST Framework</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">FastAPI</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-700 text-white shadow-sm">PHP</span>
               </div>
             </div>
 
             <div data-sr="fade-up" data-sr-delay="50">
-              <p class="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-2">
+              <p class="font-semibold text-gray-900 text-sm mb-1 flex items-center gap-1.5">
                 <i class="fas fa-palette text-blue-600"></i>Frontend
               </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">HTML/CSS</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">JavaScript</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">Bootstrap</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">React.js</span>
+              <div class="flex flex-wrap gap-1">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">HTML/CSS</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">JavaScript</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">Bootstrap</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-sm">React.js</span>
               </div>
             </div>
 
             <div data-sr="fade-up" data-sr-delay="100">
-              <p class="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-2">
+              <p class="font-semibold text-gray-900 text-sm mb-1 flex items-center gap-1.5">
                 <i class="fas fa-database text-indigo-600"></i>Bases de Datos
               </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-700 text-white shadow-sm">SQL Server</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-700 text-white shadow-sm">PostgreSQL</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-700 text-white shadow-sm">MySQL</span>
+              <div class="flex flex-wrap gap-1">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-700 text-white shadow-sm">SQL Server</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-700 text-white shadow-sm">PostgreSQL</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-700 text-white shadow-sm">MySQL</span>
               </div>
             </div>
 
             <div data-sr="fade-up" data-sr-delay="150">
-              <p class="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-2">
+              <p class="font-semibold text-gray-900 text-sm mb-1 flex items-center gap-1.5">
                 <i class="fas fa-server text-amber-600"></i>DevOps & Servidores
               </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Linux</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Ubuntu</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">NGINX</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Gunicorn</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Windows Server</span>
+              <div class="flex flex-wrap gap-1">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Linux</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Ubuntu</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">NGINX</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Gunicorn</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-700 text-white shadow-sm">Windows Server</span>
               </div>
             </div>
 
             <div class="md:col-span-2" data-sr="fade-up" data-sr-delay="200">
-              <p class="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-2">
+              <p class="font-semibold text-gray-900 text-sm mb-1 flex items-center gap-1.5">
                 <i class="fas fa-tools text-gray-600"></i>Otros
               </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">Excel</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">Odoo</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">MercadoPago</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">Git</span>
+              <div class="flex flex-wrap gap-1">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">Excel</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">Odoo</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">MercadoPago</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-700 text-white shadow-sm">Git</span>
               </div>
             </div>
 
@@ -453,29 +439,29 @@
       </div>
 
       <!-- IDIOMAS -->
-      <div class="glass-card rounded-2xl overflow-hidden" data-sr="fade-up">
-        <div class="px-6 py-4 border-b border-blue-100">
+      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl overflow-hidden" data-sr="fade-up">
+        <div class="px-4 py-1 border-b border-blue-100">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary-500 bg-primary-500/10 border border-primary-500/20 rounded-full px-3 py-1">
             <i class="fas fa-language mr-1"></i>Idiomas
           </span>
         </div>
-        <div class="px-6 py-4 space-y-3">
+        <div class="px-4 py-3 space-y-2">
           <div>
-            <div class="flex justify-between items-center mb-1">
+            <div class="flex justify-between items-center mb-0.5">
               <p class="font-semibold text-gray-900 text-sm">Español</p>
               <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-0.5 rounded-full">Nativo</span>
             </div>
-            <div class="w-full bg-blue-100 rounded-full h-2.5 overflow-hidden">
-              <div class="bg-green-500 h-2.5 rounded-full" data-width="100" style="width: 0"></div>
+            <div class="w-full bg-blue-100 rounded-full h-2 overflow-hidden">
+              <div class="bg-green-500 h-2 rounded-full" data-width="100" style="width: 0"></div>
             </div>
           </div>
           <div>
-            <div class="flex justify-between items-center mb-1">
+            <div class="flex justify-between items-center mb-0.5">
               <p class="font-semibold text-gray-900 text-sm">Inglés</p>
               <span class="text-xs font-medium text-primary-600 bg-primary-100 px-2 py-0.5 rounded-full">Básico - Intermedio</span>
             </div>
-            <div class="w-full bg-blue-100 rounded-full h-2.5 overflow-hidden">
-              <div class="bg-primary-500 h-2.5 rounded-full" data-width="50" style="width: 0"></div>
+            <div class="w-full bg-blue-100 rounded-full h-2 overflow-hidden">
+              <div class="bg-primary-500 h-2 rounded-full" data-width="50" style="width: 0"></div>
             </div>
           </div>
         </div>
@@ -485,7 +471,9 @@
   </div>
 </div>
 
-{% endblock %}
+
+{% include "includes/footer.html" %}
+{% endblock content %}
 
 {% block js %}
 <script>
@@ -553,3 +541,5 @@
 })();
 </script>
 {% endblock js %}
+
+

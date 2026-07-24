@@ -34,20 +34,20 @@
       </form>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
       {% for entrada in entradas %}
       <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
         <a href="{% url 'entrada_app:entry-detail' entrada.slug %}">
-          <img class="h-40 w-full object-cover" src="{{ entrada.image.url }}" alt="{{ entrada.title }}">
+          <img class="h-28 w-full object-cover" src="{{ entrada.image.url }}" alt="{{ entrada.title }}">
         </a>
-        <div class="p-4">
-          <h3 class="mb-1 text-base font-semibold text-slate-900">
+        <div class="p-3">
+          <h3 class="mb-0.5 text-sm font-semibold text-slate-900">
             <a href="{% url 'entrada_app:entry-detail' entrada.slug %}" class="transition hover:text-blue-700">{{ entrada.title|truncatechars:60 }}</a>
           </h3>
-          <p class="text-sm text-slate-500">{{ entrada.resume|truncatechars:90 }}</p>
-          <div class="mt-4 flex items-center justify-between">
+          <p class="text-xs text-slate-500">{{ entrada.resume|truncatechars:90 }}</p>
+          <div class="mt-2 flex items-center justify-between">
             <small class="text-xs text-slate-400">
-              <i class="far fa-calendar-alt mr-1"></i>{{ entrada.created|date:"d M Y" }}
+              <i class="far fa-calendar-alt mr-1"></i>{{ entrada.created|date:"d/m/Y" }}
             </small>
             <a href="{% url 'entrada_app:entry-detail' entrada.slug %}" class="inline-flex items-center gap-1 rounded-full border border-blue-600 px-3 py-1 text-xs font-medium text-blue-600 transition hover:bg-blue-600 hover:text-white">
               Leer más <i class="fas fa-arrow-right"></i>

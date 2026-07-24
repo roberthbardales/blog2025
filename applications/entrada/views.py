@@ -64,7 +64,7 @@ class EntryListView(ListView):
     model=Entry
     template_name = "entrada/lista.html"
     context_object_name ='entradas'
-    paginate_by = 8
+    paginate_by = 12
 
     def get_context_data(self, **kwargs):
         context = super(EntryListView, self).get_context_data(**kwargs)

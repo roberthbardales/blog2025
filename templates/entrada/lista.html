@@ -9,6 +9,20 @@
 {% include "includes/header.html" %}
 
 <div class="mx-auto flex max-w-6xl flex-col lg:flex-row gap-6 px-4 py-6">
+  <aside class="w-full lg:w-44 flex-none">
+    <div class="sticky top-24 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 bg-slate-50 px-4 py-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-700"><i class="fas fa-list mr-1"></i>Categorías</span>
+      </div>
+      <a href="{% url 'entrada_app:entry-lista' %}" class="block border-l-4 px-5 py-3 text-sm transition {% if not request.GET.categoria %}border-blue-700 bg-blue-600 text-white font-semibold{% else %}border-transparent text-slate-700 hover:bg-slate-50 hover:border-blue-600 hover:translate-x-1{% endif %}">Todas</a>
+      {% for categoria in categorias %}
+      <a href="?categoria={{ categoria.short_name }}" class="block border-l-4 px-5 py-3 text-sm transition {% if request.GET.categoria == categoria.short_name %}border-blue-700 bg-blue-600 text-white font-semibold{% else %}border-transparent text-slate-700 hover:bg-slate-50 hover:border-blue-600 hover:translate-x-1{% endif %}">{{ categoria.short_name }}</a>
+      {% empty %}
+      <div class="px-5 py-4 text-center text-sm text-slate-400">Sin categorías</div>
+      {% endfor %}
+    </div>
+  </aside>
+
   <div class="w-full lg:flex-1 py-4">
     <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
       <span class="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-700">
@@ -84,20 +98,6 @@
     </div>
     {% endif %}
   </div>
-
-  <aside class="w-full lg:w-60 flex-none">
-    <div class="sticky top-24 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <div class="border-b border-slate-200 bg-slate-50 px-4 py-3">
-        <span class="text-xs font-bold uppercase tracking-widest text-blue-700"><i class="fas fa-list mr-1"></i>Categorías</span>
-      </div>
-      <a href="{% url 'entrada_app:entry-lista' %}" class="block border-l-4 px-5 py-3 text-sm transition {% if not request.GET.categoria %}border-blue-700 bg-blue-600 text-white font-semibold{% else %}border-transparent text-slate-700 hover:bg-slate-50 hover:border-blue-600 hover:translate-x-1{% endif %}">Todas</a>
-      {% for categoria in categorias %}
-      <a href="?categoria={{ categoria.short_name }}" class="block border-l-4 px-5 py-3 text-sm transition {% if request.GET.categoria == categoria.short_name %}border-blue-700 bg-blue-600 text-white font-semibold{% else %}border-transparent text-slate-700 hover:bg-slate-50 hover:border-blue-600 hover:translate-x-1{% endif %}">{{ categoria.short_name }}</a>
-      {% empty %}
-      <div class="px-5 py-4 text-center text-sm text-slate-400">Sin categorías</div>
-      {% endfor %}
-    </div>
-  </aside>
 </div>
 
 {% include "includes/footer.html" %}

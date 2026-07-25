@@ -12,26 +12,26 @@
 {% block entrada_content %}
 {% include "includes/header.html" %}
 
-<div class="mx-auto max-w-6xl px-4 py-6">
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-4">
+<div class="mx-auto max-w-6xl px-4 py-2">
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-5">
 
-    <div class="lg:col-span-3 space-y-4">
+    <div class="lg:col-span-4 space-y-4">
 
-      <header class="rounded-2xl bg-gradient-to-r from-slate-900 via-blue-900 to-blue-700 p-5 text-center text-white shadow-lg">
-        <h1 class="text-2xl font-bold">{{ entry.title }}</h1>
-        <div class="mt-2 flex items-center justify-center gap-4 text-sm text-white/80">
+      <header class="rounded-2xl bg-gradient-to-r from-primary-600 to-primary-500 px-4 py-3 text-center text-white shadow-lg">
+        <h1 class="text-lg font-bold">{{ entry.title }}</h1>
+        <div class="mt-1 flex items-center justify-center gap-3 text-xs text-white/80">
           <span><i class="far fa-calendar-alt mr-1"></i>{{ entry.created|date:"d M Y" }}</span>
           <span><i class="far fa-clock mr-1"></i>{{ entry.created|date:"H:i" }}</span>
           <span><i class="fas fa-user-circle mr-1"></i>{{ entry.user.full_name }}</span>
         </div>
       </header>
 
-      <section class="rounded-2xl border-l-4 border-blue-500 bg-blue-50 px-4 py-3 shadow-sm">
-        <p class="text-sm text-slate-700 italic">{{ entry.resume }}</p>
+      <section class="rounded-2xl border-l-4 border-blue-500 bg-blue-50 px-3 py-2 shadow-sm">
+        <p class="text-xs text-slate-700 italic">{{ entry.resume }}</p>
       </section>
 
-      <article class="rounded-2xl bg-white p-5 shadow-sm min-h-[500px]">
-        <div class="post-content prose max-w-none text-slate-700">
+      <article class="rounded-2xl bg-slate-100 p-5 shadow-sm min-h-[500px]">
+        <div class="post-content max-w-none text-slate-700 overflow-x-auto">
           {{ entry.content|safe }}
         </div>
         <div class="mt-4 border-t border-slate-200 pt-3 flex items-center justify-between text-xs text-slate-400">
@@ -45,7 +45,7 @@
       </article>
 
       <section class="overflow-hidden rounded-2xl bg-white shadow-sm">
-        <div class="bg-gradient-to-r from-slate-900 to-blue-800 px-3 py-2 text-white">
+        <div class="bg-gradient-to-r from-primary-600 to-primary-500 px-3 py-2 text-white">
           <h2 class="text-xs font-semibold"><i class="fas fa-comments mr-1"></i>Comentarios ({{ main_comments.count }})</h2>
         </div>
         <div class="p-3 space-y-2">
@@ -120,7 +120,7 @@
 
       {% if user.is_authenticated %}
       <section class="overflow-hidden rounded-2xl bg-white shadow-sm">
-        <div class="bg-gradient-to-r from-slate-900 to-blue-800 px-3 py-2 text-white">
+        <div class="bg-gradient-to-r from-primary-600 to-primary-500 px-3 py-2 text-white">
           <h2 class="text-xs font-semibold"><i class="fas fa-comment-dots mr-1"></i>Dejar un comentario</h2>
         </div>
         <div class="p-3">
@@ -142,10 +142,10 @@
     </div>
 
     <aside class="lg:col-span-1">
-      <div class="sticky top-24 space-y-4">
+      <div class="sticky top-16pace-y-4">
 
         <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
-          <div class="bg-gradient-to-r from-slate-900 to-blue-800 px-4 py-2.5 text-center text-white">
+          <div class="bg-gradient-to-r from-primary-600 to-primary-500 px-4 py-2.5 text-center text-white">
             <h2 class="text-sm font-semibold">{{ entry.category }}</h2>
           </div>
           <div class="p-3">
@@ -214,7 +214,7 @@
 
 <div id="guardarModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-4">
   <div class="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl">
-    <div class="flex items-center justify-between bg-gradient-to-r from-slate-900 to-blue-800 px-4 py-2.5 text-white">
+    <div class="flex items-center justify-between bg-gradient-to-r from-primary-600 to-primary-500 px-4 py-2.5 text-white">
       <h3 class="text-sm font-semibold"><i class="fas fa-star mr-1"></i>Guardar en Favoritos</h3>
       <button type="button" onclick="document.getElementById('guardarModal').classList.add('hidden')" class="text-xl leading-none hover:text-white/70">&times;</button>
     </div>
@@ -266,6 +266,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     pre.appendChild(btn);
   });
+});
+document.querySelectorAll('.post-content img').forEach(function(img) {
+  img.removeAttribute('width');
+  img.removeAttribute('height');
+  img.style.removeProperty('width');
+  img.style.removeProperty('height');
 });
 </script>
 

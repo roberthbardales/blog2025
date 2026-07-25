@@ -11,24 +11,69 @@
     </a>
   </div>
 
-  <button class="w-[60px] h-[60px] rounded-full bg-[#25d366] text-white flex items-center justify-center border-none shadow-[0_6px_22px_rgba(37,211,102,.4)] transition-all duration-200 hover:scale-110 hover:shadow-[0_10px_30px_rgba(37,211,102,.5)] cursor-pointer relative" id="waToggle" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp text-[30px] pointer-events-none"></i>
-    <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#22c55e] border-[2.5px] border-white pointer-events-none wa-pulse"></span>
-    <span class="absolute inset-0 rounded-full border-[3px] border-[#25d366] pointer-events-none wa-ripple"></span>
-  </button>
+  <div style="position:relative;">
+    <div class="whatsapp-pulse"></div>
+    <button class="whatsapp-float" id="waToggle" aria-label="Chat por WhatsApp">
+      <span class="whatsapp-badge">¡Escríbeme!</span>
+      <i class="fab fa-whatsapp" style="font-size:38px;"></i>
+    </button>
+  </div>
 </div>
 
 <style>
-  @keyframes wa-ripple {
-    0% { transform: scale(1); opacity: .6; }
+  .whatsapp-float {
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 6px 22px rgba(37, 211, 102, 0.4);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+  }
+  .whatsapp-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ef4444;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 4px;
+    margin-bottom: 2px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    animation: wa-badge-fade 4s ease-in-out infinite;
+  }
+  .whatsapp-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: #25d366;
+    animation: wa-pulse-anim 2s ease-out infinite;
+  }
+  @keyframes wa-pulse-anim {
+    0% { transform: scale(1); opacity: 0.6; }
     100% { transform: scale(1.8); opacity: 0; }
   }
-  @keyframes wa-badge-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: .7; transform: scale(1.15); }
+  @keyframes wa-badge-fade {
+    0%, 70% { opacity: 1; }
+    85% { opacity: 0; }
+    100% { opacity: 1; }
   }
-  .wa-ripple { animation: wa-ripple 2s ease-out infinite; }
-  .wa-pulse { animation: wa-badge-pulse 1.5s ease-in-out infinite; }
   .wa-menu.show { display: flex; animation: wa-slide-up .25s ease-out; }
   @keyframes wa-slide-up {
     from { opacity: 0; transform: translateY(12px); }
@@ -36,8 +81,8 @@
   }
   @media (max-width: 576px) {
     #waContainer { bottom: 18px; right: 18px; }
-    #waToggle { width: 52px; height: 52px; }
-    #waToggle i { font-size: 26px; }
+    .whatsapp-float { width: 52px; height: 52px; font-size: 26px; }
+    .whatsapp-badge { font-size: 9px; padding: 3px 8px; top: -6px; right: -6px; }
     .wa-menu a { font-size: .82rem; padding: 8px 14px; }
   }
 </style>

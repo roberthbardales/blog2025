@@ -5,121 +5,70 @@
 
 {% include "includes/header.html" %}
 
-<style>
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.3);
-    border-radius: 9999px;
-    color: white;
-    backdrop-filter: blur(4px);
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
-  .carousel-btn:hover { background: rgba(0,0,0,0.5); }
-  .carousel-dot {
-    width: 8px; height: 8px;
-    border-radius: 9999px;
-    background: rgba(255,255,255,0.35);
-    cursor: pointer;
-    transition: all 0.25s;
-    border: none; padding: 0;
-  }
-  .carousel-dot.active {
-    background: white;
-    width: 24px;
-    border-radius: 4px;
-  }
-</style>
+
 
 <div class="max-w-7xl mx-auto px-4 py-3">
 
   <!-- HERO -->
   <div class="flex justify-center mb-6">
-    <div class="w-full lg:w-10/12 text-center">
-      <div class="bg-white rounded-xl shadow-lg border border-gray-100">
-        <div class="px-6 py-5">
-          <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Proyectos Full Stack con Python</h1>
-        </div>
-      </div>
+    <div class="w-full md:w-10/12 text-center">
+    <div class="w-full md:w-10/12 text-center py-1">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-900 mb-1">Sistemas Full Stack con Python/Django</h1>
+    </div>
     </div>
   </div>
 
   <div class="flex justify-center">
-    <div class="w-full lg:w-10/12 space-y-5">
+    <div class="w-full md:w-10/12 space-y-5">
 
       <!-- PROYECTO 1 -->
       <div class="bg-white rounded-xl shadow-lg border-t-[5px] border-[#0b5ed7] overflow-hidden">
-        <div class="relative overflow-hidden" data-carousel>
-          <div class="flex overflow-hidden relative" data-carousel-inner>
+        <div class="relative overflow-hidden" data-carousel role="region" aria-label="Carrusel de imágenes" aria-roledescription="carrusel">
+          <div class="flex overflow-hidden relative" data-carousel-inner aria-live="polite">
             <div class="min-w-full block" data-slide>
-              <img src="{% static 'img/b1.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 1">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/b1.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 1">
             </div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b2.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 2"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b3.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 3"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b4.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 4"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b5.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 5"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b6.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 6"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b7.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 7"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b8.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 8"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b9.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 9"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b10.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 10"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b11.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 11"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b12.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 12"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b13.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 13"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b14.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Red Social Preview 14"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b2.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 2"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b3.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 3"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b4.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 4"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b5.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 5"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b6.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 6"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b7.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 7"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b8.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 8"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b9.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 9"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b10.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 10"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b11.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 11"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b12.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 12"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b13.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 13"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/b14.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Red Social Preview 14"></div>
           </div>
-          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-            <button class="carousel-dot active" data-index="0"></button>
-            <button class="carousel-dot" data-index="1"></button>
-            <button class="carousel-dot" data-index="2"></button>
-            <button class="carousel-dot" data-index="3"></button>
-            <button class="carousel-dot" data-index="4"></button>
-            <button class="carousel-dot" data-index="5"></button>
-            <button class="carousel-dot" data-index="6"></button>
-            <button class="carousel-dot" data-index="7"></button>
-            <button class="carousel-dot" data-index="8"></button>
-            <button class="carousel-dot" data-index="9"></button>
-            <button class="carousel-dot" data-index="10"></button>
-            <button class="carousel-dot" data-index="11"></button>
-            <button class="carousel-dot" data-index="12"></button>
-            <button class="carousel-dot" data-index="13"></button>
-          </div>
-          <button class="carousel-btn left-3" data-prev aria-label="Anterior">
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" data-carousel-dots></div>
+          <button class="absolute top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center bg-black/30 rounded-full text-white backdrop-blur-sm transition-all duration-200 cursor-pointer border-none hover:bg-black/50 left-2 sm:left-3" data-prev aria-label="Anterior slide">
             <i class="fas fa-chevron-left text-sm"></i>
           </button>
-          <button class="carousel-btn right-3" data-next aria-label="Siguiente">
+          <button class="absolute top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center bg-black/30 rounded-full text-white backdrop-blur-sm transition-all duration-200 cursor-pointer border-none hover:bg-black/50 right-2 sm:right-3" data-next aria-label="Siguiente slide">
             <i class="fas fa-chevron-right text-sm"></i>
           </button>
         </div>
         <div class="px-4 py-3">
           <div class="flex flex-wrap items-center">
-            <div class="w-full lg:w-8/12">
-              <h2 class="text-2xl font-bold mb-2 text-gray-900">
+            <div class="w-full md:w-8/12">
+              <h2 class="text-xl md:text-2xl font-bold mb-2 text-gray-900">
                 Red Social & Blog <span class="text-primary-500">Profesional</span>
               </h2>
               <p class="text-gray-500 mb-3">
                 Plataforma completa con autenticación, CHAT en tiempo real, perfiles, likes, etc.
               </p>
               <div class="flex flex-wrap gap-1.5 mb-0">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">DRF</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-red-100 text-red-700">WebSockets</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">Channels</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-yellow-100 text-yellow-700">DRF</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-red-100 text-red-700">WebSockets</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-700">Channels</span>
               </div>
             </div>
-            <div class="w-full lg:w-4/12 text-center lg:text-right mt-3 lg:mt-0 space-y-2">
+            <div class="w-full md:w-4/12 text-center md:text-right mt-3 md:mt-0 space-y-2">
               <a href="https://codigobase.duckdns.org/" target="_blank"
                  class="inline-flex items-center gap-2 bg-primary-600 text-white font-bold px-5 py-2.5 rounded-full shadow-sm hover:bg-primary-700 transition-all text-sm">
                 IR AL BLOG
@@ -138,75 +87,55 @@
 
       <!-- PROYECTO 2 -->
       <div class="bg-white rounded-xl shadow-lg border-t-[5px] border-[#10b981] overflow-hidden">
-        <div class="relative overflow-hidden" data-carousel>
-          <div class="flex overflow-hidden relative" data-carousel-inner>
+        <div class="relative overflow-hidden" data-carousel role="region" aria-label="Carrusel de imágenes" aria-roledescription="carrusel">
+          <div class="flex overflow-hidden relative" data-carousel-inner aria-live="polite">
             <div class="min-w-full block" data-slide>
-              <img src="{% static 'img/d1.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 1">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/d1.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 1">
             </div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d2.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 2"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d3.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 3"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d4.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 4"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d5.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 5"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d6.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 6"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d7.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 7"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d8.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 8"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d9.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 9"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d10.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 10"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d11.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 11"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d12.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 12"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d13.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 13"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d14.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 14"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d15.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 15"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d16.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 16"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d17.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 17"></div>
-            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d18.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="ERP Preview 18"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d2.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 2"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d3.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 3"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d4.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 4"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d5.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 5"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d6.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 6"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d7.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 7"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d8.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 8"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d9.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 9"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d10.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 10"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d11.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 11"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d12.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 12"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d13.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 13"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d14.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 14"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d15.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 15"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d16.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 16"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d17.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 17"></div>
+            <div class="min-w-full hidden" data-slide><img src="{% static 'img/d18.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="ERP Preview 18"></div>
           </div>
-          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-            <button class="carousel-dot active" data-index="0"></button>
-            <button class="carousel-dot" data-index="1"></button>
-            <button class="carousel-dot" data-index="2"></button>
-            <button class="carousel-dot" data-index="3"></button>
-            <button class="carousel-dot" data-index="4"></button>
-            <button class="carousel-dot" data-index="5"></button>
-            <button class="carousel-dot" data-index="6"></button>
-            <button class="carousel-dot" data-index="7"></button>
-            <button class="carousel-dot" data-index="8"></button>
-            <button class="carousel-dot" data-index="9"></button>
-            <button class="carousel-dot" data-index="10"></button>
-            <button class="carousel-dot" data-index="11"></button>
-            <button class="carousel-dot" data-index="12"></button>
-            <button class="carousel-dot" data-index="13"></button>
-            <button class="carousel-dot" data-index="14"></button>
-            <button class="carousel-dot" data-index="15"></button>
-            <button class="carousel-dot" data-index="16"></button>
-            <button class="carousel-dot" data-index="17"></button>
-          </div>
-          <button class="carousel-btn left-3" data-prev aria-label="Anterior">
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" data-carousel-dots></div>
+          <button class="absolute top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center bg-black/30 rounded-full text-white backdrop-blur-sm transition-all duration-200 cursor-pointer border-none hover:bg-black/50 left-2 sm:left-3" data-prev aria-label="Anterior slide">
             <i class="fas fa-chevron-left text-sm"></i>
           </button>
-          <button class="carousel-btn right-3" data-next aria-label="Siguiente">
+          <button class="absolute top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center bg-black/30 rounded-full text-white backdrop-blur-sm transition-all duration-200 cursor-pointer border-none hover:bg-black/50 right-2 sm:right-3" data-next aria-label="Siguiente slide">
             <i class="fas fa-chevron-right text-sm"></i>
           </button>
         </div>
         <div class="px-4 py-3">
           <div class="flex flex-wrap items-center">
-            <div class="w-full lg:w-8/12">
-              <h2 class="text-2xl font-bold mb-2 text-gray-900">
+            <div class="w-full md:w-8/12">
+              <h2 class="text-xl md:text-2xl font-bold mb-2 text-gray-900">
                 Sistema ERP <span class="text-green-600">Empresarial(DEMO)</span>
               </h2>
               <p class="text-gray-500 mb-3">
                 Gestión de recursos empresariales, cuenta con 3 modulos Inventario, ventas, RRHH.
               </p>
               <div class="flex flex-wrap gap-1.5 mb-0">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">Linux</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-green-100 text-green-700">Python</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-700">Linux</span>
               </div>
             </div>
-            <div class="w-full lg:w-4/12 text-center lg:text-right mt-3 lg:mt-0 space-y-2">
+            <div class="w-full md:w-4/12 text-center md:text-right mt-3 md:mt-0 space-y-2">
               <a href="https://demo2026.duckdns.org/" target="_blank"
                  class="inline-flex items-center gap-2 bg-green-600 text-white font-bold px-5 py-2.5 rounded-full shadow-sm hover:bg-green-700 transition-all text-sm">
                 VER DEMO
@@ -225,97 +154,72 @@
 
       <!-- PROYECTO 3 -->
       <div class="bg-white rounded-xl shadow-lg border-t-[5px] border-[#f59e0b] overflow-hidden">
-        <div class="relative overflow-hidden" data-carousel>
-          <div class="flex overflow-hidden relative" data-carousel-inner>
+        <div class="relative overflow-hidden" data-carousel role="region" aria-label="Carrusel de imágenes" aria-roledescription="carrusel">
+          <div class="flex overflow-hidden relative" data-carousel-inner aria-live="polite">
             <div class="min-w-full block" data-slide>
-              <img src="{% static 'img/c1.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 1">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c1.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 1">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c2.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 2">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c2.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 2">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c3.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 3">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c3.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 3">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c4.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 4">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c4.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 4">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c5.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 5">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c5.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 5">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c6.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 6">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c6.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 6">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c7.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 7">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c7.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 7">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c8.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 8">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c8.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 8">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c9.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 9">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c9.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 9">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c10.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 10">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c10.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 10">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c11.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 11">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c11.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 11">
             </div>
             <div class="min-w-full hidden" data-slide>
-              <img src="{% static 'img/c12.png' %}" class="block w-full" style="height: 600px; object-fit: cover;" alt="Ecommerce Preview 12">
-              <div class="hidden md:block absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1 text-center rounded-t-lg"></div>
+              <img src="{% static 'img/c12.png' %}" class="block w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover" alt="Ecommerce Preview 12">
             </div>
           </div>
-          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-            <button class="carousel-dot active" data-index="0"></button>
-            <button class="carousel-dot" data-index="1"></button>
-            <button class="carousel-dot" data-index="2"></button>
-            <button class="carousel-dot" data-index="3"></button>
-            <button class="carousel-dot" data-index="4"></button>
-            <button class="carousel-dot" data-index="5"></button>
-            <button class="carousel-dot" data-index="6"></button>
-            <button class="carousel-dot" data-index="7"></button>
-            <button class="carousel-dot" data-index="8"></button>
-            <button class="carousel-dot" data-index="9"></button>
-            <button class="carousel-dot" data-index="10"></button>
-            <button class="carousel-dot" data-index="11"></button>
-          </div>
-          <button class="carousel-btn left-3" data-prev aria-label="Anterior">
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" data-carousel-dots></div>
+          <button class="absolute top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center bg-black/30 rounded-full text-white backdrop-blur-sm transition-all duration-200 cursor-pointer border-none hover:bg-black/50 left-2 sm:left-3" data-prev aria-label="Anterior slide">
             <i class="fas fa-chevron-left text-sm"></i>
           </button>
-          <button class="carousel-btn right-3" data-next aria-label="Siguiente">
+          <button class="absolute top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center bg-black/30 rounded-full text-white backdrop-blur-sm transition-all duration-200 cursor-pointer border-none hover:bg-black/50 right-2 sm:right-3" data-next aria-label="Siguiente slide">
             <i class="fas fa-chevron-right text-sm"></i>
           </button>
         </div>
         <div class="px-4 py-3">
           <div class="flex flex-wrap items-center">
-            <div class="w-full lg:w-8/12">
-              <h2 class="text-2xl font-bold mb-2 text-gray-900">
-                Plataforma <span style="color: #f59e0b;">E-Commerce</span>
+            <div class="w-full md:w-8/12">
+              <h2 class="text-xl md:text-2xl font-bold mb-2 text-gray-900">
+                Plataforma <span class="text-amber-500">E-Commerce</span>
               </h2>
               <p class="text-gray-500 mb-3">
                 Tienda virtual con carrito, panel administrativo y pasarela de pago MERCADOPAGO.
               </p>
               <div class="flex flex-wrap gap-1.5 mb-0">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Python</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Django</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-red-100 text-red-700">MercadoPago</span>
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">Linux</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-green-100 text-green-700">Python</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-green-100 text-green-700">Django</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-blue-100 text-blue-700">PostgreSQL</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-cyan-100 text-cyan-700">Bootstrap</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-red-100 text-red-700">MercadoPago</span>
+                <span class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-700">Linux</span>
               </div>
             </div>
-            <div class="w-full lg:w-4/12 text-center lg:text-right mt-3 lg:mt-0 space-y-2">
+            <div class="w-full md:w-4/12 text-center md:text-right mt-3 md:mt-0 space-y-2">
               <a href="https://carrito.duckdns.org/" target="_blank"
                  class="inline-flex items-center gap-2 bg-[#f59e0b] text-white font-bold px-5 py-2.5 rounded-full shadow-sm hover:bg-[#d97706] transition-all text-sm">
                 VISITAR TIENDA
@@ -343,18 +247,44 @@
 (function() {
   document.querySelectorAll('[data-carousel]').forEach(function(el) {
     var slides = el.querySelectorAll('[data-slide]');
-    var dots = el.querySelectorAll('[data-index]');
+    var dotsContainer = el.querySelector('[data-carousel-dots]');
     var prev = el.querySelector('[data-prev]');
     var next = el.querySelector('[data-next]');
     var current = 0;
     var interval;
+    var touchStartX = 0;
+    var touchEndX = 0;
+
+    slides.forEach(function(s, i) {
+      s.setAttribute('role', 'group');
+      s.setAttribute('aria-roledescription', 'slide');
+      s.setAttribute('aria-label', (i + 1) + ' de ' + slides.length);
+    });
+
+    slides.forEach(function(_, i) {
+      var btn = document.createElement('button');
+      btn.className = i === 0
+        ? 'w-2 h-2 rounded-full bg-white cursor-pointer transition-all duration-200 border-none p-0'
+        : 'w-2 h-2 rounded-full bg-white/35 cursor-pointer transition-all duration-200 border-none p-0';
+      btn.setAttribute('aria-label', 'Ir al slide ' + (i + 1));
+      btn.addEventListener('click', function() { show(i); });
+      dotsContainer.appendChild(btn);
+    });
+
+    var dots = dotsContainer.querySelectorAll('button');
 
     function show(index) {
       slides.forEach(function(s, i) {
         s.classList.toggle('hidden', i !== index);
       });
       dots.forEach(function(d, i) {
-        d.classList.toggle('active', i === index);
+        if (i === index) {
+          d.classList.remove('bg-white/35', 'w-2', 'rounded-full');
+          d.classList.add('bg-white', 'w-6', 'rounded');
+        } else {
+          d.classList.remove('bg-white', 'w-6', 'rounded');
+          d.classList.add('bg-white/35', 'w-2', 'rounded-full');
+        }
       });
       current = index;
     }
@@ -365,11 +295,19 @@
     if (next) next.addEventListener('click', goNext);
     if (prev) prev.addEventListener('click', goPrev);
 
-    dots.forEach(function(dot) {
-      dot.addEventListener('click', function() {
-        show(parseInt(dot.getAttribute('data-index')));
-      });
-    });
+    el.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAuto();
+    }, { passive: true });
+
+    el.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? goNext() : goPrev();
+      }
+      startAuto();
+    }, { passive: true });
 
     function startAuto() { interval = setInterval(goNext, 5000); }
     function stopAuto() { clearInterval(interval); }

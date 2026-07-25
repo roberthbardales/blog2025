@@ -1,6 +1,6 @@
 {% load static %}
 
-<aside class="w-full lg:w-64 flex-none px-4 mb-4 lg:sticky lg:top-[60px] lg:self-start">
+<aside class="w-full md:w-52 lg:w-64 flex-none px-4 mb-4 md:sticky md:top-[60px] md:self-start">
   <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
     <div class="p-3 text-center">
       <div class="mx-auto mb-1 h-24 w-24 overflow-hidden rounded-full border-4 border-white shadow-md">
@@ -23,9 +23,14 @@
         </span>
       </div>
       {% endif %}
+
+      <button id="sidebarToggle" class="md:hidden mt-2 w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-200" type="button">
+        <i class="fas fa-chevron-down text-[10px] transition-transform duration-200" id="sidebarIcon"></i>
+        Menú
+      </button>
     </div>
 
-    <div class="space-y-2 px-3 pb-3">
+    <div class="hidden md:block space-y-2 px-3 pb-3" id="sidebarNav">
       {% if user.is_superuser %}
       <a class="block w-full rounded-xl bg-slate-800 px-3 py-1.5 text-center text-sm font-semibold text-white transition-colors hover:bg-slate-700 no-underline"
          href="{% url 'users_app:user-lista' %}">
@@ -98,3 +103,17 @@
     </div>
   </div>
 </aside>
+
+<script>
+(function() {
+  var btn = document.getElementById('sidebarToggle');
+  var nav = document.getElementById('sidebarNav');
+  var icon = document.getElementById('sidebarIcon');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function() {
+    var isOpen = !nav.classList.contains('hidden');
+    nav.classList.toggle('hidden');
+    if (icon) icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+  });
+})();
+</script>

@@ -11,6 +11,9 @@
 img { max-width: 100%; }
 .post-content img { max-width: 100% !important; width: auto !important; height: auto !important; display: block; }
 html { scroll-behavior: smooth; }
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 body { background-color: #f8fafc; }
 
 .gradient-text {

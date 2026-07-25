@@ -1,13 +1,22 @@
 <div class="fixed bottom-6 right-6 z-[9999] flex flex-col items-end" id="waContainer">
-  <div class="hidden flex-col gap-1.5 mb-3 wa-menu" id="waMenu">
-    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20cotizar%20un%20proyecto" class="flex items-center gap-2.5 bg-white text-gray-900 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap shadow-[0_4px_16px_rgba(0,0,0,.12)] transition-all duration-150 hover:-translate-x-1 hover:shadow-[0_6px_20px_rgba(0,0,0,.18)] hover:text-gray-900 hover:no-underline" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-code text-lg w-5 text-center" style="color:#0b5ed7;"></i>Cotizar proyecto
+  <div class="hidden flex-col gap-2 mb-3 wa-menu" id="waMenu">
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20quiero%20un%20sistema" class="wa-menu-item wa-item-1 flex items-center gap-2.5 bg-white px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shadow-[0_4px_20px_rgba(0,0,0,.10)] transition-all duration-200 hover:-translate-x-1.5 hover:shadow-[0_8px_25px_rgba(0,0,0,.18)] hover:no-underline border border-gray-100" target="_blank" rel="noopener noreferrer">
+      <span class="wa-item-icon wa-icon-sistema flex items-center justify-center w-7 h-7 rounded-lg text-xs">
+        <i class="fas fa-laptop-code"></i>
+      </span>
+      <span class="wa-item-text text-gray-800">Quiero un sistema</span>
     </a>
-    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20soporte%20t%C3%A9cnico" class="flex items-center gap-2.5 bg-white text-gray-900 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap shadow-[0_4px_16px_rgba(0,0,0,.12)] transition-all duration-150 hover:-translate-x-1 hover:shadow-[0_6px_20px_rgba(0,0,0,.18)] hover:text-gray-900 hover:no-underline" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-headset text-lg w-5 text-center" style="color:#20c997;"></i>Soporte técnico
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20una%20web" class="wa-menu-item wa-item-2 flex items-center gap-2.5 bg-white px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shadow-[0_4px_20px_rgba(0,0,0,.10)] transition-all duration-200 hover:-translate-x-1.5 hover:shadow-[0_8px_25px_rgba(0,0,0,.18)] hover:no-underline border border-gray-100" target="_blank" rel="noopener noreferrer">
+      <span class="wa-item-icon wa-icon-web flex items-center justify-center w-7 h-7 rounded-lg text-xs">
+        <i class="fas fa-globe"></i>
+      </span>
+      <span class="wa-item-text text-gray-800">Necesito una web</span>
     </a>
-    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20tengo%20una%20consulta" class="flex items-center gap-2.5 bg-white text-gray-900 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap shadow-[0_4px_16px_rgba(0,0,0,.12)] transition-all duration-150 hover:-translate-x-1 hover:shadow-[0_6px_20px_rgba(0,0,0,.18)] hover:text-gray-900 hover:no-underline" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-comment-dots text-lg w-5 text-center" style="color:#f59e0b;"></i>Consulta rápida
+    <a href="https://wa.me/51960174778?text=Hola%20Russell%2C%20necesito%20ayuda%20t%C3%A9cnica" class="wa-menu-item wa-item-3 flex items-center gap-2.5 bg-white px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shadow-[0_4px_20px_rgba(0,0,0,.10)] transition-all duration-200 hover:-translate-x-1.5 hover:shadow-[0_8px_25px_rgba(0,0,0,.18)] hover:no-underline border border-gray-100" target="_blank" rel="noopener noreferrer">
+      <span class="wa-item-icon wa-icon-ayuda flex items-center justify-center w-7 h-7 rounded-lg text-xs">
+        <i class="fas fa-headset"></i>
+      </span>
+      <span class="wa-item-text text-gray-800">Ayuda técnica</span>
     </a>
   </div>
 
@@ -55,7 +64,7 @@
     border-radius: 20px;
     white-space: nowrap;
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-    animation: wa-badge-fade 4s ease-in-out infinite;
+    animation: wa-badge-fade 6s ease-in-out infinite;
   }
   .whatsapp-pulse {
     position: absolute;
@@ -70,20 +79,36 @@
     100% { transform: scale(1.8); opacity: 0; }
   }
   @keyframes wa-badge-fade {
-    0%, 70% { opacity: 1; }
-    85% { opacity: 0; }
+    0%, 60% { opacity: 1; }
+    80% { opacity: 0; }
     100% { opacity: 1; }
   }
-  .wa-menu.show { display: flex; animation: wa-slide-up .25s ease-out; }
-  @keyframes wa-slide-up {
-    from { opacity: 0; transform: translateY(12px); }
+  .wa-menu.show { display: flex; }
+  .wa-menu-item { opacity: 0; animation: wa-item-in .25s ease-out forwards; }
+  .wa-menu.show .wa-item-1 { animation-delay: 0s; }
+  .wa-menu.show .wa-item-2 { animation-delay: .06s; }
+  .wa-menu.show .wa-item-3 { animation-delay: .12s; }
+  @keyframes wa-item-in {
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  .wa-item-icon {
+    color: #fff;
+    transition: background .2s;
+  }
+  .wa-icon-sistema { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+  .wa-icon-web { background: linear-gradient(135deg, #0ea5e9, #06b6d4); }
+  .wa-icon-ayuda { background: linear-gradient(135deg, #f97316, #facc15); }
+  .wa-menu-item:hover { border-color: #e5e7eb; }
+  .wa-item-1:hover .wa-icon-sistema { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+  .wa-item-2:hover .wa-icon-web { background: linear-gradient(135deg, #0284c7, #0891b2); }
+  .wa-item-3:hover .wa-icon-ayuda { background: linear-gradient(135deg, #ea580c, #eab308); }
   @media (max-width: 576px) {
     #waContainer { bottom: 18px; right: 18px; }
     .whatsapp-float { width: 52px; height: 52px; font-size: 26px; }
     .whatsapp-badge { font-size: 9px; padding: 3px 8px; top: -6px; right: -6px; }
-    .wa-menu a { font-size: .82rem; padding: 8px 14px; }
+    .wa-menu-item { font-size: .75rem; padding: 6px 10px; }
+    .wa-item-icon { width: 24px; height: 24px; font-size: .7rem; }
   }
 </style>
 

@@ -2,6 +2,7 @@ import json
 import datetime
 
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.db.models import Count, Q
@@ -78,7 +79,16 @@ class ContactCreateView(CreateView):
             ["roberthbardales@gmail.com"],
             fail_silently=False,
         )
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': True, 'message': '¡Mensaje enviado!'})
+        messages.success(self.request, '¡Mensaje enviado!')
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': False, 'message': 'No se pudo enviar el mensaje. Verifica los datos e intenta de nuevo.'}, status=400)
+        messages.error(self.request, 'No se pudo enviar el mensaje.')
+        return super().form_invalid(form)
 
 
 class VisitorLogsView(AdministradorPermisoMixin, TemplateView):

@@ -294,3 +294,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'applications.users.backends.FirebaseBackend',
 ]
+
+# -------------------------------
+# CSRF Trusted Origins
+# -------------------------------
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[])
+

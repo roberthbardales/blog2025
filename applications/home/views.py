@@ -16,7 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, CreateView
 from datetime import timedelta
 
-from .models import Home, VisitorLog, IPLocation
+from .models import Home, VisitorLog, IPLocation, Servicio
 from .forms import SuscribersForm, ContactForm
 from applications.entrada.models import Entry
 from applications.users.mixins import AdministradorPermisoMixin
@@ -177,3 +177,13 @@ class InicioView(TemplateView):
 
 class ServiciosView(TemplateView):
     template_name = "home/index2.html"
+
+
+class PreciosView(TemplateView):
+    template_name = "home/precios.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['servicios'] = Servicio.objects.filter(activo=True).order_by('orden', 'id')
+        context['simple_header'] = True
+        return context

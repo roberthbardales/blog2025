@@ -7,7 +7,7 @@ admin.site.register(Suscribers)
 admin.site.register(Contact)
 
 # admin.py
-from .models import IPLocation, VisitorLog
+from .models import IPLocation, VisitorLog, Servicio
 
 @admin.register(IPLocation)
 class IPLocationAdmin(admin.ModelAdmin):
@@ -23,3 +23,11 @@ class VisitorLogAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('ip_location')
+
+
+@admin.register(Servicio)
+class ServicioAdmin(admin.ModelAdmin):
+    list_display = ['nombre', 'precio', 'destacado', 'activo', 'orden']
+    list_editable = ['precio', 'destacado', 'activo', 'orden']
+    list_filter = ['destacado', 'activo']
+    search_fields = ['nombre', 'descripcion']

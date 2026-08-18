@@ -1,5 +1,50 @@
 # Blog2025 — Resumen de avances
 
+## Ajustes página de Precios (12 ago 2026)
+
+### Precio opcional
+- `applications/home/models.py` — `Servicio.precio` ahora `null=True, blank=True`; `__str__` muestra "Sin precio" cuando no hay
+- Migraciones: `0007_alter_servicio_precio` (nullable) y `0008_servicio_precios_parciales` (deja precio solo en Página Web Corporativa S/ 350 y Soporte Técnico Online S/ 60)
+- `templates/home/precios.html` — bloque de precio condicional `{% if servicio.precio %}`; sin precio no se muestra texto (spacer `&nbsp;` para mantener ritmo visual); eliminado el subtexto "una sola vez · sin mensualidad"
+
+### Servicios nuevos/modificados (data migrations)
+- `0009_servicio_automatizaciones.py` — un solo servicio **"Automatizaciones para tu Negocio"** (`fas fa-robot`, purple, sin precio, orden 10) con 5 características
+- `0010_servicio_quitar_soporte.py` — elimina el "tiempo de soporte" (1 semana/2 semanas/1 mes/3 meses de soporte) de las características de 5 servicios
+- `0011_fusionar_ventas_inventario.py` — fusiona "Sistema de Ventas" + "Sistema de Inventario" en **"Sistema de Ventas e Inventario"** (7 características, conserva id/orden 2)
+- `0012_servicio_catalogo_web.py` — nuevo **"Catálogo Web"** (`fas fa-book-open`, slate, sin precio, orden 3): catálogo digital con pedidos por WhatsApp
+
+### Colores
+- `0013_reorganizar_colores.py` — paleta reasignada por nombre:
+  - Página Web Corporativa → blue · Catálogo Web → teal · Reservas y Citas → amber · Tienda Online → indigo · Sistema de Ventas e Inventario → emerald · Soporte Técnico Online → slate · Automatizaciones → purple
+
+### Grid
+- `templates/home/precios.html` — `lg:grid-cols-3` → `lg:grid-cols-4` (4 cards por fila)
+
+---
+
+## Nueva página de Precios `/precios/` (11 ago 2026)
+
+Página de precios dinámica para ofrecer sistemas web con descripción y precio, gestionada desde el admin.
+
+### Archivos nuevos
+- `templates/home/precios.html` — página con hero, grid de cards (ícono, nombre, descripción, precio, características, badge "Recomendado") y CTA a WhatsApp
+- `applications/home/migrations/0006_servicio.py` — migración del modelo `Servicio`
+
+### Archivos modificados
+- `applications/home/models.py` — modelo `Servicio` (nombre, descripción, precio, características JSON, ícono FontAwesome, color Tailwind, destacado, activo, orden) + mapa de clases `COLOR_CLASSES` y propiedad `clases`
+- `applications/home/admin.py` — `ServicioAdmin` con `list_display`, `list_editable` (precio/destacado/activo/orden)
+- `applications/home/views.py` — `PreciosView` (TemplateView) con contexto `servicios` (activos, ordenados)
+- `applications/home/urls.py` — ruta `precios/` (name: `precios`)
+- `templates/includes/header.html` — link "Precios" en el menú
+
+### Corrección posterior
+- Hero de `precios.html`: `-mt-[48px] lg:-mt-[60px] pt-[48px] lg:pt-[60px] pb-14` para eliminar la franja blanca entre el header fijo y la sección (mismo patrón del index)
+
+### Datos de ejemplo (editables en admin)
+- Página Web Corporativa `S/ 350`, Sistema de Ventas `S/ 800`, Inventario `S/ 650`, Reservas y Citas `S/ 550`, Tienda Online `S/ 1200` (destacado), Soporte Técnico `S/ 60`
+
+---
+
 ## Estilo visual consistente (basado en `about_me.html`)
 
 Patrón de diseño aplicado a todas las páginas:

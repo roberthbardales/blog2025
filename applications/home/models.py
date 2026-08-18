@@ -82,3 +82,110 @@ class VisitorLog(models.Model):
 
     def __str__(self):
         return f"{self.ip_location.ip_address} - {self.timestamp}"
+
+
+class Servicio(TimeStampedModel):
+    """Servicio web/sistema que se ofrece con precio y descripción."""
+
+    COLOR_CLASSES = {
+        'emerald': {
+            'borde': 'border-emerald-500',
+            'icono_bg': 'bg-emerald-500/10',
+            'icono_txt': 'text-emerald-400',
+            'btn': 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/20',
+        },
+        'blue': {
+            'borde': 'border-blue-500',
+            'icono_bg': 'bg-blue-500/10',
+            'icono_txt': 'text-blue-400',
+            'btn': 'bg-blue-600 hover:bg-blue-700 shadow-blue-500/20',
+        },
+        'amber': {
+            'borde': 'border-amber-500',
+            'icono_bg': 'bg-amber-500/10',
+            'icono_txt': 'text-amber-400',
+            'btn': 'bg-amber-600 hover:bg-amber-700 shadow-amber-500/20',
+        },
+        'purple': {
+            'borde': 'border-purple-500',
+            'icono_bg': 'bg-purple-500/10',
+            'icono_txt': 'text-purple-400',
+            'btn': 'bg-purple-600 hover:bg-purple-700 shadow-purple-500/20',
+        },
+        'pink': {
+            'borde': 'border-pink-500',
+            'icono_bg': 'bg-pink-500/10',
+            'icono_txt': 'text-pink-400',
+            'btn': 'bg-pink-600 hover:bg-pink-700 shadow-pink-500/20',
+        },
+        'teal': {
+            'borde': 'border-teal-500',
+            'icono_bg': 'bg-teal-500/10',
+            'icono_txt': 'text-teal-400',
+            'btn': 'bg-teal-600 hover:bg-teal-700 shadow-teal-500/20',
+        },
+        'yellow': {
+            'borde': 'border-yellow-500',
+            'icono_bg': 'bg-yellow-500/10',
+            'icono_txt': 'text-yellow-400',
+            'btn': 'bg-yellow-600 hover:bg-yellow-700 shadow-yellow-500/20',
+        },
+        'indigo': {
+            'borde': 'border-indigo-500',
+            'icono_bg': 'bg-indigo-500/10',
+            'icono_txt': 'text-indigo-400',
+            'btn': 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20',
+        },
+        'slate': {
+            'borde': 'border-slate-400',
+            'icono_bg': 'bg-slate-400/10',
+            'icono_txt': 'text-slate-400',
+            'btn': 'bg-slate-600 hover:bg-slate-700 shadow-slate-500/20',
+        },
+        'primary': {
+            'borde': 'border-primary-500',
+            'icono_bg': 'bg-primary-500/10',
+            'icono_txt': 'text-primary-500',
+            'btn': 'bg-primary-600 hover:bg-primary-700 shadow-primary-500/20',
+        },
+    }
+
+    nombre = models.CharField('Nombre', max_length=100)
+    descripcion = models.TextField('Descripción')
+    precio = models.DecimalField('Precio (S/)', max_digits=10, decimal_places=2, null=True, blank=True)
+    caracteristicas = models.JSONField(
+        'Características',
+        default=list,
+        blank=True,
+        help_text='Lista de características. Una por elemento, ej. ["Punto de venta", "Facturación"].',
+    )
+    icono = models.CharField(
+        'Ícono (FontAwesome)',
+        max_length=80,
+        default='fas fa-cogs',
+        help_text='Clase de FontAwesome, ej. "fas fa-cash-register".',
+    )
+    color = models.CharField(
+        'Color (Tailwind)',
+        max_length=30,
+        default='primary',
+        help_text='Nombre del color de acento: blue, amber, purple, pink, teal, yellow, indigo, slate o primary.',
+    )
+    destacado = models.BooleanField('Destacado / Recomendado', default=False)
+    activo = models.BooleanField('Activo', default=True)
+    orden = models.PositiveIntegerField('Orden', default=0)
+
+    class Meta:
+        verbose_name = 'Servicio'
+        verbose_name_plural = 'Servicios'
+        ordering = ['orden', 'id']
+
+    def __str__(self):
+        if not self.precio:
+            return f"{self.nombre} - Sin precio"
+        return f"{self.nombre} - S/ {self.precio}"
+
+    @property
+    def clases(self):
+        """Clases Tailwind según el color definido en el admin."""
+        return self.COLOR_CLASSES.get(self.color, self.COLOR_CLASSES['primary'])

@@ -49,6 +49,7 @@ LOCAL_APPS = (
     'applications.chat',
     'applications.notas',
     'applications.amigos',
+    'applications.empleos',
     # 'applications.chatbot',
 )
 
@@ -287,6 +288,7 @@ FIREBASE_APP_ID = env('FIREBASE_APP_ID')
 # -------------------------------
 GEMINI_API_KEY = env('GEMINI_API_KEY', default='')
 GEMINI_MODEL = env('GEMINI_MODEL', default='gemini-2.5-flash')
+
 # -------------------------------
 # Authentication Backends
 # -------------------------------

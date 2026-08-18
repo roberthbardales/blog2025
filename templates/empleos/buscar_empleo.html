@@ -1,0 +1,76 @@
+{% extends "layout_sidebar.html" %}
+
+{% block title %}Buscar Empleos{% endblock title %}
+
+{% block sidebar_content %}
+<div class="max-w-2xl mx-auto">
+  <h1 class="text-2xl font-bold text-slate-800 mb-6">
+    <i class="fas fa-search mr-2 text-blue-600"></i>Buscar Empleos
+  </h1>
+
+  <form method="POST" action="{% url 'empleos_app:resultados-empleos' %}" class="bg-white rounded-2xl shadow-lg p-6 space-y-5">
+    {% csrf_token %}
+
+    <div class="bg-slate-50 rounded-xl p-4 space-y-4">
+      <h2 class="text-sm font-semibold text-slate-600 uppercase tracking-wide">
+        <i class="fas fa-filter mr-1"></i>Filtros de búsqueda
+      </h2>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Palabras clave</label>
+        <input type="text" name="search" placeholder="Ej: python developer"
+               class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">País</label>
+          <select name="country_id" class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+            <option value="1">Perú</option>
+            <option value="2">México</option>
+            <option value="3">Colombia</option>
+            <option value="4">Chile</option>
+            <option value="5">Argentina</option>
+            <option value="6">España</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Antigüedad</label>
+          <select name="from_age" class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+            <option value="">Cualquier fecha</option>
+            <option value="1" selected>Último día</option>
+            <option value="3">Últimos 3 días</option>
+            <option value="7">Última semana</option>
+            <option value="30">Último mes</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-2">Nivel</label>
+        <div class="flex flex-wrap gap-3">
+          <label class="flex items-center gap-1.5 text-sm text-slate-600">
+            <input type="checkbox" name="job_seniority" value="1" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Prácticas
+          </label>
+          <label class="flex items-center gap-1.5 text-sm text-slate-600">
+            <input type="checkbox" name="job_seniority" value="2" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Junior
+          </label>
+          <label class="flex items-center gap-1.5 text-sm text-slate-600">
+            <input type="checkbox" name="job_seniority" value="3" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Semi Senior
+          </label>
+          <label class="flex items-center gap-1.5 text-sm text-slate-600">
+            <input type="checkbox" name="job_seniority" value="4" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Senior
+          </label>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Máximo de páginas</label>
+        <input type="number" name="max_pages" value="3" min="1" max="10"
+               class="w-32 rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+      </div>
+    </div>
+
+    <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-200 shadow-md hover:shadow-lg">
+      <i class="fas fa-search mr-2"></i>Buscar ofertas
+    </button>
+  </form>
+</div>
+{% endblock sidebar_content %}

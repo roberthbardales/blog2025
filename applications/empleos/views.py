@@ -1,10 +1,57 @@
-from django.shortcuts import render
-from .models import OfertaEmpleo, Busqueda
+from datetime import timedelta
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+from django.utils import timezone
+from django.db import models
+from django.db.models.functions import Cast
+from django.db.models import DateField
+
+from .models import OfertaEmpleo
 from .services import buscar_ofertas
+
+
+PERIODO_MAP = {
+    "hoy": 0,
+    "ayer": 1,
+    "3d": 3,
+    "1s": 7,
+    "1m": 30,
+}
+
+
+def _aplicar_filtro_periodo(qs, periodo):
+    dias = PERIODO_MAP.get(periodo)
+    if dias is not None:
+        fecha = timezone.localdate() - timedelta(days=dias)
+        qs = qs.annotate(
+            posted_date_only=Cast('posted_date', DateField())
+        ).filter(posted_date_only__gte=fecha)
+    return qs
 
 
 def buscar_empleo(request):
     return render(request, "empleos/buscar_empleo.html")
+
+
+def empleos_guardados(request):
+    fuente = request.GET.get("fuente", "").strip()
+    periodo = request.GET.get("periodo", "").strip()
+
+    ofertas = OfertaEmpleo.objects.filter(oculto=False)
+    if fuente:
+        ofertas = ofertas.filter(source=fuente)
+    ofertas = _aplicar_filtro_periodo(ofertas, periodo)
+
+    fuentes = OfertaEmpleo.objects.values_list("source", flat=True).distinct().order_by("source")
+
+    return render(request, "empleos/empleos_guardados.html", {
+        "ofertas": ofertas,
+        "total": ofertas.count(),
+        "fuentes": [f for f in fuentes if f],
+        "fuente_seleccionada": fuente,
+        "periodo": periodo,
+    })
 
 
 def resultados_empleos(request):
@@ -37,11 +84,6 @@ def resultados_empleos(request):
     except Exception as e:
         return render(request, "empleos/resultados_empleos.html", {"error": f"Error inesperado: {e}"})
 
-    busqueda = Busqueda.objects.create(
-        keyword=search or "(sin palabra clave)",
-        total_encontradas=len(ofertas_api),
-    )
-
     nuevas = 0
     existentes = 0
     resultados = []
@@ -65,17 +107,12 @@ def resultados_empleos(request):
                 "url": o["url"],
             },
         )
-        busqueda.ofertas.add(obj)
         if created:
             nuevas += 1
             resultados.append({"obj": obj, "es_nueva": True})
         else:
             existentes += 1
             resultados.append({"obj": obj, "es_nueva": False})
-
-    busqueda.nuevas = nuevas
-    busqueda.existentes = existentes
-    busqueda.save(update_fields=["nuevas", "existentes"])
 
     return render(request, "empleos/resultados_empleos.html", {
         "resultados": resultados,
@@ -86,15 +123,41 @@ def resultados_empleos(request):
     })
 
 
-def historial_empleos(request):
+def toggle_oculto(request, pk):
+    if request.method != "POST":
+        return redirect("empleos_app:empleos-guardados")
+    oferta = get_object_or_404(OfertaEmpleo, pk=pk)
+    oferta.oculto = not oferta.oculto
+    oferta.save(update_fields=["oculto"])
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"oculto": oferta.oculto})
+    referer = request.META.get("HTTP_REFERER", "")
+    if "ocultas" in referer:
+        return redirect("empleos_app:ofertas-ocultas")
+    return redirect("empleos_app:empleos-guardados")
+
+
+def ofertas_ocultas(request):
     keyword = request.GET.get("keyword", "").strip()
-    ofertas = OfertaEmpleo.objects.all()
+    fuente = request.GET.get("fuente", "").strip()
+    periodo = request.GET.get("periodo", "").strip()
+
+    ofertas = OfertaEmpleo.objects.filter(oculto=True)
     if keyword:
-        ofertas = ofertas.filter(busquedas__keyword__icontains=keyword)
-    busquedas = Busqueda.objects.all()
-    return render(request, "empleos/historial_empleos.html", {
+        ofertas = ofertas.filter(
+            models.Q(title__icontains=keyword) | models.Q(company__icontains=keyword)
+        )
+    if fuente:
+        ofertas = ofertas.filter(source=fuente)
+    ofertas = _aplicar_filtro_periodo(ofertas, periodo)
+
+    fuentes = ofertas.values_list("source", flat=True).distinct().order_by("source")
+
+    return render(request, "empleos/ofertas_ocultas.html", {
         "ofertas": ofertas,
         "total": ofertas.count(),
-        "busquedas": busquedas,
         "keyword": keyword,
+        "fuentes": [f for f in fuentes if f],
+        "fuente_seleccionada": fuente,
+        "periodo": periodo,
     })

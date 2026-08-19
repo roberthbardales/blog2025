@@ -8,10 +8,16 @@
     <h1 class="text-2xl font-bold text-slate-800">
       <i class="fas fa-briefcase mr-2 text-blue-600"></i>Resultados
     </h1>
-    <a href="{% url 'empleos_app:buscar-empleo' %}"
-       class="text-sm text-blue-600 hover:text-blue-800 font-medium transition">
-      <i class="fas fa-arrow-left mr-1"></i>Nueva búsqueda
-    </a>
+    <div class="flex items-center gap-3">
+      <a href="{% url 'empleos_app:empleos-guardados' %}"
+         class="text-sm text-blue-600 hover:text-blue-800 font-medium transition">
+        <i class="fas fa-bookmark mr-1"></i>Guardados
+      </a>
+      <a href="{% url 'empleos_app:buscar-empleo' %}"
+         class="text-sm text-blue-600 hover:text-blue-800 font-medium transition">
+        <i class="fas fa-arrow-left mr-1"></i>Nueva búsqueda
+      </a>
+    </div>
   </div>
 
   {% if error %}
@@ -21,21 +27,17 @@
   {% endif %}
 
   {% if resultados %}
-    <div class="flex flex-wrap gap-3 mb-4">
+    <div class="flex flex-wrap items-center gap-3 mb-4">
       <p class="text-sm text-slate-500">
         <span class="font-semibold text-slate-700">{{ total }}</span> ofertas
         {% if search %} para "<span class="font-semibold text-slate-700">{{ search }}</span>"{% endif %}
       </p>
       <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-emerald-100 text-emerald-700">
-        {{ nuevas }} nuevas
+        <i class="fas fa-plus-circle mr-1"></i>{{ nuevas }} nuevas
       </span>
       <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-slate-200 text-slate-600">
-        {{ existentes }} ya registradas
+        <i class="fas fa-check-circle mr-1"></i>{{ existentes }} ya registradas
       </span>
-      <a href="{% url 'empleos_app:historial-empleos' %}{% if search %}?keyword={{ search }}{% endif %}"
-         class="inline-flex items-center text-xs text-blue-600 hover:text-blue-800 font-medium">
-        <i class="fas fa-history mr-1"></i>Ver historial
-      </a>
     </div>
 
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -48,7 +50,6 @@
               <th class="text-left px-4 py-3 hidden lg:table-cell">Ubicación</th>
               <th class="text-left px-4 py-3 hidden sm:table-cell">Nivel</th>
               <th class="text-left px-4 py-3 hidden lg:table-cell">Fuente</th>
-              <th class="text-left px-4 py-3">Salario</th>
               <th class="text-center px-4 py-3">Estado</th>
               <th class="text-center px-4 py-3">Enlace</th>
             </tr>
@@ -73,15 +74,6 @@
                 </span>
               </td>
               <td class="px-4 py-3 text-slate-500 hidden lg:table-cell">{{ r.obj.source }}</td>
-              <td class="px-4 py-3 text-slate-600">
-                {% if r.obj.salary_min and r.obj.salary_max %}
-                  {{ r.obj.currency_type }} {{ r.obj.salary_min|floatformat:0 }} - {{ r.obj.salary_max|floatformat:0 }}
-                {% elif r.obj.salary_min %}
-                  {{ r.obj.currency_type }} {{ r.obj.salary_min|floatformat:0 }}+
-                {% else %}
-                  <span class="text-slate-400">—</span>
-                {% endif %}
-              </td>
               <td class="px-4 py-3 text-center">
                 {% if r.es_nueva %}
                   <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-emerald-100 text-emerald-700">
@@ -110,6 +102,10 @@
     <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
       <i class="fas fa-inbox text-4xl text-slate-300 mb-3"></i>
       <p class="text-slate-500">No se encontraron ofertas.</p>
+      <a href="{% url 'empleos_app:buscar-empleo' %}"
+         class="mt-3 inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition">
+        <i class="fas fa-search"></i>Intentar otra búsqueda
+      </a>
     </div>
   {% endif %}
 </div>

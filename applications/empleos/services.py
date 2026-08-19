@@ -166,6 +166,15 @@ def _post_jobs_page(session: requests.Session, token: str, page: int, body: dict
     raise RuntimeError(f"Página {page} falló tras {MAX_RETRIES} intentos: {last_error}")
 
 
+def _parse_posted_date(raw: str):
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except (ValueError, AttributeError):
+        return None
+
+
 def _jobs_from_response(data: dict) -> list:
     jobs = []
     for job in data.get("data", []):
@@ -182,7 +191,7 @@ def _jobs_from_response(data: dict) -> list:
             "salary_min": job.get("salary_min"),
             "salary_max": job.get("salary_max"),
             "currency_type": job.get("currency_type") or "",
-            "posted_date": job.get("posted_date") or "",
+            "posted_date": _parse_posted_date(job.get("posted_date")),
             "source": _source_from_url(url),
             "logo_url": (
                 job.get("company_logo")

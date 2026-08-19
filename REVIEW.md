@@ -1,5 +1,34 @@
 # Blog2025 — Resumen de avances
 
+## App Empleos (18 ago 2026)
+
+### Modelo
+- Eliminado modelo `Busqueda` y M2M `busquedas` de `OfertaEmpleo` (migración `0006`)
+- Campo `oculto = BooleanField(default=False)` agregado a `OfertaEmpleo` (migración `0005`)
+
+### Vistas (`applications/empleos/views.py`)
+- `empleos_guardados` — excluye ofertas con `oculto=True`; filtros por fuente y período (sin keyword)
+- `ofertas_ocultas` — lista ofertas ocultas con filtros; permite restaurar
+- `toggle_oculto` — endpoint POST que alterna estado oculto (soporta AJAX)
+- `_aplicar_filtro_periodo` — helper que mapea período a días; usa `Cast('posted_date', DateField())` para evitar bug de timezone (UTC vs Lima)
+- `resultados_empleos` — simplificado: sin creación de registros `Busqueda`
+- Filtro keyword busca directamente en `title` y `company` (en vistas que lo usan)
+
+### URLs (`applications/empleos/urls.py`)
+- `empleos/ocultas/` → `ofertas-ocultas`
+- `empleos/toggle/<int:pk>/` → `toggle-oculto`
+
+### Templates
+- `buscar_empleo.html` — header con links a "Ocultas" y "Guardados"
+- `empleos_guardados.html` — filtros: fuente (select), período (select: hoy/ayer/3d/1s/1m), columna "Acción" con botón ocultar; sin input keyword
+- `ofertas_ocultas.html` — filtros: fuente, período; columna "Acción" con botón restaurar
+- `resultados_empleos.html` — header con links a "Guardados" y "Nueva búsqueda"
+
+### Bug corregido
+- Filtro por fecha fallaba por conversión timezone: `posted_date` en UTC midnight (00:00:00+00:00) se convertía a Lima (UTC-5) como día anterior. Solución: `Cast('posted_date', DateField())` para comparar sin conversión timezone
+
+---
+
 ## Ajustes página de Precios (12 ago 2026)
 
 ### Precio opcional

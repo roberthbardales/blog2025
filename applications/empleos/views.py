@@ -1,11 +1,12 @@
-from datetime import timedelta
+from datetime import date, timedelta
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.utils import timezone
+from django.core.paginator import Paginator
 from django.db import models
-from django.db.models.functions import Cast
 from django.db.models import DateField
+from django.db.models.functions import Cast
 
 from .models import OfertaEmpleo
 from .services import buscar_ofertas
@@ -19,15 +20,77 @@ PERIODO_MAP = {
     "1m": 30,
 }
 
+COUNTRY_NAMES = {
+    "1": "Perú",
+    "2": "México",
+    "3": "Colombia",
+    "4": "Chile",
+    "5": "Argentina",
+    "6": "España",
+}
+
+SENIORITY_NAMES = {
+    "1": "Prácticas",
+    "2": "Junior",
+    "3": "Semi Senior",
+    "4": "Senior",
+}
+
 
 def _aplicar_filtro_periodo(qs, periodo):
     dias = PERIODO_MAP.get(periodo)
     if dias is not None:
-        fecha = timezone.localdate() - timedelta(days=dias)
+        fecha = date.today() - timedelta(days=dias)
         qs = qs.annotate(
             posted_date_only=Cast('posted_date', DateField())
         ).filter(posted_date_only__gte=fecha)
     return qs
+
+
+def _filtrar_keyword(qs, keyword):
+    if not keyword:
+        return qs
+    palabras = keyword.split()
+    filtro = models.Q()
+    for palabra in palabras:
+        filtro |= (
+            models.Q(title__icontains=palabra) |
+            models.Q(company__icontains=palabra) |
+            models.Q(location__icontains=palabra) |
+            models.Q(level__icontains=palabra) |
+            models.Q(source__icontains=palabra) |
+            models.Q(skills__icontains=palabra)
+        )
+    return qs.filter(filtro)
+
+
+def _filtrar_ofertas(request, oculto):
+    keyword = request.GET.get("keyword", "").strip()
+    fuente = request.GET.get("fuente", "").strip()
+    periodo = request.GET.get("periodo", "").strip()
+    page_number = request.GET.get("page", 1)
+
+    ofertas = OfertaEmpleo.objects.filter(oculto=oculto).order_by('-posted_date')
+    ofertas = _filtrar_keyword(ofertas, keyword)
+    if fuente:
+        ofertas = ofertas.filter(source=fuente)
+    ofertas = _aplicar_filtro_periodo(ofertas, periodo)
+
+    total = ofertas.count()
+    paginator = Paginator(ofertas, 20)
+    page_obj = paginator.get_page(page_number)
+
+    fuentes = OfertaEmpleo.objects.filter(oculto=oculto).values_list(
+        "source", flat=True
+    ).distinct().order_by("source")
+
+    return page_obj, {
+        "total": total,
+        "keyword": keyword,
+        "fuentes": [f for f in fuentes if f],
+        "fuente_seleccionada": fuente,
+        "periodo": periodo,
+    }
 
 
 def buscar_empleo(request):
@@ -35,22 +98,11 @@ def buscar_empleo(request):
 
 
 def empleos_guardados(request):
-    fuente = request.GET.get("fuente", "").strip()
-    periodo = request.GET.get("periodo", "").strip()
-
-    ofertas = OfertaEmpleo.objects.filter(oculto=False)
-    if fuente:
-        ofertas = ofertas.filter(source=fuente)
-    ofertas = _aplicar_filtro_periodo(ofertas, periodo)
-
-    fuentes = OfertaEmpleo.objects.values_list("source", flat=True).distinct().order_by("source")
-
+    page_obj, contexto = _filtrar_ofertas(request, oculto=False)
     return render(request, "empleos/empleos_guardados.html", {
-        "ofertas": ofertas,
-        "total": ofertas.count(),
-        "fuentes": [f for f in fuentes if f],
-        "fuente_seleccionada": fuente,
-        "periodo": periodo,
+        "ofertas": page_obj,
+        "page_obj": page_obj,
+        **contexto,
     })
 
 
@@ -82,7 +134,8 @@ def resultados_empleos(request):
     except (ConnectionError, ValueError, RuntimeError) as e:
         return render(request, "empleos/resultados_empleos.html", {"error": str(e)})
     except Exception as e:
-        return render(request, "empleos/resultados_empleos.html", {"error": f"Error inesperado: {e}"})
+        return render(request, "empleos/resultados_empleos.html",
+                      {"error": f"Error inesperado: {e}"})
 
     nuevas = 0
     existentes = 0
@@ -114,12 +167,20 @@ def resultados_empleos(request):
             existentes += 1
             resultados.append({"obj": obj, "es_nueva": False})
 
+    def _clave_orden(r):
+        fecha = r["obj"].posted_date
+        return (not r["es_nueva"], -(fecha.timestamp() if fecha else float("-inf")))
+
+    resultados.sort(key=_clave_orden)
+
     return render(request, "empleos/resultados_empleos.html", {
         "resultados": resultados,
         "total": len(resultados),
         "nuevas": nuevas,
         "existentes": existentes,
         "search": search,
+        "country": COUNTRY_NAMES.get(country_id, ""),
+        "niveles": [SENIORITY_NAMES.get(s, s) for s in job_seniority],
     })
 
 
@@ -138,26 +199,9 @@ def toggle_oculto(request, pk):
 
 
 def ofertas_ocultas(request):
-    keyword = request.GET.get("keyword", "").strip()
-    fuente = request.GET.get("fuente", "").strip()
-    periodo = request.GET.get("periodo", "").strip()
-
-    ofertas = OfertaEmpleo.objects.filter(oculto=True)
-    if keyword:
-        ofertas = ofertas.filter(
-            models.Q(title__icontains=keyword) | models.Q(company__icontains=keyword)
-        )
-    if fuente:
-        ofertas = ofertas.filter(source=fuente)
-    ofertas = _aplicar_filtro_periodo(ofertas, periodo)
-
-    fuentes = ofertas.values_list("source", flat=True).distinct().order_by("source")
-
+    page_obj, contexto = _filtrar_ofertas(request, oculto=True)
     return render(request, "empleos/ofertas_ocultas.html", {
-        "ofertas": ofertas,
-        "total": ofertas.count(),
-        "keyword": keyword,
-        "fuentes": [f for f in fuentes if f],
-        "fuente_seleccionada": fuente,
-        "periodo": periodo,
+        "ofertas": page_obj,
+        "page_obj": page_obj,
+        **contexto,
     })

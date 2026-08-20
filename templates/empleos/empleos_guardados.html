@@ -3,25 +3,31 @@
 {% block title %}Empleos Guardados{% endblock title %}
 
 {% block sidebar_content %}
-<div class="max-w-5xl mx-auto">
+<div class="max-w-6xl mx-auto">
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold text-slate-800">
       <i class="fas fa-bookmark mr-2 text-blue-600"></i>Empleos Guardados
     </h1>
     <div class="flex items-center gap-3">
       <a href="{% url 'empleos_app:ofertas-ocultas' %}"
-         class="text-sm text-amber-600 hover:text-amber-800 font-medium transition">
-        <i class="fas fa-eye-slash mr-1"></i>Ocultas
+         class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white text-sm font-medium rounded-lg hover:bg-amber-600 transition shadow-md hover:shadow-lg">
+        <i class="fas fa-eye-slash"></i>Ocultas
       </a>
       <a href="{% url 'empleos_app:buscar-empleo' %}"
-         class="text-sm text-blue-600 hover:text-blue-800 font-medium transition">
-        <i class="fas fa-arrow-left mr-1"></i>Nueva búsqueda
+         class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+        <i class="fas fa-arrow-left"></i>Nueva búsqueda
       </a>
     </div>
   </div>
 
   <form method="get" class="bg-white rounded-2xl shadow-lg p-4 mb-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
+      <div>
+        <label for="keyword" class="block text-xs font-medium text-slate-500 mb-1">Palabra clave</label>
+        <input type="text" name="keyword" id="keyword" value="{{ keyword }}"
+               placeholder="Título, empresa, skill..."
+               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+      </div>
       <div>
         <label for="fuente" class="block text-xs font-medium text-slate-500 mb-1">Fuente</label>
         <select name="fuente" id="fuente"
@@ -49,7 +55,7 @@
                 class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition">
           <i class="fas fa-filter mr-1"></i>Filtrar
         </button>
-      {% if fuente_seleccionada or periodo %}
+        {% if keyword or fuente_seleccionada or periodo %}
           <a href="{% url 'empleos_app:empleos-guardados' %}"
              class="px-4 py-2 bg-slate-200 text-slate-600 text-sm font-medium rounded-lg hover:bg-slate-300 transition">
             Limpiar
@@ -62,6 +68,7 @@
   {% if ofertas %}
     <p class="text-sm text-slate-500 mb-4">
       <span class="font-semibold text-slate-700">{{ total }}</span> ofertas guardadas
+      {% if keyword %} para "<span class="font-semibold text-slate-700">{{ keyword }}</span>"{% endif %}
       {% if fuente_seleccionada %} en <span class="font-semibold text-slate-700">{{ fuente_seleccionada }}</span>{% endif %}
       {% if periodo %}
         {% if periodo == "hoy" %} - Publicadas hoy
@@ -78,26 +85,27 @@
         <table class="w-full text-sm">
           <thead>
             <tr class="bg-slate-100 text-slate-600 uppercase text-xs tracking-wide">
-              <th class="text-left px-4 py-3">Título</th>
-              <th class="text-left px-4 py-3 hidden md:table-cell">Empresa</th>
-              <th class="text-left px-4 py-3 hidden lg:table-cell">Ubicación</th>
-              <th class="text-left px-4 py-3 hidden sm:table-cell">Nivel</th>
-              <th class="text-left px-4 py-3 hidden lg:table-cell">Fuente</th>
-              <th class="text-center px-4 py-3">Enlace</th>
-              <th class="text-center px-4 py-3">Acción</th>
+              <th class="text-center px-2 py-2">#</th>
+              <th class="text-left px-3 py-2 hidden md:table-cell">Empresa</th>
+              <th class="text-left px-3 py-2 hidden lg:table-cell">Ubicación</th>
+              <th class="text-left px-3 py-2 hidden md:table-cell">Publicado</th>
+              <th class="text-left px-3 py-2 hidden sm:table-cell">Nivel</th>
+              <th class="text-left px-3 py-2 hidden lg:table-cell">Fuente</th>
+              <th class="text-left px-3 py-2">Título</th>
+              <th class="text-center px-2 py-2">Acción</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100">
             {% for o in ofertas %}
             <tr class="hover:bg-slate-50 transition">
-              <td class="px-4 py-3">
-                <div class="font-medium text-slate-800">{{ o.title }}</div>
-                <div class="text-xs text-slate-400 md:hidden">{{ o.company }}</div>
+              <td class="px-2 py-2 text-center text-xs text-slate-400">{{ o.pk }}</td>
+              <td class="px-3 py-2 text-slate-600 hidden md:table-cell text-sm">{{ o.company }}</td>
+              <td class="px-3 py-2 text-slate-600 hidden lg:table-cell text-sm">{{ o.location }}</td>
+              <td class="px-3 py-2 text-slate-500 hidden md:table-cell text-sm">
+                {% if o.posted_date %}{{ o.posted_date|date:"d/m/Y" }}{% else %}-{% endif %}
               </td>
-              <td class="px-4 py-3 text-slate-600 hidden md:table-cell">{{ o.company }}</td>
-              <td class="px-4 py-3 text-slate-600 hidden lg:table-cell">{{ o.location }}</td>
-              <td class="px-4 py-3 hidden sm:table-cell">
-                <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium
+              <td class="px-3 py-2 hidden sm:table-cell">
+                <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium
                   {% if o.level_rank == 4 %}bg-blue-100 text-blue-700
                   {% elif o.level_rank == 3 %}bg-purple-100 text-purple-700
                   {% elif o.level_rank == 2 %}bg-green-100 text-green-700
@@ -106,19 +114,19 @@
                   {{ o.level }}
                 </span>
               </td>
-              <td class="px-4 py-3 text-slate-500 hidden lg:table-cell">{{ o.source }}</td>
-              <td class="px-4 py-3 text-center">
+              <td class="px-3 py-2 text-slate-500 hidden lg:table-cell text-sm">{{ o.source }}</td>
+              <td class="px-3 py-2">
                 <a href="{{ o.url }}" target="_blank" rel="noopener"
-                   class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition"
-                   title="Ver en origen">
-                  <i class="fas fa-external-link-alt text-xs"></i>
+                   class="font-medium text-blue-600 hover:text-blue-800 hover:underline text-sm">
+                  {{ o.title }} <i class="fas fa-external-link-alt text-xs ml-1 opacity-50"></i>
                 </a>
+                <div class="text-xs text-slate-400 md:hidden">{{ o.company }}</div>
               </td>
-              <td class="px-4 py-3 text-center">
+              <td class="px-2 py-2 text-center">
                 <form method="post" action="{% url 'empleos_app:toggle-oculto' o.pk %}" class="inline">
                   {% csrf_token %}
                   <button type="submit"
-                          class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100 transition"
+                          class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100 transition"
                           title="Ocultar oferta">
                     <i class="fas fa-eye-slash text-xs"></i>
                   </button>
@@ -130,6 +138,36 @@
         </table>
       </div>
     </div>
+
+    {% if page_obj.has_other_pages %}
+      <nav class="flex items-center justify-center gap-1 mt-6">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}{% if keyword %}&keyword={{ keyword }}{% endif %}{% if fuente_seleccionada %}&fuente={{ fuente_seleccionada }}{% endif %}{% if periodo %}&periodo={{ periodo }}{% endif %}"
+             class="px-3 py-2 text-sm rounded-lg bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 transition">
+            <i class="fas fa-chevron-left mr-1"></i>Anterior
+          </a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <span class="px-3 py-2 text-sm rounded-lg bg-blue-600 text-white font-medium">{{ num }}</span>
+          {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+            <a href="?page={{ num }}{% if keyword %}&keyword={{ keyword }}{% endif %}{% if fuente_seleccionada %}&fuente={{ fuente_seleccionada }}{% endif %}{% if periodo %}&periodo={{ periodo }}{% endif %}"
+               class="px-3 py-2 text-sm rounded-lg bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 transition">
+              {{ num }}
+            </a>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}{% if keyword %}&keyword={{ keyword }}{% endif %}{% if fuente_seleccionada %}&fuente={{ fuente_seleccionada }}{% endif %}{% if periodo %}&periodo={{ periodo }}{% endif %}"
+             class="px-3 py-2 text-sm rounded-lg bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 transition">
+            Siguiente<i class="fas fa-chevron-right ml-1"></i>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+
   {% else %}
     <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
       <i class="fas fa-inbox text-4xl text-slate-300 mb-3"></i>

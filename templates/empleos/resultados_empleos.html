@@ -27,17 +27,29 @@
   {% endif %}
 
   {% if resultados %}
-    <div class="flex flex-wrap items-center gap-3 mb-4">
-      <p class="text-sm text-slate-500">
-        <span class="font-semibold text-slate-700">{{ total }}</span> ofertas
-        {% if search %} para "<span class="font-semibold text-slate-700">{{ search }}</span>"{% endif %}
-      </p>
-      <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-emerald-100 text-emerald-700">
-        <i class="fas fa-plus-circle mr-1"></i>{{ nuevas }} nuevas
-      </span>
-      <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-slate-200 text-slate-600">
-        <i class="fas fa-check-circle mr-1"></i>{{ existentes }} ya registradas
-      </span>
+    <div class="bg-white rounded-2xl shadow-lg p-4 mb-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <p class="text-sm text-slate-500">
+          <span class="font-semibold text-slate-700">{{ total }}</span> ofertas
+          {% if search %} para "<span class="font-semibold text-slate-700">{{ search }}</span>"{% endif %}
+        </p>
+        {% if country %}
+          <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-indigo-100 text-indigo-700">
+            <i class="fas fa-globe-americas mr-1"></i>{{ country }}
+          </span>
+        {% endif %}
+        {% for nivel in niveles %}
+          <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-purple-100 text-purple-700">
+            <i class="fas fa-layer-group mr-1"></i>{{ nivel }}
+          </span>
+        {% endfor %}
+        <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-emerald-100 text-emerald-700">
+          <i class="fas fa-plus-circle mr-1"></i>{{ nuevas }} nuevas
+        </span>
+        <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-slate-200 text-slate-600">
+          <i class="fas fa-check-circle mr-1"></i>{{ existentes }} ya registradas
+        </span>
+      </div>
     </div>
 
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden">

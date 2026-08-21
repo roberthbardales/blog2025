@@ -1,4 +1,5 @@
 {% extends "layout_sidebar.html" %}
+{% load static %}
 
 {% block title %}Empleos Guardados{% endblock title %}
 
@@ -20,14 +21,15 @@
     </div>
   </div>
 
-  <form method="get" class="bg-white rounded-2xl shadow-lg p-4 mb-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
-      <div>
-        <label for="keyword" class="block text-xs font-medium text-slate-500 mb-1">Palabra clave</label>
-        <input type="text" name="keyword" id="keyword" value="{{ keyword }}"
-               placeholder="Título, empresa, skill..."
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-      </div>
+  <form method="get" class="bg-white rounded-2xl shadow-lg p-4 mb-6 space-y-4">
+    <div>
+      <label for="keyword" class="block text-xs font-medium text-slate-500 mb-1">Palabra clave</label>
+      <input type="text" name="keyword" id="keyword" value="{{ keyword }}"
+             placeholder="Título, empresa, skill..."
+             class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+      <div id="keywords-history" class="flex flex-wrap items-center gap-2 mt-2"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
       <div>
         <label for="fuente" class="block text-xs font-medium text-slate-500 mb-1">Fuente</label>
         <select name="fuente" id="fuente"
@@ -67,7 +69,7 @@
 
   {% if ofertas %}
     <p class="text-sm text-slate-500 mb-4">
-      <span class="font-semibold text-slate-700">{{ total }}</span> ofertas guardadas
+      <span class="font-semibold text-slate-700" id="total-ofertas">{{ total }}</span> ofertas guardadas
       {% if keyword %} para "<span class="font-semibold text-slate-700">{{ keyword }}</span>"{% endif %}
       {% if fuente_seleccionada %} en <span class="font-semibold text-slate-700">{{ fuente_seleccionada }}</span>{% endif %}
       {% if periodo %}
@@ -97,7 +99,7 @@
           </thead>
           <tbody class="divide-y divide-slate-100">
             {% for o in ofertas %}
-            <tr class="hover:bg-slate-50 transition">
+            <tr class="hover:bg-slate-50 transition" data-created="{{ o.created|date:'c' }}">
               <td class="px-2 py-2 text-center text-xs text-slate-400">{{ o.pk }}</td>
               <td class="px-3 py-2 text-slate-600 hidden md:table-cell text-sm">{{ o.company }}</td>
               <td class="px-3 py-2 text-slate-600 hidden lg:table-cell text-sm">{{ o.location }}</td>
@@ -115,7 +117,7 @@
                 </span>
               </td>
               <td class="px-3 py-2 text-slate-500 hidden lg:table-cell text-sm">{{ o.source }}</td>
-              <td class="px-3 py-2">
+              <td class="px-3 py-2 js-title-cell">
                 <a href="{{ o.url }}" target="_blank" rel="noopener"
                    class="font-medium text-blue-600 hover:text-blue-800 hover:underline text-sm">
                   {{ o.title }} <i class="fas fa-external-link-alt text-xs ml-1 opacity-50"></i>
@@ -123,7 +125,7 @@
                 <div class="text-xs text-slate-400 md:hidden">{{ o.company }}</div>
               </td>
               <td class="px-2 py-2 text-center">
-                <form method="post" action="{% url 'empleos_app:toggle-oculto' o.pk %}" class="inline">
+                <form method="post" action="{% url 'empleos_app:toggle-oculto' o.pk %}" class="inline js-toggle-oculto">
                   {% csrf_token %}
                   <button type="submit"
                           class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100 transition"
@@ -184,3 +186,9 @@
   {% endif %}
 </div>
 {% endblock sidebar_content %}
+
+{% block js %}
+<script src="{% static 'js/empleos_keywords_chips.js' %}"></script>
+<script src="{% static 'js/empleos_nuevas.js' %}"></script>
+<script src="{% static 'js/empleos_toggle_oculto.js' %}"></script>
+{% endblock js %}

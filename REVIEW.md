@@ -1,5 +1,46 @@
 # Blog2025 — Resumen de avances
 
+## App Evaluaciones (21 ago 2026)
+
+Módulo de banco de preguntas y evaluaciones. Especificación en `cuestionario.md`.
+
+### Modelo (`applications/evaluaciones/models.py`, migración `0001`)
+- `Tema` — banco de preguntas: `nombre` (unique), `descripcion`, `slug` autogenerado en `save()` (patrón `Entry`)
+- `Pregunta` — FK tema, `texto`, `nivel` (facil/medio/dificil), `explicacion`
+- `Opcion` — FK pregunta, `texto`, `es_correcta`
+- Los tres heredan de `TimeStampedModel`
+
+### Formularios
+- `TemaForm`, `PreguntaForm` + `OpcionFormSet` (`inlineformset_factory`, extra=4, min 2 opciones)
+- `ConfigurarEvaluacionForm` (runtime): nivel ("Todos" + 3 niveles), cantidad, modo (`examen`/`practica`)
+- `ImportarJSONForm`: valida extensión .json, parseo UTF-8, acepta lista o `{preguntas: [...]}`
+
+### Vistas (`applications/evaluaciones/views.py`) — CBVs con `LoginRequiredMixin`
+- CRUD de Temas y Preguntas (create/update de pregunta con formset + validación: exactamente 1 correcta)
+- `ImportarJSONView` — carga masiva .json con resumen por messages (creadas / errores por ítem)
+- `ConfigurarEvaluacionView` — form previo al quiz; redirige al quiz con querystring
+- `EvaluacionView` — filtra por nivel, `order_by('?')[:cantidad]`, usa todas si hay menos (aviso); opciones barajadas con `random.sample`; correctas nunca visibles en el HTML
+- `VerificarPreguntaView` — POST AJAX (modo Práctica): devuelve `{es_correcta, opcion_correcta_id, texto_correcta, explicacion}`
+- `CalificarEvaluacionView` — POST AJAX (modo Examen): devuelve `{correctas, incorrectas, total, porcentaje, detalle[]}` con elegida vs correcta
+
+### URLs (`app_name = 'evaluaciones_app'`, montada en raíz desde `blog/urls.py`)
+- `/evaluaciones/`, `/evaluaciones/tema/{agregar,editar/<slug>,eliminar/<slug>}/`
+- `/evaluaciones/tema/<slug>/preguntas/`, `/pregunta/{agregar,editar,eliminar}/`
+- `/evaluaciones/tema/<slug>/importar-json/`
+- `/evaluaciones/tema/<slug>/resolver/configurar/` y `/resolver/`
+- `/evaluaciones/pregunta/<pk>/verificar/`, `/evaluaciones/tema/<slug>/calificar/`
+
+### Templates (`templates/evaluaciones/`) — extienden `layout_sidebar.html`, Tailwind
+`tema_list`, `tema_form`, `tema_confirm_delete`, `pregunta_list`, `pregunta_form`, `pregunta_confirm_delete`, `importar_json` (con ejemplo de formato), `configurar_evaluacion` (radio Examen/Práctica), `evaluacion` (quiz JS: una pregunta por vez, barra de progreso, práctica verifica al instante vía fetch, examen califica al final, pantalla de resultados con detalle)
+
+### Registro
+- `'applications.evaluaciones'` agregado a `LOCAL_APPS` (`blog/settings.py`)
+- Link "Evaluaciones" (`fa-graduation-cap`) en `templates/includes/barra_lateral.html` tras "Mis Notas", con estado activo
+- Admin: `TemaAdmin`, `PreguntaAdmin` (filtro tema/nivel) con `OpcionInline(extra=4)`
+- Verificado con smoke test: listados, quiz ambos modos, verificar/calificar AJAX e importación JSON (válida e inválida)
+
+---
+
 ## App Empleos (18 ago 2026)
 
 ### Modelo

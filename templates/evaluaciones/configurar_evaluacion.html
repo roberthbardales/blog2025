@@ -1,0 +1,84 @@
+{% extends "layout_sidebar.html" %}
+{% load static %}
+
+{% block title %}Configurar Evaluación · {{ tema.nombre }}{% endblock title %}
+
+{% block sidebar_content %}
+<div class="max-w-xl mx-auto">
+
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-slate-800">
+      <i class="fas fa-cog mr-2 text-blue-600"></i>Configurar
+    </h1>
+    <a href="{% url 'evaluaciones_app:tema-lista' %}"
+       class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-200 transition">
+      <i class="fas fa-arrow-left"></i>Volver
+    </a>
+  </div>
+
+  <div class="rounded-2xl bg-gradient-to-br from-slate-900 via-blue-700 to-blue-600 shadow-lg px-5 py-4 mb-4">
+    <h2 class="text-lg font-bold text-white">{{ tema.nombre }}</h2>
+    <p class="text-xs text-blue-100 mt-0.5">
+      <i class="fas fa-question-circle mr-1"></i>{{ tema.total_preguntas }} pregunta(s) en el banco
+    </p>
+  </div>
+
+  <form method="post" class="bg-white rounded-2xl shadow-lg p-6 space-y-5">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+      {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    <div>
+      <label class="block text-sm font-medium text-slate-700 mb-1">Nivel</label>
+      {{ form.nivel }}
+      {% if form.nivel.errors %}
+      <p class="mt-1 text-xs text-red-600">{{ form.nivel.errors.0 }}</p>
+      {% endif %}
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-slate-700 mb-1">Cantidad de preguntas</label>
+      {{ form.cantidad }}
+      {% if form.cantidad.errors %}
+      <p class="mt-1 text-xs text-red-600">{{ form.cantidad.errors.0 }}</p>
+      {% endif %}
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-slate-700 mb-2">Modo</label>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <label class="flex items-start gap-3 rounded-xl border-2 border-slate-200 p-3 cursor-pointer transition has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50 hover:border-blue-300">
+          <input type="radio" name="modo" value="examen"
+                 {% if not form.modo.value or form.modo.value == 'examen' %}checked{% endif %}
+                 class="mt-0.5 w-4 h-4 accent-blue-600">
+          <span>
+            <span class="block text-sm font-semibold text-slate-800"><i class="fas fa-file-alt mr-1 text-blue-600"></i>Examen</span>
+            <span class="block text-xs text-slate-500 mt-0.5">Corrección al final, con detalle de respuestas</span>
+          </span>
+        </label>
+        <label class="flex items-start gap-3 rounded-xl border-2 border-slate-200 p-3 cursor-pointer transition has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50 hover:border-emerald-300">
+          <input type="radio" name="modo" value="practica"
+                 {% if form.modo.value == 'practica' %}checked{% endif %}
+                 class="mt-0.5 w-4 h-4 accent-emerald-600">
+          <span>
+            <span class="block text-sm font-semibold text-slate-800"><i class="fas fa-bolt mr-1 text-emerald-600"></i>Práctica</span>
+            <span class="block text-xs text-slate-500 mt-0.5">Corrección al instante en cada pregunta</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div class="flex justify-end pt-2 border-t border-slate-100">
+      <button type="submit"
+              class="inline-flex items-center gap-2 px-5 py-2 bg-emerald-600 text-white text-sm font-semibold rounded-lg hover:bg-emerald-700 transition shadow-md">
+        <i class="fas fa-play"></i>Comenzar evaluación
+      </button>
+    </div>
+  </form>
+
+</div>
+{% endblock sidebar_content %}

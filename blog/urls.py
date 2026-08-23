@@ -19,6 +19,7 @@ urlpatterns = [
     re_path('', include('applications.amigos.urls')),
     re_path('chat/', include('applications.chat.urls')),
     re_path('', include('applications.notas.urls')),
+    re_path('', include('applications.evaluaciones.urls')),
     re_path('', include('applications.empleos.urls')),
 
     # APIs

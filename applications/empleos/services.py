@@ -7,6 +7,8 @@ from zoneinfo import ZoneInfo
 
 import requests
 
+from .models import OfertaEmpleo
+
 API_URL = os.environ.get("CVM_API_URL", "https://api.getinjob.app/")
 EMAIL = os.environ.get("CVM_EMAIL", "")
 PASSWORD = os.environ.get("CVM_PASSWORD", "")
@@ -118,8 +120,9 @@ def _to_int_list(v) -> list:
 
 def build_filter_body(filtros: dict) -> dict:
     body = {}
-    if filtros.get("search"):
-        body["job"] = [filtros["search"]]
+    search = filtros.get("search")
+    if search:
+        body["job"] = list(search) if isinstance(search, (list, tuple)) else [search]
     if filtros.get("country_id"):
         body["country_id"] = int(filtros["country_id"])
     if filtros.get("from_age"):
@@ -209,8 +212,7 @@ def _jobs_from_response(data: dict) -> list:
     return jobs
 
 
-def buscar_ofertas(filtros: dict, max_pages: int = 3) -> list:
-    session, token = login()
+def _buscar_con_sesion(session, token, filtros: dict, max_pages: int = 3) -> list:
     body = build_filter_body(filtros)
     all_jobs: dict[str, dict] = {}
     page = 1
@@ -229,3 +231,61 @@ def buscar_ofertas(filtros: dict, max_pages: int = 3) -> list:
         page += 1
 
     return list(all_jobs.values())
+
+
+def buscar_ofertas(filtros: dict, max_pages: int = 3) -> list:
+    session, token = login()
+    return _buscar_con_sesion(session, token, filtros, max_pages)
+
+
+def buscar_ofertas_automaticas(filtros: dict, max_pages: int = 3) -> list:
+    session, token = login()
+    todos: dict[str, dict] = {}
+    keywords = filtros.get("search") or []
+    if isinstance(keywords, str):
+        keywords = [keywords]
+    for keyword in keywords:
+        sub = dict(filtros)
+        sub["search"] = keyword
+        for job in _buscar_con_sesion(session, token, sub, max_pages):
+            todos[job["url"]] = job
+    return list(todos.values())
+
+
+def _clave_orden(resultado):
+    fecha = resultado["obj"].posted_date
+    return (not resultado["es_nueva"], -(fecha.timestamp() if fecha else float("-inf")))
+
+
+def guardar_ofertas(ofertas_api: list) -> tuple:
+    nuevas = 0
+    existentes = 0
+    resultados = []
+
+    for o in ofertas_api:
+        obj, created = OfertaEmpleo.objects.update_or_create(
+            api_id=o["api_id"],
+            defaults={
+                "title": o["title"],
+                "company": o["company"],
+                "location": o["location"],
+                "salary_min": o.get("salary_min"),
+                "salary_max": o.get("salary_max"),
+                "currency_type": o.get("currency_type", ""),
+                "posted_date": o.get("posted_date", ""),
+                "source": o.get("source", ""),
+                "logo_url": o.get("logo_url", ""),
+                "skills": o.get("skills", []),
+                "level_rank": o.get("level_rank", 5),
+                "level": o.get("level", "Sin nivel"),
+                "url": o["url"],
+            },
+        )
+        if created:
+            nuevas += 1
+        else:
+            existentes += 1
+        resultados.append({"obj": obj, "es_nueva": created})
+
+    resultados.sort(key=_clave_orden)
+    return nuevas, existentes, resultados

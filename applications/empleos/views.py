@@ -1,15 +1,16 @@
 from datetime import timedelta
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
-from django.utils import timezone
-from django.core.paginator import Paginator
-from django.db import models
+from django.db.models import DateField, Q
 from django.db.models.functions import Cast
-from django.db.models import DateField
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
+from django.views import View
+from django.views.generic import ListView, TemplateView
 
+from .forms import BusquedaForm
 from .models import OfertaEmpleo
-from .services import buscar_ofertas
+from .services import buscar_ofertas, guardar_ofertas
 
 
 PERIODO_MAP = {
@@ -20,21 +21,7 @@ PERIODO_MAP = {
     "1m": 30,
 }
 
-COUNTRY_NAMES = {
-    "1": "Perú",
-    "2": "México",
-    "3": "Colombia",
-    "4": "Chile",
-    "5": "Argentina",
-    "6": "España",
-}
-
-SENIORITY_NAMES = {
-    "1": "Prácticas",
-    "2": "Junior",
-    "3": "Semi Senior",
-    "4": "Senior",
-}
+CAMPOS_BUSQUEDA = ["title", "company", "location", "level", "source", "skills"]
 
 
 def _aplicar_filtro_periodo(qs, periodo):
@@ -50,166 +37,122 @@ def _aplicar_filtro_periodo(qs, periodo):
 def _filtrar_keyword(qs, keyword):
     if not keyword:
         return qs
-    palabras = keyword.split()
-    filtro = models.Q()
-    for palabra in palabras:
-        filtro |= (
-            models.Q(title__icontains=palabra) |
-            models.Q(company__icontains=palabra) |
-            models.Q(location__icontains=palabra) |
-            models.Q(level__icontains=palabra) |
-            models.Q(source__icontains=palabra) |
-            models.Q(skills__icontains=palabra)
-        )
+    filtro = Q()
+    for palabra in keyword.split():
+        for campo in CAMPOS_BUSQUEDA:
+            filtro |= Q(**{f"{campo}__icontains": palabra})
     return qs.filter(filtro)
 
 
-def _filtrar_ofertas(request, oculto):
-    keyword = request.GET.get("keyword", "").strip()
-    fuente = request.GET.get("fuente", "").strip()
-    periodo = request.GET.get("periodo", "").strip()
-    page_number = request.GET.get("page", 1)
-
-    ofertas = OfertaEmpleo.objects.filter(oculto=oculto).order_by('-posted_date')
-    ofertas = _filtrar_keyword(ofertas, keyword)
-    if fuente:
-        ofertas = ofertas.filter(source=fuente)
-    ofertas = _aplicar_filtro_periodo(ofertas, periodo)
-
-    total = ofertas.count()
-    paginator = Paginator(ofertas, 20)
-    page_obj = paginator.get_page(page_number)
-
-    fuentes = OfertaEmpleo.objects.filter(oculto=oculto).values_list(
-        "source", flat=True
-    ).distinct().order_by("source")
-
-    return page_obj, {
-        "total": total,
-        "keyword": keyword,
-        "fuentes": [f for f in fuentes if f],
-        "fuente_seleccionada": fuente,
-        "periodo": periodo,
-    }
+class BuscarEmpleoView(TemplateView):
+    template_name = "empleos/buscar_empleo.html"
 
 
-def buscar_empleo(request):
-    return render(request, "empleos/buscar_empleo.html")
+class BaseListaOfertasView(ListView):
+    model = OfertaEmpleo
+    paginate_by = 20
+    context_object_name = "ofertas"
+    oculto = False
+
+    def get_queryset(self):
+        keyword = self.request.GET.get("keyword", "").strip()
+        fuente = self.request.GET.get("fuente", "").strip()
+        periodo = self.request.GET.get("periodo", "").strip()
+
+        qs = OfertaEmpleo.objects.filter(oculto=self.oculto).order_by('-posted_date')
+        qs = _filtrar_keyword(qs, keyword)
+        if fuente:
+            qs = qs.filter(source=fuente)
+        qs = _aplicar_filtro_periodo(qs, periodo)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["keyword"] = self.request.GET.get("keyword", "").strip()
+        contexto = self._contexto_extra()
+        context.update(contexto)
+        context["total"] = self.get_queryset().count()
+        return context
+
+    def _contexto_extra(self):
+        fuente = self.request.GET.get("fuente", "").strip()
+        periodo = self.request.GET.get("periodo", "").strip()
+        fuentes = OfertaEmpleo.objects.filter(oculto=self.oculto).values_list(
+            "source", flat=True
+        ).distinct().order_by("source")
+        return {
+            "fuentes": [f for f in fuentes if f],
+            "fuente_seleccionada": fuente,
+            "periodo": periodo,
+        }
 
 
-def empleos_guardados(request):
-    page_obj, contexto = _filtrar_ofertas(request, oculto=False)
-    return render(request, "empleos/empleos_guardados.html", {
-        "ofertas": page_obj,
-        "page_obj": page_obj,
-        **contexto,
-    })
+class EmpleosGuardadosView(BaseListaOfertasView):
+    template_name = "empleos/empleos_guardados.html"
+    oculto = False
 
 
-def resultados_empleos(request):
-    if request.method != "POST":
-        return render(request, "empleos/resultados_empleos.html", {"error": "Usa el formulario para buscar."})
+class OfertasOcultasView(BaseListaOfertasView):
+    template_name = "empleos/ofertas_ocultas.html"
+    oculto = True
 
-    search = request.POST.get("search", "").strip()
-    country_id = request.POST.get("country_id", "")
-    from_age = request.POST.get("from_age", "")
-    max_pages = request.POST.get("max_pages", "3")
-    job_seniority = request.POST.getlist("job_seniority")
 
-    filtros = {}
-    if search:
-        filtros["search"] = search
-    if country_id:
-        filtros["country_id"] = country_id
-    if from_age:
-        filtros["from_age"] = from_age
-    if job_seniority:
-        filtros["job_seniority"] = job_seniority
-
-    try:
-        ofertas_api = buscar_ofertas(
-            filtros=filtros,
-            max_pages=min(int(max_pages), 10),
-        )
-    except (ConnectionError, ValueError, RuntimeError) as e:
-        return render(request, "empleos/resultados_empleos.html", {"error": str(e)})
-    except Exception as e:
+class ResultadosEmpleosView(View):
+    def get(self, request):
         return render(request, "empleos/resultados_empleos.html",
-                      {"error": f"Error inesperado: {e}"})
+                      {"error": "Usa el formulario para buscar."})
 
-    nuevas = 0
-    existentes = 0
-    resultados = []
+    def post(self, request):
+        form = BusquedaForm(request.POST)
+        if not form.is_valid():
+            return render(request, "empleos/resultados_empleos.html",
+                          {"error": "Revisa los datos del formulario."})
 
-    for o in ofertas_api:
-        obj, created = OfertaEmpleo.objects.update_or_create(
-            api_id=o["api_id"],
-            defaults={
-                "title": o["title"],
-                "company": o["company"],
-                "location": o["location"],
-                "salary_min": o.get("salary_min"),
-                "salary_max": o.get("salary_max"),
-                "currency_type": o.get("currency_type", ""),
-                "posted_date": o.get("posted_date", ""),
-                "source": o.get("source", ""),
-                "logo_url": o.get("logo_url", ""),
-                "skills": o.get("skills", []),
-                "level_rank": o.get("level_rank", 5),
-                "level": o.get("level", "Sin nivel"),
-                "url": o["url"],
-            },
-        )
-        if created:
-            nuevas += 1
-            resultados.append({"obj": obj, "es_nueva": True})
-        else:
-            existentes += 1
-            resultados.append({"obj": obj, "es_nueva": False})
+        data = form.cleaned_data
+        filtros = {}
+        for campo in ("search", "country_id", "from_age", "job_seniority"):
+            if data.get(campo):
+                filtros[campo] = data[campo]
 
-    def _clave_orden(r):
-        fecha = r["obj"].posted_date
-        return (not r["es_nueva"], -(fecha.timestamp() if fecha else float("-inf")))
+        try:
+            ofertas_api = buscar_ofertas(
+                filtros=filtros,
+                max_pages=data.get("max_pages") or 3,
+            )
+        except (ConnectionError, ValueError, RuntimeError) as e:
+            return render(request, "empleos/resultados_empleos.html",
+                          {"error": str(e)})
+        except Exception as e:
+            return render(request, "empleos/resultados_empleos.html",
+                          {"error": f"Error inesperado: {e}"})
 
-    resultados.sort(key=_clave_orden)
-
-    return render(request, "empleos/buscar_empleo.html", {
-        "total_resultados": len(resultados),
-        "nuevas": nuevas,
-        "existentes": existentes,
-    })
+        nuevas, existentes, _ = guardar_ofertas(ofertas_api)
+        return render(request, "empleos/buscar_empleo.html", {
+            "total_resultados": len(ofertas_api),
+            "nuevas": nuevas,
+            "existentes": existentes,
+        })
 
 
-def toggle_oculto(request, pk):
-    if request.method != "POST":
+class ToggleOcultoView(View):
+    def post(self, request, pk):
+        oferta = get_object_or_404(OfertaEmpleo, pk=pk)
+        oferta.oculto = not oferta.oculto
+        oferta.save(update_fields=["oculto"])
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"oculto": oferta.oculto})
+        referer = request.META.get("HTTP_REFERER", "")
+        if "ocultas" in referer:
+            return redirect("empleos_app:ofertas-ocultas")
         return redirect("empleos_app:empleos-guardados")
-    oferta = get_object_or_404(OfertaEmpleo, pk=pk)
-    oferta.oculto = not oferta.oculto
-    oferta.save(update_fields=["oculto"])
-    if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        return JsonResponse({"oculto": oferta.oculto})
-    referer = request.META.get("HTTP_REFERER", "")
-    if "ocultas" in referer:
+
+
+class EliminarOfertasAntiguasView(View):
+    def post(self, request):
+        limite = timezone.now() - timedelta(days=30)
+        qs = OfertaEmpleo.objects.filter(posted_date__lt=limite)
+        eliminadas = qs.count()
+        qs.delete()
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"eliminadas": eliminadas})
         return redirect("empleos_app:ofertas-ocultas")
-    return redirect("empleos_app:empleos-guardados")
-
-
-def ofertas_ocultas(request):
-    page_obj, contexto = _filtrar_ofertas(request, oculto=True)
-    return render(request, "empleos/ofertas_ocultas.html", {
-        "ofertas": page_obj,
-        "page_obj": page_obj,
-        **contexto,
-    })
-
-
-def eliminar_ofertas_antiguas(request):
-    if request.method != "POST":
-        return redirect("empleos_app:ofertas-ocultas")
-    limite = timezone.now() - timedelta(days=30)
-    qs = OfertaEmpleo.objects.filter(posted_date__lt=limite)
-    eliminadas = qs.count()
-    qs.delete()
-    if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        return JsonResponse({"eliminadas": eliminadas})
-    return redirect("empleos_app:ofertas-ocultas")

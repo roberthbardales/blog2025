@@ -11,15 +11,15 @@
 <div class="mx-auto flex max-w-6xl flex-col md:flex-row gap-6 px-4 py-6">
   <aside class="w-full md:w-44 lg:w-48 md:flex-none">
     <div class="md:sticky md:top-24 rounded-2xl border border-slate-200 bg-white shadow-sm md:overflow-hidden">
-      <div class="hidden md:block border-b border-slate-200 bg-slate-50 px-4 py-3">
+      <div class="hidden md:block border-b border-slate-200 bg-slate-50 px-4 py-1.5">
         <span class="text-xs font-bold uppercase tracking-widest text-blue-700"><i class="fas fa-list mr-1"></i>Categorías</span>
       </div>
       <div class="flex md:flex-col overflow-x-auto md:overflow-x-visible gap-2 md:gap-0 px-3 py-2 md:px-0 md:py-0 scrollbar-none">
-        <a href="{% url 'entrada_app:entry-lista' %}" class="inline-flex items-center shrink-0 md:block md:border-l-4 md:px-5 md:py-3 px-4 py-2 rounded-full md:rounded-none text-sm transition whitespace-nowrap {% if not request.GET.categoria %}md:border-blue-700 md:bg-blue-600 md:text-white md:font-semibold bg-blue-600 text-white font-semibold{% else %}border border-slate-200 md:border-transparent md:border-l-4 text-slate-700 hover:bg-slate-50 hover:border-blue-400 md:hover:border-blue-600 md:hover:translate-x-1{% endif %}">Todas</a>
+        <a href="{% url 'entrada_app:entry-lista' %}" class="inline-flex items-center shrink-0 md:block md:border-l-4 md:px-5 md:py-1.5 px-3 py-1.5 rounded-full md:rounded-none text-sm transition whitespace-nowrap {% if not request.GET.categoria %}md:border-blue-700 md:bg-blue-600 md:text-white md:font-semibold bg-blue-600 text-white font-semibold{% else %}border border-slate-200 md:border-transparent md:border-l-4 text-slate-700 hover:bg-slate-50 hover:border-blue-400 md:hover:border-blue-600 md:hover:translate-x-1{% endif %}">Todas</a>
         {% for categoria in categorias %}
-        <a href="?categoria={{ categoria.short_name }}" class="inline-flex items-center shrink-0 md:block md:border-l-4 md:px-5 md:py-3 px-4 py-2 rounded-full md:rounded-none text-sm transition whitespace-nowrap {% if request.GET.categoria == categoria.short_name %}md:border-blue-700 md:bg-blue-600 md:text-white md:font-semibold bg-blue-600 text-white font-semibold{% else %}border border-slate-200 md:border-transparent md:border-l-4 text-slate-700 hover:bg-slate-50 hover:border-blue-400 md:hover:border-blue-600 md:hover:translate-x-1{% endif %}">{{ categoria.short_name }}</a>
+        <a href="?categoria={{ categoria.short_name }}" class="inline-flex items-center shrink-0 md:block md:border-l-4 md:px-5 md:py-1.5 px-3 py-1.5 rounded-full md:rounded-none text-sm transition whitespace-nowrap {% if request.GET.categoria == categoria.short_name %}md:border-blue-700 md:bg-blue-600 md:text-white md:font-semibold bg-blue-600 text-white font-semibold{% else %}border border-slate-200 md:border-transparent md:border-l-4 text-slate-700 hover:bg-slate-50 hover:border-blue-400 md:hover:border-blue-600 md:hover:translate-x-1{% endif %}">{{ categoria.short_name }}</a>
         {% empty %}
-        <div class="px-5 py-4 text-center text-sm text-slate-400 hidden md:block">Sin categorías</div>
+        <div class="px-5 py-2 text-center text-sm text-slate-400 hidden md:block">Sin categorías</div>
         {% endfor %}
       </div>
     </div>
@@ -27,24 +27,24 @@
 
   <div class="w-full md:flex-1 py-4">
     <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-      <span class="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-700">
+      <span class="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-bold uppercase tracking-widest text-blue-700">
         <i class="fas fa-th-list mr-1"></i>
         Categoría: {% if request.GET.categoria %}{{ request.GET.categoria }}{% else %}Todas{% endif %}
       </span>
       {% if not user.is_anonymous %}
-      <a class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 hover:-translate-y-0.5 hover:shadow-lg" href="{% url 'entrada_app:add-entrada' %}">
+      <a class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-1.5 text-sm font-semibold text-white transition hover:bg-emerald-700 hover:-translate-y-0.5 hover:shadow-lg" href="{% url 'entrada_app:add-entrada' %}">
         <i class="fas fa-plus"></i>Agregar Post
       </a>
       {% endif %}
     </div>
 
-    <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm mb-4">
+    <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm mb-4">
       <form method="GET" class="flex gap-2">
         {% if request.GET.categoria %}
         <input type="hidden" name="categoria" value="{{ request.GET.categoria }}">
         {% endif %}
-        <input type="text" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" name="kword_prueba" placeholder="Buscar artículos..." value="{{ request.GET.kword_prueba }}">
-        <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-3 sm:px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700">
+        <input type="text" class="w-full rounded-xl border border-slate-300 px-4 py-1.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" name="kword_prueba" placeholder="Buscar artículos..." value="{{ request.GET.kword_prueba }}">
+        <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-3 sm:px-5 py-1.5 text-sm font-semibold text-white transition hover:bg-blue-700">
           <i class="fas fa-search"></i><span class="hidden sm:inline">Buscar</span>
         </button>
       </form>
@@ -85,15 +85,15 @@
       <nav aria-label="Paginación">
         <ul class="flex flex-wrap items-center gap-2">
           {% if page_obj.has_previous %}
-          <li><a class="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-600 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}"><i class="fas fa-chevron-left"></i> <span class="hidden sm:inline">Atrás</span></a></li>
+          <li><a class="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 py-1 text-sm text-slate-600 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}"><i class="fas fa-chevron-left"></i> <span class="hidden sm:inline">Atrás</span></a></li>
           {% endif %}
           {% for pagina in paginator.page_range %}
           <li class="hidden md:list-item">
-            <a class="inline-flex items-center rounded-lg border px-3 py-1.5 text-sm transition {% if pagina == page_obj.number %}border-blue-600 bg-blue-600 text-white font-semibold{% else %}border-slate-300 bg-white text-slate-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white{% endif %}" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+            <a class="inline-flex items-center rounded-lg border px-3 py-1 text-sm transition {% if pagina == page_obj.number %}border-blue-600 bg-blue-600 text-white font-semibold{% else %}border-slate-300 bg-white text-slate-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white{% endif %}" href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
           </li>
           {% endfor %}
           {% if page_obj.has_next %}
-          <li><a class="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-600 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}"><span class="hidden sm:inline">Siguiente</span> <i class="fas fa-chevron-right"></i></a></li>
+          <li><a class="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 py-1 text-sm text-slate-600 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}"><span class="hidden sm:inline">Siguiente</span> <i class="fas fa-chevron-right"></i></a></li>
           {% endif %}
         </ul>
       </nav>

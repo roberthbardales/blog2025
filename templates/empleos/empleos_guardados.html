@@ -5,21 +5,7 @@
 
 {% block sidebar_content %}
 <div class="max-w-6xl mx-auto">
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-slate-800">
-      <i class="fas fa-bookmark mr-2 text-blue-600"></i>Empleos Guardados
-    </h1>
-    <div class="flex items-center gap-3">
-      <a href="{% url 'empleos_app:ofertas-ocultas' %}"
-         class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white text-sm font-medium rounded-lg hover:bg-amber-600 transition shadow-md hover:shadow-lg">
-        <i class="fas fa-eye-slash"></i>Ocultas
-      </a>
-      <a href="{% url 'empleos_app:buscar-empleo' %}"
-         class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
-        <i class="fas fa-arrow-left"></i>Nueva búsqueda
-      </a>
-    </div>
-  </div>
+  {% include "empleos/includes/encabezado_tabs.html" with titulo_empleos="Empleos Guardados" icono_empleos="fa-bookmark" color_icono_empleos="text-blue-600" tab_empleos_activo="guardados" %}
 
   <form method="get" class="bg-white rounded-2xl shadow-lg p-4 mb-6 space-y-4">
     <div>
@@ -46,10 +32,10 @@
                 class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
           <option value="">Todas</option>
           <option value="hoy" {% if periodo == "hoy" %}selected{% endif %}>Hoy</option>
-          <option value="ayer" {% if periodo == "ayer" %}selected{% endif %}>Ayer</option>
-          <option value="3d" {% if periodo == "3d" %}selected{% endif %}>Hace 3 días</option>
-          <option value="1s" {% if periodo == "1s" %}selected{% endif %}>Hace una semana</option>
-          <option value="1m" {% if periodo == "1m" %}selected{% endif %}>Hace un mes</option>
+          <option value="ayer" {% if periodo == "ayer" %}selected{% endif %}>Desde ayer</option>
+          <option value="3d" {% if periodo == "3d" %}selected{% endif %}>Desde hace 3 días</option>
+          <option value="1s" {% if periodo == "1s" %}selected{% endif %}>Desde hace una semana</option>
+          <option value="1m" {% if periodo == "1m" %}selected{% endif %}>Desde hace un mes</option>
         </select>
       </div>
       <div class="flex gap-2">
@@ -73,11 +59,11 @@
       {% if keyword %} para "<span class="font-semibold text-slate-700">{{ keyword }}</span>"{% endif %}
       {% if fuente_seleccionada %} en <span class="font-semibold text-slate-700">{{ fuente_seleccionada }}</span>{% endif %}
       {% if periodo %}
-        {% if periodo == "hoy" %} - Publicadas hoy
-        {% elif periodo == "ayer" %} - Publicadas ayer
-        {% elif periodo == "3d" %} - Últimos 3 días
-        {% elif periodo == "1s" %} - Última semana
-        {% elif periodo == "1m" %} - Último mes
+        {% if periodo == "hoy" %} - Publicadas desde hoy
+        {% elif periodo == "ayer" %} - Publicadas desde ayer
+        {% elif periodo == "3d" %} - Publicadas desde hace 3 días
+        {% elif periodo == "1s" %} - Publicadas desde hace una semana
+        {% elif periodo == "1m" %} - Publicadas desde hace un mes
         {% endif %}
       {% endif %}
     </p>
@@ -120,7 +106,7 @@
               <td class="px-3 py-2 js-title-cell">
                 <a href="{{ o.url }}" target="_blank" rel="noopener"
                    class="font-medium text-blue-600 hover:text-blue-800 hover:underline text-sm">
-                  {{ o.title }} <i class="fas fa-external-link-alt text-xs ml-1 opacity-50"></i>
+                  {{ o.title }}
                 </a>
                 <div class="text-xs text-slate-400 md:hidden">{{ o.company }}</div>
               </td>

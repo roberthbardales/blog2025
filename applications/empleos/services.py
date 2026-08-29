@@ -201,7 +201,7 @@ def _jobs_from_response(data: dict) -> list:
                 or job.get("image")
                 or ""
             ),
-            "skills": (job.get("technical_skills") or [])[:8],
+            "skills": job.get("technical_skills") or [],
             "level_rank": rank,
             "level": label,
             "url": url,

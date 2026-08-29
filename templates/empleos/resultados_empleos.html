@@ -3,22 +3,8 @@
 {% block title %}Resultados de Empleos{% endblock title %}
 
 {% block sidebar_content %}
-<div class="max-w-5xl mx-auto">
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-slate-800">
-      <i class="fas fa-briefcase mr-2 text-blue-600"></i>Resultados
-    </h1>
-    <div class="flex items-center gap-3">
-      <a href="{% url 'empleos_app:empleos-guardados' %}"
-         class="text-sm text-blue-600 hover:text-blue-800 font-medium transition">
-        <i class="fas fa-bookmark mr-1"></i>Guardados
-      </a>
-      <a href="{% url 'empleos_app:buscar-empleo' %}"
-         class="text-sm text-blue-600 hover:text-blue-800 font-medium transition">
-        <i class="fas fa-arrow-left mr-1"></i>Nueva búsqueda
-      </a>
-    </div>
-  </div>
+<div class="max-w-6xl mx-auto">
+  {% include "empleos/includes/encabezado_tabs.html" with titulo_empleos="Resultados" icono_empleos="fa-briefcase" color_icono_empleos="text-blue-600" tab_empleos_activo="buscar" %}
 
   {% if error %}
     <div class="bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 mb-6">

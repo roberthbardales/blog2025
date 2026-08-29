@@ -164,10 +164,8 @@ class AddFavoritosView2(UsuarioPermisoMixin, View):
 
         if favorito:
             favorito.delete()
-            messages.warning(request, f'"{entrada.title}" fue eliminado de tus favoritos.')
         else:
             Favorites.objects.create(user=usuario, entry=entrada, group=grupo)
-            messages.success(request, f'"{entrada.title}" fue agregado a tus favoritos en el grupo "{grupo.name}".')
 
         # Redirigir al detalle de la entrada
         return redirect(reverse("entrada_app:entry-detail", kwargs={"slug": entrada.slug}))
@@ -208,15 +206,12 @@ class GruposCRUDView(UsuarioPermisoMixin, View):
             name = request.POST.get("name")
             description = request.POST.get("description", "")
 
-            if FavoriteGroup.objects.filter(user=request.user, name=name).exists():
-                messages.error(request, f"Ya existe un grupo con el nombre «{name}».")
-            else:
+            if not FavoriteGroup.objects.filter(user=request.user, name=name).exists():
                 FavoriteGroup.objects.create(
                     name=name,
                     description=description,
                     user=request.user
                 )
-                messages.success(request, f"Grupo «{name}» creado con éxito.")
 
         # Editar grupo
         # elif action == "update":
@@ -239,7 +234,6 @@ class GruposCRUDView(UsuarioPermisoMixin, View):
             grupo_id = request.POST.get("grupo_id")
             grupo = FavoriteGroup.objects.get(id=grupo_id, user=request.user)
             grupo.delete()
-            messages.success(request, f"Grupo «{grupo.name}» eliminado con éxito.")
 
         return redirect("favoritos_app:grupos_crud")
 
@@ -263,7 +257,6 @@ class EditarGrupoView(UsuarioPermisoMixin, UpdateView):
             messages.error(self.request, f"Ya tienes otro grupo llamado «{new_name}».")
             return self.form_invalid(form)
 
-        messages.success(self.request, f"Grupo «{new_name}» actualizado con éxito.")
         return super().form_valid(form)
 
 

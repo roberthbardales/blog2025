@@ -9,6 +9,54 @@
 <meta name="keywords" content="{% for t in entry.tag.all %}{{ t.name }},{% endfor %}">
 {% endblock tags %}
 
+{% block css %}
+<style>
+  .post-content pre {
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace;
+    line-height: 1.7;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  .post-content pre code.hljs {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .post-content .code-window {
+    position: relative;
+    margin: 0.5rem 0.3rem;
+    border-radius: 12px;
+    border: 1px solid #3d434d;
+    background: #282c34;
+    overflow: hidden;
+  }
+  .post-content .code-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+    border: 1px solid #4b5263;
+    background: rgba(33, 37, 43, 0.85);
+    color: #abb2bf;
+    font-size: 11px;
+    line-height: 1;
+    font-family: inherit;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .post-content .code-copy-btn:hover { background: #3a3f4b; color: #3b82f6; }
+  .post-content .code-copy-btn--copied { background: #27c93f; border-color: #27c93f; color: #fff; }
+  .post-content .code-window pre { margin: 0; border: 0; border-radius: 0; }
+</style>
+{% endblock css %}
+
 {% block entrada_content %}
 {% include "includes/header.html" %}
 
@@ -243,35 +291,40 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.post-content pre').forEach(function(pre) {
-    pre.style.position = 'relative';
+    if (pre.closest('.code-window')) return;
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'code-window';
+
+    var codeEl = pre.querySelector('code');
 
     var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'code-copy-btn';
     btn.textContent = 'Copiar';
-    btn.className = 'absolute top-2 right-2 rounded-lg bg-slate-700/80 px-2 py-1 text-[11px] text-white hover:bg-slate-600 transition cursor-pointer z-10';
-
     btn.addEventListener('click', function() {
-      var code = pre.querySelector('code');
-      var text = code ? code.innerText : pre.innerText;
+      var text = codeEl ? codeEl.innerText : pre.innerText;
       navigator.clipboard.writeText(text).then(function() {
-        btn.textContent = 'Copiado!';
-        btn.classList.remove('bg-slate-700/80');
-        btn.classList.add('bg-emerald-600');
+        btn.textContent = '¡Copiado!';
+        btn.classList.add('code-copy-btn--copied');
         setTimeout(function() {
           btn.textContent = 'Copiar';
-          btn.classList.remove('bg-emerald-600');
-          btn.classList.add('bg-slate-700/80');
+          btn.classList.remove('code-copy-btn--copied');
         }, 2000);
       });
     });
 
-    pre.appendChild(btn);
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+    wrapper.appendChild(btn);
   });
-});
-document.querySelectorAll('.post-content img').forEach(function(img) {
-  img.removeAttribute('width');
-  img.removeAttribute('height');
-  img.style.removeProperty('width');
-  img.style.removeProperty('height');
+
+  document.querySelectorAll('.post-content img').forEach(function(img) {
+    img.removeAttribute('width');
+    img.removeAttribute('height');
+    img.style.removeProperty('width');
+    img.style.removeProperty('height');
+  });
 });
 </script>
 

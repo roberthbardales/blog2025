@@ -5,31 +5,16 @@
 
 {% block sidebar_content %}
 <div class="max-w-2xl mx-auto">
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-slate-800">
-      <i class="fas fa-search mr-2 text-blue-600"></i>Buscar Empleos
-    </h1>
-    <div class="flex items-center gap-3">
-      <a href="{% url 'empleos_app:ofertas-ocultas' %}"
-         class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white text-sm font-medium rounded-lg hover:bg-amber-600 transition shadow-md hover:shadow-lg">
-        <i class="fas fa-eye-slash"></i>Ocultas
-      </a>
-      <a href="{% url 'empleos_app:empleos-guardados' %}"
-         class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
-        <i class="fas fa-bookmark"></i>Guardados
-      </a>
-    </div>
-  </div>
+  {% include "empleos/includes/encabezado_tabs.html" with titulo_empleos="Buscar Empleos" icono_empleos="fa-search" color_icono_empleos="text-blue-600" tab_empleos_activo="buscar" %}
 
   <form method="POST" action="{% url 'empleos_app:resultados-empleos' %}" id="empleos-search-form" class="bg-white rounded-2xl shadow-lg p-6 space-y-5">
     {% csrf_token %}
 
-    <div class="bg-slate-50 rounded-xl p-4 space-y-4">
+    <div class="bg-slate-50 rounded-xl p-1 space-y-4">
       <h2 class="text-sm font-semibold text-slate-600 uppercase tracking-wide">
-        <i class="fas fa-filter mr-1"></i>Filtros de búsqueda
+        <i class="fas fa-filter mr-1"></i>Buscar
       </h2>
       <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Palabras clave</label>
         <input type="text" name="search" placeholder="Ej: python developer"
                class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
         <div id="keywords-history" class="flex flex-wrap items-center gap-2 mt-2"></div>
@@ -47,7 +32,7 @@
           </select>
         </div>
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Antigüedad</label>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Fecha</label>
           <select name="from_age" class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
             <option value="">Cualquier fecha</option>
             <option value="1" selected>Último día</option>
@@ -72,10 +57,10 @@
             <input type="checkbox" name="job_seniority" checked  value="2" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Junior
           </label>
           <label class="flex items-center gap-1.5 text-sm text-slate-600">
-            <input type="checkbox" name="job_seniority" checked  value="3" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Semi Senior
+            <input type="checkbox" name="job_seniority" checked  value="4" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Semi Senior
           </label>
           <label class="flex items-center gap-1.5 text-sm text-slate-600">
-            <input type="checkbox" name="job_seniority" value="4" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Senior
+            <input type="checkbox" name="job_seniority" value="3" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Senior
           </label>
         </div>
       </div>
@@ -87,8 +72,35 @@
     </button>
   </form>
 </div>
+
+{% if total_resultados is not None %}
+<div id="resultados-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/50" onclick="redirigirGuardados()"></div>
+  <div class="relative bg-white rounded-2xl shadow-xl max-w-xs w-full p-6 text-center">
+    <i class="fas fa-check-circle text-5xl text-green-500 mb-3"></i>
+    <h3 class="text-lg font-semibold text-slate-800 mb-2">Búsqueda completada</h3>
+    <p class="text-slate-600 text-sm">
+      Se obtuvieron <span class="font-bold text-slate-800">{{ total_resultados }}</span> resultados de la búsqueda.
+    </p>
+    <a href="{% url 'empleos_app:empleos-guardados' %}"
+       class="mt-5 inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-200">
+      Aceptar
+    </a>
+  </div>
+</div>
+{% endif %}
 {% endblock sidebar_content %}
 
 {% block js %}
 <script src="{% static 'js/empleos_keywords_chips.js' %}"></script>
+{% if total_resultados is not None %}
+<script>
+  function redirigirGuardados() {
+    window.location.href = "{% url 'empleos_app:empleos-guardados' %}";
+  }
+  var modal = document.getElementById("resultados-modal");
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+</script>
+{% endif %}
 {% endblock js %}

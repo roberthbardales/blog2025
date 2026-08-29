@@ -1,12 +1,12 @@
-from datetime import date, timedelta
+from datetime import timedelta
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.utils import timezone
 from django.core.paginator import Paginator
 from django.db import models
-from django.db.models import DateField
 from django.db.models.functions import Cast
+from django.db.models import DateField
 
 from .models import OfertaEmpleo
 from .services import buscar_ofertas
@@ -40,7 +40,7 @@ SENIORITY_NAMES = {
 def _aplicar_filtro_periodo(qs, periodo):
     dias = PERIODO_MAP.get(periodo)
     if dias is not None:
-        fecha = date.today() - timedelta(days=dias)
+        fecha = timezone.localtime(timezone.now()).date() - timedelta(days=dias)
         qs = qs.annotate(
             posted_date_only=Cast('posted_date', DateField())
         ).filter(posted_date_only__gte=fecha)
@@ -173,14 +173,10 @@ def resultados_empleos(request):
 
     resultados.sort(key=_clave_orden)
 
-    return render(request, "empleos/resultados_empleos.html", {
-        "resultados": resultados,
-        "total": len(resultados),
+    return render(request, "empleos/buscar_empleo.html", {
+        "total_resultados": len(resultados),
         "nuevas": nuevas,
         "existentes": existentes,
-        "search": search,
-        "country": COUNTRY_NAMES.get(country_id, ""),
-        "niveles": [SENIORITY_NAMES.get(s, s) for s in job_seniority],
     })
 
 
@@ -205,3 +201,15 @@ def ofertas_ocultas(request):
         "page_obj": page_obj,
         **contexto,
     })
+
+
+def eliminar_ofertas_antiguas(request):
+    if request.method != "POST":
+        return redirect("empleos_app:ofertas-ocultas")
+    limite = timezone.now() - timedelta(days=30)
+    qs = OfertaEmpleo.objects.filter(posted_date__lt=limite)
+    eliminadas = qs.count()
+    qs.delete()
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"eliminadas": eliminadas})
+    return redirect("empleos_app:ofertas-ocultas")

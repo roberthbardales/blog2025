@@ -9,7 +9,7 @@
       <h1 class="mt-0.5 text-lg font-bold">Gestión de Entradas</h1>
     </div>
     <div class="flex gap-1.5">
-      <a href="?kwusuario={{ request.user.username }}" class="inline-flex items-center rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-blue-700 transition hover:bg-slate-100">Mis Posts</a>
+      <a href="{% url 'entrada_app:categorias-lista' %}" class="inline-flex items-center rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-amber-600">Categorías</a>
       <a href="{% url 'entrada_app:add-entrada' %}" class="inline-flex items-center rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-emerald-700">Nueva Entrada</a>
     </div>
   </div>

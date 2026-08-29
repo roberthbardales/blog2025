@@ -9,15 +9,9 @@
         <span class="inline-block bg-white/20 text-white text-sm font-semibold px-2 py-0.5 rounded-full mb-1">
           <i class="fas fa-layer-group mr-1"></i>Favoritos organizados
         </span>
-        <h2 class="mb-0.5 font-bold text-base">Gestión de grupos</h2>
-        <p class="mb-0 max-w-[720px] opacity-90 text-sm">
-          Crea grupos para ordenar tus favoritos y mantener todo más claro.
-        </p>
+
       </div>
-      <div class="flex gap-1.5">
-        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/20 text-white text-sm"><i class="fas fa-folder-open"></i>{{ grupos|length }} grupos</span>
-        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/20 text-white text-sm"><i class="fas fa-star"></i>Favoritos más limpios</span>
-      </div>
+
     </div>
   </div>
 </div>
@@ -35,9 +29,7 @@
   <div class="bg-white px-3 py-2 flex items-center justify-between border-b border-gray-100">
     <div>
       <h5 class="mb-0 text-gray-900 font-semibold text-sm">Crear nuevo grupo</h5>
-      <small class="text-gray-500 text-sm">Define un nombre y una descripción opcional</small>
     </div>
-    <span class="inline-block bg-green-100 text-green-700 text-sm font-semibold px-1.5 py-0.5 rounded-full">Nuevo</span>
   </div>
   <div class="p-3">
     <form method="post" action="{% url 'favoritos_app:grupos_crud' %}">
@@ -62,14 +54,8 @@
   </div>
 </div>
 
-<div class="bg-white rounded-xl shadow-md overflow-hidden">
-  <div class="bg-white px-3 py-2 flex justify-between items-center border-b border-gray-100">
-    <div>
-      <h5 class="mb-0 text-gray-900 font-semibold text-sm">Tus grupos</h5>
-      <small class="text-gray-500 text-sm">Edita o elimina los grupos que ya no uses</small>
-    </div>
-    <span class="inline-block bg-blue-100 text-blue-700 text-sm font-semibold px-1.5 py-0.5 rounded-full">{{ grupos|length }}</span>
-  </div>
+<div class="bg-white rounded-xl shadow-md overflow-hidden max-w-2xl mx-auto">
+
   <div class="overflow-x-auto">
     <table class="w-full text-left text-sm">
       <thead>

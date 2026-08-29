@@ -10,9 +10,9 @@
 <div class="space-y-3">
   <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white shadow-[0_18px_36px_rgba(15,23,42,0.16)]">
     <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-white/10"></div>
-    <div class="relative z-10 p-3 sm:p-4">
-      <div class="flex flex-col gap-3 md:flex-row md:items-center">
-        <div class="h-16 w-16 flex-none overflow-hidden rounded-xl border-2 border-white/50 shadow-[0_10px_24px_rgba(15,23,42,0.18)]">
+    <div class="relative z-10 p-3">
+      <div class="flex flex-col gap-2 md:flex-row md:items-center">
+        <div class="h-14 w-14 flex-none overflow-hidden rounded-xl border-2 border-white/50 shadow-[0_10px_24px_rgba(15,23,42,0.18)]">
           {% if profile_user.avatar %}
             <img src="{{ profile_user.avatar.url }}" alt="Avatar" class="h-full w-full object-cover">
           {% elif profile_user.avatar_url %}
@@ -23,14 +23,14 @@
         </div>
 
         <div class="min-w-0 flex-1">
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2 py-0.5 text-sm font-medium text-white/95">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2 py-0.5 text-xs font-medium text-white/95">
             <i class="fas fa-user text-sm"></i>
             Perfil
           </span>
 
-          <h1 class="mt-1 text-lg font-bold tracking-tight">{{ profile_user.full_name }}</h1>
+          <h1 class="mt-0.5 text-base font-bold tracking-tight">{{ profile_user.full_name }}</h1>
 
-          <p class="mt-0.5 text-sm text-white/75">
+          <p class="text-sm text-white/75">
             {% if profile_user.ocupation %}
               {{ profile_user.get_ocupation_display }}
             {% else %}
@@ -38,19 +38,19 @@
             {% endif %}
           </p>
 
-          <div class="mt-2 flex flex-wrap gap-1.5">
+          <div class="mt-1 flex flex-wrap gap-1">
             {% if profile_user.is_active %}
-              <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-sm font-semibold text-emerald-100 ring-1 ring-emerald-300/30">Activo</span>
+              <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-1.5 py-0.5 text-xs font-semibold text-emerald-100 ring-1 ring-emerald-300/30">Activo</span>
             {% else %}
-              <span class="inline-flex items-center rounded-full bg-slate-500/20 px-2 py-0.5 text-sm font-semibold text-slate-100 ring-1 ring-slate-300/20">Inactivo</span>
+              <span class="inline-flex items-center rounded-full bg-slate-500/20 px-1.5 py-0.5 text-xs font-semibold text-slate-100 ring-1 ring-slate-300/20">Inactivo</span>
             {% endif %}
 
             {% if profile_user.is_staff %}
-              <span class="inline-flex items-center rounded-full bg-amber-500/20 px-2 py-0.5 text-sm font-semibold text-amber-100 ring-1 ring-amber-300/30">Staff</span>
+              <span class="inline-flex items-center rounded-full bg-amber-500/20 px-1.5 py-0.5 text-xs font-semibold text-amber-100 ring-1 ring-amber-300/30">Staff</span>
             {% endif %}
 
             {% if profile_user.is_superuser %}
-              <span class="inline-flex items-center rounded-full bg-rose-500/20 px-2 py-0.5 text-sm font-semibold text-rose-100 ring-1 ring-rose-300/30">Superusuario</span>
+              <span class="inline-flex items-center rounded-full bg-rose-500/20 px-1.5 py-0.5 text-xs font-semibold text-rose-100 ring-1 ring-rose-300/30">Superusuario</span>
             {% endif %}
           </div>
         </div>
@@ -65,27 +65,27 @@
 
     <div class="p-3">
       <div class="grid gap-2 md:grid-cols-2">
-        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2.5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
-          <span class="mb-0.5 block text-sm font-medium uppercase tracking-wide text-slate-400">Email</span>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
+          <span class="block text-xs font-medium uppercase tracking-wide text-slate-400">Email</span>
           <strong class="block break-words text-sm text-slate-900">{{ profile_user.email }}</strong>
         </div>
 
         {% if profile_user.genero %}
-        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2.5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
-          <span class="mb-0.5 block text-sm font-medium uppercase tracking-wide text-slate-400">Género</span>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
+          <span class="block text-xs font-medium uppercase tracking-wide text-slate-400">Género</span>
           <strong class="block text-sm text-slate-900">{{ profile_user.get_genero_display }}</strong>
         </div>
         {% endif %}
 
         {% if profile_user.date_birth %}
-        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2.5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
-          <span class="mb-0.5 block text-sm font-medium uppercase tracking-wide text-slate-400">Fecha de Nacimiento</span>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
+          <span class="block text-xs font-medium uppercase tracking-wide text-slate-400">Fecha de Nacimiento</span>
           <strong class="block text-sm text-slate-900">{{ profile_user.date_birth|date:"d/m/Y" }}</strong>
         </div>
         {% endif %}
 
-        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2.5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
-          <span class="mb-0.5 block text-sm font-medium uppercase tracking-wide text-slate-400">Miembro desde</span>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-2 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
+          <span class="block text-xs font-medium uppercase tracking-wide text-slate-400">Miembro desde</span>
           <strong class="block text-sm text-slate-900">{{ profile_user.created_at|date:"d/m/Y" }}</strong>
         </div>
       </div>

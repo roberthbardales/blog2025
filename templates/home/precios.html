@@ -14,11 +14,11 @@ Planes y Precios | Russell Bardales - Desarrollo Web Django
 {% include "includes/header.html" %}
 
 <!-- ===== HERO ===== -->
-<section class="relative -mt-[48px] lg:-mt-[60px] pt-[48px] lg:pt-[60px] pb-4 px-4 bg-primary-700 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:24px_24px] overflow-hidden">
+<section class="relative -mt-[48px] lg:-mt-[60px] pt-[48px] lg:pt-[60px] pb-2 px-4 bg-primary-700 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:24px_24px] overflow-hidden mb-4">
 
-  <div class="relative z-10 text-center max-w-3xl mx-auto pt-3">
-    <h1 class="text-3xl lg:text-5xl font-extrabold text-white mb-3">Planes y Precios</h1>
-    <p class="text-lg text-white/70 max-w-xl mx-auto">
+  <div class="relative z-10 text-center max-w-3xl mx-auto">
+    <h1 class="text-2xl lg:text-4xl font-extrabold text-white mt-2 mb-1">Planes y Precios</h1>
+    <p class="text-sm text-white/60 max-w-xl mx-auto">
       Sistemas web a medida para tu negocio o empresa.
     </p>
   </div>
@@ -27,35 +27,35 @@ Planes y Precios | Russell Bardales - Desarrollo Web Django
 <hr class="border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent max-w-5xl mx-auto">
 
 <!-- ===== PLANES ===== -->
-<section class="py-5 px-4 bg-slate-50">
+<section class="py-2 px-4 bg-slate-50">
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
       {% for servicio in servicios %}
       {% with c=servicio.clases %}
-      <div class="relative bg-white backdrop-blur-sm border-t-[5px] shadow-sm rounded-2xl p-6 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl {{ c.borde }}{% if servicio.destacado %} ring-2 ring-primary-500/30 lg:scale-[1.03] z-10{% endif %}" data-sr="fade-up">
+      <div class="relative bg-white backdrop-blur-sm border-t-[5px] shadow-sm rounded-2xl p-4 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl {{ c.borde }}{% if servicio.destacado %} ring-2 ring-primary-500/30 lg:scale-[1.03] z-10{% endif %}" data-sr="fade-up">
         {% if servicio.destacado %}
         <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider bg-primary-600 text-white rounded-full px-3 py-1 shadow-md">
           <i class="fas fa-star text-yellow-400 text-[10px]"></i>Recomendado
         </span>
         {% endif %}
 
-        <div class="{{ c.icono_bg }} w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4">
-          <i class="{{ servicio.icono }} {{ c.icono_txt }} text-2xl"></i>
+        <div class="{{ c.icono_bg }} w-10 h-10 rounded-xl flex items-center justify-center mx-auto mb-2">
+          <i class="{{ servicio.icono }} {{ c.icono_txt }} text-lg"></i>
         </div>
 
-        <h3 class="font-bold text-primary-700 text-center text-lg mb-1">{{ servicio.nombre }}</h3>
-        <p class="text-xs text-gray-500 text-center leading-relaxed mb-4">{{ servicio.descripcion }}</p>
+        <h3 class="font-bold text-primary-700 text-center text-lg">{{ servicio.nombre }}</h3>
+        <p class="text-xs text-gray-500 text-center leading-relaxed mb-2">{{ servicio.descripcion }}</p>
 
-        <div class="text-center mb-5">
+        <div class="text-center mb-2">
           {% if servicio.precio %}
-          <span class="text-3xl font-extrabold text-gray-900">S/ {{ servicio.precio|floatformat }}</span>
+          <span class="text-2xl font-extrabold text-gray-900">S/ {{ servicio.precio|floatformat }}</span>
           {% else %}
           &nbsp;
           {% endif %}
         </div>
 
-        <ul class="space-y-2 mb-6 flex-1">
+        <ul class="space-y-1 mb-3 flex-1">
           {% for feature in servicio.caracteristicas %}
           <li class="flex items-start gap-2 text-sm text-gray-600">
             <i class="fas fa-check-circle {{ c.icono_txt }} mt-0.5 text-sm shrink-0"></i>
@@ -66,7 +66,7 @@ Planes y Precios | Russell Bardales - Desarrollo Web Django
 
         {% with msg="Hola Russell, quiero cotizar el servicio: "|add:servicio.nombre %}
         <a href="https://wa.me/51960174778?text={{ msg|urlencode }}"
-           class="no-underline w-full text-center text-white font-semibold py-3 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-0.5 {{ c.btn }}">
+           class="no-underline w-full text-center text-white font-semibold py-2 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-0.5 {{ c.btn }}">
           <i class="fab fa-whatsapp mr-2"></i>Cotizar
         </a>
         {% endwith %}

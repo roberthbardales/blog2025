@@ -39,7 +39,6 @@
         <select name="periodo" id="periodo"
                 class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
           <option value="">Todas</option>
-          <option value="hoy" {% if periodo == "hoy" %}selected{% endif %}>Hoy</option>
           <option value="ayer" {% if periodo == "ayer" %}selected{% endif %}>Ayer</option>
           <option value="3d" {% if periodo == "3d" %}selected{% endif %}>Hace 3 días</option>
           <option value="1s" {% if periodo == "1s" %}selected{% endif %}>Hace una semana</option>
@@ -67,8 +66,7 @@
       {% if keyword %} para "<span class="font-semibold text-slate-700">{{ keyword }}</span>"{% endif %}
       {% if fuente_seleccionada %} en <span class="font-semibold text-slate-700">{{ fuente_seleccionada }}</span>{% endif %}
       {% if periodo %}
-        {% if periodo == "hoy" %} - Publicadas hoy
-        {% elif periodo == "ayer" %} - Publicadas ayer
+        {% if periodo == "ayer" %} - Publicadas ayer
         {% elif periodo == "3d" %} - Últimos 3 días
         {% elif periodo == "1s" %} - Última semana
         {% elif periodo == "1m" %} - Último mes

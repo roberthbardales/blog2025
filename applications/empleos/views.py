@@ -14,7 +14,6 @@ from .services import buscar_ofertas, guardar_ofertas
 
 
 PERIODO_MAP = {
-    "hoy": 0,
     "ayer": 1,
     "3d": 3,
     "1s": 7,
@@ -53,11 +52,18 @@ class BaseListaOfertasView(ListView):
     paginate_by = 20
     context_object_name = "ofertas"
     oculto = False
+    periodo_default = ""
+
+    def _periodo_efectivo(self):
+        periodo = self.request.GET.get("periodo")
+        if periodo is None:
+            return self.periodo_default
+        return periodo.strip()
 
     def get_queryset(self):
         keyword = self.request.GET.get("keyword", "").strip()
         fuente = self.request.GET.get("fuente", "").strip()
-        periodo = self.request.GET.get("periodo", "").strip()
+        periodo = self._periodo_efectivo()
 
         qs = OfertaEmpleo.objects.filter(oculto=self.oculto).order_by('-posted_date')
         qs = _filtrar_keyword(qs, keyword)
@@ -76,7 +82,7 @@ class BaseListaOfertasView(ListView):
 
     def _contexto_extra(self):
         fuente = self.request.GET.get("fuente", "").strip()
-        periodo = self.request.GET.get("periodo", "").strip()
+        periodo = self._periodo_efectivo()
         fuentes = OfertaEmpleo.objects.filter(oculto=self.oculto).values_list(
             "source", flat=True
         ).distinct().order_by("source")
@@ -90,6 +96,7 @@ class BaseListaOfertasView(ListView):
 class EmpleosGuardadosView(BaseListaOfertasView):
     template_name = "empleos/empleos_guardados.html"
     oculto = False
+    periodo_default = "1s"
 
 
 class OfertasOcultasView(BaseListaOfertasView):

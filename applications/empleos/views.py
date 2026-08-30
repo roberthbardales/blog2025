@@ -96,7 +96,7 @@ class BaseListaOfertasView(ListView):
 class EmpleosGuardadosView(BaseListaOfertasView):
     template_name = "empleos/empleos_guardados.html"
     oculto = False
-    periodo_default = "1s"
+    periodo_default = "3d"
 
 
 class OfertasOcultasView(BaseListaOfertasView):

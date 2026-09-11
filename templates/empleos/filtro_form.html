@@ -1,0 +1,146 @@
+{% extends "layout_sidebar.html" %}
+{% load static %}
+
+{% block title %}{% if object %}Editar filtro{% else %}Nuevo filtro{% endif %}{% endblock title %}
+
+{% block sidebar_content %}
+<div class="max-w-3xl mx-auto">
+
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-slate-800">
+      <i class="fas fa-{% if object %}edit{% else %}plus{% endif %} mr-2 text-blue-600"></i>
+      {% if object %}Editar filtro{% else %}Nuevo filtro{% endif %}
+    </h1>
+    <a href="{% url 'empleos_app:filtros-lista' %}"
+       class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-200 transition">
+      <i class="fas fa-arrow-left"></i>Volver
+    </a>
+  </div>
+
+  <form method="post" class="bg-white rounded-2xl shadow-lg p-6 space-y-6">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+      {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    <section class="space-y-4">
+      <h2 class="text-sm font-semibold text-slate-600 uppercase tracking-wide border-b border-slate-100 pb-2">
+        <i class="fas fa-cog mr-1"></i>General
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Nombre *</label>
+          {{ form.nombre }}
+          {% if form.nombre.errors %}<p class="mt-1 text-xs text-red-600">{{ form.nombre.errors.0 }}</p>{% endif %}
+        </div>
+        <div class="flex items-end gap-2 pb-1">
+          {{ form.activo }}
+          <label class="text-sm font-medium text-slate-700">Filtro activo</label>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Palabras clave *</label>
+        {{ form.keywords }}
+        <p class="mt-1 text-xs text-slate-400">Separadas por coma. Ej: python, django, linux</p>
+        {% if form.keywords.errors %}<p class="mt-1 text-xs text-red-600">{{ form.keywords.errors.0 }}</p>{% endif %}
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">País</label>
+          {{ form.country_id }}
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Antigüedad</label>
+          {{ form.from_age }}
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Máx. páginas por keyword</label>
+          {{ form.max_pages }}
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-sm font-semibold text-slate-600 uppercase tracking-wide border-b border-slate-100 pb-2">
+        <i class="fas fa-filter mr-1"></i>Filtros de búsqueda
+      </h2>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-2">Niveles (seniority)</label>
+        <div class="flex flex-wrap gap-4">
+          {% for value, label in form.job_seniority.field.choices %}
+          <label class="inline-flex items-center gap-1.5 text-sm text-slate-600">
+            <input type="checkbox" name="job_seniority" value="{{ value }}"
+                   class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                   {% if value in form.job_seniority.value %}checked{% endif %}>
+            {{ label }}
+          </label>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Modalidad (IDs)</label>
+          {{ form.work_modality_id }}
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Categoría (IDs)</label>
+          {{ form.job_category_id }}
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Tipo de empleo (IDs)</label>
+          {{ form.job_type_id }}
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Salario mín.</label>
+          {{ form.salary_min }}
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Salario máx.</label>
+          {{ form.salary_max }}
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Moneda</label>
+          {{ form.currency_type }}
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">¿Inglés?</label>
+          {{ form.p_english_req }}
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-sm font-semibold text-slate-600 uppercase tracking-wide border-b border-slate-100 pb-2">
+        <i class="fas fa-bell mr-1"></i>Destinos de notificación
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Email de destino</label>
+          {{ form.email_destino }}
+          <p class="mt-1 text-xs text-slate-400">Vacío = usa el email del <code>.env</code></p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Telegram chat ID</label>
+          {{ form.telegram_chat_id }}
+          <p class="mt-1 text-xs text-slate-400">Vacío = usa el chat ID del <code>.env</code></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex justify-end gap-3 pt-2 border-t border-slate-100">
+      <a href="{% url 'empleos_app:filtros-lista' %}"
+         class="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-200 transition">Cancelar</a>
+      <button type="submit"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition shadow-md">
+        <i class="fas fa-save"></i>Guardar
+      </button>
+    </div>
+  </form>
+
+</div>
+{% endblock sidebar_content %}

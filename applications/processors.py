@@ -31,6 +31,20 @@ def solicitudes_pendientes(request):
     return {'solicitudes_pendientes': count}
 
 
+def notificaciones_no_leidas(request):
+    """Context processor para el centro de notificaciones del header."""
+    if not request.user.is_authenticated:
+        return {
+            'notificaciones_no_leidas': 0,
+            'notificaciones_recientes': [],
+        }
+    from applications.notificaciones.models import Notification
+    return {
+        'notificaciones_no_leidas': Notification.unread_count(request.user),
+        'notificaciones_recientes': Notification.recent(request.user, limit=8),
+    }
+
+
 def obtener_ip(request):
     """Context processor para obtener la IP del visitante.
     

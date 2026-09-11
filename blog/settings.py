@@ -51,6 +51,7 @@ LOCAL_APPS = (
     'applications.evaluaciones',
     'applications.amigos',
     'applications.empleos',
+    'applications.notificaciones',
     # 'applications.chatbot',
 )
 
@@ -130,6 +131,7 @@ TEMPLATES = [
                 'applications.processors.obtener_ip',
                 'applications.processors.obtener_clima',
                 'applications.processors.solicitudes_pendientes',
+                'applications.processors.notificaciones_no_leidas',
             ],
         },
     },
@@ -268,6 +270,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# -------------------------------
+# Telegram (notificaciones de empleos)
+# -------------------------------
+TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN', default='')
+TELEGRAM_CHAT_ID = env('TELEGRAM_CHAT_ID', default='')
 
 # -------------------------------
 # Firebase

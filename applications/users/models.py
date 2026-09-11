@@ -8,23 +8,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     # TIPO DE USUARIOS
     ADMINISTRADOR = '0'
     USUARIO = '1'
-    OTRO = '2'
+    OTRO_USUARIO = '2'
     # GENEROS
     VARON = 'M'
     MUJER = 'F'
-    OTRO = 'O'
+    OTRO_GENERO = 'O'
     #
 
     OCUPATION_CHOICES  = (
         (ADMINISTRADOR, 'Administrador'),
         (USUARIO, 'Usuario'),
-        (OTRO, 'Otro'),
+        (OTRO_USUARIO, 'Otro'),
     )
 
     GENDER_CHOICES = (
         (VARON, 'Masculino'),
         (MUJER, 'Femenino'),
-        (OTRO, 'Otros'),
+        (OTRO_GENERO, 'Otros'),
     )
 
     email = models.EmailField(unique=True)
@@ -83,3 +83,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         return self.full_name
+
+    def __str__(self):
+        return self.full_name or self.email

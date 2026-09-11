@@ -6,6 +6,8 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import requests
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 
 from .models import OfertaEmpleo
 
@@ -289,3 +291,117 @@ def guardar_ofertas(ofertas_api: list) -> tuple:
 
     resultados.sort(key=_clave_orden)
     return nuevas, existentes, resultados
+
+
+def _formatear_salario(o: dict) -> str:
+    if o.get("salary_min") and o.get("salary_max"):
+        return f" {o['salary_min']} - {o['salary_max']} {o.get('currency_type', '').upper()}".rstrip()
+    if o.get("salary_min"):
+        return f" desde {o['salary_min']} {o.get('currency_type', '').upper()}".rstrip()
+    return ""
+
+
+def _linea_oferta(o: dict) -> str:
+    salario = _formatear_salario(o)
+    linea = (
+        f"\u2022 {o['title']}\n"
+        f"   Empresa: {o.get('company') or 'N/A'}\n"
+        f"   Ubicaci\u00f3n: {o.get('location') or 'N/A'}"
+    )
+    if salario:
+        linea += f"\n   Salario: {salario}"
+    if o.get("level"):
+        linea += f"\n   Nivel: {o['level']}"
+    if o.get("source"):
+        linea += f"\n   Fuente: {o['source']}"
+    linea += f"\n   {o['url']}"
+    return linea
+
+
+def _linea_oferta_objeto(obj) -> str:
+    o = {
+        "title": obj.title,
+        "company": obj.company,
+        "location": obj.location,
+        "salary_min": obj.salary_min,
+        "salary_max": obj.salary_max,
+        "currency_type": obj.currency_type,
+        "level": obj.level,
+        "source": obj.source,
+        "url": obj.url,
+    }
+    return _linea_oferta(o)
+
+
+def _resumen_nuevas(resultados_nuevos: list) -> str:
+    if not resultados_nuevos:
+        return ""
+    lineas = [_linea_oferta_objeto(r["obj"]) for r in resultados_nuevos]
+    return "\n\n".join(lineas)
+
+
+def _dividir_texto(texto: str, limite=4000) -> list:
+    if len(texto) <= limite:
+        return [texto]
+    partes = []
+    actual = ""
+    for bloque in texto.split("\n\n"):
+        candidato = f"{actual}\n\n{bloque}" if actual else bloque
+        if len(candidato) > limite and not actual:
+            actual = bloque
+            continue
+        if len(candidato) <= limite:
+            actual = candidato
+        else:
+            partes.append(actual)
+            actual = bloque
+    if actual:
+        partes.append(actual)
+    return partes
+
+
+def enviar_telegram(chat_id: str, texto: str) -> bool:
+    bot_token = getattr(settings, "TELEGRAM_BOT_TOKEN", "")
+    chat_id_default = getattr(settings, "TELEGRAM_CHAT_ID", "")
+    if not bot_token:
+        return False
+    destino = chat_id or chat_id_default
+    if not destino:
+        return False
+    try:
+        todas_ok = True
+        for fragmento in _dividir_texto(texto):
+            resp = requests.post(
+                f"https://api.telegram.org/bot{bot_token}/sendMessage",
+                json={"chat_id": destino, "text": fragmento, "disable_web_page_preview": False},
+                timeout=30,
+            )
+            if resp.status_code != 200:
+                todas_ok = False
+        return todas_ok
+    except requests.exceptions.RequestException:
+        return False
+
+
+def enviar_email_ofertas(destino: str, asunto: str, cuerpo: str) -> bool:
+    if not destino:
+        destino = settings.DEFAULT_FROM_EMAIL
+    try:
+        msg = EmailMultiAlternatives(
+            subject=asunto,
+            body=cuerpo,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[destino],
+        )
+        msg.attach_alternative(_cuerpo_html(cuerpo), "text/html")
+        msg.send(fail_silently=False)
+        return True
+    except Exception:
+        return False
+
+
+def _cuerpo_html(texto_plano: str) -> str:
+    parrafos = "".join(
+        f"<p style='white-space:pre-wrap'>{p}</p>" for p in texto_plano.split("\n\n") if p
+    )
+    return f"<html><body style='font-family:Segoe UI,Arial,sans-serif'>{parrafos}</body></html>"

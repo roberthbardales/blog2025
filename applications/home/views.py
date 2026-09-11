@@ -45,6 +45,15 @@ class AboutMe(TemplateView):
         return context
 
 
+class PrivacyPolicyView(TemplateView):
+    template_name = "home/privacidad.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['simple_header'] = True
+        return context
+
+
 class SuscriberCreateView(CreateView):
     form_class = SuscribersForm
     success_url = "."

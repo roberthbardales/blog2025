@@ -13,6 +13,8 @@ from django.views.decorators.http import require_http_methods
 
 from applications.users.models import User
 from applications.amigos.models import Friendship
+from applications.notificaciones.models import Notification
+from applications.notificaciones.services import marcar_mensajes_leidas
 from .models import Message, UserStatus
 
 from datetime import timedelta
@@ -83,12 +85,8 @@ class ChatRoomView(LoginRequiredMixin, TemplateView):
             recipient__in=[self.request.user, other_user]
         ).select_related('sender', 'recipient').order_by('-created')[:50]
 
-        # Marcar mensajes recibidos como leídos
-        Message.objects.filter(
-            sender=other_user,
-            recipient=self.request.user,
-            is_read=False
-        ).update(is_read=True)
+        # Marcar mensajes recibidos como leídos + sus notificaciones (sincroniza badge)
+        marcar_mensajes_leidas(self.request.user, other_user)
 
         messages_with_time = []
         for msg in reversed(messages):

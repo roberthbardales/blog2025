@@ -27,6 +27,11 @@ urlpatterns = [
         views.AboutMe.as_view(),
         name='sobre_mi',
     ),
+    path(
+        'privacidad/',
+        views.PrivacyPolicyView.as_view(),
+        name='privacidad',
+    ),
 
     path(
         'visit/',

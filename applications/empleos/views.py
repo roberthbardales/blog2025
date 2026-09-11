@@ -1,15 +1,18 @@
 from datetime import timedelta
 
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import DateField, Q
 from django.db.models.functions import Cast
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import View
-from django.views.generic import ListView, TemplateView
+from django.views.generic import CreateView, DeleteView, ListView, TemplateView, UpdateView
 
-from .forms import BusquedaForm
-from .models import OfertaEmpleo
+from .forms import BusquedaForm, FiltroEmpleoForm
+from .models import FiltroEmpleo, OfertaEmpleo
 from .services import buscar_ofertas, guardar_ofertas
 
 
@@ -96,7 +99,7 @@ class BaseListaOfertasView(ListView):
 class EmpleosGuardadosView(BaseListaOfertasView):
     template_name = "empleos/empleos_guardados.html"
     oculto = False
-    periodo_default = "3d"
+    periodo_default = "ayer"
 
 
 class OfertasOcultasView(BaseListaOfertasView):
@@ -163,3 +166,58 @@ class EliminarOfertasAntiguasView(View):
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
             return JsonResponse({"eliminadas": eliminadas})
         return redirect("empleos_app:ofertas-ocultas")
+
+
+LOGIN_URL = reverse_lazy('users_app:user-login')
+
+
+class FiltroEmpleoListView(LoginRequiredMixin, ListView):
+    model = FiltroEmpleo
+    template_name = "empleos/filtros_lista.html"
+    context_object_name = "filtros"
+    login_url = LOGIN_URL
+
+
+class FiltroEmpleoCreateView(LoginRequiredMixin, CreateView):
+    model = FiltroEmpleo
+    form_class = FiltroEmpleoForm
+    template_name = "empleos/filtro_form.html"
+    login_url = LOGIN_URL
+
+    def get_success_url(self):
+        messages.success(self.request, '¡Filtro de empleo creado exitosamente!')
+        return reverse('empleos_app:filtros-lista')
+
+
+class FiltroEmpleoUpdateView(LoginRequiredMixin, UpdateView):
+    model = FiltroEmpleo
+    form_class = FiltroEmpleoForm
+    template_name = "empleos/filtro_form.html"
+    login_url = LOGIN_URL
+
+    def get_success_url(self):
+        messages.success(self.request, '¡Filtro de empleo actualizado exitosamente!')
+        return reverse('empleos_app:filtros-lista')
+
+
+class FiltroEmpleoDeleteView(LoginRequiredMixin, DeleteView):
+    model = FiltroEmpleo
+    template_name = "empleos/filtro_confirm_delete.html"
+    login_url = LOGIN_URL
+    success_url = reverse_lazy('empleos_app:filtros-lista')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, '¡Filtro de empleo eliminado exitosamente!')
+        return super().delete(request, *args, **kwargs)
+
+
+class FiltroEmpleoToggleView(LoginRequiredMixin, View):
+    login_url = LOGIN_URL
+
+    def post(self, request, pk):
+        filtro = get_object_or_404(FiltroEmpleo, pk=pk)
+        filtro.activo = not filtro.activo
+        filtro.save(update_fields=["activo"])
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"activo": filtro.activo})
+        return redirect("empleos_app:filtros-lista")

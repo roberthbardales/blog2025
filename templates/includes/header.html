@@ -28,6 +28,9 @@
         <li>
           <a class="inline-block border border-white/20 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#198754] hover:border-[#198754]" href="{% url 'entrada_app:entry-lista' %}">Blog</a>
         </li>
+        <li>
+          <a class="inline-block border border-white/20 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#198754] hover:border-[#198754]" href="{% url 'home_app:privacidad' %}">Privacidad</a>
+        </li>
 
       </ul>
       <form method="get" action="{% url 'entrada_app:entry-lista' %}" class="flex items-center gap-2">
@@ -45,6 +48,54 @@
           <span class="bg-yellow-400 text-dark rounded-lg px-4 py-2">Perfil</span>
         {% endif %}
       </a>
+      <div class="relative">
+        <button type="button" id="notif-toggle"
+                class="relative flex h-11 w-11 items-center justify-center rounded-full border-2 border-white/30 text-white transition-all duration-200 hover:scale-110 hover:bg-white/10 hover:shadow-[0_0_0_0.2rem_rgba(255,255,255,0.25)]"
+                aria-label="Notificaciones">
+          <i class="fas fa-bell text-lg"></i>
+        </button>
+        <span id="chat-notif-badge"
+              class="absolute -top-1.5 -right-1.5 z-10 hidden h-[18px] min-w-[18px] items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold leading-none text-white shadow-sm ring-2 ring-white"
+              title="Notificaciones sin leer"
+              data-total="{{ notificaciones_no_leidas }}"></span>
+
+        <div id="notif-dropdown" class="invisible absolute right-0 top-full z-20 mt-3 w-[320px] origin-top-right scale-95 opacity-0 transition-all duration-150">
+          <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,.18)]">
+            <div class="flex items-center justify-between bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-3 text-white">
+              <h3 class="m-0 text-sm font-bold"><i class="fas fa-bell mr-1.5"></i>Notificaciones</h3>
+              <span class="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold" id="notif-count-label">{{ notificaciones_no_leidas }}</span>
+            </div>
+            <ul id="notif-list" class="max-h-[360px] overflow-y-auto divide-y divide-slate-100">
+              {% for n in notificaciones_recientes %}
+              <li class="notif-unread relative {% if n.is_read %}notif-unread-resuelto{% endif %} {% if not n.is_read %}bg-blue-50{% endif %}">
+                <a href="{{ n.url }}" class="notif-item flex items-start gap-3 px-4 py-3 transition hover:bg-slate-50" data-kind="{{ n.kind }}">
+                  {% if not n.is_read %}<span class="notif-dot absolute top-3 right-3 h-2 w-2 rounded-full bg-red-500"></span>{% endif %}
+                  <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full {% if n.kind == 'message' %}bg-cyan-100 text-cyan-600{% elif n.kind == 'friend_request' %}bg-amber-100 text-amber-600{% else %}bg-emerald-100 text-emerald-600{% endif %}">
+                    {% if n.kind == 'message' %}<i class="fas fa-comments text-sm"></i>
+                    {% elif n.kind == 'friend_request' %}<i class="fas fa-user-plus text-sm"></i>
+                    {% else %}<i class="fas fa-user-check text-sm"></i>{% endif %}
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-[0.83rem] leading-snug text-slate-800">{{ n.text }}</span>
+                    <span class="block text-xs text-slate-400">{{ n.created|timesince }} atrás</span>
+                  </span>
+                </a>
+              </li>
+              {% empty %}
+              <li class="notif-empty">
+                <div class="px-4 py-10 text-center">
+                  <i class="far fa-bell-slash mb-2 text-2xl text-slate-300"></i>
+                  <p class="m-0 text-sm text-slate-500">No tienes notificaciones</p>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+            <a href="{% url 'notificaciones_app:lista' %}" class="block border-t border-slate-100 bg-slate-50 px-4 py-2.5 text-center text-sm font-semibold text-blue-600 transition hover:bg-blue-50">
+              Ver todas <i class="fas fa-arrow-right ml-1 text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
       <a href="{% url 'users_app:user-logout' %}" class="inline-block bg-red-600 text-white rounded-lg px-4 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">Salir</a>
       <a class="text-white font-bold" href="{% url 'favoritos_app:perfil' %}">{{ user.name }}</a>
       {% else %}
@@ -63,3 +114,129 @@
     });
   })();
 </script>
+
+{% if not user.is_anonymous %}
+<script>
+  (function() {
+    var badge = document.getElementById('chat-notif-badge');
+    if (!badge || typeof WebSocket === 'undefined') return;
+
+    var toggle = document.getElementById('notif-toggle');
+    var dropdown = document.getElementById('notif-dropdown');
+    var list = document.getElementById('notif-list');
+    var label = document.getElementById('notif-count-label');
+    var total = parseInt(badge.getAttribute('data-total')) || 0;
+    var dropdownOpen = false;
+
+    function render() {
+      if (total <= 0) {
+        badge.classList.add('hidden');
+        badge.classList.remove('flex');
+        badge.textContent = '';
+        return;
+      }
+      badge.classList.remove('hidden');
+      badge.classList.add('flex');
+      badge.textContent = total > 9 ? '9+' : String(total);
+    }
+
+    function esc(s) {
+      var d = document.createElement('div');
+      d.textContent = s == null ? '' : String(s);
+      return d.innerHTML;
+    }
+
+    function notifVisual(kind) {
+      if (kind === 'friend_request') return { icon: '<i class="fas fa-user-plus text-sm"></i>', color: 'bg-amber-100 text-amber-600' };
+      if (kind === 'friend_accepted') return { icon: '<i class="fas fa-user-check text-sm"></i>', color: 'bg-emerald-100 text-emerald-600' };
+      return { icon: '<i class="fas fa-comments text-sm"></i>', color: 'bg-cyan-100 text-cyan-600' };
+    }
+
+    function prependNotif(data) {
+      var empty = list.querySelector('.notif-empty');
+      if (empty) empty.remove();
+      var v = notifVisual(data.kind);
+      var li = document.createElement('li');
+      li.className = 'notif-unread relative bg-blue-50';
+      li.innerHTML =
+        '<span class="notif-dot absolute top-3 right-3 h-2 w-2 rounded-full bg-red-500"></span>' +
+        '<a href="' + esc(data.room_url) + '" class="notif-item flex items-start gap-3 px-4 py-3 transition hover:bg-slate-50" data-kind="' + esc(data.kind) + '">' +
+        '<span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ' + v.color + '">' + v.icon + '</span>' +
+        '<span class="min-w-0 flex-1">' +
+        '<span class="block text-[0.83rem] leading-snug text-slate-800">' + esc(data.preview) + '</span>' +
+        '<span class="block text-xs text-slate-400">ahora</span>' +
+        '</span></a>';
+      list.insertBefore(li, list.firstChild);
+    }
+
+    function marcarLeidas() {
+      fetch("{% url 'notificaciones_app:marcar-leidas' %}", {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}',
+          'Content-Type': 'application/json'
+        }
+      }).catch(function() {});
+      total = 0;
+      render();
+      if (label) label.textContent = '0';
+      list.querySelectorAll('li.notif-unread').forEach(function(li) {
+        li.classList.remove('bg-blue-50');
+        var dot = li.querySelector('.notif-dot');
+        if (dot) dot.remove();
+      });
+    }
+
+    function openDropdown() {
+      dropdown.classList.remove('invisible', 'opacity-0', 'scale-95');
+      dropdownOpen = true;
+      marcarLeidas();
+    }
+
+    function closeDropdown() {
+      dropdown.classList.add('invisible', 'opacity-0', 'scale-95');
+      dropdownOpen = false;
+    }
+
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (dropdownOpen) { closeDropdown(); } else { openDropdown(); }
+    });
+    document.addEventListener('click', function(e) {
+      if (dropdownOpen && !dropdown.contains(e.target)) closeDropdown();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && dropdownOpen) closeDropdown();
+    });
+
+    function isChatRoomPage() {
+      return /^\/chat\/\d+\/$/.test(window.location.pathname);
+    }
+
+    var wsScheme = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    var socket = new WebSocket(wsScheme + '://' + window.location.host + '/ws/notifications/');
+
+    socket.onmessage = function(e) {
+      var data;
+      try { data = JSON.parse(e.data); } catch (err) { return; }
+
+      if (data.type === 'notif') {
+        // Si estoy viendo esa misma sala, el mensaje ya lo muestra el socket
+        // de la sala y el servidor lo marca leído (el badge llega aparte).
+        if (isChatRoomPage() && data.room_url === window.location.pathname) {
+          return;
+        }
+        total += 1;
+        render();
+        prependNotif(data);
+        if (label) label.textContent = String(total > 99 ? '99+' : total);
+      } else if (data.type === 'badge') {
+        total = data.total;
+        render();
+      }
+    };
+
+    render();
+  })();
+</script>
+{% endif %}

@@ -1,0 +1,92 @@
+{% extends "layout_sidebar.html" %}
+
+{% block sidebar_content %}
+<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+  <div class="mb-5 flex items-center justify-between">
+    <h2 class="m-0 text-xl font-bold text-slate-900">
+      <i class="fas fa-bell mr-2 text-blue-600"></i>Notificaciones
+    </h2>
+    <a class="inline-flex h-9 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-sm font-medium text-slate-600 transition hover:border-blue-400 hover:text-blue-600"
+       href="{% url 'amigos_app:perfil' %}">
+      <i class="fas fa-user text-sm"></i> Mi perfil
+    </a>
+  </div>
+
+  {% if notificaciones %}
+  <ul class="divide-y divide-slate-100">
+    {% for n in notificaciones %}
+    <li class="flex items-start gap-3 px-1 py-4 {% if not n.is_read %}bg-blue-50 rounded-lg{% endif %}">
+      <span class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full {% if n.kind == 'message' %}bg-cyan-100 text-cyan-600{% elif n.kind == 'friend_request' %}bg-amber-100 text-amber-600{% else %}bg-emerald-100 text-emerald-600{% endif %}">
+        {% if n.kind == 'message' %}<i class="fas fa-comments"></i>
+        {% elif n.kind == 'friend_request' %}<i class="fas fa-user-plus"></i>
+        {% else %}<i class="fas fa-user-check"></i>{% endif %}
+      </span>
+      <div class="min-w-0 flex-1">
+        <p class="m-0 text-sm leading-snug text-slate-800">{{ n.text }}</p>
+        <p class="mt-0.5 text-xs text-slate-400">{{ n.created|timesince }} atrás</p>
+      </div>
+      {% if n.url %}
+      <a class="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 transition hover:text-blue-800"
+         href="{{ n.url }}">
+        Ver <i class="fas fa-arrow-right text-xs"></i>
+      </a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <div class="py-16 text-center">
+    <i class="far fa-bell-slash mb-3 text-4xl text-slate-300"></i>
+    <h3 class="text-sm font-semibold text-slate-900">No hay notificaciones</h3>
+    <p class="mt-1 text-sm text-slate-500">Los mensajes, solicitudes de amistad y confirmaciones aparecerán aquí.</p>
+  </div>
+  {% endif %}
+
+  {% if is_paginated %}
+  <nav aria-label="Paginación" class="mt-6 flex justify-center">
+    <ul class="flex flex-wrap items-center gap-1.5">
+      {% if page_obj.has_previous %}
+      <li>
+        <a class="inline-flex h-8 items-center gap-1 rounded-md border border-slate-200 bg-white px-2 text-sm font-medium text-slate-600 transition hover:border-blue-400 hover:text-blue-600"
+           href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
+          <i class="fas fa-chevron-left text-sm"></i> Atrás
+        </a>
+      </li>
+      {% endif %}
+
+      {% for pagina in paginator.page_range %}
+        {% if pagina <= 2 %}
+          <li>
+            <a class="inline-flex h-8 min-w-[2rem] items-center justify-center rounded-md border px-2 text-sm font-medium transition {% if pagina == page_obj.number %}border-blue-600 bg-blue-600 text-white{% else %}border-slate-200 bg-white text-slate-600 hover:border-blue-400 hover:text-blue-600{% endif %}"
+               href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+          </li>
+        {% elif pagina >= paginator.num_pages|add:"-1" %}
+          <li>
+            <a class="inline-flex h-8 min-w-[2rem] items-center justify-center rounded-md border px-2 text-sm font-medium transition {% if pagina == page_obj.number %}border-blue-600 bg-blue-600 text-white{% else %}border-slate-200 bg-white text-slate-600 hover:border-blue-400 hover:text-blue-600{% endif %}"
+               href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+          </li>
+        {% elif pagina >= page_obj.number|add:"-2" and pagina <= page_obj.number|add:"2" %}
+          <li>
+            <a class="inline-flex h-8 min-w-[2rem] items-center justify-center rounded-md border px-2 text-sm font-medium transition {% if pagina == page_obj.number %}border-blue-600 bg-blue-600 text-white{% else %}border-slate-200 bg-white text-slate-600 hover:border-blue-400 hover:text-blue-600{% endif %}"
+               href="?{{ request.GET.urlencode }}&page={{ pagina }}">{{ pagina }}</a>
+          </li>
+        {% elif pagina == 3 and page_obj.number > 5 %}
+          <li class="px-0.5 text-slate-400 text-sm">...</li>
+        {% elif pagina == paginator.num_pages|add:"-2" and page_obj.number < paginator.num_pages|add:"-3" %}
+          <li class="px-0.5 text-slate-400 text-sm">...</li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <li>
+        <a class="inline-flex h-8 items-center gap-1 rounded-md border border-slate-200 bg-white px-2 text-sm font-medium text-slate-600 transition hover:border-blue-400 hover:text-blue-600"
+           href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+          Siguiente <i class="fas fa-chevron-right text-sm"></i>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+</div>
+{% endblock sidebar_content %}

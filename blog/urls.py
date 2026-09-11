@@ -21,6 +21,7 @@ urlpatterns = [
     re_path('', include('applications.notas.urls')),
     re_path('', include('applications.evaluaciones.urls')),
     re_path('', include('applications.empleos.urls')),
+    re_path('', include('applications.notificaciones.urls')),
 
     # APIs
     path('api/entries/', include('applications.entrada.api_urls')),

@@ -117,6 +117,11 @@ class Comment(TimeStampedModel):
         related_name='replies'
     )
 
+    class Meta:
+        verbose_name = 'Comentario'
+        verbose_name_plural = 'Comentarios'
+        ordering = ['created']
+
     def __str__(self):
         return f'{self.user.full_name} - {self.post.title}'
 

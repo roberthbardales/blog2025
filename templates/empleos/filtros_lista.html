@@ -1,0 +1,94 @@
+{% extends "layout_sidebar.html" %}
+{% load static %}
+
+{% block title %}Filtros de Empleo{% endblock title %}
+
+{% block sidebar_content %}
+<div class="max-w-4xl mx-auto">
+
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+    <h1 class="text-2xl font-bold text-slate-800">
+      <i class="fas fa-sliders-h mr-2 text-blue-600"></i>Filtros de Empleo
+    </h1>
+    <a href="{% url 'empleos_app:filtro-nuevo' %}"
+       class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+      <i class="fas fa-plus"></i>Nuevo filtro
+    </a>
+  </div>
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="mb-4 rounded-xl border px-4 py-3 text-sm font-medium
+              {% if message.tags == 'success' %}border-emerald-200 bg-emerald-50 text-emerald-700
+              {% elif message.tags == 'error' %}border-red-200 bg-red-50 text-red-700
+              {% elif message.tags == 'warning' %}border-amber-200 bg-amber-50 text-amber-700
+              {% else %}border-blue-200 bg-blue-50 text-blue-700{% endif %}">
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <p class="text-sm text-slate-500 mb-5">
+    Todos los filtros activos se ejecutan automáticamente (cron) y notifican por email y Telegram
+    cuando aparecen ofertas nuevas. Se usan los destinos del filtro o, si están vacíos, los del <code>.env</code>.
+  </p>
+
+  {% if filtros %}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% for filtro in filtros %}
+    <div class="bg-white rounded-2xl border-l-[5px] {% if filtro.activo %}border-emerald-500{% else %}border-slate-300{% endif %} shadow-lg p-5 transition-transform duration-200 hover:-translate-y-[3px]">
+      <div class="flex items-start justify-between mb-2 gap-2">
+        <h2 class="text-lg font-bold text-slate-800">{{ filtro.nombre }}</h2>
+        <span class="inline-flex items-center shrink-0 rounded-full px-3 py-0.5 text-xs font-semibold
+                     {% if filtro.activo %}bg-emerald-100 text-emerald-700{% else %}bg-slate-100 text-slate-500{% endif %}">
+          <i class="fas fa-circle mr-1 text-[8px]"></i>{% if filtro.activo %}Activo{% else %}Inactivo{% endif %}
+        </span>
+      </div>
+
+      <p class="text-sm text-slate-600 mb-1">
+        <span class="text-slate-400 text-xs uppercase tracking-wide font-medium">Palabras clave:</span>
+        <span class="font-medium">{{ filtro.keywords|default:"—" }}</span>
+      </p>
+      <div class="flex flex-wrap gap-2 text-xs text-slate-600 mb-4">
+        {% if filtro.country_id %}<span class="inline-flex rounded-full bg-slate-100 px-2 py-0.5">País {{ filtro.country_id }}</span>{% endif %}
+        {% if filtro.job_seniority %}<span class="inline-flex rounded-full bg-blue-50 text-blue-700 px-2 py-0.5">Nivel: {{ filtro.job_seniority|join:"," }}</span>{% endif %}
+        <span class="inline-flex rounded-full bg-slate-100 px-2 py-0.5">Páginas: {{ filtro.max_pages }}</span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <form method="post" action="{% url 'empleos_app:filtro-toggle' filtro.pk %}" class="inline">
+          {% csrf_token %}
+          <button type="submit"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 {% if filtro.activo %}bg-slate-100 text-slate-700{% else %}bg-emerald-600 text-white{% endif %} text-xs font-semibold rounded-lg hover:opacity-90 transition">
+            <i class="fas {% if filtro.activo %}fa-pause{% else %}fa-play{% endif %}"></i>
+            {% if filtro.activo %}Desactivar{% else %}Activar{% endif %}
+          </button>
+        </form>
+        <a href="{% url 'empleos_app:filtro-editar' filtro.pk %}"
+           class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition"
+           title="Editar">
+          <i class="fas fa-edit text-sm"></i>
+        </a>
+        <a href="{% url 'empleos_app:filtro-eliminar' filtro.pk %}"
+           class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition"
+           title="Eliminar">
+          <i class="fas fa-trash text-sm"></i>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="bg-white rounded-2xl shadow-lg p-10 text-center">
+    <i class="fas fa-sliders-h text-5xl text-slate-300 mb-4"></i>
+    <h2 class="text-lg font-semibold text-slate-700 mb-1">Aún no hay filtros</h2>
+    <p class="text-sm text-slate-500 mb-5">Crea tu primer filtro para comenzar a recibir empleos automáticamente.</p>
+    <a href="{% url 'empleos_app:filtro-nuevo' %}"
+       class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition shadow-md">
+      <i class="fas fa-plus"></i>Crear filtro
+    </a>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock sidebar_content %}

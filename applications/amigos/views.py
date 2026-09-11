@@ -8,6 +8,9 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, View
 from applications.entrada.models import Entry, Category
 
+from applications.notificaciones.models import Notification
+from applications.notificaciones.services import crear_notificacion
+
 from .models import Friendship
 
 
@@ -102,6 +105,13 @@ class EnviarSolicitudView(LoginRequiredMixin, View):
             messages.warning(request, 'Ya existe una relación con este usuario.')
         else:
             Friendship.objects.create(sender=request.user, receiver=receiver)
+            crear_notificacion(
+                request.user,
+                receiver,
+                Notification.KIND_FRIEND_REQUEST,
+                f'{request.user.full_name} te envió una solicitud de amistad',
+                reverse_lazy('amigos_app:lista'),
+            )
             messages.success(request, f'Solicitud enviada a {receiver.full_name}.')
 
         return redirect('amigos_app:buscar')
@@ -116,6 +126,13 @@ class AceptarSolicitudView(LoginRequiredMixin, View):
         )
         solicitud.status = Friendship.STATUS_ACCEPTED
         solicitud.save()
+        crear_notificacion(
+            request.user,
+            solicitud.sender,
+            Notification.KIND_FRIEND_ACCEPTED,
+            f'{request.user.full_name} aceptó tu solicitud de amistad',
+            reverse_lazy('chat_room', kwargs={'user_id': request.user.id}),
+        )
         messages.success(request, f'Ahora eres amigo de {solicitud.sender.full_name}.')
         return redirect('amigos_app:lista')
 
